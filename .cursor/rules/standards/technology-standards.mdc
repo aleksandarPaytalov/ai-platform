@@ -1,3 +1,1749 @@
 ---
 alwaysApply: true
 ---
+# Technology Standards for AI Feature Tracker Development
+
+## Overview
+This rule establishes comprehensive technology standards and best practices for the AI Feature Tracker project, covering Next.js 14, TypeScript, React, Supabase, Anthropic API, and Tailwind CSS. All standards are designed for a C#/.NET developer transitioning to modern web development.
+
+## Rule Metadata
+- **Rule Type**: Always Applied
+- **Scope**: All code development and architectural decisions
+- **Priority**: High - Foundation for code quality and consistency
+- **Context**: Public-facing AI capability tracking platform
+- **Developer Background**: C#/.NET to modern web development transition
+
+## 1. Next.js 14 App Router Standards
+
+### App Router Exclusive Usage
+- **MANDATORY**: Use App Router exclusively - no Pages Router components allowed
+- Think of App Router like ASP.NET Core's MVC routing, but file-system based
+- Server components are like controller actions that return server-rendered content
+- Client components are like client-side JavaScript that runs in the browser
+
+### File-Based Routing Structure
+```typescript
+// Standard file organization (similar to ASP.NET Core Areas)
+app/
+├── layout.tsx          // Like _Layout.cshtml in ASP.NET
+├── page.tsx           // Like Index.cshtml - the route's main content
+├── loading.tsx        // Like loading indicators in WPF/WinForms
+├── error.tsx          // Like global exception handlers in ASP.NET
+├── not-found.tsx      // Like 404.cshtml custom error pages
+├── globals.css        // Like Site.css global styles
+└── (dashboard)/       // Route groups (like Areas in ASP.NET)
+    ├── layout.tsx     // Nested layout for dashboard section
+    ├── page.tsx       // Dashboard home page
+    └── features/
+        └── page.tsx   // /dashboard/features route
+```
+
+### Server vs Client Component Guidelines
+```typescript
+// Server Component (default) - like ASP.NET Controller actions
+// Use for: Data fetching, SEO content, performance-critical rendering
+async function ServerPage() {
+  // Database calls happen on server (like EF Core in controller)
+  const data = await supabase.from('features').select('*');
+  
+  return (
+    <div>
+      <h1>AI Features ({data.length})</h1>
+      <FeatureList features={data} />
+    </div>
+  );
+}
+
+// Client Component - like client-side JavaScript/React
+// Use for: Interactivity, state management, event handlers
+'use client';
+import { useState } from 'react';
+
+function InteractiveFeatureCard({ feature }: { feature: Feature }) {
+  const [isExpanded, setIsExpanded] = useState(false);
+  
+  // Client-side state and event handlers
+  const handleToggle = () => setIsExpanded(!isExpanded);
+  
+  return (
+    <div onClick={handleToggle}>
+      {/* Interactive UI elements */}
+    </div>
+  );
+}
+```
+
+### Metadata API for SEO
+```typescript
+// In page.tsx or layout.tsx - like meta tags in ASP.NET Master Pages
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'AI Feature Tracker | Track AI Capabilities',
+  description: 'Real-time tracking of AI capabilities and features across platforms',
+  keywords: ['AI', 'tracking', 'capabilities', 'features'],
+  openGraph: {
+    title: 'AI Feature Tracker',
+    description: 'Track AI capabilities in real-time',
+    url: 'https://ai-tracker.com',
+    siteName: 'AI Feature Tracker',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'AI Feature Tracker',
+    description: 'Track AI capabilities in real-time',
+    images: ['/og-image.jpg'],
+  },
+};
+```
+
+### Image Optimization Standards
+```typescript
+// Always use Next.js Image component - like optimized image handling in ASP.NET
+import Image from 'next/image';
+
+function FeatureImage({ feature }: { feature: Feature }) {
+  return (
+    <Image
+      src={feature.imageUrl}
+      alt={feature.name}
+      width={400}
+      height={300}
+      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+      placeholder="blur"
+      blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQ..."
+      priority={feature.isPriority} // For above-the-fold images
+      className="rounded-lg object-cover"
+    />
+  );
+}
+```
+
+## 2. TypeScript Strict Mode Standards
+
+### Strict Configuration (tsconfig.json)
+```json
+{
+  "compilerOptions": {
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true
+  }
+}
+```
+
+### Type Definition Standards
+```typescript
+// Interface definitions - like C# interfaces but structural typing
+interface AIFeature {
+  id: string;
+  name: string;
+  description: string;
+  category: FeatureCategory;
+  status: FeatureStatus;
+  capabilities: Capability[];
+  metadata?: FeatureMetadata; // Optional properties must be explicit
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+// Discriminated unions - like C# enum with associated data
+type FeatureStatus = 
+  | { type: 'draft'; lastModified: Date }
+  | { type: 'active'; activationDate: Date }
+  | { type: 'deprecated'; deprecationReason: string }
+  | { type: 'archived'; archiveDate: Date };
+
+// Utility types for data transformation - like LINQ projections
+type FeatureCardData = Pick<AIFeature, 'id' | 'name' | 'status'>;
+type CreateFeatureRequest = Omit<AIFeature, 'id' | 'createdAt' | 'updatedAt'>;
+type PartialFeatureUpdate = Partial<Pick<AIFeature, 'name' | 'description' | 'category'>>;
+
+// Generic types for reusable components - like C# generics
+interface ApiResponse<T> {
+  data: T;
+  error?: ApiError;
+  meta: {
+    count: number;
+    page: number;
+    totalPages: number;
+  };
+}
+
+// Function type definitions - like C# delegate types
+type FeatureValidator = (feature: AIFeature) => ValidationResult;
+type ApiErrorHandler = (error: ApiError) => void;
+```
+
+### Error Handling Types
+```typescript
+// Typed error handling - like custom exceptions in C#
+class FeatureValidationError extends Error {
+  constructor(
+    message: string,
+    public field: keyof AIFeature,
+    public code: ValidationErrorCode
+  ) {
+    super(message);
+    this.name = 'FeatureValidationError';
+  }
+}
+
+// Result pattern - like C# Result<T> or Optional<T>
+type Result<T, E = Error> = 
+  | { success: true; data: T }
+  | { success: false; error: E };
+
+// Usage in functions
+async function createFeature(data: CreateFeatureRequest): Promise<Result<AIFeature, FeatureValidationError>> {
+  try {
+    const validatedData = validateFeatureData(data);
+    const feature = await supabase.from('features').insert(validatedData).single();
+    return { success: true, data: feature };
+  } catch (error) {
+    if (error instanceof FeatureValidationError) {
+      return { success: false, error };
+    }
+    throw error; // Re-throw unexpected errors
+  }
+}
+```
+
+## 3. React Component Standards
+
+### Functional Components with Hooks
+```typescript
+// Always use functional components - like C# methods with closures
+interface FeatureCardProps {
+  feature: AIFeature;
+  onUpdate: (feature: AIFeature) => void;
+  onDelete: (id: string) => void;
+}
+
+function FeatureCard({ feature, onUpdate, onDelete }: FeatureCardProps) {
+  // State management - like private fields with property setters
+  const [isEditing, setIsEditing] = useState(false);
+  const [localFeature, setLocalFeature] = useState(feature);
+  
+  // Memoized computations - like computed properties in C#
+  const displayStatus = useMemo(() => {
+    return feature.status.type === 'active' ? 'Active' : 'Inactive';
+  }, [feature.status]);
+  
+  // Event handlers - like event handler methods in C#
+  const handleSave = useCallback(async () => {
+    const result = await updateFeature(localFeature);
+    if (result.success) {
+      onUpdate(result.data);
+      setIsEditing(false);
+    }
+  }, [localFeature, onUpdate]);
+  
+  // Cleanup effects - like IDisposable pattern in C#
+  useEffect(() => {
+    const subscription = subscribeToFeatureUpdates(feature.id, (updated) => {
+      setLocalFeature(updated);
+    });
+    
+    return () => subscription.unsubscribe(); // Cleanup on unmount
+  }, [feature.id]);
+  
+  return (
+    <div className="feature-card">
+      {/* Component JSX */}
+    </div>
+  );
+}
+```
+
+### Performance Optimization Patterns
+```typescript
+// Memoized components - like caching expensive operations in C#
+const FeatureCard = React.memo<FeatureCardProps>(
+  ({ feature, onUpdate, onDelete }) => {
+    // Component implementation
+  },
+  // Custom comparison function - like IEqualityComparer<T> in C#
+  (prevProps, nextProps) => {
+    return prevProps.feature.id === nextProps.feature.id &&
+           prevProps.feature.updatedAt === nextProps.feature.updatedAt;
+  }
+);
+
+// Memoized expensive calculations
+function FeatureAnalytics({ features }: { features: AIFeature[] }) {
+  const analytics = useMemo(() => {
+    // Expensive calculation - like LINQ aggregations
+    return {
+      totalActive: features.filter(f => f.status.type === 'active').length,
+      categoryBreakdown: features.reduce((acc, feature) => {
+        acc[feature.category] = (acc[feature.category] || 0) + 1;
+        return acc;
+      }, {} as Record<FeatureCategory, number>),
+      averageCapabilities: features.reduce((sum, f) => sum + f.capabilities.length, 0) / features.length
+    };
+  }, [features]); // Only recalculate when features array changes
+  
+  return <div>{/* Analytics display */}</div>;
+}
+```
+
+### Error Boundary Implementation
+```typescript
+// Error boundaries - like global exception handling in ASP.NET
+interface ErrorBoundaryState {
+  hasError: boolean;
+  error?: Error;
+  errorInfo?: ErrorInfo;
+}
+
+class FeatureErrorBoundary extends Component<PropsWithChildren, ErrorBoundaryState> {
+  constructor(props: PropsWithChildren) {
+    super(props);
+    this.state = { hasError: false };
+  }
+  
+  static getDerivedStateFromError(error: Error): ErrorBoundaryState {
+    return { hasError: true, error };
+  }
+  
+  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+    // Log error - like logging in ASP.NET Core
+    console.error('Feature component error:', error, errorInfo);
+    
+    // Report to monitoring service
+    reportError(error, { context: 'FeatureComponent', ...errorInfo });
+  }
+  
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="error-fallback">
+          <h2>Something went wrong with this feature</h2>
+          <button onClick={() => this.setState({ hasError: false })}>
+            Try again
+          </button>
+        </div>
+      );
+    }
+    
+    return this.props.children;
+  }
+}
+```
+
+## 4. Supabase Integration Standards
+
+### Row Level Security (RLS) Mandatory
+```sql
+-- Enable RLS on all tables - like database security policies
+ALTER TABLE features ENABLE ROW LEVEL SECURITY;
+
+-- Create policies - like authorization attributes in ASP.NET Core
+CREATE POLICY "Features are viewable by everyone" ON features
+  FOR SELECT USING (true);
+
+CREATE POLICY "Users can insert their own features" ON features
+  FOR INSERT WITH CHECK (auth.uid() = user_id);
+
+CREATE POLICY "Users can update their own features" ON features
+  FOR UPDATE USING (auth.uid() = user_id);
+
+CREATE POLICY "Users can delete their own features" ON features
+  FOR DELETE USING (auth.uid() = user_id);
+```
+
+### TypeScript Type Generation
+```typescript
+// Generated types from Supabase CLI - like EF Core model classes
+export interface Database {
+  public: {
+    Tables: {
+      features: {
+        Row: {
+          id: string;
+          name: string;
+          description: string;
+          category: FeatureCategory;
+          status: Json; // Complex types stored as JSON
+          user_id: string;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          name: string;
+          description: string;
+          category: FeatureCategory;
+          status: Json;
+          user_id: string;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          name?: string;
+          description?: string;
+          category?: FeatureCategory;
+          status?: Json;
+          user_id?: string;
+          created_at?: string;
+          updated_at?: string;
+        };
+      };
+    };
+  };
+}
+
+// Type-safe database client
+type SupabaseClient = Client<Database>;
+```
+
+### Client Management and Error Handling
+```typescript
+// Singleton client pattern - like DbContext in dependency injection
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+
+export const supabase = createClientComponentClient<Database>();
+
+// Repository pattern - like C# repository pattern
+class FeatureRepository {
+  constructor(private client: SupabaseClient) {}
+  
+  async getAll(): Promise<Result<AIFeature[], DatabaseError>> {
+    try {
+      const { data, error } = await this.client
+        .from('features')
+        .select('*')
+        .order('created_at', { ascending: false });
+      
+      if (error) {
+        return { success: false, error: new DatabaseError(error.message, error.code) };
+      }
+      
+      return { success: true, data: data.map(this.mapToFeature) };
+    } catch (error) {
+      return { success: false, error: new DatabaseError('Unexpected database error') };
+    }
+  }
+  
+  async getById(id: string): Promise<Result<AIFeature | null, DatabaseError>> {
+    const { data, error } = await this.client
+      .from('features')
+      .select('*')
+      .eq('id', id)
+      .single();
+    
+    if (error && error.code === 'PGRST116') {
+      return { success: true, data: null }; // Not found
+    }
+    
+    if (error) {
+      return { success: false, error: new DatabaseError(error.message, error.code) };
+    }
+    
+    return { success: true, data: this.mapToFeature(data) };
+  }
+  
+  private mapToFeature(row: Database['public']['Tables']['features']['Row']): AIFeature {
+    return {
+      id: row.id,
+      name: row.name,
+      description: row.description,
+      category: row.category,
+      status: row.status as FeatureStatus,
+      capabilities: [], // Load separately if needed
+      createdAt: new Date(row.created_at),
+      updatedAt: new Date(row.updated_at),
+    };
+  }
+}
+```
+
+### Real-time Subscription Management
+```typescript
+// Real-time subscriptions - like SignalR in ASP.NET Core
+class FeatureSubscriptionManager {
+  private subscriptions = new Map<string, RealtimeChannel>();
+  
+  subscribeToFeatures(callback: (payload: RealtimePostgresChangesPayload<any>) => void) {
+    const channel = supabase
+      .channel('features-changes')
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'features'
+        },
+        callback
+      )
+      .subscribe();
+    
+    this.subscriptions.set('features', channel);
+    
+    // Return cleanup function - like IDisposable
+    return () => {
+      channel.unsubscribe();
+      this.subscriptions.delete('features');
+    };
+  }
+  
+  // Cleanup all subscriptions - like disposing DbContext
+  cleanup() {
+    this.subscriptions.forEach(channel => channel.unsubscribe());
+    this.subscriptions.clear();
+  }
+}
+
+// Usage in React component
+function useFeatureSubscription() {
+  const [features, setFeatures] = useState<AIFeature[]>([]);
+  
+  useEffect(() => {
+    const manager = new FeatureSubscriptionManager();
+    
+    const unsubscribe = manager.subscribeToFeatures((payload) => {
+      if (payload.eventType === 'INSERT') {
+        setFeatures(prev => [...prev, mapToFeature(payload.new)]);
+      } else if (payload.eventType === 'UPDATE') {
+        setFeatures(prev => prev.map(f => 
+          f.id === payload.new.id ? mapToFeature(payload.new) : f
+        ));
+      } else if (payload.eventType === 'DELETE') {
+        setFeatures(prev => prev.filter(f => f.id !== payload.old.id));
+      }
+    });
+    
+    return () => {
+      unsubscribe();
+      manager.cleanup();
+    };
+  }, []);
+  
+  return features;
+}
+```
+
+## 5. Anthropic API Integration Standards
+
+### Rate Limiting and Cost Management
+```typescript
+// Rate limiter - like throttling in ASP.NET Core
+class AnthropicRateLimiter {
+  private queue: Array<() => Promise<void>> = [];
+  private processing = false;
+  private lastRequest = 0;
+  private readonly minInterval = 100; // Minimum 100ms between requests
+  
+  async enqueue<T>(operation: () => Promise<T>): Promise<T> {
+    return new Promise((resolve, reject) => {
+      this.queue.push(async () => {
+        try {
+          const now = Date.now();
+          const timeSinceLastRequest = now - this.lastRequest;
+          
+          if (timeSinceLastRequest < this.minInterval) {
+            await new Promise(resolve => 
+              setTimeout(resolve, this.minInterval - timeSinceLastRequest)
+            );
+          }
+          
+          this.lastRequest = Date.now();
+          const result = await operation();
+          resolve(result);
+        } catch (error) {
+          reject(error);
+        }
+      });
+      
+      this.processQueue();
+    });
+  }
+  
+  private async processQueue() {
+    if (this.processing || this.queue.length === 0) return;
+    
+    this.processing = true;
+    
+    while (this.queue.length > 0) {
+      const operation = this.queue.shift()!;
+      await operation();
+    }
+    
+    this.processing = false;
+  }
+}
+```
+
+### Error Handling with Exponential Backoff
+```typescript
+// Retry logic - like Polly in C#/.NET
+class AnthropicApiClient {
+  private rateLimiter = new AnthropicRateLimiter();
+  
+  async generateCompletion(
+    prompt: string, 
+    options: CompletionOptions = {}
+  ): Promise<Result<CompletionResponse, AnthropicError>> {
+    const maxRetries = 3;
+    let attempt = 0;
+    
+    while (attempt < maxRetries) {
+      try {
+        const response = await this.rateLimiter.enqueue(() =>
+          this.makeRequest(prompt, options)
+        );
+        
+        return { success: true, data: response };
+      } catch (error) {
+        attempt++;
+        
+        if (error instanceof AnthropicRateLimitError && attempt < maxRetries) {
+          const backoffMs = Math.pow(2, attempt) * 1000; // Exponential backoff
+          await new Promise(resolve => setTimeout(resolve, backoffMs));
+          continue;
+        }
+        
+        if (error instanceof AnthropicError) {
+          return { success: false, error };
+        }
+        
+        // Unexpected error
+        throw error;
+      }
+    }
+    
+    return { 
+      success: false, 
+      error: new AnthropicError('Max retries exceeded', 'MAX_RETRIES_EXCEEDED') 
+    };
+  }
+  
+  private async makeRequest(prompt: string, options: CompletionOptions) {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': process.env.ANTHROPIC_API_KEY!,
+        'anthropic-version': '2023-06-01',
+      },
+      body: JSON.stringify({
+        model: 'claude-3-sonnet-20240229',
+        max_tokens: options.maxTokens || 1000,
+        messages: [{ role: 'user', content: prompt }],
+      }),
+    });
+    
+    if (!response.ok) {
+      if (response.status === 429) {
+        throw new AnthropicRateLimitError('Rate limit exceeded');
+      }
+      
+      const errorData = await response.json();
+      throw new AnthropicError(errorData.error?.message || 'API request failed', errorData.error?.type);
+    }
+    
+    return await response.json();
+  }
+}
+```
+
+### Prompt Engineering Standards
+```typescript
+// Structured prompt templates - like template patterns in C#
+interface PromptTemplate {
+  system: string;
+  user: string;
+  parameters: Record<string, any>;
+}
+
+class FeatureAnalysisPrompts {
+  static readonly ANALYZE_CAPABILITY = {
+    system: `You are an AI capability analyst. Analyze the provided feature description and extract structured information about its capabilities, limitations, and technical requirements.
+
+Response must be valid JSON with this schema:
+{
+  "capabilities": string[],
+  "limitations": string[],
+  "technicalRequirements": string[],
+  "category": "NLP" | "Computer Vision" | "Reasoning" | "Multimodal" | "Other",
+  "complexityScore": number, // 1-10 scale
+  "confidenceScore": number // 0-1 scale
+}`,
+    
+    user: `Analyze this AI feature:
+
+Feature Name: {{featureName}}
+Description: {{description}}
+Context: {{context}}
+
+Provide your analysis as JSON only, no additional text.`,
+    
+    parameters: ['featureName', 'description', 'context']
+  } as const;
+  
+  static buildPrompt(template: PromptTemplate, values: Record<string, string>): string {
+    let prompt = template.user;
+    
+    template.parameters.forEach(param => {
+      const placeholder = `{{${param}}}`;
+      const value = values[param] || '';
+      prompt = prompt.replace(new RegExp(placeholder, 'g'), value);
+    });
+    
+    return prompt;
+  }
+}
+
+// Usage with type safety
+async function analyzeFeature(feature: AIFeature): Promise<Result<FeatureAnalysis, AnthropicError>> {
+  const client = new AnthropicApiClient();
+  
+  const prompt = FeatureAnalysisPrompts.buildPrompt(
+    FeatureAnalysisPrompts.ANALYZE_CAPABILITY,
+    {
+      featureName: feature.name,
+      description: feature.description,
+      context: `This feature is part of ${feature.category} category`
+    }
+  );
+  
+  const result = await client.generateCompletion(prompt, { maxTokens: 500 });
+  
+  if (!result.success) {
+    return result;
+  }
+  
+  try {
+    const analysis = JSON.parse(result.data.content) as FeatureAnalysis;
+    return { success: true, data: analysis };
+  } catch (error) {
+    return { 
+      success: false, 
+      error: new AnthropicError('Invalid JSON response from API', 'INVALID_RESPONSE') 
+    };
+  }
+}
+```
+
+## 6. Tailwind CSS Standards
+
+### Utility-First Approach
+```typescript
+// Component styling with Tailwind - like CSS classes but utility-first
+function FeatureCard({ feature }: { feature: AIFeature }) {
+  return (
+    <div className={`
+      bg-white dark:bg-gray-800 
+      rounded-lg shadow-md hover:shadow-lg 
+      border border-gray-200 dark:border-gray-700
+      p-6 transition-all duration-200
+      ${feature.status.type === 'active' ? 'ring-2 ring-green-500' : ''}
+    `}>
+      <div className="flex items-start justify-between mb-4">
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white truncate">
+          {feature.name}
+        </h3>
+        <StatusBadge status={feature.status} />
+      </div>
+      
+      <p className="text-gray-600 dark:text-gray-300 text-sm line-clamp-3 mb-4">
+        {feature.description}
+      </p>
+      
+      <div className="flex items-center justify-between">
+        <div className="flex items-center space-x-2">
+          <CategoryIcon category={feature.category} className="w-4 h-4" />
+          <span className="text-xs text-gray-500 uppercase tracking-wide">
+            {feature.category}
+          </span>
+        </div>
+        
+        <ActionButtons feature={feature} />
+      </div>
+    </div>
+  );
+}
+```
+
+### Responsive Design Patterns
+```typescript
+// Mobile-first responsive design - like Bootstrap responsive classes
+function FeatureGrid({ features }: { features: AIFeature[] }) {
+  return (
+    <div className={`
+      grid gap-4
+      grid-cols-1          /* Mobile: 1 column */
+      sm:grid-cols-2       /* Tablet: 2 columns */
+      lg:grid-cols-3       /* Desktop: 3 columns */
+      xl:grid-cols-4       /* Large desktop: 4 columns */
+      2xl:grid-cols-5      /* Extra large: 5 columns */
+    `}>
+      {features.map(feature => (
+        <FeatureCard key={feature.id} feature={feature} />
+      ))}
+    </div>
+  );
+}
+
+// Responsive typography and spacing
+function PageHeader({ title, description }: { title: string; description: string }) {
+  return (
+    <div className="mb-8 sm:mb-12 lg:mb-16">
+      <h1 className={`
+        text-2xl sm:text-3xl lg:text-4xl xl:text-5xl
+        font-bold text-gray-900 dark:text-white
+        mb-4 sm:mb-6
+      `}>
+        {title}
+      </h1>
+      
+      <p className={`
+        text-base sm:text-lg lg:text-xl
+        text-gray-600 dark:text-gray-300
+        max-w-2xl lg:max-w-4xl
+      `}>
+        {description}
+      </p>
+    </div>
+  );
+}
+```
+
+### Design System Integration
+```typescript
+// Design system tokens - like theme variables in WPF/WinUI
+const designTokens = {
+  colors: {
+    primary: {
+      50: 'bg-blue-50',
+      500: 'bg-blue-500',
+      600: 'bg-blue-600',
+      900: 'bg-blue-900',
+    },
+    success: {
+      50: 'bg-green-50',
+      500: 'bg-green-500',
+      600: 'bg-green-600',
+    },
+    warning: {
+      50: 'bg-yellow-50',
+      500: 'bg-yellow-500',
+      600: 'bg-yellow-600',
+    },
+    error: {
+      50: 'bg-red-50',
+      500: 'bg-red-500',
+      600: 'bg-red-600',
+    },
+  },
+  spacing: {
+    xs: 'p-2',
+    sm: 'p-4',
+    md: 'p-6',
+    lg: 'p-8',
+    xl: 'p-12',
+  },
+  borderRadius: {
+    sm: 'rounded-md',
+    md: 'rounded-lg',
+    lg: 'rounded-xl',
+    full: 'rounded-full',
+  },
+} as const;
+
+// Reusable component patterns
+function Button({ 
+  variant = 'primary', 
+  size = 'md', 
+  children, 
+  ...props 
+}: ButtonProps) {
+  const baseClasses = 'font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2';
+  
+  const variantClasses = {
+    primary: 'bg-blue-600 hover:bg-blue-700 text-white focus:ring-blue-500',
+    secondary: 'bg-gray-600 hover:bg-gray-700 text-white focus:ring-gray-500',
+    success: 'bg-green-600 hover:bg-green-700 text-white focus:ring-green-500',
+    danger: 'bg-red-600 hover:bg-red-700 text-white focus:ring-red-500',
+  };
+  
+  const sizeClasses = {
+    sm: 'px-3 py-1.5 text-sm',
+    md: 'px-4 py-2 text-base',
+    lg: 'px-6 py-3 text-lg',
+  };
+  
+  return (
+    <button
+      className={`${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]}`}
+      {...props}
+    >
+      {children}
+    </button>
+  );
+}
+```
+
+## 7. Performance and Optimization Standards
+
+### Code Splitting and Lazy Loading
+```typescript
+// Dynamic imports for code splitting - like lazy loading assemblies in .NET
+import dynamic from 'next/dynamic';
+import { Suspense } from 'react';
+
+// Lazy load heavy components
+const FeatureAnalyticsDashboard = dynamic(
+  () => import('../components/FeatureAnalyticsDashboard'),
+  {
+    loading: () => <div className="animate-pulse">Loading analytics...</div>,
+    ssr: false, // Don't render on server if component is heavy
+  }
+);
+
+const AIModelComparison = dynamic(
+  () => import('../components/AIModelComparison'),
+  {
+    loading: () => <FeatureCardSkeleton />,
+  }
+);
+
+// Route-level code splitting
+const DashboardPage = dynamic(() => import('../pages/DashboardPage'));
+
+function App() {
+  return (
+    <Suspense fallback={<PageSkeleton />}>
+      <Routes>
+        <Route path="/dashboard" component={DashboardPage} />
+      </Routes>
+    </Suspense>
+  );
+}
+```
+
+### Caching Strategies
+```typescript
+// Multi-layer caching - like output caching in ASP.NET Core
+import { unstable_cache } from 'next/cache';
+
+// Server-side caching for expensive operations
+const getCachedFeatures = unstable_cache(
+  async () => {
+    const { data } = await supabase.from('features').select('*');
+    return data;
+  },
+  ['features-list'],
+  {
+    revalidate: 300, // Cache for 5 minutes
+    tags: ['features'],
+  }
+);
+
+// Client-side caching with SWR
+import useSWR from 'swr';
+
+function useFeatures() {
+  const { data, error, isLoading, mutate } = useSWR(
+    'features',
+    () => featureRepository.getAll(),
+    {
+      revalidateOnFocus: false,
+      revalidateOnReconnect: true,
+      dedupingInterval: 60000, // Dedupe requests within 1 minute
+    }
+  );
+  
+  return {
+    features: data?.success ? data.data : [],
+    isLoading,
+    error: data?.success === false ? data.error : error,
+    refresh: mutate,
+  };
+}
+
+// Optimistic updates for better UX
+async function useOptimisticFeatureUpdate() {
+  const { features, refresh } = useFeatures();
+  
+  const updateFeature = async (id: string, updates: Partial<AIFeature>) => {
+    // Optimistically update UI
+    const optimisticFeatures = features.map(f => 
+      f.id === id ? { ...f, ...updates } : f
+    );
+    
+    mutate(optimisticFeatures, false); // Don't revalidate immediately
+    
+    try {
+      const result = await featureRepository.update(id, updates);
+      if (result.success) {
+        mutate(); // Revalidate with server data
+      } else {
+        // Revert optimistic update on error
+        mutate();
+        throw result.error;
+      }
+    } catch (error) {
+      mutate(); // Revert on any error
+      throw error;
+    }
+  };
+  
+  return { updateFeature };
+}
+```
+
+### Image and Asset Optimization
+```typescript
+// Optimized image loading with progressive enhancement
+import Image from 'next/image';
+
+function OptimizedFeatureImage({ feature }: { feature: AIFeature }) {
+  const [imageError, setImageError] = useState(false);
+  
+  if (imageError) {
+    return (
+      <div className="w-full h-48 bg-gray-200 dark:bg-gray-700 rounded-lg flex items-center justify-center">
+        <ImageIcon className="w-12 h-12 text-gray-400" />
+      </div>
+    );
+  }
+  
+  return (
+    <Image
+      src={feature.imageUrl}
+      alt={feature.name}
+      width={400}
+      height={300}
+      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+      placeholder="blur"
+      blurDataURL="data:image/jpeg;base64,..." // Low-quality placeholder
+      onError={() => setImageError(true)}
+      className="rounded-lg object-cover"
+      loading="lazy" // Lazy load images below fold
+    />
+  );
+}
+
+// Preload critical assets
+function preloadCriticalAssets() {
+  // Preload critical images
+  const link1 = document.createElement('link');
+  link1.rel = 'preload';
+  link1.as = 'image';
+  link1.href = '/hero-image.webp';
+  document.head.appendChild(link1);
+  
+  // Preload critical fonts
+  const link2 = document.createElement('link');
+  link2.rel = 'preload';
+  link2.as = 'font';
+  link2.type = 'font/woff2';
+  link2.href = '/fonts/Inter-var.woff2';
+  link2.crossOrigin = 'anonymous';
+  document.head.appendChild(link2);
+}
+```
+
+## 8. Security Standards
+
+### Input Validation and Sanitization
+```typescript
+// Input validation - like model validation in ASP.NET Core
+import { z } from 'zod';
+
+const CreateFeatureSchema = z.object({
+  name: z.string()
+    .min(1, 'Name is required')
+    .max(100, 'Name must be less than 100 characters')
+    .regex(/^[a-zA-Z0-9\s\-_]+$/, 'Name contains invalid characters'),
+  
+  description: z.string()
+    .min(10, 'Description must be at least 10 characters')
+    .max(1000, 'Description must be less than 1000 characters'),
+  
+  category: z.enum(['NLP', 'Computer Vision', 'Reasoning', 'Multimodal', 'Other']),
+  
+  capabilities: z.array(z.string().min(1).max(50)).max(20, 'Too many capabilities'),
+  
+  metadata: z.object({
+    tags: z.array(z.string()).optional(),
+    priority: z.number().min(1).max(10).optional(),
+  }).optional(),
+});
+
+type CreateFeatureRequest = z.infer<typeof CreateFeatureSchema>;
+
+// Server-side validation in API routes
+export async function POST(request: Request) {
+  try {
+    const body = await request.json();
+    
+    // Validate input - like model binding validation in ASP.NET Core
+    const validatedData = CreateFeatureSchema.parse(body);
+    
+    // Additional authorization checks
+    const user = await getCurrentUser();
+    if (!user) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+    
+    // Sanitize data before database insertion
+    const sanitizedData = {
+      ...validatedData,
+      name: sanitizeHtml(validatedData.name),
+      description: sanitizeHtml(validatedData.description),
+      user_id: user.id,
+    };
+    
+    const result = await featureRepository.create(sanitizedData);
+    
+    if (!result.success) {
+      return NextResponse.json({ error: result.error.message }, { status: 400 });
+    }
+    
+    return NextResponse.json(result.data);
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      return NextResponse.json(
+        { error: 'Validation failed', details: error.errors },
+        { status: 400 }
+      );
+    }
+    
+    console.error('Feature creation error:', error);
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 }
+    );
+  }
+}
+```
+
+### Authentication and Authorization
+```typescript
+// Authentication middleware - like authorization filters in ASP.NET Core
+import { createMiddlewareClient } from '@supabase/auth-helpers-nextjs';
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
+
+export async function middleware(req: NextRequest) {
+  const res = NextResponse.next();
+  const supabase = createMiddlewareClient({ req, res });
+  
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+  
+  // Protect API routes
+  if (req.nextUrl.pathname.startsWith('/api/')) {
+    if (!session) {
+      return NextResponse.json(
+        { error: 'Authentication required' },
+        { status: 401 }
+      );
+    }
+  }
+  
+  // Protect dashboard routes
+  if (req.nextUrl.pathname.startsWith('/dashboard')) {
+    if (!session) {
+      return NextResponse.redirect(new URL('/login', req.url));
+    }
+  }
+  
+  return res;
+}
+
+export const config = {
+  matcher: ['/api/:path*', '/dashboard/:path*'],
+};
+
+// Role-based authorization - like role-based authorization in ASP.NET Core
+function requireRole(allowedRoles: string[]) {
+  return async (req: NextRequest) => {
+    const user = await getCurrentUser();
+    
+    if (!user) {
+      throw new Error('Authentication required');
+    }
+    
+    const userRoles = await getUserRoles(user.id);
+    const hasPermission = allowedRoles.some(role => userRoles.includes(role));
+    
+    if (!hasPermission) {
+      throw new Error('Insufficient permissions');
+    }
+    
+    return user;
+  };
+}
+
+// Usage in API routes
+const requireAdmin = requireRole(['admin', 'moderator']);
+
+export async function DELETE(request: Request, { params }: { params: { id: string } }) {
+  try {
+    await requireAdmin(request as NextRequest);
+    
+    const result = await featureRepository.delete(params.id);
+    return NextResponse.json(result);
+  } catch (error) {
+    if (error.message === 'Authentication required') {
+      return NextResponse.json({ error: error.message }, { status: 401 });
+    }
+    if (error.message === 'Insufficient permissions') {
+      return NextResponse.json({ error: error.message }, { status: 403 });
+    }
+    throw error;
+  }
+}
+```
+
+### Environment Security
+```typescript
+// Environment variable validation - like configuration validation in ASP.NET Core
+import { z } from 'zod';
+
+const EnvSchema = z.object({
+  NEXT_PUBLIC_SUPABASE_URL: z.string().url('Invalid Supabase URL'),
+  NEXT_PUBLIC_SUPABASE_ANON_KEY: z.string().min(1, 'Supabase anon key required'),
+  SUPABASE_SERVICE_ROLE_KEY: z.string().min(1, 'Supabase service role key required'),
+  ANTHROPIC_API_KEY: z.string().min(1, 'Anthropic API key required'),
+  DATABASE_URL: z.string().url('Invalid database URL'),
+  NEXTAUTH_SECRET: z.string().min(32, 'NextAuth secret must be at least 32 characters'),
+  NEXTAUTH_URL: z.string().url('Invalid NextAuth URL'),
+});
+
+// Validate environment variables at startup
+const env = EnvSchema.parse(process.env);
+
+// Type-safe environment access
+export const config = {
+  supabase: {
+    url: env.NEXT_PUBLIC_SUPABASE_URL,
+    anonKey: env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+    serviceRoleKey: env.SUPABASE_SERVICE_ROLE_KEY,
+  },
+  anthropic: {
+    apiKey: env.ANTHROPIC_API_KEY,
+  },
+  auth: {
+    secret: env.NEXTAUTH_SECRET,
+    url: env.NEXTAUTH_URL,
+  },
+} as const;
+
+// Runtime security headers
+export function middleware(request: NextRequest) {
+  const response = NextResponse.next();
+  
+  // Security headers - like security headers in ASP.NET Core
+  response.headers.set('X-Content-Type-Options', 'nosniff');
+  response.headers.set('X-Frame-Options', 'DENY');
+  response.headers.set('X-XSS-Protection', '1; mode=block');
+  response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
+  response.headers.set(
+    'Content-Security-Policy',
+    "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:;"
+  );
+  
+  return response;
+}
+```
+
+## 9. Testing Standards
+
+### Unit Testing with Jest
+```typescript
+// Unit tests - like xUnit tests in C#/.NET
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { jest } from '@jest/globals';
+import FeatureCard from '../components/FeatureCard';
+import { createMockFeature } from '../__mocks__/feature';
+
+describe('FeatureCard', () => {
+  const mockOnUpdate = jest.fn();
+  const mockOnDelete = jest.fn();
+  const mockFeature = createMockFeature({
+    name: 'Test Feature',
+    status: { type: 'active', activationDate: new Date() },
+  });
+  
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+  
+  it('renders feature information correctly', () => {
+    render(
+      <FeatureCard 
+        feature={mockFeature} 
+        onUpdate={mockOnUpdate} 
+        onDelete={mockOnDelete} 
+      />
+    );
+    
+    expect(screen.getByText('Test Feature')).toBeInTheDocument();
+    expect(screen.getByText(mockFeature.description)).toBeInTheDocument();
+  });
+  
+  it('calls onUpdate when save button is clicked', async () => {
+    render(
+      <FeatureCard 
+        feature={mockFeature} 
+        onUpdate={mockOnUpdate} 
+        onDelete={mockOnDelete} 
+      />
+    );
+    
+    const editButton = screen.getByRole('button', { name: /edit/i });
+    fireEvent.click(editButton);
+    
+    const nameInput = screen.getByLabelText(/name/i);
+    fireEvent.change(nameInput, { target: { value: 'Updated Feature' } });
+    
+    const saveButton = screen.getByRole('button', { name: /save/i });
+    fireEvent.click(saveButton);
+    
+    await waitFor(() => {
+      expect(mockOnUpdate).toHaveBeenCalledWith(
+        expect.objectContaining({
+          ...mockFeature,
+          name: 'Updated Feature',
+        })
+      );
+    });
+  });
+  
+  it('handles loading state correctly', () => {
+    const loadingFeature = { ...mockFeature, name: '' };
+    
+    render(
+      <FeatureCard 
+        feature={loadingFeature} 
+        onUpdate={mockOnUpdate} 
+        onDelete={mockOnDelete} 
+      />
+    );
+    
+    expect(screen.getByTestId('feature-skeleton')).toBeInTheDocument();
+  });
+});
+
+// API testing - like integration tests in ASP.NET Core
+describe('/api/features', () => {
+  beforeEach(async () => {
+    await cleanupDatabase();
+  });
+  
+  describe('POST /api/features', () => {
+    it('creates a new feature successfully', async () => {
+      const featureData = {
+        name: 'New Feature',
+        description: 'A new AI feature',
+        category: 'NLP' as const,
+        capabilities: ['text-processing'],
+      };
+      
+      const response = await fetch('/api/features', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${await getTestAuthToken()}`,
+        },
+        body: JSON.stringify(featureData),
+      });
+      
+      expect(response.status).toBe(201);
+      
+      const createdFeature = await response.json();
+      expect(createdFeature).toMatchObject({
+        name: featureData.name,
+        description: featureData.description,
+        category: featureData.category,
+      });
+      expect(createdFeature.id).toBeDefined();
+      expect(createdFeature.createdAt).toBeDefined();
+    });
+    
+    it('validates input correctly', async () => {
+      const invalidData = {
+        name: '', // Invalid: empty name
+        description: 'Short', // Invalid: too short
+        category: 'InvalidCategory', // Invalid: not in enum
+      };
+      
+      const response = await fetch('/api/features', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${await getTestAuthToken()}`,
+        },
+        body: JSON.stringify(invalidData),
+      });
+      
+      expect(response.status).toBe(400);
+      
+      const errorResponse = await response.json();
+      expect(errorResponse.error).toBe('Validation failed');
+      expect(errorResponse.details).toHaveLength(3);
+    });
+  });
+});
+```
+
+### End-to-End Testing with Cypress
+```typescript
+// E2E tests - like Selenium tests in C#/.NET
+describe('Feature Management', () => {
+  beforeEach(() => {
+    cy.login('test@example.com', 'password123');
+    cy.visit('/dashboard/features');
+  });
+  
+  it('creates a new feature successfully', () => {
+    cy.getByTestId('create-feature-button').click();
+    
+    cy.getByLabelText('Feature Name').type('Test AI Feature');
+    cy.getByLabelText('Description').type('This is a test AI feature for automated testing');
+    cy.getByLabelText('Category').select('NLP');
+    
+    cy.getByTestId('add-capability-button').click();
+    cy.getByLabelText('Capability 1').type('Text Analysis');
+    
+    cy.getByTestId('save-feature-button').click();
+    
+    cy.contains('Feature created successfully').should('be.visible');
+    cy.contains('Test AI Feature').should('be.visible');
+  });
+  
+  it('updates feature in real-time', () => {
+    // Create feature in another session to test real-time updates
+    cy.window().then((win) => {
+      win.postMessage({ type: 'CREATE_FEATURE', feature: mockFeature }, '*');
+    });
+    
+    cy.contains(mockFeature.name).should('be.visible');
+    
+    // Update feature in another session
+    cy.window().then((win) => {
+      win.postMessage({ 
+        type: 'UPDATE_FEATURE', 
+        feature: { ...mockFeature, name: 'Updated Feature Name' } 
+      }, '*');
+    });
+    
+    cy.contains('Updated Feature Name').should('be.visible');
+    cy.contains(mockFeature.name).should('not.exist');
+  });
+  
+  it('handles network errors gracefully', () => {
+    cy.intercept('POST', '/api/features', { statusCode: 500 }).as('createFeatureError');
+    
+    cy.getByTestId('create-feature-button').click();
+    cy.getByLabelText('Feature Name').type('Test Feature');
+    cy.getByLabelText('Description').type('Test description');
+    cy.getByTestId('save-feature-button').click();
+    
+    cy.wait('@createFeatureError');
+    cy.contains('Failed to create feature. Please try again.').should('be.visible');
+  });
+});
+
+// Performance testing
+describe('Performance', () => {
+  it('loads feature list within performance budget', () => {
+    cy.visit('/dashboard/features');
+    
+    cy.window().then((win) => {
+      const navigationTiming = win.performance.getEntriesByType('navigation')[0];
+      const loadTime = navigationTiming.loadEventEnd - navigationTiming.fetchStart;
+      
+      expect(loadTime).to.be.lessThan(3000); // 3 second budget
+    });
+  });
+  
+  it('maintains good Core Web Vitals', () => {
+    cy.visit('/dashboard/features');
+    
+    cy.window().then((win) => {
+      // Measure Largest Contentful Paint (LCP)
+      new win.PerformanceObserver((list) => {
+        const entries = list.getEntries();
+        const lcp = entries[entries.length - 1];
+        expect(lcp.startTime).to.be.lessThan(2500); // 2.5 seconds
+      }).observe({ entryTypes: ['largest-contentful-paint'] });
+      
+      // Measure Cumulative Layout Shift (CLS)
+      new win.PerformanceObserver((list) => {
+        let clsValue = 0;
+        for (const entry of list.getEntries()) {
+          if (!entry.hadRecentInput) {
+            clsValue += entry.value;
+          }
+        }
+        expect(clsValue).to.be.lessThan(0.1); // Good CLS threshold
+      }).observe({ entryTypes: ['layout-shift'] });
+    });
+  });
+});
+```
+
+## 10. Deployment and DevOps Standards
+
+### Vercel Deployment Configuration
+```javascript
+// next.config.js - like web.config in ASP.NET
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  experimental: {
+    appDir: true,
+  },
+  
+  // Image optimization
+  images: {
+    domains: ['your-supabase-project.supabase.co'],
+    formats: ['image/webp', 'image/avif'],
+  },
+  
+  // Environment variables validation
+  env: {
+    CUSTOM_KEY: process.env.CUSTOM_KEY,
+  },
+  
+  // Redirects and rewrites
+  async redirects() {
+    return [
+      {
+        source: '/old-dashboard',
+        destination: '/dashboard',
+        permanent: true,
+      },
+    ];
+  },
+  
+  // Security headers
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff',
+          },
+          {
+            key: 'X-Frame-Options',
+            value: 'DENY',
+          },
+          {
+            key: 'X-XSS-Protection',
+            value: '1; mode=block',
+          },
+        ],
+      },
+    ];
+  },
+  
+  // Bundle analyzer for production builds
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+      };
+    }
+    
+    return config;
+  },
+};
+
+module.exports = nextConfig;
+```
+
+### GitHub Actions CI/CD Pipeline
+```yaml
+# .github/workflows/ci-cd.yml - like Azure DevOps pipelines
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Run TypeScript check
+        run: npm run type-check
+      
+      - name: Run linting
+        run: npm run lint
+      
+      - name: Run unit tests
+        run: npm run test:unit
+      
+      - name: Run integration tests
+        run: npm run test:integration
+        env:
+          TEST_DATABASE_URL: ${{ secrets.TEST_DATABASE_URL }}
+      
+      - name: Build application
+        run: npm run build
+      
+      - name: Run E2E tests
+        run: npm run test:e2e
+        env:
+          CYPRESS_baseUrl: http://localhost:3000
+  
+  deploy-preview:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    needs: test
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Deploy to Vercel (Preview)
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          scope: ${{ secrets.VERCEL_ORG_ID }}
+  
+  deploy-production:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    needs: test
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Deploy to Vercel (Production)
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          vercel-args: '--prod'
+          scope: ${{ secrets.VERCEL_ORG_ID }}
+```
+
+### Monitoring and Analytics
+```typescript
+// Error monitoring - like Application Insights in Azure
+import * as Sentry from '@sentry/nextjs';
+
+Sentry.init({
+  dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
+  environment: process.env.NODE_ENV,
+  
+  // Performance monitoring
+  tracesSampleRate: 1.0,
+  
+  // Error filtering
+  beforeSend(event) {
+    // Filter out non-critical errors
+    if (event.exception) {
+      const error = event.exception.values?.[0];
+      if (error?.type === 'ChunkLoadError') {
+        return null; // Don't report chunk load errors
+      }
+    }
+    
+    return event;
+  },
+});
+
+// Performance monitoring
+export function reportWebVitals(metric: NextWebVitalsMetric) {
+  // Report to analytics service
+  if (typeof window !== 'undefined') {
+    gtag('event', metric.name, {
+      custom_map: { metric_id: 'web_vitals' },
+      value: Math.round(metric.name === 'CLS' ? metric.value * 1000 : metric.value),
+      event_category: 'Web Vitals',
+      event_label: metric.id,
+      non_interaction: true,
+    });
+  }
+  
+  // Report to Sentry
+  Sentry.addBreadcrumb({
+    category: 'web-vitals',
+    message: `${metric.name}: ${metric.value}`,
+    level: 'info',
+  });
+}
+
+// API monitoring
+export async function withApiMonitoring<T>(
+  operation: () => Promise<T>,
+  operationName: string
+): Promise<T> {
+  const startTime = Date.now();
+  
+  try {
+    const result = await operation();
+    
+    // Report success metrics
+    reportApiMetric(operationName, 'success', Date.now() - startTime);
+    
+    return result;
+  } catch (error) {
+    // Report error metrics
+    reportApiMetric(operationName, 'error', Date.now() - startTime);
+    
+    // Report to Sentry
+    Sentry.captureException(error, {
+      tags: {
+        operation: operationName,
+      },
+    });
+    
+    throw error;
+  }
+}
+```
+
+## Summary
+
+These technology standards establish a comprehensive foundation for AI Feature Tracker development, providing:
+
+- **Consistent Code Quality**: TypeScript strict mode, comprehensive testing, and linting standards
+- **Performance Excellence**: Optimization patterns, caching strategies, and Core Web Vitals focus
+- **Security First**: Input validation, authentication, and secure deployment practices
+- **Developer Experience**: Clear patterns accessible to C#/.NET developers with modern web best practices
+- **Production Readiness**: Monitoring, error handling, and deployment automation
+
+All standards support the project's requirements for a public-facing, real-time AI capability tracking platform while maintaining the quality and reliability expectations from automotive industry background.
+
