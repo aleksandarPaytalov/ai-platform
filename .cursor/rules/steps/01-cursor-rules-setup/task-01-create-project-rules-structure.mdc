@@ -1,0 +1,116 @@
+---
+alwaysApply: false
+---
+# Task 1.1: Create Master Project Rules Structure
+
+## Context
+This task establishes the foundation for a granular, controlled development approach using Cursor AI rules. Each rule will be Manual-type to prevent scope creep and maintain precise control over the development process.
+
+## AI Instructions
+
+### 1. Create Root Rules Directory Structure
+- Create `.cursor/` directory in project root if it doesn't exist
+- Create `rules/` subdirectory within `.cursor/`
+- Ensure proper directory permissions and access
+
+### 2. Create Core Rule Files Structure
+Create the following core rule files in `.cursor/rules/`:
+- `global-behavior.mdc` - AI behavior and communication patterns
+- `technology-standards.mdc` - Technology stack standards and patterns  
+- `quality-standards.mdc` - Code quality and testing requirements
+- `project-checklist.mdc` - Master progress tracking checklist
+
+### 3. Create Organized Step Folders
+Create the following numbered step-specific folders under `.cursor/rules/steps/`:
+- `01-cursor-rules-setup/` - For tasks 1.1-1.6 (meta-development rules)
+- `02-infrastructure/` - For tasks 2.1-2.5 (project setup)
+- `03-supabase-project-setup/` - For tasks 3.1-3.5 (database and Supabase)
+- `04-app-structure/` - For tasks 4.1-4.5 (Next.js application structure)
+- `05-tool-data-display/` - For tasks 5.1-5.5 (tool display components)
+- `06-navigation-system/` - For tasks 6.1-6.5 (navigation and tabs)
+- `07-realtime-integration/` - For tasks 7.1-7.5 (Supabase real-time)
+- `08-feature-updates-display/` - For tasks 8.1-8.5 (feature update system)
+- `09-ai-integration/` - For tasks 9.1-9.5 (Anthropic API integration)
+- `10-automated-update-system/` - For tasks 10.1-10.5 (automated processing)
+- `11-search-filtering/` - For tasks 11.1-11.5 (search and filtering)
+- `12-mobile-optimization/` - For tasks 12.1-12.5 (mobile responsiveness)
+- `13-performance-seo/` - For tasks 13.1-13.5 (optimization and SEO)
+- `14-testing-quality-assurance/` - For tasks 14.1-14.5 (testing and QA)
+- `15-production-deployment/` - For tasks 15.1-15.5 (deployment and monitoring)
+
+### 4. Create Naming Conventions Documentation
+Create `NAMING_CONVENTIONS.md` file in `.cursor/rules/` with:
+- File naming standards: `task-##-descriptive-name.mdc`
+- Folder naming standards: `##-kebab-case` for numbered step directories
+- Rule naming standards: Clear, descriptive, task-specific names
+- Version control standards for rule files
+
+### 5. Create Rules System Architecture Documentation
+Create `RULES_ARCHITECTURE.md` file documenting:
+- Overall rules system design and philosophy
+- How Manual-type rules work and are invoked
+- Dependencies between rules and tasks
+- Best practices for rule creation and maintenance
+- Troubleshooting guide for rule issues
+
+### 6. Create Master Index Documentation
+Create `README.md` file in `.cursor/rules/` containing:
+- Overview of the rules system
+- Complete directory structure with descriptions
+- Quick reference for finding specific rules
+- Instructions for developers on using the rules system
+- Links to architecture and naming convention documents
+
+### 7. Verify Folder Structure Organization
+- Ensure all numbered folders are in correct sequential order (01-15)
+- Verify folder names match the established naming conventions exactly
+- Check that all directories are accessible and properly created
+- Confirm folder structure is ready for future task rule file creation
+
+## Expected Output
+Complete `.cursor/rules/` folder structure with:
+- All numbered directories created and properly organized
+- Core rule files with basic structure
+- Documentation files with comprehensive information
+- Clean, organized folder structure ready for task rule files
+- Clear navigation and organization system
+
+## Completion Checklist
+
+**Before marking this task as complete, verify ALL of the following:**
+
+### Directory Structure ✓
+- [ ] `.cursor/` directory exists in project root
+- [ ] `.cursor/rules/` directory created
+- [ ] All 15 numbered step-specific folders created under `steps/` (01-15)
+- [ ] Directory structure uses proper numbering and naming conventions
+- [ ] All folders are accessible and properly organized
+
+### Core Files ✓
+- [ ] `global-behavior.mdc` file created with proper frontmatter
+- [ ] `technology-standards.mdc` file created with proper frontmatter
+- [ ] `quality-standards.mdc` file created with proper frontmatter
+- [ ] `project-checklist.mdc` file created with proper frontmatter
+
+### Documentation Files ✓
+- [ ] `NAMING_CONVENTIONS.md` created with comprehensive naming standards
+- [ ] `RULES_ARCHITECTURE.md` created with system design documentation
+- [ ] `README.md` created with master index and usage instructions
+- [ ] All documentation files contain meaningful, detailed content
+
+### Quality Verification ✓
+- [ ] All numbered folder names use consistent `##-kebab-case` formatting
+- [ ] No typos in file names or directory names
+- [ ] All `.mdc` files have valid frontmatter syntax
+- [ ] Directory structure can be easily navigated
+- [ ] Documentation is clear and comprehensive
+- [ ] Numbered folders are in correct sequential order (01-15)
+
+### Final Verification ✓
+- [ ] Complete numbered folder structure is ready for next development phase
+- [ ] Rules system is properly documented and organized
+- [ ] Folder structure is prepared for future task rule file creation
+- [ ] System follows the granular, controlled development approach
+- [ ] Ready to proceed to Task 1.2: Create Core Behavior Instructions Rule
+
+**IMPORTANT**: Do not proceed to any other tasks or make assumptions about next steps. This task is complete only when ALL checklist items are verified and confirmed.
