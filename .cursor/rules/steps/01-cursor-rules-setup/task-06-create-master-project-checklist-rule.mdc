@@ -1,0 +1,391 @@
+---
+alwaysApply: false
+---
+# Task 1.6: Create Master Project Checklist Rule
+
+## Context
+This task creates the comprehensive `project-checklist.mdc` rule that serves as the master progress tracking system for the entire AI Feature Tracker development. The checklist must provide clear visibility into project progress, phase completion, step dependencies, and quality gates while being easily maintainable and actionable.
+
+## AI Instructions
+
+### 1. Create Project Checklist Rule File Structure
+- Open `.cursor/rules/project-checklist.mdc` file
+- Create proper MDC frontmatter with description and type: "Always"
+- Set up the rule to be automatically available for progress tracking
+- Include proper metadata for master project tracking identification
+
+### 2. Create Phase Organization and Overview
+Design comprehensive phase structure including:
+- **Phase 1: Foundation & Setup** (Steps 1-3) - Rules system, infrastructure, Supabase
+- **Phase 2: Core Application Foundation** (Steps 4-6) - App structure, tool display, navigation
+- **Phase 3: Real-time Features** (Steps 7-8) - Real-time integration, feature updates display
+- **Phase 4: AI Integration** (Steps 9-10) - Anthropic API, automated update system
+- **Phase 5: Advanced Features** (Steps 11-13) - Search/filtering, mobile optimization, performance/SEO
+- **Phase 6: Deployment & Production** (Steps 14-15) - Testing/QA, production deployment
+
+### 3. Create Master Step Progress Tracking with Checkboxes
+Include complete step and task tracking with checkbox format for progress marking:
+
+#### Phase 1: Foundation & Setup
+```markdown
+- [ ] **Phase 1: Foundation & Setup** (Steps 1-3)
+  - [ ] **Step 1: Cursor AI Rules & Development Standards Setup** (6 tasks)
+    - [ ] Task 1.1: Create Master Project Rules Structure
+    - [ ] Task 1.2: Create Core Behavior Instructions Rule
+    - [ ] Task 1.3: Create Technology Standards Rule
+    - [ ] Task 1.4: Create Quality Standards Rule
+    - [ ] Task 1.5: Create Step-Specific Rules (Steps 2-15)
+    - [ ] Task 1.6: Create Master Project Checklist Rule
+  - [ ] **Step 2: Project Infrastructure & Environment Setup** (5 tasks)
+    - [ ] Task 2.1: Initialize Next.js 14 Project
+    - [ ] Task 2.2: Configure Development Environment
+    - [ ] Task 2.3: Create Project Folder Structure
+    - [ ] Task 2.4: Setup Environment Configuration
+    - [ ] Task 2.5: Configure TypeScript & Build System
+  - [ ] **Step 3: Supabase Project Setup & Database Schema** (5 tasks)
+    - [ ] Task 3.1: Create Supabase Project
+    - [ ] Task 3.2: Design & Implement Database Schema
+    - [ ] Task 3.3: Configure Row Level Security (RLS)
+    - [ ] Task 3.4: Setup Database Types & Client Integration
+    - [ ] Task 3.5: Seed Database with Initial Data
+```
+
+#### Phase 2: Core Application Foundation
+```markdown
+- [ ] **Phase 2: Core Application Foundation** (Steps 4-6)
+  - [ ] **Step 4: Next.js Application Structure & Layout** (5 tasks)
+    - [ ] Task 4.1: Create Application Layout System
+    - [ ] Task 4.2: Setup Routing Structure
+    - [ ] Task 4.3: Create Loading & Error Components
+    - [ ] Task 4.4: Implement Responsive Grid System
+    - [ ] Task 4.5: Create Base UI Components
+  - [ ] **Step 5: Tool Data Display System** (5 tasks)
+    - [ ] Task 5.1: Create Supabase Data Fetching Layer
+    - [ ] Task 5.2: Create ToolCard Component
+    - [ ] Task 5.3: Create ToolGrid Component
+    - [ ] Task 5.4: Create ToolDetail Component
+    - [ ] Task 5.5: Create Supporting Display Components
+  - [ ] **Step 6: Navigation & Tab System** (5 tasks)
+    - [ ] Task 6.1: Create Tab Navigation System
+    - [ ] Task 6.2: Implement Tool Switching Logic
+    - [ ] Task 6.3: Create Mobile Navigation Drawer
+    - [ ] Task 6.4: Add Navigation Enhancement Features
+    - [ ] Task 6.5: Create Navigation State Management
+```
+
+#### Phase 3: Real-time Features
+```markdown
+- [ ] **Phase 3: Real-time Features** (Steps 7-8)
+  - [ ] **Step 7: Supabase Real-time Integration** (5 tasks)
+    - [ ] Task 7.1: Setup Real-time Infrastructure
+    - [ ] Task 7.2: Create Real-time Connection Manager
+    - [ ] Task 7.3: Implement Live Data Synchronization
+    - [ ] Task 7.4: Add Real-time Status Indicators
+    - [ ] Task 7.5: Create Real-time Event Handling
+  - [ ] **Step 8: Feature Updates Display System** (5 tasks)
+    - [ ] Task 8.1: Create Feature Update Components
+    - [ ] Task 8.2: Implement Modal System for Detailed Views
+    - [ ] Task 8.3: Create Update Timeline and History
+    - [ ] Task 8.4: Add Impact and Validation Indicators
+    - [ ] Task 8.5: Implement Content Management Features
+```
+
+#### Phase 4: AI Integration
+```markdown
+- [ ] **Phase 4: AI Integration** (Steps 9-10)
+  - [ ] **Step 9: Anthropic API Integration** (5 tasks)
+    - [ ] Task 9.1: Setup Anthropic API Client
+    - [ ] Task 9.2: Create Content Analysis Service
+    - [ ] Task 9.3: Implement Feature Validation System
+    - [ ] Task 9.4: Add Content Enhancement Features
+    - [ ] Task 9.5: Create AI Error Handling and Monitoring
+  - [ ] **Step 10: Automated Update System** (5 tasks)
+    - [ ] Task 10.1: Create Supabase Edge Functions
+    - [ ] Task 10.2: Implement Content Scraping System
+    - [ ] Task 10.3: Setup Scheduled Task Execution
+    - [ ] Task 10.4: Create Update Processing Pipeline
+    - [ ] Task 10.5: Add Conflict Resolution and Quality Control
+```
+
+#### Phase 5: Advanced Features
+```markdown
+- [ ] **Phase 5: Advanced Features** (Steps 11-13)
+  - [ ] **Step 11: Search & Filtering System** (5 tasks)
+    - [ ] Task 11.1: Create Search Infrastructure
+    - [ ] Task 11.2: Create Search Interface Components
+    - [ ] Task 11.3: Implement Advanced Filtering System
+    - [ ] Task 11.4: Create Search Results and Presentation
+    - [ ] Task 11.5: Add Search Enhancement Features
+  - [ ] **Step 12: Mobile Optimization & Responsive Design** (5 tasks)
+    - [ ] Task 12.1: Optimize Mobile Navigation and Interface
+    - [ ] Task 12.2: Implement Touch Interactions and Gestures
+    - [ ] Task 12.3: Optimize Performance for Mobile Devices
+    - [ ] Task 12.4: Create Mobile-Specific Components
+    - [ ] Task 12.5: Add Progressive Web App (PWA) Features
+  - [ ] **Step 13: Performance Optimization & SEO** (5 tasks)
+    - [ ] Task 13.1: Implement Code Splitting and Performance Optimization
+    - [ ] Task 13.2: Configure Caching and Data Optimization
+    - [ ] Task 13.3: Implement SEO Optimization
+    - [ ] Task 13.4: Setup Performance Monitoring and Analytics
+    - [ ] Task 13.5: Add Production Optimizations and Security
+```
+
+#### Phase 6: Deployment & Production
+```markdown
+- [ ] **Phase 6: Deployment & Production** (Steps 14-15)
+  - [ ] **Step 14: Testing & Quality Assurance** (5 tasks)
+    - [ ] Task 14.1: Create Automated Testing Suite
+    - [ ] Task 14.2: Implement Cross-Browser and Device Testing
+    - [ ] Task 14.3: Perform Security and Performance Auditing
+    - [ ] Task 14.4: Create Quality Assurance Procedures
+    - [ ] Task 14.5: Bug Fixing and Optimization
+  - [ ] **Step 15: Production Deployment & Monitoring** (5 tasks)
+    - [ ] Task 15.1: Configure Production Deployment
+    - [ ] Task 15.2: Setup Production Monitoring
+    - [ ] Task 15.3: Configure Production Security
+    - [ ] Task 15.4: Create Documentation and Handover
+    - [ ] Task 15.5: Launch and Post-Launch Monitoring
+```
+
+### 4. Create Progress Tracking Instructions
+Include clear instructions for using the checkbox system:
+- **Progress Marking**: Change `[ ]` to `[X]` when tasks/steps are completed
+- **Visual Progress**: Easy visual tracking of project completion status
+- **Phase Completion**: Mark phase as complete only when all steps within it are completed
+- **Step Completion**: Mark step as complete only when all tasks within it are completed
+- **Task Completion**: Mark individual tasks as complete when all acceptance criteria are met
+- **Completion Commands**: Provide examples like "Mark Step 2 and all its tasks as completed" for AI instructions
+
+### 5. Define Quality Gate Checkpoints
+Create quality gates between major phases:
+- **Phase 1 Quality Gate**: Infrastructure and database foundation verified
+- **Phase 2 Quality Gate**: Core application functionality verified
+- **Phase 3 Quality Gate**: Real-time features and data flow verified
+- **Phase 4 Quality Gate**: AI integration and automation verified
+- **Phase 5 Quality Gate**: Advanced features and optimization verified
+- **Phase 6 Quality Gate**: Production readiness and deployment verified
+
+### 6. Create Progress Visualization System
+Include progress tracking mechanisms:
+- **Overall Project Progress**: Percentage completion calculation
+- **Phase Progress Indicators**: Individual phase completion percentages
+- **Current Focus Area**: Clearly identify current active step and phase
+- **Next Steps Preview**: Show upcoming tasks and dependencies
+- **Milestone Tracking**: Major project milestones and delivery dates
+- **Risk and Blocker Tracking**: Issues that might impact timeline
+
+### 7. Create Dependency Management System
+Define dependency tracking including:
+- **Step Dependencies**: Which steps must be completed before starting next step
+- **Task Dependencies**: Which individual tasks depend on others
+- **External Dependencies**: Requirements outside the development process
+- **Blocker Resolution**: Process for handling and resolving blocked tasks
+- **Parallel Work Opportunities**: Tasks that can be worked on simultaneously
+- **Critical Path Identification**: Tasks that directly impact project timeline
+
+### 8. Add Timeline and Milestone Tracking
+Include comprehensive timeline management:
+- **Phase Timelines**: Estimated duration for each phase with start/end dates
+- **Step Timelines**: Individual step duration estimates and actual completion times
+- **Milestone Dates**: Key project deliverable dates and deadlines
+- **Progress Against Timeline**: Comparison of planned vs actual progress
+- **Schedule Risk Assessment**: Early warning indicators for timeline risks
+- **Resource Allocation**: Time and effort allocation across different areas
+
+### 9. Create Quality Assurance Integration
+Include quality tracking throughout development:
+- **Code Quality Metrics**: Integration with linting, testing, and code review results
+- **Performance Metrics**: Core Web Vitals, Lighthouse scores, and performance benchmarks
+- **Accessibility Compliance**: WCAG 2.1 AA compliance tracking
+- **Security Audit Results**: Security assessment and vulnerability tracking
+- **Testing Coverage**: Unit, integration, and manual testing completion status
+- **Documentation Completeness**: Documentation and knowledge transfer status
+
+### 10. Add Team Collaboration and Communication
+Include collaboration tracking features:
+- **Current Status Communication**: Templates for status updates and progress reports
+- **Blocker Communication**: Process for escalating and resolving issues
+- **Review and Approval Tracking**: Code review, design approval, and sign-off status
+- **Knowledge Transfer Status**: Documentation and training completion
+- **Stakeholder Communication**: Updates to project stakeholders and sponsors
+- **Decision Log**: Record of key project decisions and rationale
+
+### 11. Create Maintenance and Update Procedures
+Include checklist maintenance guidelines:
+- **Regular Update Schedule**: When and how to update progress status
+- **Completion Verification**: Process for verifying task and step completion
+- **Quality Gate Reviews**: Process for conducting quality gate assessments
+- **Timeline Adjustments**: Process for updating timelines and milestones
+- **Risk Assessment Updates**: Regular risk review and mitigation updates
+- **Continuous Improvement**: Process for improving the tracking system
+
+### 13. Add Progress Tracking Commands and Examples
+Include examples of how to update progress:
+- **Individual Task Completion**: "Please mark Task 2.3 as completed" → Change `- [ ] Task 2.3: Create Project Folder Structure` to `- [X] Task 2.3: Create Project Folder Structure`
+- **Step Completion**: "Please mark Step 2 and all its tasks as completed" → Mark step and all 5 tasks within it as `[X]`
+- **Phase Completion**: "Please mark Phase 1 as completed" → Mark phase and all steps/tasks within it as `[X]`
+- **Bulk Updates**: "Please mark Tasks 3.1, 3.2, and 3.3 as completed" → Mark multiple specific tasks
+- **Progress Commands**: Clear examples for instructing AI on progress updates
+Include project-specific progress indicators:
+- **15 AI Tool Integration Status**: Progress on each AI tool's data integration
+- **Supabase Real-time Performance**: Real-time feature functionality and performance
+- **Anthropic API Integration Health**: AI service integration and cost tracking
+- **Content Validation Accuracy**: AI-powered content validation effectiveness
+- **Mobile Experience Quality**: Mobile-specific feature completion and testing
+- **Public Platform Readiness**: Preparation for public-facing application launch
+- **Automated Update System Health**: Daily automation system functionality
+
+## Expected Output
+Complete `project-checklist.mdc` rule file in `.cursor/rules/` containing:
+- Comprehensive phase and step organization with checkbox progress tracking
+- All 6 phases, 15 steps, and 75+ individual tasks with `[ ]` checkbox format
+- Instructions for marking progress by changing `[ ]` to `[X]` when completed
+- Timeline and milestone management system
+- Quality assurance integration and compliance tracking
+- Team collaboration and communication templates
+- Maintenance procedures and continuous improvement process
+
+## Completion Checklist
+
+**Before marking this task as complete, verify ALL of the following:**
+
+### File Structure and Setup ✓
+- [ ] `project-checklist.mdc` file exists in `.cursor/rules/` directory
+- [ ] File has proper MDC frontmatter with description and type: "Always"
+- [ ] File metadata correctly identifies it as master project tracking rule
+- [ ] File is properly formatted and accessible for progress tracking
+
+### Phase Organization ✓
+- [ ] All 6 phases clearly defined with proper scope and boundaries
+- [ ] Phase 1: Foundation & Setup (Steps 1-3) properly outlined
+- [ ] Phase 2: Core Application Foundation (Steps 4-6) properly outlined
+- [ ] Phase 3: Real-time Features (Steps 7-8) properly outlined
+- [ ] Phase 4: AI Integration (Steps 9-10) properly outlined
+- [ ] Phase 5: Advanced Features (Steps 11-13) properly outlined
+- [ ] Phase 6: Deployment & Production (Steps 14-15) properly outlined
+
+### Master Step Progress Tracking ✓
+- [ ] All 15 steps included with proper titles and scope descriptions in checkbox format
+- [ ] Each phase includes all its steps with `- [ ]` checkbox format
+- [ ] Each step includes all its individual tasks with `- [ ]` checkbox format
+- [ ] Step 1: Cursor AI Rules & Development Standards (6 tasks) with checkboxes
+- [ ] Step 2: Project Infrastructure & Environment (5 tasks) with checkboxes
+- [ ] Step 3: Supabase Project Setup & Database (5 tasks) with checkboxes
+- [ ] Step 4: Next.js Application Structure (5 tasks) with checkboxes
+- [ ] Step 5: Tool Data Display System (5 tasks) with checkboxes
+- [ ] Step 6: Navigation & Tab System (5 tasks) with checkboxes
+- [ ] Step 7: Supabase Real-time Integration (5 tasks) with checkboxes
+- [ ] Step 8: Feature Updates Display System (5 tasks) with checkboxes
+- [ ] Step 9: Anthropic API Integration (5 tasks) with checkboxes
+- [ ] Step 10: Automated Update System (5 tasks) with checkboxes
+- [ ] Step 11: Search & Filtering System (5 tasks) with checkboxes
+- [ ] Step 12: Mobile Optimization & Responsive Design (5 tasks) with checkboxes
+- [ ] Step 13: Performance Optimization & SEO (5 tasks) with checkboxes
+- [ ] Step 14: Testing & Quality Assurance (5 tasks) with checkboxes
+- [ ] Step 15: Production Deployment & Monitoring (5 tasks) with checkboxes
+
+### Progress Tracking System ✓
+- [ ] Checkbox format `[ ]` implemented for all phases, steps, and tasks
+- [ ] Clear instructions provided for marking progress with `[X]` when completed
+- [ ] Visual progress tracking system allows easy identification of completion status
+- [ ] Phase completion tied to all steps within phase being completed
+- [ ] Step completion tied to all tasks within step being completed
+- [ ] Task completion tied to meeting all acceptance criteria
+- [ ] Examples provided for AI commands like "Mark Step 2 and all its tasks as completed"
+
+### Quality Gate Checkpoints ✓
+- [ ] Phase 1 Quality Gate defined (infrastructure and database foundation)
+- [ ] Phase 2 Quality Gate defined (core application functionality)
+- [ ] Phase 3 Quality Gate defined (real-time features and data flow)
+- [ ] Phase 4 Quality Gate defined (AI integration and automation)
+- [ ] Phase 5 Quality Gate defined (advanced features and optimization)
+- [ ] Phase 6 Quality Gate defined (production readiness and deployment)
+- [ ] Quality gate criteria clearly defined and measurable
+
+### Progress Visualization System ✓
+- [ ] Overall project progress calculation method defined
+- [ ] Phase progress indicators with percentage completion
+- [ ] Current focus area identification system
+- [ ] Next steps preview with upcoming tasks and dependencies
+- [ ] Milestone tracking with major deliverable dates
+- [ ] Risk and blocker tracking with resolution procedures
+
+### Dependency Management System ✓
+- [ ] Step dependencies clearly mapped and documented
+- [ ] Individual task dependencies identified and tracked
+- [ ] External dependencies documented and monitored
+- [ ] Blocker resolution process defined and actionable
+- [ ] Parallel work opportunities identified for efficiency
+- [ ] Critical path analysis included for timeline management
+
+### Timeline and Milestone Tracking ✓
+- [ ] Phase timelines with estimated durations and date ranges
+- [ ] Step timelines with individual completion estimates
+- [ ] Milestone dates with key deliverable deadlines
+- [ ] Progress against timeline comparison system
+- [ ] Schedule risk assessment and early warning indicators
+- [ ] Resource allocation tracking across different development areas
+
+### Quality Assurance Integration ✓
+- [ ] Code quality metrics integration (linting, testing, reviews)
+- [ ] Performance metrics tracking (Core Web Vitals, Lighthouse scores)
+- [ ] Accessibility compliance tracking (WCAG 2.1 AA)
+- [ ] Security audit results tracking and vulnerability management
+- [ ] Testing coverage tracking (unit, integration, manual testing)
+- [ ] Documentation completeness and knowledge transfer status
+
+### Team Collaboration Features ✓
+- [ ] Current status communication templates for progress reports
+- [ ] Blocker communication and escalation procedures
+- [ ] Review and approval tracking for code and design decisions
+- [ ] Knowledge transfer status and documentation requirements
+- [ ] Stakeholder communication templates and update schedules
+- [ ] Decision log for recording key project decisions and rationale
+
+### Maintenance and Update Procedures ✓
+- [ ] Regular update schedule defined for progress tracking
+- [ ] Completion verification process for tasks and steps
+- [ ] Quality gate review procedures and assessment criteria
+- [ ] Timeline adjustment process for schedule changes
+- [ ] Risk assessment update procedures and review schedules
+- [ ] Continuous improvement process for tracking system enhancement
+
+### Progress Tracking Commands ✓
+- [ ] Individual task completion examples provided with checkbox format changes
+- [ ] Step completion examples showing how to mark entire steps as completed
+- [ ] Phase completion examples for marking entire phases as completed
+- [ ] Bulk update examples for marking multiple tasks simultaneously
+- [ ] Clear command structure provided for instructing AI on progress updates
+- [ ] Examples show proper format changes from `[ ]` to `[X]`
+
+### AI Feature Tracker Specific Tracking ✓
+- [ ] 15 AI tool integration status tracking (Claude, ChatGPT, Gemini, etc.)
+- [ ] Supabase real-time performance and functionality tracking
+- [ ] Anthropic API integration health and cost monitoring
+- [ ] Content validation accuracy and AI service effectiveness
+- [ ] Mobile experience quality and responsive design completion
+- [ ] Public platform readiness and launch preparation tracking
+- [ ] Automated update system health and daily automation functionality
+- [ ] 15 AI tool integration status tracking (Claude, ChatGPT, Gemini, etc.)
+- [ ] Supabase real-time performance and functionality tracking
+- [ ] Anthropic API integration health and cost monitoring
+- [ ] Content validation accuracy and AI service effectiveness
+- [ ] Mobile experience quality and responsive design completion
+- [ ] Public platform readiness and launch preparation tracking
+- [ ] Automated update system health and daily automation functionality
+
+### Integration and Usability ✓
+- [ ] Checklist integrates with all previously created standards and rules
+- [ ] Progress tracking is actionable and maintainable
+- [ ] System supports both individual and team progress visibility
+- [ ] Checklist provides clear guidance for project management
+- [ ] All tracking elements align with AI Feature Tracker requirements
+
+### Final Verification ✓
+- [ ] Rule file is ready for immediate use in project tracking
+- [ ] Checklist provides comprehensive progress visibility across entire project
+- [ ] System supports effective project management and team coordination
+- [ ] Quality gates ensure high-quality deliverables at each phase
+- [ ] Ready to begin Step 2: Project Infrastructure & Environment Setup
+
+**IMPORTANT**: Do not proceed to any other tasks or make assumptions about next steps. This task is complete only when ALL checklist items are verified and the project-checklist.mdc file in `.cursor/rules/` contains a comprehensive, actionable master tracking system for the entire AI Feature Tracker development project with proper phase organization, progress tracking, quality gates, and team collaboration features.

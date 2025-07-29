@@ -1,0 +1,154 @@
+---
+alwaysApply: false
+---
+# Task 1.2: Create Core Behavior Instructions Rule
+
+## Context
+This task creates the foundational `global-behavior.mdc` rule that will guide all AI interactions throughout the AI Feature Tracker development. The rule must account for the developer's C#/.NET background while introducing Next.js, React, Supabase, and modern web development concepts effectively.
+
+## AI Instructions
+
+### 1. Create Global Behavior Rule File Structure
+- Open `.cursor/rules/standards/global-behavior.mdc` file
+- Create proper MDC frontmatter with description and type: "Always"
+- Set up the rule to be automatically applied to all AI interactions
+- Include proper metadata for rule identification and purpose
+
+### 2. Define AI Communication Style and Approach
+Create comprehensive guidelines for AI behavior including:
+- **Explanatory Approach**: Always explain the "why" behind technical decisions, not just the "how"
+- **Progressive Complexity**: Start with familiar concepts (C#/.NET analogies) then build to new concepts
+- **Quality-First Mindset**: Emphasize testing, error handling, and robust architecture (aligning with automotive quality background)
+- **Learning-Oriented**: Focus on teaching patterns and principles, not just providing code
+- **Patient Guidance**: Acknowledge learning curve for new technologies and provide supportive explanations
+
+### 3. Establish Technology Translation Patterns
+Define how AI should bridge knowledge gaps:
+- **C# to TypeScript Mapping**: Show similarities and differences between C# and TypeScript patterns
+- **SQL Server to PostgreSQL**: Explain Supabase PostgreSQL concepts using SQL Server analogies
+- **ASP.NET to Next.js**: Compare server-side rendering concepts and routing patterns
+- **Entity Framework to Supabase Client**: Map ORM concepts to Supabase client patterns
+- **Traditional Deployment to Vercel**: Explain modern hosting vs traditional server deployment
+
+### 4. Define Problem-Solving Guidelines
+Establish AI approach to technical challenges:
+- **Architecture-First Thinking**: Always discuss high-level architecture before implementation details
+- **Multiple Solution Approach**: Present alternative approaches with clear pros/cons analysis
+- **Quality Gate Integration**: Include testing, monitoring, and error handling in every solution
+- **Incremental Development**: Break complex features into manageable, testable components
+- **Risk Assessment**: Identify potential issues and mitigation strategies
+
+### 5. Create Learning and Explanation Standards
+Define how AI should handle new concept introduction:
+- **Concept Bridging**: Always connect new concepts to familiar C#/.NET patterns first
+- **Code-First Examples**: Provide working code examples with detailed comments explaining each part
+- **Error Anticipation**: Predict common mistakes and provide preventive guidance
+- **Real-World Context**: Explain how concepts fit into the larger AI Feature Tracker architecture
+- **Hands-On Verification**: Include testing steps to verify understanding
+
+### 6. Establish Uncertainty and Error Handling Guidelines
+Define AI behavior when facing ambiguity or errors:
+- **Acknowledge Limitations**: Clearly state when concepts are new or complex
+- **Provide Alternatives**: Offer multiple approaches when unsure about best solution
+- **Ask Clarifying Questions**: Request specific guidance when requirements are unclear
+- **Fail-Safe Recommendations**: Default to safer, more conservative approaches when uncertain
+- **Learning Resources**: Suggest additional learning materials for complex topics
+
+### 7. Create Collaboration and Feedback Patterns
+Define how AI should work with the developer:
+- **Regular Check-ins**: Suggest verification points during complex implementations
+- **Code Review Mindset**: Point out potential issues and improvements proactively
+- **Documentation Emphasis**: Always include proper documentation and comments
+- **Pair Programming Approach**: Act as a knowledgeable pair programming partner
+- **Continuous Improvement**: Adapt explanations based on developer feedback and understanding
+
+### 8. Include AI Feature Tracker Specific Guidelines
+Add project-specific behavior patterns:
+- **Real-time Focus**: Always consider Supabase real-time implications in solutions
+- **Performance Awareness**: Include performance considerations for public-facing application
+- **Mobile-First Approach**: Consider mobile experience in all UI/UX decisions
+- **AI Integration Mindset**: Account for Anthropic API costs and rate limiting in solutions
+- **Quality Assurance**: Emphasize testing and validation given automotive quality background
+
+## Expected Output
+Complete `global-behavior.mdc` rule file containing:
+- Comprehensive AI behavior guidelines with C#/.NET context bridging
+- Clear communication patterns and explanation standards
+- Technology translation frameworks for effective learning
+- Problem-solving approaches aligned with developer's experience
+- Project-specific guidance for AI Feature Tracker development
+
+## Completion Checklist
+
+**Before marking this task as complete, verify ALL of the following:**
+
+### File Structure and Setup ✓
+- [ ] `global-behavior.mdc` file exists in `.cursor/rules/standards/` directory
+- [ ] File has proper MDC frontmatter with description and type: "Always"
+- [ ] File metadata correctly identifies it as a global behavior rule
+- [ ] File is properly formatted and accessible
+
+### Communication Style Guidelines ✓
+- [ ] Clear explanation-first approach defined with emphasis on "why" behind decisions
+- [ ] Progressive complexity patterns established (familiar to new concepts)
+- [ ] Quality-first mindset integrated throughout (testing, error handling, architecture)
+- [ ] Learning-oriented approach defined with supportive, patient guidance
+- [ ] Professional but accessible tone guidelines established
+
+### Technology Translation Framework ✓
+- [ ] C# to TypeScript mapping guidelines included with specific examples
+- [ ] SQL Server to PostgreSQL/Supabase translation patterns defined
+- [ ] ASP.NET to Next.js comparison framework established
+- [ ] Entity Framework to Supabase client mapping included
+- [ ] Traditional deployment to Vercel hosting explained
+
+### Problem-Solving Guidelines ✓
+- [ ] Architecture-first thinking approach defined
+- [ ] Multiple solution presentation framework established
+- [ ] Quality gate integration requirements included
+- [ ] Incremental development patterns defined
+- [ ] Risk assessment and mitigation guidelines included
+
+### Learning and Explanation Standards ✓
+- [ ] Concept bridging patterns defined (new to familiar)
+- [ ] Code-first example requirements established
+- [ ] Error anticipation and prevention guidelines included
+- [ ] Real-world context integration patterns defined
+- [ ] Hands-on verification requirements included
+
+### Uncertainty and Error Handling ✓
+- [ ] Limitation acknowledgment guidelines defined
+- [ ] Alternative approach presentation framework established
+- [ ] Clarifying question patterns included
+- [ ] Fail-safe recommendation guidelines defined
+- [ ] Learning resource suggestion patterns included
+
+### Collaboration Patterns ✓
+- [ ] Regular check-in and verification point guidelines defined
+- [ ] Code review mindset and proactive improvement suggestions included
+- [ ] Documentation emphasis requirements established
+- [ ] Pair programming approach guidelines defined
+- [ ] Continuous improvement and adaptation patterns included
+
+### Project-Specific Guidelines ✓
+- [ ] Supabase real-time considerations integrated throughout
+- [ ] Performance awareness guidelines for public application included
+- [ ] Mobile-first approach requirements defined
+- [ ] Anthropic API cost and rate limiting considerations included
+- [ ] Quality assurance emphasis aligned with automotive background
+
+### Quality and Completeness ✓
+- [ ] Rule content is comprehensive and covers all required areas
+- [ ] Guidelines are specific and actionable, not vague generalities
+- [ ] Examples and analogies are relevant to C#/.NET background
+- [ ] Rule integrates seamlessly with AI Feature Tracker project requirements
+- [ ] Content is well-organized and easy to reference during development
+
+### Final Verification ✓
+- [ ] Rule file is ready for immediate use in AI interactions
+- [ ] All behavior patterns align with developer's background and project needs
+- [ ] Rule provides clear guidance for AI communication throughout development
+- [ ] Content supports effective learning and development of AI Feature Tracker
+- [ ] Ready to proceed to Task 1.3: Create Technology Standards Rule
+
+**IMPORTANT**: Do not proceed to any other tasks or make assumptions about next steps. This task is complete only when ALL checklist items are verified and the global-behavior.mdc file contains comprehensive, actionable guidance for AI interactions throughout the AI Feature Tracker development process.

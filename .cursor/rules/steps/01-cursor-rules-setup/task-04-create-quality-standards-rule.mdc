@@ -1,0 +1,240 @@
+---
+alwaysApply: false
+---
+# Task 1.4: Create Quality Standards Rule
+
+## Context
+This task creates the comprehensive `quality-standards.mdc` rule that defines code quality requirements, testing methodologies, accessibility standards, and maintainability criteria for the AI Feature Tracker project. The rule must establish quality gates and verification procedures that align with automotive industry quality standards while being practical for web development.
+
+## AI Instructions
+
+### 1. Create Quality Standards Rule File Structure
+- Open `.cursor/rules/standards/quality-standards.mdc` file
+- Create proper MDC frontmatter with description and type: "Always"
+- Set up the rule to be automatically applied to all AI interactions
+- Include proper metadata for comprehensive quality guidance
+
+### 2. Define Code Quality Standards
+Create comprehensive code quality requirements including:
+- **TypeScript Strict Mode Compliance**: 100% TypeScript strict mode with zero compromises or disabled rules
+- **Linting Standards**: ESLint configuration with zero warnings or errors allowed in production
+- **Code Formatting**: Prettier configuration with consistent formatting across all files
+- **Code Documentation**: Comprehensive JSDoc comments for all functions, components, and complex logic
+- **Naming Conventions**: Consistent, descriptive naming following established patterns
+- **Function Complexity**: Maximum function length and cyclomatic complexity limits
+- **Import Organization**: Clean import statements with proper organization and barrel exports
+
+### 3. Establish Error Handling and Logging Standards
+Define comprehensive error management requirements:
+- **Error Boundary Implementation**: Proper React error boundaries at appropriate component levels
+- **Async Operation Handling**: Comprehensive try-catch blocks for all async operations
+- **Error Type Definitions**: Typed error objects with discriminated unions for different error scenarios
+- **Logging Levels**: Structured logging with appropriate levels (error, warn, info, debug)
+- **Error Recovery**: Graceful degradation patterns and user-friendly error messages
+- **API Error Handling**: Consistent error handling for Supabase and Anthropic API operations
+- **Production Error Tracking**: Error monitoring and alerting for production issues
+
+### 4. Create Testing Standards and Manual Verification
+Establish testing methodologies and verification procedures:
+- **Component Testing**: React Testing Library for all interactive components
+- **Unit Testing**: Jest testing for utility functions and business logic
+- **Integration Testing**: API endpoint testing and database operation verification
+- **Manual Testing Checklists**: Comprehensive manual testing procedures for each feature
+- **Cross-Browser Testing**: Verification across Chrome, Firefox, Safari, and Edge
+- **Mobile Device Testing**: Testing on various screen sizes and touch interactions
+- **Performance Testing**: Lighthouse audits and Core Web Vitals verification
+
+### 5. Define Accessibility Standards (WCAG 2.1 AA Compliance)
+Create comprehensive accessibility requirements:
+- **Semantic HTML**: Proper HTML5 semantic elements and document structure
+- **ARIA Implementation**: Proper ARIA labels, roles, and properties for complex interactions
+- **Keyboard Navigation**: Full keyboard accessibility with proper focus management
+- **Color Contrast**: Minimum 4.5:1 contrast ratio for normal text, 3:1 for large text
+- **Screen Reader Support**: Proper announcements and navigation for assistive technologies
+- **Focus Indicators**: Clear visual focus indicators for all interactive elements
+- **Responsive Accessibility**: Accessibility maintained across all device sizes and orientations
+
+### 6. Establish Performance Benchmarks and Optimization
+Define performance requirements and optimization standards:
+- **Lighthouse Scores**: Minimum scores of 90+ for Performance, Accessibility, Best Practices, SEO
+- **Core Web Vitals**: LCP < 2.5s, FID < 100ms, CLS < 0.1 for 75th percentile
+- **Bundle Size Optimization**: JavaScript bundle size monitoring and optimization targets
+- **Image Optimization**: Proper image formats, compression, and lazy loading implementation
+- **Database Performance**: Query optimization with response time targets < 500ms
+- **Real-time Performance**: Supabase real-time subscription efficiency and memory management
+- **Mobile Performance**: Optimized performance on low-end mobile devices
+
+### 7. Create Security Standards and Validation
+Establish security requirements and best practices:
+- **Input Validation**: Comprehensive sanitization and validation for all user inputs
+- **Authentication Security**: Proper JWT handling, session management, and token expiration
+- **API Security**: Rate limiting, CORS configuration, and request validation
+- **Environment Security**: Secure handling of API keys, secrets, and environment variables
+- **Content Security Policy**: Proper CSP headers and XSS prevention measures
+- **Data Protection**: Secure data handling and privacy compliance
+- **Dependency Security**: Regular security audits and vulnerability scanning
+
+### 8. Define Documentation Standards
+Create comprehensive documentation requirements:
+- **Code Documentation**: JSDoc comments for all public functions and components
+- **API Documentation**: Complete documentation for all API endpoints and database operations
+- **Component Documentation**: Usage examples and prop descriptions for all reusable components
+- **Architecture Documentation**: High-level system architecture and design decisions
+- **Setup Documentation**: Complete development environment setup and deployment procedures
+- **Troubleshooting Guides**: Common issues and resolution procedures
+- **Change Documentation**: Proper commit messages and change log maintenance
+
+### 9. Establish Code Review and Maintainability Criteria
+Define standards for code review and long-term maintainability:
+- **Code Review Checklist**: Comprehensive checklist for all code reviews
+- **Design Pattern Consistency**: Adherence to established architectural patterns
+- **Reusability Standards**: Component and utility reusability requirements
+- **Technical Debt Management**: Regular technical debt assessment and resolution
+- **Refactoring Standards**: When and how to refactor code for maintainability
+- **Version Control Standards**: Proper Git workflows, branching, and commit practices
+- **Dependency Management**: Regular dependency updates and security patch management
+
+### 10. Create Quality Gates and Continuous Improvement
+Define quality checkpoints and improvement processes:
+- **Pre-commit Hooks**: Automated quality checks before code commits
+- **Build Pipeline Quality Gates**: Automated testing and quality verification in CI/CD
+- **Regular Quality Audits**: Scheduled code quality assessments and improvements
+- **Performance Monitoring**: Continuous monitoring and alerting for quality regressions
+- **User Experience Testing**: Regular UX testing and feedback incorporation
+- **Quality Metrics Tracking**: KPIs for code quality, performance, and user satisfaction
+- **Team Quality Training**: Regular training on quality standards and best practices
+
+### 11. Add AI Feature Tracker Specific Quality Requirements
+Include project-specific quality standards:
+- **Real-time Data Integrity**: Quality standards for Supabase real-time data consistency
+- **AI Integration Quality**: Anthropic API response validation and quality assessment
+- **Public Platform Standards**: Quality requirements for public-facing application
+- **Mobile Experience Quality**: Specific quality standards for mobile user experience
+- **Content Accuracy Standards**: Quality requirements for AI-generated and validated content
+- **Performance Under Load**: Quality standards for handling concurrent users
+- **Accessibility for Technical Content**: Special accessibility considerations for developer-focused content
+
+## Expected Output
+Complete `quality-standards.mdc` rule file containing:
+- Comprehensive quality standards across all development areas
+- Clear quality gates and verification procedures
+- Accessibility and performance benchmarks
+- Testing methodologies and manual verification checklists
+- Security standards aligned with public platform requirements
+- Maintainability and code review criteria
+
+## Completion Checklist
+
+**Before marking this task as complete, verify ALL of the following:**
+
+### File Structure and Setup ✓
+- [ ] `quality-standards.mdc` file exists in `.cursor/rules/standards/` directory
+- [ ] File has proper MDC frontmatter with description and type: "Always"
+- [ ] File metadata correctly identifies it as quality standards rule
+- [ ] File is properly formatted and accessible
+
+### Code Quality Standards ✓
+- [ ] TypeScript strict mode compliance requirements (100% strict, zero compromises)
+- [ ] ESLint standards with zero warnings/errors allowed in production
+- [ ] Prettier formatting requirements with consistent configuration
+- [ ] Code documentation standards with JSDoc requirements
+- [ ] Naming convention standards with descriptive, consistent patterns
+- [ ] Function complexity limits and code organization requirements
+- [ ] Import organization and barrel export standards
+
+### Error Handling Standards ✓
+- [ ] React error boundary implementation requirements at appropriate levels
+- [ ] Comprehensive async operation error handling with try-catch patterns
+- [ ] Typed error object definitions with discriminated unions
+- [ ] Structured logging standards with appropriate levels
+- [ ] Graceful degradation and user-friendly error message requirements
+- [ ] API-specific error handling for Supabase and Anthropic operations
+- [ ] Production error tracking and monitoring requirements
+
+### Testing Standards ✓
+- [ ] React Testing Library requirements for interactive components
+- [ ] Jest unit testing standards for utilities and business logic
+- [ ] Integration testing requirements for APIs and database operations
+- [ ] Manual testing checklists for comprehensive feature verification
+- [ ] Cross-browser testing requirements (Chrome, Firefox, Safari, Edge)
+- [ ] Mobile device testing across various screen sizes and interactions
+- [ ] Performance testing with Lighthouse audits and Core Web Vitals
+
+### Accessibility Standards ✓
+- [ ] WCAG 2.1 AA compliance requirements clearly defined
+- [ ] Semantic HTML and proper document structure requirements
+- [ ] ARIA implementation standards for complex interactions
+- [ ] Full keyboard navigation with focus management requirements
+- [ ] Color contrast requirements (4.5:1 normal, 3:1 large text)
+- [ ] Screen reader support with proper announcements
+- [ ] Responsive accessibility maintenance across all device sizes
+
+### Performance Standards ✓
+- [ ] Lighthouse score requirements (90+ for all metrics)
+- [ ] Core Web Vitals targets (LCP < 2.5s, FID < 100ms, CLS < 0.1)
+- [ ] Bundle size optimization and monitoring requirements
+- [ ] Image optimization with proper formats and lazy loading
+- [ ] Database performance targets (< 500ms response times)
+- [ ] Real-time performance and memory management standards
+- [ ] Mobile performance optimization for low-end devices
+
+### Security Standards ✓
+- [ ] Input validation and sanitization requirements for all inputs
+- [ ] Authentication security with proper JWT and session handling
+- [ ] API security with rate limiting, CORS, and request validation
+- [ ] Environment security for API keys and secrets management
+- [ ] Content Security Policy and XSS prevention measures
+- [ ] Data protection and privacy compliance standards
+- [ ] Dependency security with regular audits and vulnerability scanning
+
+### Documentation Standards ✓
+- [ ] JSDoc requirements for all public functions and components
+- [ ] Complete API documentation for endpoints and database operations
+- [ ] Component documentation with usage examples and prop descriptions
+- [ ] Architecture documentation for system design and decisions
+- [ ] Setup and deployment documentation requirements
+- [ ] Troubleshooting guides and common issue resolution
+- [ ] Change documentation with proper commit messages and changelog
+
+### Code Review and Maintainability ✓
+- [ ] Comprehensive code review checklist for all reviews
+- [ ] Design pattern consistency and architectural adherence
+- [ ] Component and utility reusability requirements
+- [ ] Technical debt management and assessment procedures
+- [ ] Refactoring standards and guidelines
+- [ ] Version control standards with proper Git workflows
+- [ ] Dependency management and security patch procedures
+
+### Quality Gates and Improvement ✓
+- [ ] Pre-commit hook requirements for automated quality checks
+- [ ] Build pipeline quality gates with automated testing
+- [ ] Regular quality audit procedures and schedules
+- [ ] Performance monitoring and regression alerting
+- [ ] User experience testing and feedback incorporation
+- [ ] Quality metrics tracking and KPI definitions
+- [ ] Team quality training and standards education
+
+### Project-Specific Quality ✓
+- [ ] Supabase real-time data integrity and consistency standards
+- [ ] Anthropic API response validation and quality assessment
+- [ ] Public platform quality requirements and standards
+- [ ] Mobile experience quality standards and testing
+- [ ] AI-generated content accuracy and validation requirements
+- [ ] Performance under load and concurrent user handling
+- [ ] Technical content accessibility and usability standards
+
+### Integration and Completeness ✓
+- [ ] Quality standards align with automotive industry background and mindset
+- [ ] All standards integrate with AI Feature Tracker requirements
+- [ ] Standards are specific, measurable, and actionable
+- [ ] Quality requirements support public platform reliability
+- [ ] Content provides clear guidance for maintaining high-quality codebase
+
+### Final Verification ✓
+- [ ] Rule file is ready for immediate use in development
+- [ ] All quality standards are comprehensive and enforceable
+- [ ] Standards provide clear quality gates and verification procedures
+- [ ] Content supports long-term maintainability and team collaboration
+- [ ] Ready to proceed to Task 1.5: Create Step-Specific Rules
+
+**IMPORTANT**: Do not proceed to any other tasks or make assumptions about next steps. This task is complete only when ALL checklist items are verified and the quality-standards.mdc file contains comprehensive, enforceable quality standards that ensure high-quality AI Feature Tracker development with proper testing, accessibility, performance, and maintainability requirements.

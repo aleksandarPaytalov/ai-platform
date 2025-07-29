@@ -1,0 +1,205 @@
+---
+alwaysApply: false
+---
+# Task 1.3: Create Technology Standards Rule
+
+## Context
+This task creates the comprehensive `technology-standards.mdc` rule that defines coding standards, architectural patterns, and best practices for the entire AI Feature Tracker technology stack. The rule must establish consistent patterns across Next.js 14, TypeScript, Supabase, Anthropic API, and Tailwind CSS while being accessible to a developer with C#/.NET background.
+
+## AI Instructions
+
+### 1. Create Technology Standards Rule File Structure
+- Open `.cursor/rules/standards/technology-standards.mdc` file
+- Create proper MDC frontmatter with description and type: "Always"
+- Set up the rule to be automatically applied to all AI interactions
+- Include proper metadata for comprehensive technology guidance
+
+### 2. Define Next.js 14 App Router Standards
+Create comprehensive Next.js 14 guidelines including:
+- **App Router Exclusive Usage**: Use App Router exclusively with proper server/client component separation
+- **File-Based Routing**: Establish standards for `page.tsx`, `layout.tsx`, `loading.tsx`, `error.tsx`, and `not-found.tsx`
+- **Server vs Client Components**: Clear guidelines on when to use each type with performance implications
+- **Metadata API**: Proper implementation for SEO optimization and social sharing
+- **Image Optimization**: Use Next.js Image component with responsive design and performance optimization
+- **Route Organization**: Proper route groups, layouts, and nested routing structures
+
+### 3. Establish TypeScript Strict Mode Standards
+Define comprehensive TypeScript requirements:
+- **Strict Mode Configuration**: Enable all strict compiler options with zero compromises
+- **Type Definitions**: Proper interfaces, types, and discriminated unions for all functions and components
+- **Utility Types**: Effective use of Pick, Omit, Partial, Record, and custom utility types
+- **Type Safety**: 100% type coverage with no `any` types or disabled TypeScript checks
+- **Error Handling**: Typed error boundaries and comprehensive error type definitions
+- **Generic Types**: Proper use of generics for reusable components and utilities
+
+### 4. Define React Component Standards
+Establish React best practices aligned with modern patterns:
+- **Functional Components**: Use functional components with hooks exclusively
+- **Component Composition**: Favor composition over inheritance with proper prop patterns
+- **Performance Optimization**: Strategic use of React.memo, useMemo, and useCallback
+- **Error Boundaries**: Implement proper error boundaries with fallback UI
+- **Key Props**: Proper key usage for list rendering and component reconciliation
+- **Hook Dependencies**: Proper cleanup in useEffect with comprehensive dependency arrays
+- **Custom Hooks**: Reusable logic extraction with proper naming and return patterns
+
+### 5. Create Supabase Integration Standards
+Define comprehensive Supabase patterns:
+- **Row Level Security (RLS)**: Mandatory RLS for all tables with proper policy implementation  
+- **Type Generation**: Automatic TypeScript type generation from database schema
+- **Client Management**: Proper Supabase client instantiation, connection management, and cleanup
+- **Real-time Subscriptions**: Efficient real-time usage with proper subscription lifecycle management
+- **Error Handling**: Comprehensive error handling for all database operations with typed responses
+- **Caching Strategies**: Intelligent caching for frequently accessed data with invalidation patterns
+- **Query Optimization**: Proper indexing, joins, and query performance considerations
+
+### 6. Establish Anthropic API Integration Standards
+Create AI integration best practices:
+- **Rate Limiting**: Proper rate limiting implementation respecting API quotas and usage tiers
+- **Error Handling**: Exponential backoff, retry logic, and graceful degradation patterns
+- **Prompt Engineering**: Structured prompt templates with clear instructions and context management
+- **Type Safety**: Complete TypeScript definitions for API requests, responses, and error states
+- **Cost Optimization**: Token usage monitoring, efficient prompting, and model selection strategies
+- **Logging and Monitoring**: Comprehensive API usage tracking, performance metrics, and error reporting
+- **Security**: Proper API key management, environment variable handling, and request validation
+
+### 7. Define Tailwind CSS Standards
+Establish styling and design system standards:
+- **Utility-First Approach**: Use Tailwind utilities exclusively with minimal custom CSS
+- **Responsive Design**: Mobile-first approach with consistent breakpoint usage
+- **Design System**: Consistent spacing, sizing, and color palette usage across components
+- **Component Patterns**: Reusable component styling patterns with Tailwind utilities
+- **Accessibility**: Proper color contrast, focus indicators, and accessible design patterns
+- **Performance**: Efficient class usage and purging for optimal bundle size
+
+### 8. Create Code Organization and Architecture Standards
+Define project structure and architectural patterns:
+- **Domain-Driven Structure**: Organize code by business domains, not technical layers
+- **Single Responsibility**: Functions and modules with clear, focused purposes
+- **Dependency Injection**: Loose coupling through proper dependency management
+- **Configuration Management**: Environment-specific settings with type safety and validation
+- **Barrel Exports**: Clean import patterns with proper index.ts files
+- **Error Handling**: Consistent error boundaries and centralized error management
+
+### 9. Establish Performance and Optimization Standards
+Create performance-first development patterns:
+- **Code Splitting**: Strategic dynamic imports and component-level lazy loading
+- **Bundle Optimization**: Efficient bundling with tree shaking and dead code elimination
+- **Caching Strategies**: Multi-layer caching (browser, CDN, API response, database query)
+- **Core Web Vitals**: Maintain excellent performance metrics (LCP, FID, CLS)
+- **Image Optimization**: Responsive images, lazy loading, and modern format usage
+- **Database Performance**: Query optimization, connection pooling, and index usage
+
+### 10. Define Security and Quality Standards
+Establish security-first development practices:
+- **Input Validation**: Comprehensive input sanitization and validation at all entry points
+- **Authentication**: Proper JWT handling, session management, and authorization patterns
+- **Environment Security**: Secure secret management and environment variable handling
+- **API Security**: Proper CORS, rate limiting, and request validation
+- **Content Security**: XSS prevention, SQL injection protection, and secure data handling
+- **Code Quality**: Comprehensive linting, formatting, and quality gate enforcement
+
+## Expected Output
+Complete `technology-standards.mdc` rule file containing:
+- Comprehensive technology standards for entire tech stack
+- Clear coding patterns and architectural guidelines
+- Performance and security best practices
+- C#/.NET background-friendly explanations and analogies
+- Project-specific standards for AI Feature Tracker requirements
+
+## Completion Checklist
+
+**Before marking this task as complete, verify ALL of the following:**
+
+### File Structure and Setup ✓
+- [ ] `technology-standards.mdc` file exists in `.cursor/rules/standards/` directory
+- [ ] File has proper MDC frontmatter with description and type: "Always"
+- [ ] File metadata correctly identifies it as a technology standards rule
+- [ ] File is properly formatted and accessible
+
+### Next.js 14 Standards ✓
+- [ ] App Router exclusive usage guidelines defined with server/client component separation
+- [ ] File-based routing standards established (page.tsx, layout.tsx, loading.tsx, error.tsx)
+- [ ] Server vs Client component guidelines with performance considerations
+- [ ] Metadata API implementation standards for SEO and social sharing
+- [ ] Image optimization requirements with Next.js Image component usage
+- [ ] Route organization patterns with proper grouping and nesting
+
+### TypeScript Standards ✓
+- [ ] Strict mode configuration requirements with all strict options enabled
+- [ ] Comprehensive type definition standards (interfaces, types, discriminated unions)
+- [ ] Utility type usage guidelines (Pick, Omit, Partial, Record, custom types)
+- [ ] 100% type safety requirements with no `any` types allowed
+- [ ] Typed error handling and error boundary patterns
+- [ ] Generic type usage for reusable components and utilities
+
+### React Component Standards ✓
+- [ ] Functional components with hooks exclusively defined
+- [ ] Component composition over inheritance patterns established
+- [ ] Performance optimization guidelines (React.memo, useMemo, useCallback)
+- [ ] Error boundary implementation requirements with fallback UI
+- [ ] Proper key prop usage for list rendering
+- [ ] Hook dependency and cleanup patterns in useEffect
+
+### Supabase Integration Standards ✓
+- [ ] Row Level Security (RLS) mandatory usage with policy patterns
+- [ ] TypeScript type generation from database schema requirements  
+- [ ] Supabase client management and connection handling standards
+- [ ] Real-time subscription patterns with lifecycle management
+- [ ] Comprehensive error handling for database operations
+- [ ] Caching strategies and query optimization guidelines
+
+### Anthropic API Standards ✓
+- [ ] Rate limiting implementation respecting API quotas and tiers
+- [ ] Error handling with exponential backoff and retry logic
+- [ ] Prompt engineering standards with structured templates
+- [ ] Complete TypeScript definitions for requests and responses
+- [ ] Cost optimization strategies and token usage monitoring
+- [ ] Security standards for API key management and validation
+
+### Tailwind CSS Standards ✓
+- [ ] Utility-first approach with minimal custom CSS requirements
+- [ ] Mobile-first responsive design patterns
+- [ ] Consistent design system usage (spacing, sizing, colors)
+- [ ] Reusable component styling patterns
+- [ ] Accessibility requirements (contrast, focus, semantic design)
+- [ ] Performance considerations for class usage and bundle size
+
+### Architecture and Organization ✓
+- [ ] Domain-driven structure organization patterns
+- [ ] Single responsibility principle implementation
+- [ ] Dependency injection and loose coupling patterns
+- [ ] Configuration management with type safety
+- [ ] Barrel export patterns for clean imports
+- [ ] Centralized error handling architecture
+
+### Performance Standards ✓
+- [ ] Code splitting and lazy loading strategies
+- [ ] Bundle optimization with tree shaking requirements
+- [ ] Multi-layer caching strategy definitions
+- [ ] Core Web Vitals performance targets (LCP, FID, CLS)
+- [ ] Image optimization and loading strategies
+- [ ] Database performance and query optimization
+
+### Security and Quality ✓
+- [ ] Input validation and sanitization requirements
+- [ ] Authentication and authorization patterns
+- [ ] Environment security and secret management
+- [ ] API security with CORS and rate limiting
+- [ ] Content security and XSS prevention
+- [ ] Code quality standards with linting and formatting
+
+### Integration and Consistency ✓
+- [ ] Standards align with developer's C#/.NET background using familiar analogies
+- [ ] All standards integrate properly with AI Feature Tracker requirements
+- [ ] Guidelines are specific and actionable, not vague generalities
+- [ ] Standards support efficient development workflow
+- [ ] Content is comprehensive and covers all major technology areas
+
+### Final Verification ✓
+- [ ] Rule file is ready for immediate use in development
+- [ ] All technology standards are consistent and complementary
+- [ ] Standards provide clear guidance for high-quality code production
+- [ ] Content supports AI Feature Tracker's public platform requirements
+- [ ] Ready to proceed to Task 1.4: Create Quality Standards Rule
+
+**IMPORTANT**: Do not proceed to any other tasks or make assumptions about next steps. This task is complete only when ALL checklist items are verified and the technology-standards.mdc file contains comprehensive, actionable technology standards for the entire AI Feature Tracker development stack.
