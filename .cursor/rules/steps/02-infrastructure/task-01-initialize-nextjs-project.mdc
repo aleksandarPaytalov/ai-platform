@@ -1,0 +1,123 @@
+---
+alwaysApply: false
+---
+# Task 2.1: Initialize Next.js 14 Project
+
+## Context
+You are working on the AI Feature Tracker project - a single-page dashboard that tracks feature updates across 15 popular AI development tools. This task establishes the foundational Next.js 14 project with TypeScript and essential dependencies.
+
+## AI Instructions
+
+### Step 1: Create Next.j 14 Project with TypeScript
+- Run `npx create-next-app@latest ai-feature-tracker --typescript --tailwind --eslint --app --src-dir --import-alias "@/*"`
+- Ensure the project uses Next.js 14+ with App Router enabled
+- Verify TypeScript configuration is properly initialized
+- Confirm Tailwind CSS is installed and configured
+
+### Step 2: Install Essential Dependencies
+Install the following core dependencies:
+```bash
+npm install @supabase/supabase-js @anthropic-ai/sdk
+```
+
+Verify these packages are added to `package.json` dependencies section.
+
+### Step 3: Install Development Dependencies
+Install development tooling:
+```bash
+npm install --save-dev prettier husky lint-staged @types/node
+```
+
+Verify these packages are added to `package.json` devDependencies section.
+
+### Step 4: Configure Package.json Scripts
+Update the `scripts` section in `package.json` to include:
+```json
+{
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "type-check": "tsc --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  }
+}
+```
+
+### Step 5: Remove Default Next.js Boilerplate
+- Delete the default content from `src/app/page.tsx`
+- Remove default styling from `src/app/globals.css` (keep only Tailwind imports)
+- Delete any unnecessary default components or files
+- Create a simple "AI Feature Tracker" heading in `page.tsx` as placeholder
+
+### Step 6: Configure TypeScript Strict Mode
+Update `tsconfig.json` to include strict TypeScript settings:
+```json
+{
+  "compilerOptions": {
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "exactOptionalPropertyTypes": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true
+  }
+}
+```
+
+### Step 7: Verify Project Structure
+Ensure the following folder structure exists:
+```
+ai-feature-tracker/
+├── src/
+│   ├── app/
+│   │   ├── layout.tsx
+│   │   ├── page.tsx
+│   │   └── globals.css
+├── public/
+├── package.json
+├── tsconfig.json
+├── tailwind.config.ts
+├── next.config.js
+└── .eslintrc.json
+```
+
+### Step 8: Test Initial Setup
+- Run `npm run dev` to verify the development server starts without errors
+- Verify the application loads at `http://localhost:3000`
+- Run `npm run lint` to ensure linting passes
+- Run `npm run type-check` to verify TypeScript compilation
+
+## Completion Checklist
+
+Before marking this task as complete, verify ALL of the following items:
+
+- [ ] Next.js 14+ project created with TypeScript and App Router enabled
+- [ ] Project uses `src/` directory structure with `@/*` import alias configured
+- [ ] Tailwind CSS is installed and properly configured
+- [ ] ESLint is installed and configured for Next.js + TypeScript
+- [ ] Essential dependencies installed: `@supabase/supabase-js`, `@anthropic-ai/sdk`
+- [ ] Development dependencies installed: `prettier`, `husky`, `lint-staged`, `@types/node`
+- [ ] Package.json scripts configured for development, build, lint, type-check, and format
+- [ ] Default Next.js boilerplate removed from `page.tsx` and `globals.css`
+- [ ] Simple "AI Feature Tracker" placeholder content added to `page.tsx`
+- [ ] TypeScript strict mode configuration added to `tsconfig.json`
+- [ ] Proper project folder structure verified (src/app/, public/, config files)
+- [ ] `npm run dev` starts successfully without errors
+- [ ] Application loads correctly at `http://localhost:3000`
+- [ ] `npm run lint` passes without errors
+- [ ] `npm run type-check` completes successfully without TypeScript errors
+- [ ] All configuration files (tsconfig.json, tailwind.config.ts, next.config.js, .eslintrc.json) are properly formatted
+
+## Success Criteria
+Task is complete when:
+1. Clean Next.js 14 project with TypeScript runs successfully
+2. All essential dependencies are installed and working
+3. Development environment is properly configured
+4. All checklist items are verified and confirmed
+
+**Do not proceed to the next task until ALL checklist items are completed and verified.**

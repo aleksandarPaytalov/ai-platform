@@ -1,0 +1,591 @@
+---
+alwaysApply: false
+---
+# Task 2.5: Configure TypeScript & Build System
+
+## Context
+You are working on the AI Feature Tracker project. This task configures a production-ready TypeScript and Next.js build system with strict settings, optimized performance, and security headers. This task assumes Tasks 2.1, 2.2, 2.3, and 2.4 have been completed successfully.
+
+## AI Instructions
+
+### Step 1: Configure Advanced TypeScript Settings
+Update `tsconfig.json` with strict TypeScript configuration optimized for Next.js 14:
+```json
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["dom", "dom.iterable", "ES2022"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./src/*"],
+      "@/components/*": ["./src/components/*"],
+      "@/lib/*": ["./src/lib/*"],
+      "@/types/*": ["./src/types/*"],
+      "@/utils/*": ["./src/utils/*"],
+      "@/hooks/*": ["./src/hooks/*"],
+      "@/constants/*": ["./src/constants/*"],
+      "@/config/*": ["./src/lib/config/*"]
+    },
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "exactOptionalPropertyTypes": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noUncheckedIndexedAccess": true,
+    "allowUnusedLabels": false,
+    "allowUnreachableCode": false,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules", ".next", "out", "dist"]
+}
+```
+
+### Step 2: Configure Next.js Build System
+Create comprehensive `next.config.js` with performance optimizations and security:
+```javascript
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  // Enable React strict mode for development
+  reactStrictMode: true,
+  
+  // Enable SWC compiler optimizations
+  swcMinify: true,
+  
+  // Experimental features for Next.js 14
+  experimental: {
+    // Enable server components by default
+    serverComponentsExternalPackages: ['@anthropic-ai/sdk'],
+    
+    // Optimize package imports
+    optimizePackageImports: [
+      '@supabase/supabase-js',
+      'lucide-react',
+      'date-fns'
+    ],
+  },
+
+  // Image optimization configuration
+  images: {
+    formats: ['image/webp', 'image/avif'],
+    domains: [
+      'images.unsplash.com',
+      'avatars.githubusercontent.com',
+      // Add your Supabase storage domain when configured
+      // 'your-project.supabase.co'
+    ],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+  },
+
+  // Security headers
+  async headers() {
+    return [
+      {
+        // Apply security headers to all routes
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'X-Frame-Options',
+            value: 'DENY'
+          },
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff'
+          },
+          {
+            key: 'X-XSS-Protection',
+            value: '1; mode=block'
+          },
+          {
+            key: 'Referrer-Policy',
+            value: 'strict-origin-when-cross-origin'
+          },
+          {
+            key: 'Permissions-Policy',
+            value: 'camera=(), microphone=(), geolocation=()'
+          }
+        ]
+      }
+    ]
+  },
+
+  // Content Security Policy (adjust as needed for your external resources)
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'Content-Security-Policy',
+            value: [
+              "default-src 'self'",
+              "script-src 'self' 'unsafe-eval' 'unsafe-inline'",
+              "style-src 'self' 'unsafe-inline'",
+              "img-src 'self' data: https:",
+              "font-src 'self'",
+              "connect-src 'self' https://api.anthropic.com https://*.supabase.co wss://*.supabase.co",
+            ].join('; ')
+          }
+        ]
+      }
+    ]
+  },
+
+  // Bundle analyzer (only in development)
+  ...(process.env.ANALYZE === 'true' && {
+    webpack: (config, { isServer }) => {
+      if (!isServer) {
+        const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+        config.plugins.push(
+          new BundleAnalyzerPlugin({
+            analyzerMode: 'static',
+            openAnalyzer: false,
+          })
+        );
+      }
+      return config;
+    },
+  }),
+
+  // Webpack configuration for optimal bundling
+  webpack: (config, { dev, isServer }) => {
+    // Optimize bundle splitting
+    if (!dev && !isServer) {
+      config.optimization = {
+        ...config.optimization,
+        splitChunks: {
+          chunks: 'all',
+          cacheGroups: {
+            vendor: {
+              test: /[\\/]node_modules[\\/]/,
+              name: 'vendors',
+              chunks: 'all',
+            },
+            supabase: {
+              test: /[\\/]node_modules[\\/]@supabase[\\/]/,
+              name: 'supabase',
+              chunks: 'all',
+            },
+            anthropic: {
+              test: /[\\/]node_modules[\\/]@anthropic[\\/]/,
+              name: 'anthropic',
+              chunks: 'all',
+            },
+          },
+        },
+      };
+    }
+
+    return config;
+  },
+
+  // Output configuration
+  output: 'standalone',
+  
+  // Compression
+  compress: true,
+  
+  // Generate build ID for caching
+  generateBuildId: async () => {
+    return process.env.BUILD_ID || `build-${Date.now()}`;
+  },
+
+  // Environment variables to expose to the client
+  env: {
+    NEXT_PUBLIC_BUILD_TIME: new Date().toISOString(),
+  },
+};
+
+module.exports = nextConfig;
+```
+
+### Step 3: Install Additional TypeScript Dependencies
+Install additional TypeScript and build-related dependencies:
+```bash
+npm install --save-dev @types/react @types/react-dom @types/node typescript
+npm install --save-dev webpack-bundle-analyzer
+```
+
+Verify packages are added to `package.json` devDependencies.
+
+### Step 4: Create TypeScript Declaration Files
+Create `src/types/global.d.ts` for global type declarations:
+```typescript
+// Global type declarations for AI Feature Tracker
+
+declare global {
+  // Environment variables (client-side accessible)
+  namespace NodeJS {
+    interface ProcessEnv {
+      readonly NEXT_PUBLIC_SUPABASE_URL: string;
+      readonly NEXT_PUBLIC_SUPABASE_ANON_KEY: string;
+      readonly NEXT_PUBLIC_APP_ENV: 'development' | 'staging' | 'production';
+      readonly NEXT_PUBLIC_APP_URL?: string;
+      readonly NEXT_PUBLIC_BUILD_TIME: string;
+    }
+  }
+
+  // Custom global interfaces
+  interface Window {
+    // Add any window extensions here
+    gtag?: (...args: any[]) => void;
+  }
+
+  // Module declarations for untyped packages
+  declare module '*.svg' {
+    const content: any;
+    export default content;
+  }
+
+  declare module '*.png' {
+    const content: string;
+    export default content;
+  }
+
+  declare module '*.jpg' {
+    const content: string;
+    export default content;
+  }
+
+  declare module '*.jpeg' {
+    const content: string;
+    export default content;
+  }
+
+  declare module '*.gif' {
+    const content: string;
+    export default content;
+  }
+
+  declare module '*.webp' {
+    const content: string;
+    export default content;
+  }
+}
+
+// Ensure this file is treated as a module
+export {};
+```
+
+Create `src/types/next.d.ts` for Next.js-specific type extensions:
+```typescript
+// Next.js type extensions for AI Feature Tracker
+
+import type { NextPage } from 'next';
+import type { AppProps } from 'next/app';
+import type { ReactElement, ReactNode } from 'react';
+
+// Extended page component with layout support
+export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+  getLayout?: (page: ReactElement) => ReactNode;
+};
+
+// Extended app props with layout support
+export type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout;
+};
+
+// API route types
+export interface APIResponse<T = any> {
+  success: boolean;
+  data?: T;
+  error?: string;
+  message?: string;
+}
+
+// Search params type for app router
+export interface SearchParams {
+  [key: string]: string | string[] | undefined;
+}
+
+// Page props type for app router
+export interface PageProps {
+  params: { [key: string]: string };
+  searchParams: SearchParams;
+}
+```
+
+### Step 5: Update Package.json Scripts
+Add comprehensive TypeScript and build scripts to `package.json`:
+```json
+{
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "type-check": "tsc --noEmit",
+    "type-check:watch": "tsc --noEmit --watch",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "prepare": "husky install",
+    "analyze": "ANALYZE=true npm run build",
+    "build:analyze": "npm run analyze",
+    "clean": "rm -rf .next out dist node_modules/.cache",
+    "prebuild": "npm run type-check",
+    "postbuild": "echo 'Build completed successfully'",
+    "db:types": "supabase gen types typescript --local > src/types/database.types.ts",
+    "db:reset": "supabase db reset",
+    "test:types": "tsc --noEmit --skipLibCheck false"
+  }
+}
+```
+
+### Step 6: Configure ESLint TypeScript Integration
+Update `.eslintrc.json` to enhance TypeScript integration:
+```json
+{
+  "extends": [
+    "next/core-web-vitals",
+    "@next/eslint-config-next",
+    "eslint:recommended",
+    "@typescript-eslint/recommended",
+    "@typescript-eslint/recommended-requiring-type-checking"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "project": "./tsconfig.json",
+    "tsconfigRootDir": "."
+  },
+  "plugins": ["@typescript-eslint"],
+  "rules": {
+    // TypeScript-specific rules
+    "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+    "@typescript-eslint/no-explicit-any": "warn",
+    "@typescript-eslint/prefer-const": "error",
+    "@typescript-eslint/no-misused-promises": "error",
+    "@typescript-eslint/await-thenable": "error",
+    "@typescript-eslint/no-floating-promises": "error",
+    "@typescript-eslint/prefer-nullish-coalescing": "error",
+    "@typescript-eslint/prefer-optional-chain": "error",
+    "@typescript-eslint/consistent-type-imports": ["error", { "prefer": "type-imports" }],
+    
+    // React and Next.js rules
+    "react-hooks/exhaustive-deps": "warn",
+    "react/no-unescaped-entities": "off",
+    "@next/next/no-html-link-for-pages": "off",
+    
+    // General JavaScript rules (disabled in favor of TypeScript equivalents)
+    "prefer-const": "off",
+    "no-unused-vars": "off"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "root": true
+}
+```
+
+### Step 7: Create Build Validation Script
+Create `scripts/validate-build.js` for build validation:
+```javascript
+#!/usr/bin/env node
+
+const fs = require('fs');
+const path = require('path');
+
+console.log('🔍 Validating build configuration...');
+
+// Check TypeScript configuration
+const tsConfigPath = path.join(process.cwd(), 'tsconfig.json');
+if (!fs.existsSync(tsConfigPath)) {
+  console.error('❌ tsconfig.json not found');
+  process.exit(1);
+}
+
+// Check Next.js configuration
+const nextConfigPath = path.join(process.cwd(), 'next.config.js');
+if (!fs.existsSync(nextConfigPath)) {
+  console.error('❌ next.config.js not found');
+  process.exit(1);
+}
+
+// Check required directories
+const requiredDirs = [
+  'src/app',
+  'src/components',
+  'src/lib',
+  'src/types'
+];
+
+for (const dir of requiredDirs) {
+  const dirPath = path.join(process.cwd(), dir);
+  if (!fs.existsSync(dirPath)) {
+    console.error(`❌ Required directory not found: ${dir}`);
+    process.exit(1);
+  }
+}
+
+// Check package.json scripts
+const packageJsonPath = path.join(process.cwd(), 'package.json');
+const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
+
+const requiredScripts = ['dev', 'build', 'start', 'type-check', 'lint'];
+for (const script of requiredScripts) {
+  if (!packageJson.scripts[script]) {
+    console.error(`❌ Required script not found: ${script}`);
+    process.exit(1);
+  }
+}
+
+console.log('✅ Build configuration validation passed');
+```
+
+Make the script executable:
+```bash
+chmod +x scripts/validate-build.js
+```
+
+### Step 8: Create TypeScript Path Mapping Verification
+Create `src/lib/utils/path-test.ts` to verify path mappings work correctly:
+```typescript
+// Test file to verify TypeScript path mappings
+import type { Env } from '@/lib/config';
+import { Button } from '@/components/ui';
+import type { Database } from '@/types/database.types';
+
+// This file should compile without errors if path mappings are correct
+export function testPathMappings(): void {
+  console.log('TypeScript path mappings are working correctly');
+}
+
+// Test that imports resolve correctly
+export type TestTypes = {
+  env: Env;
+  database: Database;
+};
+```
+
+### Step 9: Configure Development Type Checking
+Create `.vscode/tasks.json` for TypeScript tasks in VS Code:
+```json
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "TypeScript: Check",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "type-check"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      },
+      "problemMatcher": ["$tsc"]
+    },
+    {
+      "label": "TypeScript: Watch",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "type-check:watch"],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      },
+      "problemMatcher": ["$tsc-watch"],
+      "isBackground": true
+    }
+  ]
+}
+```
+
+### Step 10: Test Complete TypeScript and Build Configuration
+Run comprehensive tests to verify configuration:
+```bash
+# Test TypeScript compilation
+npm run type-check
+
+# Test build process
+npm run build
+
+# Test development server
+npm run dev
+
+# Test linting with TypeScript
+npm run lint
+
+# Test bundle analysis (optional)
+npm run analyze
+```
+
+## Completion Checklist
+
+Before marking this task as complete, verify ALL of the following items:
+
+- [ ] `tsconfig.json` updated with strict TypeScript settings and optimal Next.js 14 configuration
+- [ ] TypeScript strict mode enabled with all recommended strict options
+- [ ] Path aliases configured for all major directories (`@/*`, `@/components/*`, etc.)
+- [ ] `next.config.js` created with comprehensive production optimizations
+- [ ] Security headers configured (X-Frame-Options, CSP, X-Content-Type-Options, etc.)
+- [ ] Image optimization configured with proper domains and device sizes
+- [ ] Bundle splitting and webpack optimization configured
+- [ ] Additional TypeScript dependencies installed (`@types/react`, `@types/react-dom`, etc.)
+- [ ] `webpack-bundle-analyzer` installed for build analysis
+- [ ] `src/types/global.d.ts` created with global type declarations
+- [ ] `src/types/next.d.ts` created with Next.js-specific type extensions
+- [ ] Package.json scripts updated with TypeScript and build utilities
+- [ ] Prebuild and postbuild hooks configured for validation
+- [ ] ESLint configuration enhanced with comprehensive TypeScript rules
+- [ ] TypeScript-specific ESLint rules configured properly
+- [ ] Consistent type imports rule enabled
+- [ ] Build validation script created in `scripts/validate-build.js`
+- [ ] Build validation script is executable
+- [ ] Path mapping verification file created (`src/lib/utils/path-test.ts`)
+- [ ] VS Code tasks configured for TypeScript checking and watching
+- [ ] `npm run type-check` completes successfully without errors
+- [ ] `npm run build` completes successfully
+- [ ] `npm run dev` starts without TypeScript errors
+- [ ] `npm run lint` passes all TypeScript-related rules
+- [ ] `npm run analyze` generates bundle analysis (if webpack-bundle-analyzer installed)
+- [ ] All path aliases resolve correctly in IDE and compilation
+- [ ] Import statements work correctly with new path mappings
+- [ ] TypeScript intellisense and autocompletion working in VS Code
+- [ ] Build validation script runs successfully
+
+## Success Criteria
+Task is complete when:
+1. Strict TypeScript configuration is properly established and working
+2. Next.js build system is optimized for production with security headers
+3. Path aliases enable clean imports throughout the application
+4. All development tooling integrates properly with TypeScript
+5. Build validation ensures configuration integrity
+
+**Do not proceed to the next task until ALL checklist items are completed and verified.**

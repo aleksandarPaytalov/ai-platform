@@ -1,0 +1,449 @@
+---
+alwaysApply: false
+---
+# Task 2.4: Set Up Environment Configuration
+
+## Context
+You are working on the AI Feature Tracker project. This task creates a comprehensive environment configuration system with type-safe validation, multi-environment support, and secure utilities for accessing environment variables. This task assumes Tasks 2.1, 2.2, and 2.3 have been completed successfully.
+
+## AI Instructions
+
+### Step 1: Create Environment Variable Structure
+Create `src/lib/config/env.ts` for centralized environment configuration:
+```typescript
+import { z } from 'zod';
+
+// Environment validation schema
+const envSchema = z.object({
+  // Node Environment
+  NODE_ENV: z.enum(['development', 'staging', 'production']).default('development'),
+  
+  // Supabase Configuration
+  NEXT_PUBLIC_SUPABASE_URL: z.string().url('Invalid Supabase URL'),
+  NEXT_PUBLIC_SUPABASE_ANON_KEY: z.string().min(1, 'Supabase anon key is required'),
+  SUPABASE_SERVICE_ROLE_KEY: z.string().min(1, 'Supabase service role key is required'),
+  
+  // Anthropic API Configuration
+  ANTHROPIC_API_KEY: z.string().min(1, 'Anthropic API key is required'),
+  ANTHROPIC_RATE_LIMIT_RPM: z.coerce.number().positive().default(50),
+  ANTHROPIC_RATE_LIMIT_TPM: z.coerce.number().positive().default(100000),
+  
+  // Application Configuration
+  NEXT_PUBLIC_APP_ENV: z.enum(['development', 'staging', 'production']).default('development'),
+  NEXT_PUBLIC_APP_URL: z.string().url().optional(),
+  
+  // Database Configuration (optional for direct connections)
+  DATABASE_URL: z.string().optional(),
+  
+  // Optional: External Service Configuration
+  WEBHOOK_SECRET: z.string().optional(),
+  LOG_LEVEL: z.enum(['debug', 'info', 'warn', 'error']).default('info'),
+  
+  // Optional: Feature Flags
+  ENABLE_AI_VALIDATION: z.coerce.boolean().default(true),
+  ENABLE_REALTIME: z.coerce.boolean().default(true),
+  ENABLE_CACHING: z.coerce.boolean().default(true),
+});
+
+export type Env = z.infer<typeof envSchema>;
+
+// Parse and validate environment variables
+export const env = envSchema.parse(process.env);
+
+// Environment utilities
+export const isDevelopment = env.NODE_ENV === 'development';
+export const isProduction = env.NODE_ENV === 'production';
+export const isStaging = env.NODE_ENV === 'staging';
+```
+
+### Step 2: Install Zod for Environment Validation
+Install Zod for schema validation:
+```bash
+npm install zod
+```
+
+Verify Zod is added to `package.json` dependencies.
+
+### Step 3: Create Environment-Specific Configuration Files
+Create `src/lib/config/database.ts`:
+```typescript
+import { env } from './env';
+
+export const databaseConfig = {
+  supabase: {
+    url: env.NEXT_PUBLIC_SUPABASE_URL,
+    anonKey: env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+    serviceRoleKey: env.SUPABASE_SERVICE_ROLE_KEY,
+  },
+  options: {
+    auth: {
+      autoRefreshToken: true,
+      persistSession: true,
+      detectSessionInUrl: true,
+    },
+    realtime: {
+      enabled: env.ENABLE_REALTIME,
+      heartbeatIntervalMs: 30000,
+      reconnectDelayMs: 1000,
+    },
+  },
+} as const;
+```
+
+Create `src/lib/config/api.ts`:
+```typescript
+import { env } from './env';
+
+export const apiConfig = {
+  anthropic: {
+    apiKey: env.ANTHROPIC_API_KEY,
+    rateLimits: {
+      requestsPerMinute: env.ANTHROPIC_RATE_LIMIT_RPM,
+      tokensPerMinute: env.ANTHROPIC_RATE_LIMIT_TPM,
+    },
+    retryConfig: {
+      maxRetries: 3,
+      baseDelay: 1000,
+      maxDelay: 10000,
+    },
+  },
+  endpoints: {
+    messages: 'https://api.anthropic.com/v1/messages',
+    models: 'https://api.anthropic.com/v1/models',
+  },
+  defaultModel: 'claude-3-sonnet-20240229',
+} as const;
+
+export const appConfig = {
+  name: 'AI Feature Tracker',
+  description: 'Track feature updates across 15 popular AI development tools',
+  url: env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000',
+  environment: env.NEXT_PUBLIC_APP_ENV,
+  version: process.env.npm_package_version || '1.0.0',
+  features: {
+    aiValidation: env.ENABLE_AI_VALIDATION,
+    realtime: env.ENABLE_REALTIME,
+    caching: env.ENABLE_CACHING,
+  },
+} as const;
+```
+
+### Step 4: Create Development Environment File
+Update `.env.local.example` with comprehensive configuration:
+```env
+# ==============================================
+# AI Feature Tracker - Environment Configuration
+# ==============================================
+
+# Node Environment (development, staging, production)
+NODE_ENV=development
+NEXT_PUBLIC_APP_ENV=development
+
+# ==============================================
+# Supabase Configuration
+# ==============================================
+# Get these from your Supabase project dashboard
+NEXT_PUBLIC_SUPABASE_URL=https://your-project-id.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key_here
+SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key_here
+
+# Optional: Direct database connection (for migrations/admin tasks)
+DATABASE_URL=postgresql://postgres:password@localhost:54322/postgres
+
+# ==============================================
+# Anthropic API Configuration
+# ==============================================
+# Get your API key from https://console.anthropic.com/
+ANTHROPIC_API_KEY=your_anthropic_api_key_here
+
+# Rate limiting configuration (adjust based on your tier)
+# Tier 1: RPM=5, TPM=10000
+# Tier 2: RPM=50, TPM=100000
+# Tier 3: RPM=100, TPM=200000
+ANTHROPIC_RATE_LIMIT_RPM=50
+ANTHROPIC_RATE_LIMIT_TPM=100000
+
+# ==============================================
+# Application Configuration
+# ==============================================
+# Public URL for your application
+NEXT_PUBLIC_APP_URL=http://localhost:3000
+
+# Logging level (debug, info, warn, error)
+LOG_LEVEL=debug
+
+# ==============================================
+# Feature Flags
+# ==============================================
+# Enable/disable AI-powered content validation
+ENABLE_AI_VALIDATION=true
+
+# Enable/disable real-time features
+ENABLE_REALTIME=true
+
+# Enable/disable caching mechanisms
+ENABLE_CACHING=true
+
+# ==============================================
+# Optional: External Services
+# ==============================================
+# Webhook secret for external integrations
+WEBHOOK_SECRET=your_webhook_secret_here
+
+# ==============================================
+# Development Only
+# ==============================================
+# Set to true to enable detailed logging in development
+DEBUG=true
+```
+
+### Step 5: Create Staging Environment Template
+Create `.env.staging.example`:
+```env
+# ==============================================
+# AI Feature Tracker - Staging Environment
+# ==============================================
+
+NODE_ENV=staging
+NEXT_PUBLIC_APP_ENV=staging
+
+# Supabase Staging Project
+NEXT_PUBLIC_SUPABASE_URL=https://your-staging-project-id.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_staging_supabase_anon_key
+SUPABASE_SERVICE_ROLE_KEY=your_staging_supabase_service_role_key
+
+# Anthropic API (potentially different key for staging)
+ANTHROPIC_API_KEY=your_staging_anthropic_api_key
+ANTHROPIC_RATE_LIMIT_RPM=25
+ANTHROPIC_RATE_LIMIT_TPM=50000
+
+# Staging App URL
+NEXT_PUBLIC_APP_URL=https://your-app-staging.vercel.app
+
+# Reduced logging in staging
+LOG_LEVEL=info
+
+# Feature flags for testing
+ENABLE_AI_VALIDATION=true
+ENABLE_REALTIME=true
+ENABLE_CACHING=true
+```
+
+### Step 6: Create Production Environment Template  
+Create `.env.production.example`:
+```env
+# ==============================================
+# AI Feature Tracker - Production Environment
+# ==============================================
+
+NODE_ENV=production
+NEXT_PUBLIC_APP_ENV=production
+
+# Supabase Production Project
+NEXT_PUBLIC_SUPABASE_URL=https://your-production-project-id.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_production_supabase_anon_key
+SUPABASE_SERVICE_ROLE_KEY=your_production_supabase_service_role_key
+
+# Anthropic API Production
+ANTHROPIC_API_KEY=your_production_anthropic_api_key
+ANTHROPIC_RATE_LIMIT_RPM=100
+ANTHROPIC_RATE_LIMIT_TPM=200000
+
+# Production App URL
+NEXT_PUBLIC_APP_URL=https://your-app.com
+
+# Production logging
+LOG_LEVEL=warn
+
+# Production feature flags
+ENABLE_AI_VALIDATION=true
+ENABLE_REALTIME=true
+ENABLE_CACHING=true
+
+# Production webhook secret
+WEBHOOK_SECRET=your_secure_production_webhook_secret
+```
+
+### Step 7: Create Environment Validation Utilities
+Create `src/lib/config/validation.ts`:
+```typescript
+import { env } from './env';
+
+/**
+ * Validates that all required environment variables are set
+ * Throws descriptive errors for missing or invalid variables
+ */
+export function validateEnvironment(): void {
+  const errors: string[] = [];
+
+  // Check Supabase configuration
+  if (!env.NEXT_PUBLIC_SUPABASE_URL) {
+    errors.push('NEXT_PUBLIC_SUPABASE_URL is required');
+  }
+  
+  if (!env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+    errors.push('NEXT_PUBLIC_SUPABASE_ANON_KEY is required');
+  }
+  
+  if (!env.SUPABASE_SERVICE_ROLE_KEY) {
+    errors.push('SUPABASE_SERVICE_ROLE_KEY is required for admin operations');
+  }
+
+  // Check Anthropic configuration
+  if (!env.ANTHROPIC_API_KEY) {
+    errors.push('ANTHROPIC_API_KEY is required for AI features');
+  }
+
+  // Production-specific validations
+  if (env.NODE_ENV === 'production') {
+    if (!env.NEXT_PUBLIC_APP_URL) {
+      errors.push('NEXT_PUBLIC_APP_URL is required in production');
+    }
+    
+    if (env.LOG_LEVEL === 'debug') {
+      console.warn('Warning: Debug logging enabled in production');
+    }
+  }
+
+  if (errors.length > 0) {
+    throw new Error(
+      `Environment validation failed:\n${errors.map(err => `  - ${err}`).join('\n')}`
+    );
+  }
+}
+
+/**
+ * Returns current environment information for debugging
+ */
+export function getEnvironmentInfo() {
+  return {
+    nodeEnv: env.NODE_ENV,
+    appEnv: env.NEXT_PUBLIC_APP_ENV,
+    supabaseConfigured: !!env.NEXT_PUBLIC_SUPABASE_URL && !!env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+    anthropicConfigured: !!env.ANTHROPIC_API_KEY,
+    featuresEnabled: {
+      aiValidation: env.ENABLE_AI_VALIDATION,
+      realtime: env.ENABLE_REALTIME,
+      caching: env.ENABLE_CACHING,
+    },
+  };
+}
+```
+
+### Step 8: Create Configuration Index File
+Create `src/lib/config/index.ts`:
+```typescript
+// Main configuration exports
+export { env, isDevelopment, isProduction, isStaging } from './env';
+export { databaseConfig } from './database';
+export { apiConfig, appConfig } from './api';
+export { validateEnvironment, getEnvironmentInfo } from './validation';
+
+// Type exports
+export type { Env } from './env';
+```
+
+### Step 9: Add Environment Validation to Application Startup
+Update `src/app/layout.tsx` to validate environment on startup:
+```typescript
+import { validateEnvironment } from '@/lib/config';
+
+// Validate environment variables at startup
+if (typeof window === 'undefined') {
+  // Only run on server-side
+  try {
+    validateEnvironment();
+  } catch (error) {
+    console.error('Environment validation failed:', error);
+    if (process.env.NODE_ENV === 'production') {
+      throw error; // Fail fast in production
+    }
+  }
+}
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en">
+      <body>{children}</body>
+    </html>
+  );
+}
+```
+
+### Step 10: Update Documentation
+Create `docs/development/environment-setup.md`:
+```markdown
+# Environment Configuration
+
+## Overview
+The AI Feature Tracker uses a comprehensive environment configuration system with type-safe validation and multi-environment support.
+
+## Required Environment Variables
+
+### Supabase Configuration
+- `NEXT_PUBLIC_SUPABASE_URL`: Your Supabase project URL
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`: Public anonymous key for client-side operations
+- `SUPABASE_SERVICE_ROLE_KEY`: Service role key for admin operations (server-side only)
+
+### Anthropic API Configuration
+- `ANTHROPIC_API_KEY`: Your Anthropic API key for AI features
+- `ANTHROPIC_RATE_LIMIT_RPM`: Requests per minute limit (default: 50)
+- `ANTHROPIC_RATE_LIMIT_TPM`: Tokens per minute limit (default: 100,000)
+
+### Application Configuration
+- `NODE_ENV`: Node environment (development, staging, production)
+- `NEXT_PUBLIC_APP_ENV`: Application environment for client-side
+- `NEXT_PUBLIC_APP_URL`: Public URL of your application
+
+## Setup Instructions
+
+1. Copy `.env.local.example` to `.env.local`
+2. Fill in your actual API keys and URLs
+3. Verify configuration with `npm run dev`
+
+## Environment Validation
+The application validates all environment variables at startup and provides detailed error messages for missing or invalid configurations.
+```
+
+## Completion Checklist
+
+Before marking this task as complete, verify ALL of the following items:
+
+- [ ] Zod package installed successfully (`npm install zod`)
+- [ ] `src/lib/config/env.ts` created with comprehensive environment schema validation
+- [ ] Environment schema includes all required variables: Supabase, Anthropic, Node, Application configs
+- [ ] Environment schema includes optional variables with proper defaults
+- [ ] Type-safe environment parsing implemented with Zod schema
+- [ ] `src/lib/config/database.ts` created with Supabase configuration structure
+- [ ] `src/lib/config/api.ts` created with Anthropic API and app configuration
+- [ ] `.env.local.example` updated with comprehensive variable documentation
+- [ ] `.env.staging.example` created with staging-specific configuration
+- [ ] `.env.production.example` created with production-specific configuration
+- [ ] All environment templates include detailed comments and examples
+- [ ] Rate limiting configuration included for different Anthropic tiers
+- [ ] Feature flags configuration included (AI validation, realtime, caching)
+- [ ] `src/lib/config/validation.ts` created with environment validation functions
+- [ ] Validation function checks all required variables and provides helpful error messages
+- [ ] Production-specific validations included for security and performance
+- [ ] `src/lib/config/index.ts` created with proper exports and type exports
+- [ ] Application startup validation added to `src/app/layout.tsx`
+- [ ] Environment validation runs on server-side only
+- [ ] Documentation created in `docs/development/environment-setup.md`
+- [ ] All configuration files follow TypeScript best practices
+- [ ] Environment utilities (isDevelopment, isProduction, isStaging) exported
+- [ ] Type safety maintained throughout configuration system
+- [ ] No sensitive data hardcoded in configuration files
+
+## Success Criteria
+Task is complete when:
+1. Comprehensive environment configuration system is established with type safety
+2. Multi-environment support (development, staging, production) is configured
+3. All required services (Supabase, Anthropic) have proper configuration structure
+4. Environment validation prevents application startup with invalid configuration
+5. Clear documentation and examples are provided for all environment variables
+
+**Do not proceed to the next task until ALL checklist items are completed and verified.**

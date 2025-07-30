@@ -1,0 +1,315 @@
+---
+alwaysApply: false
+---
+# Task 2.3: Create Project Folder Structure
+
+## Context
+You are working on the AI Feature Tracker project. This task creates the complete organized folder structure following Next.js 14 App Router best practices with feature-based organization and clean import patterns. This task assumes Tasks 2.1 and 2.2 have been completed successfully.
+
+## AI Instructions
+
+### Step 1: Create Core Application Directories
+Create the main application folder structure in `src/`:
+```
+src/
+├── app/                    # Next.js 14 App Router
+├── components/             # React components
+├── lib/                    # Utility libraries and services
+├── types/                  # TypeScript type definitions
+├── hooks/                  # Custom React hooks
+├── utils/                  # General utility functions
+└── constants/              # Application constants
+```
+
+### Step 2: Create Component Organization Structure
+Create detailed component organization in `src/components/`:
+```
+src/components/
+├── ui/                     # Reusable UI components
+│   ├── button/
+│   ├── input/
+│   ├── card/
+│   ├── badge/
+│   ├── modal/
+│   ├── loading/
+│   └── error/
+├── tools/                  # Tool-specific components
+│   ├── tool-card/
+│   ├── tool-grid/
+│   ├── tool-detail/
+│   └── tool-status/
+├── navigation/             # Navigation components
+│   ├── header/
+│   ├── footer/
+│   ├── tab-navigation/
+│   └── mobile-drawer/
+├── search/                 # Search and filtering components
+│   ├── search-bar/
+│   ├── search-results/
+│   ├── filters/
+│   └── search-suggestions/
+├── modals/                 # Modal components
+│   ├── feature-detail/
+│   ├── tool-comparison/
+│   └── image-gallery/
+├── updates/                # Feature update components
+│   ├── update-card/
+│   ├── update-timeline/
+│   ├── update-list/
+│   └── impact-indicators/
+└── layout/                 # Layout components
+    ├── dashboard/
+    ├── grid-system/
+    └── responsive/
+```
+
+### Step 3: Create Library and Services Organization
+Create service layer organization in `src/lib/`:
+```
+src/lib/
+├── supabase/               # Supabase integration
+│   ├── client.ts
+│   ├── server.ts
+│   ├── types.ts
+│   └── services/
+│       ├── tools.ts
+│       ├── updates.ts
+│       ├── categories.ts
+│       └── realtime.ts
+├── anthropic/              # Anthropic API integration
+│   ├── client.ts
+│   ├── prompts.ts
+│   ├── analysis.ts
+│   └── validation.ts
+├── utils/                  # Utility functions
+│   ├── date.ts
+│   ├── format.ts
+│   ├── validation.ts
+│   └── constants.ts
+├── hooks/                  # Custom hooks (moved from src/hooks)
+│   ├── use-tools.ts
+│   ├── use-updates.ts
+│   ├── use-realtime.ts
+│   └── use-search.ts
+└── config/                 # Configuration files
+    ├── database.ts
+    ├── api.ts
+    └── constants.ts
+```
+
+### Step 4: Create Type Definitions Structure
+Create comprehensive type organization in `src/types/`:
+```
+src/types/
+├── database.types.ts       # Supabase generated types
+├── api.types.ts           # API request/response types
+├── component.types.ts     # Component prop types
+├── tool.types.ts         # Tool-related types
+├── update.types.ts       # Feature update types
+├── search.types.ts       # Search and filter types
+├── realtime.types.ts     # Real-time event types
+└── global.types.ts       # Global type definitions
+```
+
+### Step 5: Create Public Assets Organization
+Organize `public/` folder for static assets:
+```
+public/
+├── icons/                  # App icons and favicons
+│   ├── favicon.ico
+│   ├── icon-192.png
+│   ├── icon-512.png
+│   └── apple-touch-icon.png
+├── images/                 # Static images
+│   ├── logos/              # Tool logos
+│   ├── screenshots/        # Feature screenshots
+│   └── placeholders/       # Placeholder images
+├── manifest.json          # PWA manifest
+└── robots.txt             # SEO robots file
+```
+
+### Step 6: Create Documentation Structure
+Create documentation organization:
+```
+docs/
+├── README.md              # Project overview
+├── development/           # Development docs
+│   ├── setup.md
+│   ├── architecture.md
+│   ├── deployment.md
+│   └── troubleshooting.md
+├── api/                   # API documentation
+│   ├── supabase.md
+│   ├── anthropic.md
+│   └── endpoints.md
+└── components/            # Component documentation
+    ├── ui-components.md
+    ├── tool-components.md
+    └── layout-components.md
+```
+
+### Step 7: Create Barrel Export Files (index.ts)
+Create `index.ts` files for clean imports:
+
+**src/components/ui/index.ts:**
+```typescript
+export { default as Button } from './button/Button';
+export { default as Input } from './input/Input';
+export { default as Card } from './card/Card';
+export { default as Badge } from './badge/Badge';
+export { default as Modal } from './modal/Modal';
+export { default as Loading } from './loading/Loading';
+export { default as ErrorBoundary } from './error/ErrorBoundary';
+
+export type { ButtonProps } from './button/Button';
+export type { InputProps } from './input/Input';
+export type { CardProps } from './card/Card';
+export type { BadgeProps } from './badge/Badge';
+export type { ModalProps } from './modal/Modal';
+```
+
+**src/components/tools/index.ts:**
+```typescript
+export { default as ToolCard } from './tool-card/ToolCard';
+export { default as ToolGrid } from './tool-grid/ToolGrid';
+export { default as ToolDetail } from './tool-detail/ToolDetail';
+export { default as ToolStatus } from './tool-status/ToolStatus';
+
+export type { ToolCardProps } from './tool-card/ToolCard';
+export type { ToolGridProps } from './tool-grid/ToolGrid';
+export type { ToolDetailProps } from './tool-detail/ToolDetail';
+export type { ToolStatusProps } from './tool-status/ToolStatus';
+```
+
+**src/lib/supabase/index.ts:**
+```typescript
+export { default as supabaseClient } from './client';
+export { default as supabaseServer } from './server';
+export * from './types';
+export * from './services/tools';
+export * from './services/updates';
+export * from './services/categories';
+export * from './services/realtime';
+```
+
+**src/types/index.ts:**
+```typescript
+export type { Database } from './database.types';
+export * from './api.types';
+export * from './component.types';
+export * from './tool.types';
+export * from './update.types';
+export * from './search.types';
+export * from './realtime.types';
+export * from './global.types';
+```
+
+### Step 8: Create Main Application Barrel Exports
+Create root-level export files:
+
+**src/components/index.ts:**
+```typescript
+// UI Components
+export * from './ui';
+
+// Feature Components
+export * from './tools';
+export * from './navigation';
+export * from './search';
+export * from './modals';
+export * from './updates';
+export * from './layout';
+```
+
+**src/lib/index.ts:**
+```typescript
+export * from './supabase';
+export * from './anthropic';
+export * from './utils';
+export * from './hooks';
+export * from './config';
+```
+
+### Step 9: Update TypeScript Path Aliases
+Verify `tsconfig.json` includes proper path mappings:
+```json
+{
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/*"],
+      "@/components/*": ["./src/components/*"],
+      "@/lib/*": ["./src/lib/*"],
+      "@/types/*": ["./src/types/*"],
+      "@/utils/*": ["./src/utils/*"],
+      "@/hooks/*": ["./src/hooks/*"],
+      "@/constants/*": ["./src/constants/*"]
+    }
+  }
+}
+```
+
+### Step 10: Create Initial README.md Templates
+Create project README.md in root:
+```markdown
+# AI Feature Tracker
+
+A real-time dashboard tracking feature updates across 15 popular AI development tools.
+
+## Features
+- Real-time feature update tracking
+- AI-powered content validation
+- Single-page dashboard interface
+- Mobile-responsive design
+- Advanced search and filtering
+
+## Tech Stack
+- Next.js 14 with App Router
+- TypeScript
+- Supabase (PostgreSQL + Real-time)
+- Anthropic API (Claude)
+- Tailwind CSS
+- Vercel deployment
+
+## Getting Started
+[Instructions will be added during development phases]
+
+## Project Structure
+[Detailed structure documentation will be added]
+```
+
+## Completion Checklist
+
+Before marking this task as complete, verify ALL of the following items:
+
+- [ ] Core application directories created: `src/app/`, `src/components/`, `src/lib/`, `src/types/`, `src/hooks/`, `src/utils/`, `src/constants/`
+- [ ] Component organization created with feature-based structure: `ui/`, `tools/`, `navigation/`, `search/`, `modals/`, `updates/`, `layout/`
+- [ ] Each component category has proper subdirectories for individual components
+- [ ] Library organization created: `supabase/`, `anthropic/`, `utils/`, `hooks/`, `config/` with service subdirectories
+- [ ] Type definitions structure created with separate files for different domains
+- [ ] Public assets organization created: `icons/`, `images/logos/`, `images/screenshots/`, `images/placeholders/`
+- [ ] Documentation structure created: `docs/` with `development/`, `api/`, `components/` subdirectories
+- [ ] Barrel export files (`index.ts`) created for all major directories
+- [ ] UI components barrel export includes both components and types
+- [ ] Tools components barrel export includes both components and types
+- [ ] Supabase library barrel export includes client, server, types, and services
+- [ ] Main types barrel export includes all type definition files
+- [ ] Root-level component and lib barrel exports aggregate subdirectory exports
+- [ ] TypeScript path aliases in `tsconfig.json` updated for clean imports
+- [ ] Path aliases include all major directories (`@/components/*`, `@/lib/*`, etc.)
+- [ ] Project README.md created with basic project information and tech stack
+- [ ] All folder structure follows Next.js 14 App Router best practices
+- [ ] Folder names use kebab-case consistently
+- [ ] No empty directories exist (each should have at least a placeholder file or README)
+- [ ] All barrel export files have proper TypeScript syntax
+- [ ] File structure supports scalability and maintainability
+- [ ] Organization supports feature-based development approach
+
+## Success Criteria
+Task is complete when:
+1. Complete folder structure exists with proper organization and naming conventions
+2. All barrel export files enable clean imports throughout the application
+3. TypeScript path aliases work correctly for all directories
+4. Structure supports scalable feature-based development
+5. Documentation foundation is established
+
+**Do not proceed to the next task until ALL checklist items are completed and verified.**

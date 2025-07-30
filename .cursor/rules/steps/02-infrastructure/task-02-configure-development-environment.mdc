@@ -1,0 +1,348 @@
+---
+alwaysApply: false
+---
+# Task 2.2: Configure Development Environment
+
+## Context
+You are working on the AI Feature Tracker project. This task configures the complete development environment with linting, formatting, pre-commit hooks, and development tooling. This task assumes Task 2.1 (Initialize Next.js 14 Project) has been completed successfully.
+
+## AI Instructions
+
+### Step 1: Configure ESLint for Next.js 14 + TypeScript
+Update `.eslintrc.json` with optimized configuration:
+```json
+{
+  "extends": [
+    "next/core-web-vitals",
+    "@next/eslint-config-next",
+    "eslint:recommended",
+    "@typescript-eslint/recommended",
+    "@typescript-eslint/recommended-requiring-type-checking"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "project": "./tsconfig.json"
+  },
+  "plugins": ["@typescript-eslint"],
+  "rules": {
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-explicit-any": "warn",
+    "@typescript-eslint/prefer-const": "error",
+    "prefer-const": "off",
+    "@typescript-eslint/no-misused-promises": "error",
+    "@typescript-eslint/await-thenable": "error",
+    "react-hooks/exhaustive-deps": "warn"
+  },
+  "root": true
+}
+```
+
+### Step 2: Configure Prettier with Project Standards
+Create `.prettierrc.json`:
+```json
+{
+  "semi": true,
+  "trailingComma": "es5",
+  "singleQuote": true,
+  "printWidth": 80,
+  "tabWidth": 2,
+  "useTabs": false,
+  "quoteProps": "as-needed",
+  "bracketSpacing": true,
+  "arrowParens": "avoid",
+  "endOfLine": "lf"
+}
+```
+
+Create `.prettierignore`:
+```
+.next
+out
+dist
+build
+node_modules
+*.lock
+.git
+.vscode
+public
+```
+
+### Step 3: Create Comprehensive .gitignore
+Update `.gitignore` to include:
+```gitignore
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Testing
+coverage/
+.nyc_output
+
+# Next.js
+.next/
+out/
+build/
+dist/
+
+# Production
+build/
+dist/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.example
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+lerna-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage
+*.lcov
+
+# nyc test coverage
+.nyc_output
+
+# Dependency directories
+jspm_packages/
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# parcel-bundler cache (https://parceljs.org/)
+.cache
+.parcel-cache
+
+# Next.js build output
+.next
+
+# Nuxt.js build / generate output
+.nuxt
+
+# Gatsby files
+.cache/
+public
+
+# Storybook build outputs
+.out
+.storybook-out
+
+# Temporary folders
+tmp/
+temp/
+
+# Editor directories and files
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Supabase
+.branches
+.temp
+```
+
+### Step 4: Set Up Husky Pre-commit Hooks
+Initialize Husky:
+```bash
+npx husky-init && npm install
+```
+
+Update `.husky/pre-commit` file:
+```bash
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+npm run lint:fix
+npm run format
+npm run type-check
+```
+
+Configure lint-staged in `package.json`:
+```json
+{
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,css}": [
+      "prettier --write"
+    ]
+  }
+}
+```
+
+### Step 5: Configure VS Code Workspace Settings
+Create `.vscode/settings.json`:
+```json
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.organizeImports": true
+  },
+  "typescript.preferences.includePackageJsonAutoImports": "on",
+  "typescript.suggest.autoImports": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "editor.rulers": [80],
+  "files.exclude": {
+    "**/node_modules": true,
+    "**/.next": true,
+    "**/out": true,
+    "**/.git": true
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/.next": true,
+    "**/out": true,
+    "**/dist": true
+  },
+  "emmet.includeLanguages": {
+    "typescript": "html",
+    "typescriptreact": "html"
+  }
+}
+```
+
+Create `.vscode/extensions.json`:
+```json
+{
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "ms-vscode.vscode-typescript-next",
+    "bradlc.vscode-tailwindcss",
+    "ms-vscode.vscode-eslint",
+    "supabase.supabase"
+  ]
+}
+```
+
+### Step 6: Create Environment Variables Template
+Create `.env.local.example`:
+```env
+# Supabase Configuration
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
+
+# Anthropic API Configuration
+ANTHROPIC_API_KEY=your_anthropic_api_key
+
+# Development Configuration
+NODE_ENV=development
+NEXT_PUBLIC_APP_ENV=development
+
+# Optional: Rate Limiting Configuration
+ANTHROPIC_RATE_LIMIT_RPM=50
+ANTHROPIC_RATE_LIMIT_TPM=100000
+
+# Optional: Database Configuration
+DATABASE_URL=your_database_connection_string
+```
+
+### Step 7: Add Development Scripts
+Update `package.json` scripts section to include additional development utilities:
+```json
+{
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "type-check": "tsc --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "prepare": "husky install",
+    "db:types": "supabase gen types typescript --local > src/types/database.types.ts",
+    "db:reset": "supabase db reset",
+    "clean": "rm -rf .next out dist node_modules/.cache"
+  }
+}
+```
+
+### Step 8: Verify Development Environment
+- Run `npm run lint` to verify ESLint configuration works
+- Run `npm run format` to verify Prettier configuration works
+- Run `npm run type-check` to verify TypeScript configuration
+- Create a test file with intentional formatting/linting issues to verify pre-commit hooks work
+- Verify VS Code settings are applied (formatting on save, etc.)
+
+## Completion Checklist
+
+Before marking this task as complete, verify ALL of the following items:
+
+- [ ] `.eslintrc.json` updated with Next.js 14 + TypeScript optimized configuration
+- [ ] ESLint extends proper configurations and includes recommended TypeScript rules
+- [ ] `.prettierrc.json` created with consistent formatting rules (80 char width, single quotes, etc.)
+- [ ] `.prettierignore` created excluding build directories and config files
+- [ ] `.gitignore` updated with comprehensive exclusions (environment files, build outputs, editor files, OS files)
+- [ ] Husky initialized successfully with `npx husky-init && npm install`
+- [ ] `.husky/pre-commit` configured to run lint:fix, format, and type-check
+- [ ] `lint-staged` configuration added to `package.json` for staged file processing
+- [ ] `.vscode/settings.json` created with TypeScript and formatting optimizations
+- [ ] `.vscode/extensions.json` created with recommended extensions list
+- [ ] `.env.local.example` created with all required environment variable templates
+- [ ] Environment template includes Supabase, Anthropic, and development configuration sections
+- [ ] `package.json` scripts updated with development utilities (db:types, db:reset, clean, prepare)
+- [ ] `npm run lint` executes successfully without errors
+- [ ] `npm run format` executes successfully and formats files correctly
+- [ ] `npm run type-check` completes successfully without TypeScript errors
+- [ ] Pre-commit hooks work correctly (test by making a commit with formatting issues)
+- [ ] VS Code applies formatting on save and shows TypeScript intellisense
+- [ ] All configuration files are properly formatted and valid JSON
+- [ ] Git status shows all new configuration files are tracked (except .env files)
+
+## Success Criteria
+Task is complete when:
+1. Complete development environment is configured with linting, formatting, and pre-commit hooks
+2. VS Code workspace settings provide optimal TypeScript development experience
+3. Environment variable template covers all project requirements
+4. All tools integrate properly and execute without errors
+5. Pre-commit hooks prevent poorly formatted or invalid code from being committed
+
+**Do not proceed to the next task until ALL checklist items are completed and verified.**
