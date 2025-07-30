@@ -1,0 +1,398 @@
+---
+alwaysApply: false
+---
+# Task 3.3: Configure Row Level Security (RLS)
+
+## Context
+You are working on the AI Feature Tracker project, a public information platform that tracks feature updates across 15 popular AI development tools. This task focuses on implementing Row Level Security (RLS) to ensure proper access control where anonymous users can read all public data, while administrative operations (data updates, AI processing) are restricted to service role access only.
+
+## Prerequisites
+- Supabase project created and configured (Task 3.1 completed)
+- Complete database schema implemented (Task 3.2 completed)
+- All tables created: `tool_categories`, `ai_tools`, `feature_updates`, `update_history`
+- Foreign key relationships and constraints established
+- Database connection verified and functional
+
+## Reference Standards
+Apply the following standards from global rules:
+- @global-behavior: Follow systematic, step-by-step approach with clear security explanations
+- @technology-standards: Use Supabase RLS best practices and PostgreSQL security patterns
+- @quality-standards: Implement comprehensive security testing and validation
+
+## AI Instructions
+
+### 1. Enable Row Level Security on All Tables
+Enable RLS on each table in the correct order (avoiding foreign key conflicts):
+```sql
+-- Enable RLS on all tables
+ALTER TABLE tool_categories ENABLE ROW LEVEL SECURITY;
+ALTER TABLE ai_tools ENABLE ROW LEVEL SECURITY;
+ALTER TABLE feature_updates ENABLE ROW LEVEL SECURITY;
+ALTER TABLE update_history ENABLE ROW LEVEL SECURITY;
+
+-- Verify RLS is enabled
+SELECT schemaname, tablename, rowsecurity 
+FROM pg_tables 
+WHERE tablename IN ('tool_categories', 'ai_tools', 'feature_updates', 'update_history');
+```
+- Execute in Supabase SQL Editor
+- Verify all tables show `rowsecurity = true`
+- Confirm RLS status in Supabase Dashboard → Authentication → Policies
+
+### 2. Create Public Read Access Policies
+Create policies allowing anonymous users to read all public data:
+```sql
+-- Tool Categories - Public read access
+CREATE POLICY "Public read access for tool categories" ON tool_categories
+    FOR SELECT 
+    USING (true);  -- Allow all users to read categories
+
+-- AI Tools - Public read access for active tools only
+CREATE POLICY "Public read access for active tools" ON ai_tools
+    FOR SELECT 
+    USING (is_active = true);  -- Only show active tools to public
+
+-- Feature Updates - Public read access for validated updates only
+CREATE POLICY "Public read access for validated updates" ON feature_updates
+    FOR SELECT 
+    USING (validation_status = 'validated');  -- Only show validated updates to public
+
+-- Update History - No public access (admin/audit only)
+-- No public read policy for update_history table
+```
+- Execute each policy creation
+- Verify policies created in Supabase Dashboard → Authentication → Policies
+- Test public access by querying tables without authentication
+
+### 3. Create Service Role Administrative Policies
+Create comprehensive policies for service role (full admin access):
+```sql
+-- Tool Categories - Service role full access
+CREATE POLICY "Service role full access to tool categories" ON tool_categories
+    FOR ALL 
+    USING (auth.jwt() ->> 'role' = 'service_role')
+    WITH CHECK (auth.jwt() ->> 'role' = 'service_role');
+
+-- AI Tools - Service role full access
+CREATE POLICY "Service role full access to ai tools" ON ai_tools
+    FOR ALL 
+    USING (auth.jwt() ->> 'role' = 'service_role')
+    WITH CHECK (auth.jwt() ->> 'role' = 'service_role');
+
+-- Feature Updates - Service role full access
+CREATE POLICY "Service role full access to feature updates" ON feature_updates
+    FOR ALL 
+    USING (auth.jwt() ->> 'role' = 'service_role')
+    WITH CHECK (auth.jwt() ->> 'role' = 'service_role');
+
+-- Update History - Service role full access
+CREATE POLICY "Service role full access to update history" ON update_history
+    FOR ALL 
+    USING (auth.jwt() ->> 'role' = 'service_role')
+    WITH CHECK (auth.jwt() ->> 'role' = 'service_role');
+```
+- Execute all service role policies
+- Verify policies show in dashboard with correct conditions
+- Test service role access using service_role key
+
+### 4. Create AI Processing Policies
+Create specific policies for AI automation processes:
+```sql
+-- Feature Updates - Allow AI to update analysis fields
+CREATE POLICY "AI processing updates for feature validation" ON feature_updates
+    FOR UPDATE 
+    USING (auth.jwt() ->> 'role' = 'service_role')
+    WITH CHECK (
+        auth.jwt() ->> 'role' = 'service_role' AND
+        -- Only allow updates to AI-related fields
+        (OLD.title = NEW.title AND OLD.content = NEW.content AND OLD.tool_id = NEW.tool_id)
+    );
+
+-- Update History - Allow AI to create audit trail entries
+CREATE POLICY "AI processing audit trail creation" ON update_history
+    FOR INSERT 
+    WITH CHECK (
+        auth.jwt() ->> 'role' = 'service_role' AND
+        changed_by LIKE 'ai_%'  -- AI processes must identify themselves
+    );
+```
+- Execute AI-specific policies
+- Verify policies allow only specified field updates
+- Test with sample AI processing operations
+
+### 5. Create Security Helper Functions
+Create utility functions for common security checks:
+```sql
+-- Function to check if current user can modify data
+CREATE OR REPLACE FUNCTION auth.can_modify_data()
+RETURNS BOOLEAN AS $$
+BEGIN
+    RETURN auth.jwt() ->> 'role' = 'service_role';
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
+
+-- Function to check if current user can read sensitive data
+CREATE OR REPLACE FUNCTION auth.can_read_sensitive_data()
+RETURNS BOOLEAN AS $$
+BEGIN
+    RETURN auth.jwt() ->> 'role' = 'service_role';
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
+
+-- Function to get current user role safely
+CREATE OR REPLACE FUNCTION auth.get_user_role()
+RETURNS TEXT AS $$
+BEGIN
+    RETURN COALESCE(auth.jwt() ->> 'role', 'anon');
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
+```
+- Execute helper function creation
+- Test functions return expected values
+- Verify functions work with different authentication contexts
+
+### 6. Implement Data Visibility Controls
+Add additional policies for fine-grained data visibility:
+```sql
+-- AI Tools - Hide tools in development/testing
+CREATE POLICY "Hide development tools from public" ON ai_tools
+    FOR SELECT 
+    USING (
+        is_active = true AND 
+        (metadata->>'development_mode' IS NULL OR metadata->>'development_mode' = 'false')
+    );
+
+-- Feature Updates - Control visibility based on confidence score
+CREATE POLICY "High confidence updates only for public" ON feature_updates
+    FOR SELECT 
+    USING (
+        validation_status = 'validated' AND
+        (confidence_score IS NULL OR confidence_score >= 0.7)  -- Only show high-confidence AI validations
+    );
+```
+- Execute visibility control policies
+- Test policies hide appropriate records from public access
+- Verify service role can still access all data
+
+### 7. Configure Real-time Security
+Set up security for real-time subscriptions:
+```sql
+-- Enable real-time for public tables with security
+-- This is configured in Supabase Dashboard → Database → Replication
+-- But we need to ensure RLS applies to real-time subscriptions
+
+-- Create publication for real-time (if not exists)
+-- Note: Supabase creates this automatically, but we verify it exists
+SELECT * FROM pg_publication WHERE pubname = 'supabase_realtime';
+
+-- Verify RLS applies to real-time subscriptions
+-- Check that realtime respects our RLS policies
+```
+- Verify real-time replication respects RLS policies
+- Test real-time subscriptions honor security boundaries
+- Confirm public subscriptions only receive allowed data
+
+### 8. Test RLS Policies Comprehensively
+Perform thorough testing of all security policies:
+```sql
+-- Test 1: Anonymous user can read public data
+-- (Execute without authentication)
+SELECT COUNT(*) FROM tool_categories;  -- Should work
+SELECT COUNT(*) FROM ai_tools WHERE is_active = true;  -- Should work
+SELECT COUNT(*) FROM feature_updates WHERE validation_status = 'validated';  -- Should work
+SELECT COUNT(*) FROM update_history;  -- Should fail or return 0
+
+-- Test 2: Anonymous user cannot modify data
+-- INSERT INTO tool_categories (name) VALUES ('Test Category');  -- Should fail
+-- UPDATE ai_tools SET name = 'Modified' WHERE id = (SELECT id FROM ai_tools LIMIT 1);  -- Should fail
+
+-- Test 3: Service role can access all data
+-- (Execute with service_role authentication)
+-- SELECT COUNT(*) FROM update_history;  -- Should work with service_role key
+-- INSERT INTO tool_categories (name) VALUES ('Test Category');  -- Should work with service_role key
+```
+- Execute all test scenarios
+- Verify expected access/denial patterns
+- Document any unexpected behavior for troubleshooting
+
+### 9. Create Security Documentation
+Document the complete security model:
+```sql
+-- Create a view documenting all RLS policies
+CREATE VIEW security_policy_summary AS
+SELECT 
+    schemaname,
+    tablename,
+    policyname,
+    permissive,
+    roles,
+    cmd,
+    qual,
+    with_check
+FROM pg_policies 
+WHERE schemaname = 'public'
+ORDER BY tablename, policyname;
+
+-- Query to show current security status
+SELECT 
+    t.tablename,
+    t.rowsecurity as rls_enabled,
+    COUNT(p.policyname) as policy_count
+FROM pg_tables t
+LEFT JOIN pg_policies p ON t.tablename = p.tablename
+WHERE t.schemaname = 'public' 
+AND t.tablename IN ('tool_categories', 'ai_tools', 'feature_updates', 'update_history')
+GROUP BY t.tablename, t.rowsecurity
+ORDER BY t.tablename;
+```
+- Create security documentation views
+- Generate current security status report
+- Document policy purposes and access patterns
+
+## Expected Deliverables
+- Row Level Security enabled on all 4 database tables
+- Public read access policies for anonymous users (validated data only)
+- Service role administrative policies for full data access
+- AI processing policies for automated content validation
+- Security helper functions for common access checks
+- Data visibility controls for development/testing scenarios
+- Real-time security configuration respecting RLS policies
+- Comprehensive security testing and validation
+- Complete security documentation and policy summary
+
+## Quality Requirements
+- Anonymous users can only read validated, public data
+- Service role has full administrative access to all data
+- AI processes can only modify analysis-related fields
+- No unauthorized data access or modification possible
+- Real-time subscriptions respect security boundaries
+- All policies thoroughly tested with different user roles
+- Security model documented and maintainable
+
+## Completion Checklist
+
+### ✅ Row Level Security Enablement Verification
+- [ ] RLS enabled on `tool_categories` table
+- [ ] RLS enabled on `ai_tools` table  
+- [ ] RLS enabled on `feature_updates` table
+- [ ] RLS enabled on `update_history` table
+- [ ] All tables show `rowsecurity = true` in pg_tables query
+- [ ] RLS status confirmed in Supabase Dashboard → Authentication → Policies
+- [ ] No errors during RLS enablement process
+
+### ✅ Public Read Access Policies Verification
+- [ ] "Public read access for tool categories" policy created and active
+- [ ] "Public read access for active tools" policy created with `is_active = true` condition
+- [ ] "Public read access for validated updates" policy created with `validation_status = 'validated'` condition
+- [ ] No public read policy for `update_history` table (admin only)
+- [ ] All public policies visible in Supabase Dashboard policies section
+- [ ] Anonymous users can successfully query allowed public data
+- [ ] Anonymous users cannot access restricted data (inactive tools, unvalidated updates)
+
+### ✅ Service Role Administrative Policies Verification
+- [ ] Service role full access policy created for `tool_categories`
+- [ ] Service role full access policy created for `ai_tools`
+- [ ] Service role full access policy created for `feature_updates`
+- [ ] Service role full access policy created for `update_history`
+- [ ] All service role policies use `auth.jwt() ->> 'role' = 'service_role'` condition
+- [ ] Service role policies allow ALL operations (SELECT, INSERT, UPDATE, DELETE)
+- [ ] Service role can successfully perform all CRUD operations on all tables
+- [ ] Service role access tested and verified functional
+
+### ✅ AI Processing Policies Verification
+- [ ] "AI processing updates for feature validation" policy created for feature_updates
+- [ ] AI update policy restricts changes to analysis fields only (title, content, tool_id unchanged)
+- [ ] "AI processing audit trail creation" policy created for update_history
+- [ ] AI audit policy requires `changed_by LIKE 'ai_%'` identification
+- [ ] AI policies tested with sample processing operations
+- [ ] AI processes can update validation status and confidence scores
+- [ ] AI processes cannot modify core content fields without service role
+
+### ✅ Security Helper Functions Verification
+- [ ] `auth.can_modify_data()` function created and functional
+- [ ] `auth.can_read_sensitive_data()` function created and functional
+- [ ] `auth.get_user_role()` function created and returns correct roles
+- [ ] Helper functions use `SECURITY DEFINER` for safe execution
+- [ ] Functions tested with different authentication contexts (anon, service_role)
+- [ ] Functions return expected boolean/text values
+- [ ] Functions can be called from policies and application code
+
+### ✅ Data Visibility Controls Verification
+- [ ] "Hide development tools from public" policy created for ai_tools
+- [ ] Development mode hiding policy checks `metadata->>'development_mode'` field
+- [ ] "High confidence updates only for public" policy created for feature_updates
+- [ ] Confidence score policy requires `confidence_score >= 0.7` for public visibility
+- [ ] Visibility policies tested with sample development/low-confidence data
+- [ ] Public users cannot see development tools or low-confidence updates
+- [ ] Service role can still access all data regardless of visibility controls
+
+### ✅ Real-time Security Configuration Verification
+- [ ] Real-time replication publication exists and is properly configured
+- [ ] RLS policies confirmed to apply to real-time subscriptions
+- [ ] Real-time subscriptions tested to respect security boundaries
+- [ ] Public real-time subscriptions only receive validated data
+- [ ] Service role real-time subscriptions receive all data
+- [ ] Real-time updates honor data visibility controls
+- [ ] No security bypass through real-time channels
+
+### ✅ Comprehensive Policy Testing Verification
+- [ ] Anonymous users can successfully read tool_categories data
+- [ ] Anonymous users can read active ai_tools (is_active = true)
+- [ ] Anonymous users can read validated feature_updates
+- [ ] Anonymous users cannot read update_history table
+- [ ] Anonymous users cannot INSERT, UPDATE, or DELETE any data
+- [ ] Service role can read all data from all tables
+- [ ] Service role can INSERT, UPDATE, DELETE data in all tables
+- [ ] AI processing policies allow only specified field modifications
+- [ ] All test scenarios executed and results documented
+
+### ✅ Security Policy Documentation Verification
+- [ ] `security_policy_summary` view created successfully
+- [ ] Security status query shows RLS enabled and policy counts
+- [ ] All policies documented with clear descriptions
+- [ ] Policy purposes and access patterns documented
+- [ ] Security model overview created for future reference
+- [ ] Troubleshooting guide created for common security issues
+- [ ] Documentation includes examples of proper policy usage
+
+### ✅ Error Handling and Edge Cases Verification
+- [ ] Policies handle NULL values appropriately (metadata, confidence_score)
+- [ ] Foreign key operations respect RLS policies
+- [ ] Cascade delete operations work with RLS enabled
+- [ ] View queries respect underlying table RLS policies
+- [ ] Complex joins work correctly with mixed access levels
+- [ ] Policy conflicts resolved (no ambiguous access rules)
+- [ ] Edge cases tested (empty tables, missing JWTs, invalid roles)
+
+### ✅ Integration Readiness Verification
+- [ ] Supabase client can authenticate with different roles
+- [ ] Next.js application can use anon key for public access
+- [ ] Service role key works for admin operations
+- [ ] RLS policies compatible with Supabase auto-generated APIs
+- [ ] Real-time subscriptions work through Supabase client
+- [ ] Security boundaries maintained through all access methods
+- [ ] Schema ready for TypeScript type generation (Task 3.4)
+
+### ✅ Performance and Security Optimization Verification
+- [ ] RLS policies optimized for query performance
+- [ ] Indexes support policy conditions (is_active, validation_status)
+- [ ] No significant performance degradation with RLS enabled
+- [ ] Policy evaluation efficient for high-frequency operations
+- [ ] Security helper functions perform well under load
+- [ ] Complex policy conditions use appropriate indexes
+- [ ] Real-time subscriptions maintain good performance with RLS
+
+## Task Completion Confirmation
+**I have completed all items in the checklist above and verified that:**
+- Row Level Security enabled on all database tables
+- Public read access properly configured for anonymous users
+- Service role administrative access working for all operations
+- AI processing policies allow automated content validation
+- Data visibility controls hide development/low-confidence content
+- Real-time subscriptions respect all security boundaries
+- Comprehensive testing validates all access scenarios
+- Security model documented and maintainable
+- No unauthorized access possible through any channel
+- Database security ready for application integration (Task 3.4)
+
+**This task is complete and ready for the next phase of development.**

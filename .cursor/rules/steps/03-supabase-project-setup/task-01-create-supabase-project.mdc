@@ -1,0 +1,182 @@
+---
+alwaysApply: false
+---
+# Task 3.1: Create Supabase Project
+
+## Context
+You are working on the AI Feature Tracker project, a single-page dashboard that tracks feature updates across 15 popular AI development tools. This task focuses specifically on creating and configuring the Supabase project that will serve as the backend database and real-time infrastructure.
+
+## Prerequisites
+- Next.js 14 project has been initialized with TypeScript (Task 2.1 completed)
+- Development environment is configured (Task 2.2 completed)
+- Project folder structure is created (Task 2.3 completed)
+- Environment configuration system is in place (Task 2.4 completed)
+
+## Reference Standards
+Apply the following standards from global rules:
+- @global-behavior: Follow systematic, step-by-step approach with clear explanations
+- @technology-standards: Use Supabase best practices and proper TypeScript integration
+- @quality-standards: Implement proper error handling, security, and documentation
+
+## AI Instructions
+
+### 1. Create New Supabase Project
+- Navigate to https://supabase.com and create a new project
+- Use project name: "ai-feature-tracker" 
+- Select region: Choose the closest region to target users (US East for optimal performance)
+- Choose a strong database password and document it securely
+- Wait for project creation to complete (2-3 minutes)
+- Document the project URL and database connection details
+
+### 2. Configure Project Settings
+- Access project settings in Supabase dashboard
+- Navigate to Settings → General and verify project configuration
+- Go to Settings → API to obtain project credentials:
+  - Copy Project URL (starts with https://[project-ref].supabase.co)
+  - Copy anon public key (for client-side access)
+  - Copy service_role key (for server-side admin access)
+- Document all keys securely for environment variable setup
+
+### 3. Install and Configure Supabase CLI
+- Install Supabase CLI globally: `npm install -g supabase`
+- Verify installation: `supabase --version`
+- Navigate to project root directory
+- Initialize Supabase locally: `supabase init`
+- Login to Supabase CLI: `supabase login`
+- Link local project to remote: `supabase link --project-ref [your-project-ref]`
+- Verify connection: `supabase status`
+
+### 4. Set Up Environment Variables
+- Update `.env.local` file with Supabase credentials:
+  ```
+  NEXT_PUBLIC_SUPABASE_URL=https://[your-project-ref].supabase.co
+  NEXT_PUBLIC_SUPABASE_ANON_KEY=[your-anon-key]
+  SUPABASE_SERVICE_ROLE_KEY=[your-service-role-key]
+  ```
+- Update `.env.local.example` template with placeholder values
+- Verify environment variables are properly excluded from git in `.gitignore`
+
+### 5. Initialize Database Extensions
+- Access Supabase dashboard → Database → Extensions
+- Enable the following extensions:
+  - **uuid-ossp**: For UUID generation
+  - **pgcrypto**: For cryptographic functions
+- Verify extensions are enabled in the Extensions tab
+- Test extension functionality by running simple queries in SQL Editor
+
+### 6. Verify Database Connection
+- Open Supabase dashboard → SQL Editor
+- Run test query to verify database connectivity:
+  ```sql
+  SELECT version();
+  SELECT * FROM pg_extension WHERE extname IN ('uuid-ossp', 'pgcrypto');
+  ```
+- Verify results show PostgreSQL version and enabled extensions
+- Test database connection from local environment (will be used in next task)
+
+### 7. Configure Project Documentation
+- Create `docs/supabase-setup.md` file documenting:
+  - Project configuration details (region, settings)
+  - Environment variable structure
+  - CLI setup steps
+  - Extension configuration
+  - Connection verification steps
+- Add troubleshooting section for common setup issues
+
+## Expected Deliverables
+- Functional Supabase project with proper configuration
+- Supabase CLI installed and linked to project
+- Environment variables properly configured
+- Database extensions enabled and verified
+- Connection verified through dashboard and CLI
+- Documentation created for project setup
+
+## Quality Requirements
+- All credentials must be stored securely in environment variables
+- No sensitive information committed to git repository
+- Database connection must be verified and functional
+- CLI must be properly linked and authenticated
+- Documentation must be comprehensive and accurate
+
+## Completion Checklist
+
+### ✅ Project Creation Verification
+- [ ] Supabase project created with name "ai-feature-tracker"
+- [ ] Project region selected and documented
+- [ ] Strong database password created and stored securely
+- [ ] Project creation completed successfully
+- [ ] Project dashboard accessible and functional
+
+### ✅ Credentials and Settings Verification  
+- [ ] Project URL obtained and documented (format: https://[project-ref].supabase.co)
+- [ ] Anon public key copied and stored securely
+- [ ] Service role key copied and stored securely
+- [ ] All API keys verified as valid and functional
+- [ ] Project settings reviewed and configured properly
+
+### ✅ CLI Installation and Configuration Verification
+- [ ] Supabase CLI installed globally (`supabase --version` works)
+- [ ] CLI authentication completed (`supabase login` successful)
+- [ ] Local project initialized (`supabase init` completed)
+- [ ] Project linked to remote (`supabase link` successful)
+- [ ] CLI status verification completed (`supabase status` shows connected)
+
+### ✅ Environment Configuration Verification
+- [ ] `.env.local` file updated with all Supabase credentials
+- [ ] `NEXT_PUBLIC_SUPABASE_URL` set correctly
+- [ ] `NEXT_PUBLIC_SUPABASE_ANON_KEY` set correctly  
+- [ ] `SUPABASE_SERVICE_ROLE_KEY` set correctly
+- [ ] `.env.local.example` template updated with placeholders
+- [ ] Environment variables properly excluded from git
+
+### ✅ Database Extensions Verification
+- [ ] uuid-ossp extension enabled in Supabase dashboard
+- [ ] pgcrypto extension enabled in Supabase dashboard
+- [ ] Extensions verified as active in Extensions tab
+- [ ] Test queries executed successfully to confirm extensions work
+- [ ] No errors encountered during extension setup
+
+### ✅ Connection and Functionality Verification
+- [ ] Database connection verified through Supabase dashboard
+- [ ] SQL Editor accessible and functional  
+- [ ] Test queries executed successfully (`SELECT version()` works)
+- [ ] Extension verification query completed successfully
+- [ ] No connection errors or authentication issues
+- [ ] All dashboard features accessible
+
+### ✅ Documentation and Organization Verification
+- [ ] `docs/supabase-setup.md` file created
+- [ ] Project configuration details documented
+- [ ] Environment variable structure documented
+- [ ] CLI setup steps documented with commands
+- [ ] Extension configuration documented
+- [ ] Troubleshooting section added
+- [ ] Documentation is clear and comprehensive
+
+### ✅ Security and Best Practices Verification
+- [ ] No sensitive credentials committed to git repository
+- [ ] `.gitignore` properly excludes `.env.local` file
+- [ ] Strong database password used and stored securely
+- [ ] Service role key handled with appropriate security measures
+- [ ] Environment variable naming follows Next.js conventions
+- [ ] All security best practices followed
+
+### ✅ Final Integration Verification
+- [ ] All environment variables accessible in Next.js development environment
+- [ ] No configuration conflicts or missing dependencies
+- [ ] Setup ready for next task (database schema implementation)  
+- [ ] All deliverables completed and verified
+- [ ] Task ready for handoff to Task 3.2
+
+## Task Completion Confirmation
+**I have completed all items in the checklist above and verified that:**
+- Supabase project is fully created and configured
+- All credentials are properly secured and accessible
+- CLI is installed, authenticated, and linked
+- Database extensions are enabled and functional
+- Connection is verified through multiple methods
+- Documentation is comprehensive and accurate
+- Security best practices are implemented
+- Setup is ready for database schema implementation (Task 3.2)
+
+**This task is complete and ready for the next phase of development.**

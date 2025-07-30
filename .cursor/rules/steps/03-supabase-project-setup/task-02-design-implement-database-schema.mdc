@@ -1,0 +1,374 @@
+---
+alwaysApply: false
+---
+# Task 3.2: Design & Implement Database Schema
+
+## Context
+You are working on the AI Feature Tracker project, a single-page dashboard that tracks feature updates across 15 popular AI development tools. This task focuses specifically on designing and implementing the complete database schema in Supabase PostgreSQL that will store all application data including tools, categories, feature updates, and audit history.
+
+## Prerequisites
+- Supabase project created and configured (Task 3.1 completed)
+- Database connection verified and functional
+- Required extensions (uuid-ossp, pgcrypto) enabled
+- Environment variables properly configured
+- Supabase CLI linked and authenticated
+
+## Reference Standards
+Apply the following standards from global rules:
+- @global-behavior: Follow systematic, step-by-step approach with clear explanations
+- @technology-standards: Use PostgreSQL best practices and proper indexing strategies
+- @quality-standards: Implement proper constraints, relationships, and data validation
+
+## AI Instructions
+
+### 1. Create Tool Categories Table
+Create `tool_categories` table first (referenced by other tables):
+```sql
+CREATE TABLE tool_categories (
+    id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+    name VARCHAR(100) NOT NULL UNIQUE,
+    description TEXT,
+    color_code VARCHAR(7) DEFAULT '#3B82F6', -- Hex color for UI display
+    sort_order INTEGER DEFAULT 0,
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+```
+- Execute in Supabase SQL Editor
+- Verify table creation and structure
+- Add comments for each column explaining purpose
+
+### 2. Create AI Tools Table
+Create `ai_tools` table for storing tool information:
+```sql
+CREATE TABLE ai_tools (
+    id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+    name VARCHAR(200) NOT NULL,
+    slug VARCHAR(100) NOT NULL UNIQUE, -- URL-friendly identifier
+    description TEXT,
+    category_id UUID REFERENCES tool_categories(id) ON DELETE SET NULL,
+    website_url VARCHAR(500),
+    logo_url VARCHAR(500),
+    is_active BOOLEAN DEFAULT true,
+    metadata JSONB DEFAULT '{}', -- Store flexible additional data
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW(),
+    
+    CONSTRAINT valid_slug CHECK (slug ~ '^[a-z0-9-]+$'), -- Only lowercase, numbers, hyphens
+    CONSTRAINT valid_website_url CHECK (website_url IS NULL OR website_url ~ '^https?://'),
+    CONSTRAINT valid_logo_url CHECK (logo_url IS NULL OR logo_url ~ '^https?://')
+);
+```
+- Execute in Supabase SQL Editor
+- Verify constraints and foreign key relationships
+- Test constraint validation with sample data
+
+### 3. Create Feature Updates Table
+Create `feature_updates` table for storing tool feature announcements:
+```sql
+CREATE TABLE feature_updates (
+    id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+    tool_id UUID NOT NULL REFERENCES ai_tools(id) ON DELETE CASCADE,
+    title VARCHAR(300) NOT NULL,
+    description TEXT,
+    content TEXT, -- Full feature description/announcement
+    impact_level VARCHAR(20) DEFAULT 'Medium' CHECK (impact_level IN ('High', 'Medium', 'Low')),
+    official_url VARCHAR(500), -- Link to official announcement
+    screenshot_urls TEXT[] DEFAULT '{}', -- Array of screenshot URLs
+    published_date TIMESTAMPTZ NOT NULL,
+    ai_analyzed BOOLEAN DEFAULT false,
+    validation_status VARCHAR(20) DEFAULT 'pending' CHECK (validation_status IN ('validated', 'pending', 'requires_review', 'rejected')),
+    confidence_score DECIMAL(3,2) CHECK (confidence_score >= 0 AND confidence_score <= 1), -- AI confidence 0-1
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW(),
+    
+    CONSTRAINT valid_official_url CHECK (official_url IS NULL OR official_url ~ '^https?://'),
+    CONSTRAINT future_published_date CHECK (published_date <= NOW() + INTERVAL '1 day') -- Allow slight future dates for timezone issues
+);
+```
+- Execute in Supabase SQL Editor
+- Verify all constraints and check values
+- Test with sample feature update data
+
+### 4. Create Update History Table
+Create `update_history` table for audit trail:
+```sql
+CREATE TABLE update_history (
+    id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+    update_id UUID NOT NULL REFERENCES feature_updates(id) ON DELETE CASCADE,
+    change_type VARCHAR(50) NOT NULL CHECK (change_type IN ('created', 'updated', 'deleted', 'ai_analyzed', 'validated', 'rejected')),
+    old_data JSONB, -- Previous state of the record
+    new_data JSONB, -- New state of the record
+    changed_by VARCHAR(100), -- System user or AI process identifier
+    change_reason TEXT, -- Optional reason for change
+    changed_at TIMESTAMPTZ DEFAULT NOW(),
+    
+    CONSTRAINT valid_change_data CHECK (
+        (change_type = 'created' AND old_data IS NULL AND new_data IS NOT NULL) OR
+        (change_type = 'deleted' AND old_data IS NOT NULL AND new_data IS NULL) OR
+        (change_type IN ('updated', 'ai_analyzed', 'validated', 'rejected') AND old_data IS NOT NULL AND new_data IS NOT NULL)
+    )
+);
+```
+- Execute in Supabase SQL Editor
+- Verify audit trail constraints
+- Test with sample history entries
+
+### 5. Set Up Foreign Key Relationships and Additional Constraints
+Add additional indexes and constraints for data integrity:
+```sql
+-- Add updated_at trigger function
+CREATE OR REPLACE FUNCTION update_updated_at_column()
+RETURNS TRIGGER AS $$
+BEGIN
+    NEW.updated_at = NOW();
+    RETURN NEW;
+END;
+$$ language 'plpgsql';
+
+-- Add updated_at triggers to all tables
+CREATE TRIGGER update_tool_categories_updated_at BEFORE UPDATE ON tool_categories FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+CREATE TRIGGER update_ai_tools_updated_at BEFORE UPDATE ON ai_tools FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+CREATE TRIGGER update_feature_updates_updated_at BEFORE UPDATE ON feature_updates FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+
+-- Add unique constraint for one active update per tool (business rule)
+CREATE UNIQUE INDEX idx_one_latest_update_per_tool ON feature_updates(tool_id) 
+WHERE validation_status = 'validated' AND ai_analyzed = true;
+```
+- Execute trigger and constraint creation
+- Verify triggers work by updating test records
+- Confirm unique constraints prevent duplicate validated updates
+
+### 6. Add Performance Optimization Indexes
+Create indexes for common query patterns:
+```sql
+-- Tool queries
+CREATE INDEX idx_ai_tools_active ON ai_tools(is_active) WHERE is_active = true;
+CREATE INDEX idx_ai_tools_category ON ai_tools(category_id) WHERE category_id IS NOT NULL;
+CREATE INDEX idx_ai_tools_slug ON ai_tools(slug); -- Already unique, but explicit for performance
+
+-- Feature update queries
+CREATE INDEX idx_feature_updates_tool_published ON feature_updates(tool_id, published_date DESC);
+CREATE INDEX idx_feature_updates_validation_status ON feature_updates(validation_status);
+CREATE INDEX idx_feature_updates_published_date ON feature_updates(published_date DESC);
+CREATE INDEX idx_feature_updates_impact_level ON feature_updates(impact_level);
+CREATE INDEX idx_feature_updates_ai_analyzed ON feature_updates(ai_analyzed) WHERE ai_analyzed = false;
+
+-- Search optimization (full-text search)
+CREATE INDEX idx_feature_updates_search ON feature_updates USING gin(to_tsvector('english', title || ' ' || COALESCE(description, '') || ' ' || COALESCE(content, '')));
+CREATE INDEX idx_ai_tools_search ON ai_tools USING gin(to_tsvector('english', name || ' ' || COALESCE(description, '')));
+
+-- History queries
+CREATE INDEX idx_update_history_update_id_date ON update_history(update_id, changed_at DESC);
+CREATE INDEX idx_update_history_change_type ON update_history(change_type);
+
+-- Category sorting
+CREATE INDEX idx_tool_categories_sort ON tool_categories(sort_order, name);
+```
+- Execute all index creation statements
+- Verify indexes created successfully
+- Test query performance with sample data
+
+### 7. Create Database Views for Common Queries
+Create useful views for application queries:
+```sql
+-- View for tools with latest updates
+CREATE VIEW tools_with_latest_updates AS
+SELECT 
+    t.*,
+    tc.name as category_name,
+    tc.color_code as category_color,
+    fu.id as latest_update_id,
+    fu.title as latest_update_title,
+    fu.published_date as latest_update_date,
+    fu.impact_level as latest_update_impact
+FROM ai_tools t
+LEFT JOIN tool_categories tc ON t.category_id = tc.id
+LEFT JOIN LATERAL (
+    SELECT id, title, published_date, impact_level
+    FROM feature_updates 
+    WHERE tool_id = t.id 
+    AND validation_status = 'validated'
+    ORDER BY published_date DESC 
+    LIMIT 1
+) fu ON true
+WHERE t.is_active = true;
+
+-- View for recent updates across all tools
+CREATE VIEW recent_feature_updates AS
+SELECT 
+    fu.*,
+    t.name as tool_name,
+    t.slug as tool_slug,
+    t.logo_url as tool_logo,
+    tc.name as category_name,
+    tc.color_code as category_color
+FROM feature_updates fu
+JOIN ai_tools t ON fu.tool_id = t.id
+LEFT JOIN tool_categories tc ON t.category_id = tc.id
+WHERE fu.validation_status = 'validated'
+AND t.is_active = true
+ORDER BY fu.published_date DESC;
+```
+- Execute view creation
+- Test views with sample queries
+- Verify views return expected data structure
+
+### 8. Verify Schema and Test Data Operations
+- Run comprehensive schema verification queries
+- Test all constraints with invalid data (should fail appropriately)
+- Test foreign key relationships with cascading deletes
+- Verify all indexes are present and functioning
+- Test full-text search functionality
+- Confirm updated_at triggers work correctly
+
+## Expected Deliverables
+- Complete database schema with 4 tables: `tool_categories`, `ai_tools`, `feature_updates`, `update_history`
+- All foreign key relationships properly established
+- Comprehensive constraints and data validation rules
+- Performance-optimized indexes for common query patterns
+- Utility views for application queries
+- Automatic updated_at timestamp management
+- Full-text search capabilities enabled
+
+## Quality Requirements
+- All tables must have proper UUID primary keys
+- Foreign key relationships must be properly constrained
+- Data validation constraints must prevent invalid data entry
+- Indexes must be optimized for expected query patterns
+- Schema must support audit trail and change tracking
+- All database operations must be tested and verified
+
+## Completion Checklist
+
+### ✅ Tool Categories Table Verification
+- [ ] `tool_categories` table created successfully
+- [ ] All columns present with correct data types (id, name, description, color_code, sort_order, timestamps)
+- [ ] Primary key constraint on id column
+- [ ] Unique constraint on name column
+- [ ] Default values set correctly (color_code, sort_order, timestamps)
+- [ ] Table structure verified with `\d tool_categories`
+
+### ✅ AI Tools Table Verification
+- [ ] `ai_tools` table created successfully
+- [ ] All columns present with correct data types (id through metadata and timestamps)
+- [ ] Primary key constraint on id column
+- [ ] Unique constraint on slug column
+- [ ] Foreign key reference to tool_categories(id) with SET NULL
+- [ ] Check constraints validated (slug format, URL formats)
+- [ ] JSONB metadata column functional
+- [ ] Table structure verified with `\d ai_tools`
+
+### ✅ Feature Updates Table Verification
+- [ ] `feature_updates` table created successfully
+- [ ] All columns present with correct data types (id through confidence_score and timestamps)
+- [ ] Primary key constraint on id column
+- [ ] Foreign key reference to ai_tools(id) with CASCADE delete
+- [ ] Check constraints for impact_level enum values
+- [ ] Check constraints for validation_status enum values
+- [ ] Check constraint for confidence_score range (0-1)
+- [ ] Screenshot_urls array column functional
+- [ ] Published_date constraint prevents far future dates
+- [ ] Table structure verified with `\d feature_updates`
+
+### ✅ Update History Table Verification
+- [ ] `update_history` table created successfully
+- [ ] All columns present with correct data types (id through changed_at)
+- [ ] Primary key constraint on id column
+- [ ] Foreign key reference to feature_updates(id) with CASCADE delete
+- [ ] Check constraint for change_type enum values
+- [ ] Complex check constraint for data consistency (old_data/new_data logic)
+- [ ] JSONB columns for old_data and new_data functional
+- [ ] Table structure verified with `\d update_history`
+
+### ✅ Relationships and Constraints Verification
+- [ ] Foreign key from ai_tools.category_id to tool_categories.id working
+- [ ] Foreign key from feature_updates.tool_id to ai_tools.id working
+- [ ] Foreign key from update_history.update_id to feature_updates.id working
+- [ ] CASCADE delete behavior tested and working
+- [ ] SET NULL behavior tested and working
+- [ ] All check constraints prevent invalid data entry
+- [ ] Unique constraints prevent duplicate entries where required
+
+### ✅ Triggers and Automatic Updates Verification
+- [ ] `update_updated_at_column()` function created successfully
+- [ ] Trigger on tool_categories table updates updated_at automatically
+- [ ] Trigger on ai_tools table updates updated_at automatically
+- [ ] Trigger on feature_updates table updates updated_at automatically
+- [ ] Triggers tested by updating records and verifying timestamp changes
+- [ ] Unique index for one validated update per tool working correctly
+
+### ✅ Performance Indexes Verification
+- [ ] Index on ai_tools(is_active) created for active tools queries
+- [ ] Index on ai_tools(category_id) created for category filtering
+- [ ] Index on feature_updates(tool_id, published_date DESC) created
+- [ ] Index on feature_updates(validation_status) created
+- [ ] Index on feature_updates(published_date DESC) created
+- [ ] Index on feature_updates(impact_level) created
+- [ ] Index on feature_updates(ai_analyzed) created for unprocessed updates
+- [ ] Full-text search index on feature_updates created
+- [ ] Full-text search index on ai_tools created
+- [ ] History table indexes created (update_id, change_type)
+- [ ] Category sorting index created
+- [ ] All indexes verified in pg_indexes view
+
+### ✅ Database Views Verification
+- [ ] `tools_with_latest_updates` view created successfully
+- [ ] View returns tools with their latest validated updates
+- [ ] View includes category information (name, color)
+- [ ] View properly handles tools without updates (LEFT JOIN)
+- [ ] `recent_feature_updates` view created successfully
+- [ ] View returns recent updates with tool and category information
+- [ ] View properly orders by published_date DESC
+- [ ] Both views tested with sample queries and return expected results
+
+### ✅ Full-Text Search Verification
+- [ ] Full-text search index on feature_updates functional
+- [ ] Full-text search index on ai_tools functional
+- [ ] Search queries using to_tsvector work correctly
+- [ ] Search performance acceptable with indexed queries
+- [ ] Search covers title, description, and content fields appropriately
+
+### ✅ Data Validation and Testing Verification
+- [ ] Invalid data properly rejected by check constraints
+- [ ] Foreign key constraints prevent orphaned records
+- [ ] Unique constraints prevent duplicate entries
+- [ ] Enum constraints only allow valid status values
+- [ ] URL validation constraints work for website and logo URLs
+- [ ] Slug validation only allows valid URL-friendly characters
+- [ ] Confidence score constraint enforces 0-1 range
+- [ ] Published date constraint prevents unrealistic future dates
+
+### ✅ Schema Documentation and Organization Verification
+- [ ] All table columns have clear, descriptive names
+- [ ] Data types chosen appropriately for expected data
+- [ ] Constraints are well-defined and business-rule appropriate
+- [ ] Foreign key relationships support expected application workflows
+- [ ] Index strategy supports anticipated query patterns
+- [ ] Schema design supports both current and future requirements
+- [ ] Database structure ready for application integration
+
+### ✅ Final Integration Readiness Verification
+- [ ] All tables accessible through Supabase dashboard
+- [ ] Schema visible in Supabase Table Editor
+- [ ] All relationships show correctly in dashboard
+- [ ] Views accessible and functional in SQL Editor
+- [ ] Schema ready for TypeScript type generation (next task)
+- [ ] No errors or warnings in database logs
+- [ ] Schema design supports real-time subscriptions
+- [ ] Database ready for Row Level Security implementation (Task 3.3)
+
+## Task Completion Confirmation
+**I have completed all items in the checklist above and verified that:**
+- Complete database schema implemented with 4 core tables
+- All foreign key relationships and constraints properly established
+- Performance indexes created for optimal query performance
+- Automatic timestamp management implemented with triggers
+- Database views created for common application queries
+- Full-text search capabilities enabled and tested
+- Data validation constraints prevent invalid data entry
+- Schema design supports audit trail and change tracking
+- All database operations tested and verified functional
+- Schema ready for Row Level Security implementation (Task 3.3)
+
+**This task is complete and ready for the next phase of development.**

@@ -1,0 +1,61 @@
+{
+  "name": "ai-feature-tracker",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "type-check": "tsc --noEmit",
+    "type-check:watch": "tsc --noEmit --watch",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "prepare": "husky install",
+    "analyze": "cross-env ANALYZE=true npm run build",
+    "build:analyze": "npm run analyze",
+    "clean": "rimraf .next out dist node_modules/.cache",
+    "prebuild": "npm run type-check",
+    "postbuild": "echo 'Build completed successfully'",
+    "db:types": "supabase gen types typescript --local > src/types/database.types.ts",
+    "db:reset": "supabase db reset",
+    "test:types": "tsc --noEmit --skipLibCheck false"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.57.0",
+    "@supabase/supabase-js": "^2.53.0",
+    "next": "15.4.5",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "zod": "^4.0.14"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20.19.9",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@typescript-eslint/eslint-plugin": "^8.38.0",
+    "@typescript-eslint/parser": "^8.38.0",
+    "cross-env": "^10.0.0",
+    "eslint": "^9",
+    "eslint-config-next": "15.4.5",
+    "husky": "^8.0.0",
+    "lint-staged": "^16.1.2",
+    "prettier": "^3.6.2",
+    "rimraf": "^6.0.1",
+    "tailwindcss": "^4",
+    "typescript": "^5",
+    "webpack-bundle-analyzer": "^4.10.2"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,css}": [
+      "prettier --write"
+    ]
+  }
+}
