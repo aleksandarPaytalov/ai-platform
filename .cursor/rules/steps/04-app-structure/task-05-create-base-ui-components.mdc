@@ -1,0 +1,272 @@
+---
+alwaysApply: false
+---
+# Task 4.5: Create Base UI Components
+
+## Context and Scope
+You are working on **Task 4.5** of the AI Feature Tracker project. This task focuses ONLY on creating foundational UI components that form the design system base. Do NOT implement any business logic, data fetching, or application-specific features beyond what is explicitly listed in the AI Instructions below.
+
+## Technology Standards for This Task
+- **React components** with TypeScript and proper interfaces
+- **Tailwind CSS** with consistent design system utilities
+- **Accessibility** with WCAG 2.1 AA compliance and proper ARIA attributes
+- **Component variants** with size, color, and state options
+- **Keyboard navigation** and focus management
+- **Design tokens** for consistent theming and spacing
+
+## AI Instructions
+
+Complete the following tasks in exact order:
+
+### 1. Create Button Components (`src/components/ui/button/`)
+- Create `Button.tsx` component with primary, secondary, ghost, and outline variants
+- Create `IconButton.tsx` component for icon-only buttons with proper accessibility
+- Create `ButtonGroup.tsx` component for grouped button layouts
+- Create `LoadingButton.tsx` component with loading states and spinner integration
+- Add proper TypeScript interfaces for all button props and variants
+- Include size variants (xs, sm, md, lg, xl) with consistent scaling
+- Add state variants (default, hover, active, disabled, loading)
+- Implement proper focus management and keyboard navigation
+- Include ARIA attributes and screen reader support
+- Add click handlers with proper event typing and preventDefault handling
+
+### 2. Create Input Components (`src/components/ui/input/`)
+- Create `Input.tsx` component for text inputs with label and validation support
+- Create `Textarea.tsx` component for multi-line text input
+- Create `Select.tsx` component for dropdown selections with search capabilities
+- Create `Checkbox.tsx` component with indeterminate state support
+- Create `Radio.tsx` component with group management
+- Create `Toggle.tsx` component for boolean switches
+- Add proper TypeScript interfaces for all input types and validation
+- Include input states (default, focus, error, disabled, readonly)
+- Implement proper form validation integration and error display
+- Add accessibility labels, descriptions, and error announcements
+- Include keyboard navigation and focus management for all inputs
+
+### 3. Create Card Components (`src/components/ui/card/`)
+- Create `Card.tsx` component with header, body, and footer sections
+- Create `CardHeader.tsx` component with title, subtitle, and action areas
+- Create `CardContent.tsx` component for main card content with proper spacing
+- Create `CardFooter.tsx` component for actions and metadata
+- Create `CardImage.tsx` component for card image sections with aspect ratio control
+- Add proper TypeScript interfaces for card composition and styling
+- Include card variants (elevated, flat, outlined, filled)
+- Add interactive states (default, hover, pressed) for clickable cards
+- Implement proper semantic structure and accessibility
+- Include responsive behavior and mobile optimization
+
+### 4. Create Badge and Tag Components (`src/components/ui/badge/`)
+- Create `Badge.tsx` component for status indicators and counts
+- Create `Tag.tsx` component for categorization and filtering
+- Create `StatusBadge.tsx` component for status indicators (success, warning, error, info)
+- Create `CountBadge.tsx` component for numerical indicators
+- Create `TagGroup.tsx` component for managing multiple tags
+- Add proper TypeScript interfaces for badge types and styling
+- Include color variants matching semantic meaning (success, warning, error, info)
+- Add size variants (xs, sm, md, lg) with appropriate scaling
+- Implement proper contrast ratios for accessibility
+- Include interactive states for removable and clickable badges
+
+### 5. Create Modal and Dialog Components (`src/components/ui/modal/`)
+- Create `Modal.tsx` component for overlay dialogs with backdrop
+- Create `ModalHeader.tsx` component with title and close button
+- Create `ModalContent.tsx` component for scrollable modal body
+- Create `ModalFooter.tsx` component for action buttons
+- Create `Dialog.tsx` component for confirmation and alert dialogs
+- Create `Drawer.tsx` component for slide-out panels
+- Add proper TypeScript interfaces for modal props and event handlers
+- Implement focus trapping and keyboard navigation (Escape to close, Tab navigation)
+- Add proper ARIA attributes (role="dialog", aria-labelledby, aria-describedby)
+- Include backdrop click handling and modal dismissal options
+- Implement smooth animations for modal open/close transitions
+
+### 6. Create Navigation Components (`src/components/ui/navigation/`)
+- Create `Tabs.tsx` component with tab panels and keyboard navigation
+- Create `TabList.tsx` component for tab header management
+- Create `TabPanel.tsx` component for tab content areas
+- Create `Breadcrumb.tsx` component for navigation hierarchy
+- Create `Pagination.tsx` component for page navigation
+- Create `Link.tsx` component extending Next.js Link with consistent styling
+- Add proper TypeScript interfaces for navigation components
+- Implement proper ARIA attributes for navigation landmarks
+- Include keyboard navigation (arrow keys for tabs, Enter/Space for activation)
+- Add active state management and visual indicators
+- Include responsive behavior for navigation components
+
+### 7. Create Utility Components (`src/components/ui/utility/`)
+- Create `Avatar.tsx` component for user/tool profile images with fallbacks
+- Create `Icon.tsx` component for consistent icon usage with size variants
+- Create `Divider.tsx` component for visual separation with orientation options
+- Create `Tooltip.tsx` component for contextual information with positioning
+- Create `Popover.tsx` component for floating content with positioning logic
+- Create `VisuallyHidden.tsx` component for screen reader only content
+- Add proper TypeScript interfaces for all utility components
+- Implement proper positioning logic for floating elements (Tooltip, Popover)
+- Include accessibility features and keyboard navigation support
+- Add responsive behavior and mobile touch considerations
+
+### 8. Create Design System Configuration (`src/lib/design-system.ts`)
+- Define color palette constants with semantic naming
+- Create typography scale with consistent font sizes and line heights
+- Add spacing scale matching Tailwind CSS defaults
+- Define component size scales for consistent sizing across components
+- Create animation and transition constants
+- Add breakpoint definitions and responsive utilities
+- Include accessibility constants (contrast ratios, focus styles)
+- Create theme configuration and customization options
+- Add design token validation and type safety
+- Include component variant definitions and mapping
+
+## Completion Checklist
+
+Before marking this task as complete, verify ALL of the following items:
+
+### Button Components Verification
+- [ ] `src/components/ui/button/Button.tsx` exists with all variants (primary, secondary, ghost, outline)
+- [ ] `src/components/ui/button/IconButton.tsx` exists with proper accessibility
+- [ ] `src/components/ui/button/ButtonGroup.tsx` exists for grouped layouts
+- [ ] `src/components/ui/button/LoadingButton.tsx` exists with loading states
+- [ ] All button components have proper TypeScript interfaces
+- [ ] Size variants (xs, sm, md, lg, xl) work correctly with consistent scaling
+- [ ] State variants (default, hover, active, disabled, loading) function properly
+- [ ] Focus management and keyboard navigation work correctly
+- [ ] ARIA attributes and screen reader support implemented
+- [ ] Click handlers with proper event typing work correctly
+
+### Input Components Verification
+- [ ] `src/components/ui/input/Input.tsx` exists with label and validation support
+- [ ] `src/components/ui/input/Textarea.tsx` exists for multi-line input
+- [ ] `src/components/ui/input/Select.tsx` exists with dropdown and search capabilities
+- [ ] `src/components/ui/input/Checkbox.tsx` exists with indeterminate state
+- [ ] `src/components/ui/input/Radio.tsx` exists with group management
+- [ ] `src/components/ui/input/Toggle.tsx` exists for boolean switches
+- [ ] All input components have proper TypeScript interfaces
+- [ ] Input states (default, focus, error, disabled, readonly) work correctly
+- [ ] Form validation integration and error display function properly
+- [ ] Accessibility labels, descriptions, and error announcements work
+- [ ] Keyboard navigation and focus management work for all inputs
+
+### Card Components Verification
+- [ ] `src/components/ui/card/Card.tsx` exists with header, body, footer sections
+- [ ] `src/components/ui/card/CardHeader.tsx` exists with title, subtitle, actions
+- [ ] `src/components/ui/card/CardContent.tsx` exists with proper spacing
+- [ ] `src/components/ui/card/CardFooter.tsx` exists for actions and metadata
+- [ ] `src/components/ui/card/CardImage.tsx` exists with aspect ratio control
+- [ ] All card components have proper TypeScript interfaces
+- [ ] Card variants (elevated, flat, outlined, filled) work correctly
+- [ ] Interactive states (default, hover, pressed) function for clickable cards
+- [ ] Proper semantic structure and accessibility implemented
+- [ ] Responsive behavior and mobile optimization work correctly
+
+### Badge and Tag Components Verification
+- [ ] `src/components/ui/badge/Badge.tsx` exists for status indicators
+- [ ] `src/components/ui/badge/Tag.tsx` exists for categorization
+- [ ] `src/components/ui/badge/StatusBadge.tsx` exists with semantic colors
+- [ ] `src/components/ui/badge/CountBadge.tsx` exists for numerical indicators
+- [ ] `src/components/ui/badge/TagGroup.tsx` exists for multiple tag management
+- [ ] All badge components have proper TypeScript interfaces
+- [ ] Color variants matching semantic meaning work correctly
+- [ ] Size variants (xs, sm, md, lg) scale appropriately
+- [ ] Proper contrast ratios for accessibility maintained
+- [ ] Interactive states for removable and clickable badges work
+
+### Modal and Dialog Components Verification
+- [ ] `src/components/ui/modal/Modal.tsx` exists with backdrop functionality
+- [ ] `src/components/ui/modal/ModalHeader.tsx` exists with title and close button
+- [ ] `src/components/ui/modal/ModalContent.tsx` exists with scrollable body
+- [ ] `src/components/ui/modal/ModalFooter.tsx` exists for action buttons
+- [ ] `src/components/ui/modal/Dialog.tsx` exists for confirmations and alerts
+- [ ] `src/components/ui/modal/Drawer.tsx` exists for slide-out panels
+- [ ] All modal components have proper TypeScript interfaces
+- [ ] Focus trapping and keyboard navigation work correctly
+- [ ] Proper ARIA attributes implemented (role, aria-labelledby, aria-describedby)
+- [ ] Backdrop click handling and dismissal options function properly
+- [ ] Smooth animations for open/close transitions work correctly
+
+### Navigation Components Verification
+- [ ] `src/components/ui/navigation/Tabs.tsx` exists with keyboard navigation
+- [ ] `src/components/ui/navigation/TabList.tsx` exists for tab header management
+- [ ] `src/components/ui/navigation/TabPanel.tsx` exists for content areas
+- [ ] `src/components/ui/navigation/Breadcrumb.tsx` exists for hierarchy navigation
+- [ ] `src/components/ui/navigation/Pagination.tsx` exists for page navigation
+- [ ] `src/components/ui/navigation/Link.tsx` exists extending Next.js Link
+- [ ] All navigation components have proper TypeScript interfaces
+- [ ] Proper ARIA attributes for navigation landmarks implemented
+- [ ] Keyboard navigation (arrow keys, Enter/Space) works correctly
+- [ ] Active state management and visual indicators function properly
+- [ ] Responsive behavior for navigation components works correctly
+
+### Utility Components Verification
+- [ ] `src/components/ui/utility/Avatar.tsx` exists with image fallbacks
+- [ ] `src/components/ui/utility/Icon.tsx` exists with size variants
+- [ ] `src/components/ui/utility/Divider.tsx` exists with orientation options
+- [ ] `src/components/ui/utility/Tooltip.tsx` exists with positioning logic
+- [ ] `src/components/ui/utility/Popover.tsx` exists with floating content
+- [ ] `src/components/ui/utility/VisuallyHidden.tsx` exists for screen readers
+- [ ] All utility components have proper TypeScript interfaces
+- [ ] Positioning logic for floating elements works correctly
+- [ ] Accessibility features and keyboard navigation implemented
+- [ ] Responsive behavior and mobile touch considerations included
+
+### Design System Configuration Verification
+- [ ] `src/lib/design-system.ts` exists with color palette constants
+- [ ] Typography scale with consistent font sizes and line heights defined
+- [ ] Spacing scale matching Tailwind CSS defaults implemented
+- [ ] Component size scales for consistent sizing defined
+- [ ] Animation and transition constants created
+- [ ] Breakpoint definitions and responsive utilities included
+- [ ] Accessibility constants (contrast ratios, focus styles) defined
+- [ ] Theme configuration and customization options created
+- [ ] Design token validation and type safety implemented
+- [ ] Component variant definitions and mapping included
+
+### Accessibility Verification
+- [ ] All components meet WCAG 2.1 AA accessibility standards
+- [ ] Proper ARIA attributes implemented throughout
+- [ ] Keyboard navigation works for all interactive components
+- [ ] Focus management and visual focus indicators work correctly
+- [ ] Screen reader compatibility verified for all components
+- [ ] Color contrast ratios meet accessibility requirements
+- [ ] Components work properly with assistive technologies
+- [ ] Error states are properly announced to screen readers
+
+### TypeScript and Styling Verification
+- [ ] All components have comprehensive TypeScript interfaces
+- [ ] No TypeScript errors or warnings exist
+- [ ] Strict mode compliance maintained throughout
+- [ ] Consistent Tailwind CSS usage across all components
+- [ ] Design system tokens used consistently
+- [ ] Proper prop validation and default values implemented
+- [ ] Components are composable and reusable
+- [ ] Responsive design works at all breakpoints
+
+### Integration and Testing Verification
+- [ ] All components render without errors
+- [ ] Component variants and states work correctly
+- [ ] Interactive components respond properly to user input
+- [ ] Animation and transition effects work smoothly
+- [ ] Components integrate well with existing layout system
+- [ ] No console errors or warnings during component usage
+- [ ] Components work properly across different browsers
+- [ ] Mobile touch interactions work correctly for applicable components
+
+## Success Criteria
+Task 4.5 is complete when:
+1. All items in the completion checklist are verified ✓
+2. Comprehensive UI component library is functional and accessible
+3. All components follow consistent design system patterns
+4. TypeScript interfaces are complete and type-safe
+5. Accessibility standards are met across all components
+6. Components are responsive and work on all device sizes
+7. No errors exist in console or TypeScript compilation
+8. Component library is ready for use in subsequent development tasks
+
+## Important Notes
+- **ONLY** work on foundational UI components - do not implement business logic or application features
+- Focus on creating reusable, accessible, and well-typed components
+- Ensure all components follow the established design system
+- Test components with keyboard navigation and screen readers
+- Maintain consistent styling patterns using Tailwind CSS
+- Create comprehensive examples and documentation for each component
+- Ensure all interactive components have proper focus management
+- Test responsive behavior across all breakpoints

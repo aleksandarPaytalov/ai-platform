@@ -1,0 +1,231 @@
+---
+alwaysApply: false
+---
+# Task 4.2: Set Up Routing Structure
+
+## Context and Scope
+You are working on **Task 4.2** of the AI Feature Tracker project. This task focuses ONLY on creating the routing structure using Next.js 14 App Router with proper loading states, error boundaries, and route configuration. Do NOT implement any actual content, UI components, or business logic beyond what is explicitly listed in the AI Instructions below.
+
+## Technology Standards for This Task
+- **Next.js 14+** App Router with server components
+- **TypeScript** with strict mode and proper type definitions
+- **Dynamic routing** with proper slug validation
+- **Error boundaries** with user-friendly error handling
+- **Loading states** with skeleton components
+- **SEO optimization** with route-specific metadata
+
+## AI Instructions
+
+Complete the following tasks in exact order:
+
+### 1. Create Main Dashboard Page (`app/page.tsx`)
+- Create `app/page.tsx` as the main dashboard route
+- Implement basic page structure with semantic HTML (`<main>`, `<section>`)
+- Add placeholder content: "AI Feature Tracker Dashboard" heading
+- Include temporary content indicating this is the main dashboard
+- Set up proper TypeScript page component interface
+- Add basic SEO metadata for the homepage
+- Include structured data markup for the main page
+- Add proper heading hierarchy starting with h1
+- Create placeholder sections for future tool grid implementation
+- Ensure page is server component by default
+
+### 2. Set Up Dynamic Tool Routes (`app/tools/[slug]/page.tsx`)
+- Create dynamic route structure: `app/tools/[slug]/page.tsx`
+- Implement proper TypeScript interface for page props with params
+- Add slug parameter validation and type checking
+- Create placeholder content showing the tool slug parameter
+- Add basic tool page structure with semantic HTML
+- Include breadcrumb navigation placeholder
+- Set up dynamic metadata generation based on slug
+- Add proper error handling for invalid slugs
+- Create placeholder sections for future tool detail implementation
+- Ensure proper SEO structure for individual tool pages
+
+### 3. Create Loading States (`loading.tsx` files)
+- Create `app/loading.tsx` for main dashboard loading
+- Create `app/tools/loading.tsx` for tools section loading
+- Create `app/tools/[slug]/loading.tsx` for individual tool loading
+- Design skeleton loading components that match future content layout
+- Use Tailwind CSS for consistent skeleton styling
+- Include proper accessibility attributes (aria-label, role)
+- Create different skeleton patterns for different content types
+- Add loading animations and transitions
+- Ensure skeletons are responsive across all breakpoints
+- Include proper semantic structure in loading states
+
+### 4. Implement Error Boundaries (`error.tsx` files)
+- Create `app/error.tsx` for global error handling
+- Create `app/tools/error.tsx` for tools section errors
+- Create `app/tools/[slug]/error.tsx` for individual tool errors
+- Implement proper TypeScript interfaces for error components
+- Add user-friendly error messages with clear actions
+- Include retry functionality for recoverable errors
+- Add error reporting/logging structure (console.error for now)
+- Create different error types: 404, 500, network errors
+- Include proper semantic HTML and accessibility
+- Add error boundary styling with Tailwind CSS
+
+### 5. Create Not Found Pages (`not-found.tsx` files)
+- Create `app/not-found.tsx` for global 404 handling
+- Create `app/tools/not-found.tsx` for invalid tool routes
+- Design user-friendly 404 pages with helpful navigation
+- Include search suggestions or popular tools list (placeholder)
+- Add proper SEO metadata for 404 pages
+- Include breadcrumb navigation to help users navigate back
+- Add semantic HTML structure with proper heading hierarchy
+- Style 404 pages consistently with main design system
+- Include accessibility features and keyboard navigation
+- Add analytics tracking for 404 pages (placeholder)
+
+### 6. Configure Route Metadata and SEO
+- Set up dynamic metadata generation for all routes
+- Create metadata templates for different page types
+- Configure Open Graph and Twitter Card metadata
+- Add proper canonical URL generation
+- Set up robots meta tags for different route types
+- Create structured data markup for tools and dashboard
+- Configure proper title templates and descriptions
+- Add language and locale metadata
+- Set up proper viewport and mobile optimization meta tags
+- Include JSON-LD structured data where appropriate
+
+### 7. Create Navigation Utilities and Route Validation
+- Create route validation utilities in `src/lib/routes.ts`
+- Add slug validation functions for tool routes
+- Create route generation utilities for consistent URL building
+- Add route constants and path definitions
+- Create navigation helper functions
+- Add proper TypeScript types for all route utilities
+- Include route parameter validation and sanitization
+- Create redirect utilities for invalid routes
+- Add route analytics tracking utilities (placeholder)
+- Include proper error handling in all route utilities
+
+## Completion Checklist
+
+Before marking this task as complete, verify ALL of the following items:
+
+### File Structure Verification
+- [ ] `app/page.tsx` exists and is properly implemented
+- [ ] `app/tools/[slug]/page.tsx` exists with dynamic routing
+- [ ] `app/loading.tsx` exists with skeleton loading component
+- [ ] `app/tools/loading.tsx` exists for tools section loading
+- [ ] `app/tools/[slug]/loading.tsx` exists for individual tool loading
+- [ ] `app/error.tsx` exists with global error handling
+- [ ] `app/tools/error.tsx` exists for tools section errors
+- [ ] `app/tools/[slug]/error.tsx` exists for individual tool errors
+- [ ] `app/not-found.tsx` exists with 404 handling
+- [ ] `app/tools/not-found.tsx` exists for invalid tool routes
+- [ ] `src/lib/routes.ts` exists with route utilities
+
+### Main Dashboard Page Verification
+- [ ] Homepage renders without errors
+- [ ] Proper semantic HTML structure with main, section elements
+- [ ] "AI Feature Tracker Dashboard" heading is present
+- [ ] Placeholder content indicates main dashboard
+- [ ] Page uses server component by default
+- [ ] Basic SEO metadata is configured
+- [ ] Proper heading hierarchy starting with h1
+- [ ] Structured data markup is included
+
+### Dynamic Tool Routes Verification
+- [ ] Dynamic route `/tools/[slug]` works correctly
+- [ ] Slug parameter is properly captured and typed
+- [ ] Page props interface includes proper TypeScript types
+- [ ] Placeholder content displays the slug parameter
+- [ ] Breadcrumb navigation placeholder is present
+- [ ] Basic tool page structure with semantic HTML
+- [ ] Dynamic metadata generation works
+- [ ] Proper error handling for invalid slugs
+
+### Loading States Verification
+- [ ] All loading.tsx files render skeleton components
+- [ ] Loading skeletons match expected content layout
+- [ ] Consistent Tailwind CSS styling across all loading states
+- [ ] Proper accessibility attributes (aria-label, role)
+- [ ] Loading animations and transitions work smoothly
+- [ ] Responsive behavior at all breakpoints
+- [ ] Semantic HTML structure in loading components
+- [ ] Different skeleton patterns for different content types
+
+### Error Boundaries Verification
+- [ ] All error.tsx files handle errors properly
+- [ ] User-friendly error messages are displayed
+- [ ] Retry functionality works for recoverable errors
+- [ ] Proper TypeScript interfaces for error components
+- [ ] Error logging structure is implemented
+- [ ] Different error types are handled appropriately
+- [ ] Semantic HTML and accessibility in error components
+- [ ] Consistent styling with Tailwind CSS
+
+### Not Found Pages Verification
+- [ ] Global 404 page renders correctly
+- [ ] Tools section 404 page handles invalid tool routes
+- [ ] User-friendly 404 messages with helpful navigation
+- [ ] Search suggestions or navigation placeholders present
+- [ ] Proper SEO metadata for 404 pages
+- [ ] Breadcrumb navigation to help users
+- [ ] Semantic HTML with proper heading hierarchy
+- [ ] Consistent styling with design system
+
+### Route Metadata and SEO Verification
+- [ ] Dynamic metadata generation works for all routes
+- [ ] Metadata templates are configured for different page types
+- [ ] Open Graph and Twitter Card metadata present
+- [ ] Canonical URLs are properly generated
+- [ ] Robots meta tags configured appropriately
+- [ ] Structured data markup implemented
+- [ ] Title templates and descriptions work correctly
+- [ ] Language and locale metadata configured
+- [ ] Mobile optimization meta tags present
+
+### Navigation Utilities Verification
+- [ ] Route validation utilities exist in `src/lib/routes.ts`
+- [ ] Slug validation functions work correctly
+- [ ] Route generation utilities create consistent URLs
+- [ ] Route constants and path definitions are present
+- [ ] Navigation helper functions are implemented
+- [ ] Proper TypeScript types for all utilities
+- [ ] Route parameter validation and sanitization work
+- [ ] Redirect utilities handle invalid routes
+- [ ] Error handling in route utilities
+
+### TypeScript and Performance Verification
+- [ ] All components have proper TypeScript interfaces
+- [ ] No TypeScript errors or warnings
+- [ ] Strict mode compliance maintained
+- [ ] Server components used where appropriate
+- [ ] No console errors during navigation
+- [ ] Route transitions work smoothly
+- [ ] Proper error boundaries catch and handle errors
+
+### Testing Verification
+- [ ] Main dashboard route works correctly
+- [ ] Dynamic tool routes work with various slugs
+- [ ] Loading states display during navigation
+- [ ] Error boundaries catch and display errors appropriately
+- [ ] 404 pages show for invalid routes
+- [ ] Navigation between routes works smoothly
+- [ ] All routes are accessible via keyboard navigation
+- [ ] SEO metadata appears correctly in browser dev tools
+
+## Success Criteria
+Task 4.2 is complete when:
+1. All items in the completion checklist are verified ✓
+2. Complete routing structure with dynamic routes is functional
+3. Loading states and error boundaries work properly
+4. SEO metadata and structured data are configured
+5. Route utilities provide consistent navigation helpers
+6. No errors exist in console or TypeScript compilation
+7. All routes are accessible and properly handle edge cases
+
+## Important Notes
+- **ONLY** work on routing structure - do not implement actual content or UI components
+- Use placeholder content to demonstrate routing functionality
+- Focus on proper App Router patterns and server components
+- Ensure all error states are handled gracefully
+- Maintain SEO best practices for all routes
+- All styling should use Tailwind CSS utility classes
+- Maintain TypeScript strict mode compliance throughout
+- Test routing with various valid and invalid parameters

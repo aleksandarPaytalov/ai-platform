@@ -1,0 +1,244 @@
+---
+alwaysApply: false
+---
+# Task 4.3: Create Loading & Error Components
+
+## Context and Scope
+You are working on **Task 4.3** of the AI Feature Tracker project. This task focuses ONLY on creating reusable loading skeleton components and comprehensive error handling components. Do NOT implement any business logic, data fetching, or actual content components beyond what is explicitly listed in the AI Instructions below.
+
+## Technology Standards for This Task
+- **React components** with TypeScript and proper interfaces
+- **Tailwind CSS** for styling with consistent design system
+- **Accessibility** with proper ARIA attributes and screen reader support
+- **Animation** using Tailwind CSS animations and transitions
+- **Error handling** with user-friendly messages and recovery options
+- **Responsive design** that works across all device sizes
+
+## AI Instructions
+
+Complete the following tasks in exact order:
+
+### 1. Create Base Loading Skeleton Components (`src/components/ui/loading/`)
+- Create `SkeletonCard.tsx` component for card-shaped loading placeholders
+- Create `SkeletonText.tsx` component for text content loading (various line lengths)
+- Create `SkeletonImage.tsx` component for image placeholder loading
+- Create `SkeletonButton.tsx` component for button loading states
+- Create `SkeletonGrid.tsx` component for grid layout loading
+- Add proper TypeScript interfaces for all skeleton components with customizable props
+- Include size variants (small, medium, large) for each skeleton type
+- Add animation classes for pulsing/shimmer effects using Tailwind CSS
+- Ensure all skeletons are responsive and work on mobile devices
+- Include proper accessibility attributes (aria-hidden="true", role="status")
+
+### 2. Create Content-Specific Loading Components (`src/components/loading/`)
+- Create `DashboardLoading.tsx` for main dashboard loading state
+- Create `ToolGridLoading.tsx` for tool grid section loading
+- Create `ToolCardLoading.tsx` for individual tool card loading
+- Create `ToolDetailLoading.tsx` for detailed tool view loading
+- Create `UpdatesLoading.tsx` for feature updates section loading
+- Create `SearchLoading.tsx` for search results loading state
+- Each component should use base skeleton components to build realistic layouts
+- Match expected content structure with appropriate skeleton patterns
+- Include proper loading animations and smooth transitions
+- Add screen reader announcements for loading states
+- Ensure loading components are visually consistent with actual content layout
+
+### 3. Create Progressive Loading Indicators (`src/components/ui/indicators/`)
+- Create `LoadingSpinner.tsx` component with size and color variants
+- Create `ProgressBar.tsx` component for longer loading operations
+- Create `PulsingDot.tsx` component for subtle loading indicators
+- Create `LoadingOverlay.tsx` component for full-screen loading states
+- Add proper TypeScript interfaces with customizable props
+- Include accessibility features (aria-live regions, descriptive labels)
+- Add smooth animations using Tailwind CSS
+- Create different visual styles for different loading contexts
+- Ensure indicators work properly with screen readers
+- Include keyboard navigation support where applicable
+
+### 4. Create Base Error Components (`src/components/ui/error/`)
+- Create `ErrorBoundary.tsx` component for catching React errors
+- Create `ErrorMessage.tsx` component for displaying user-friendly error messages
+- Create `RetryButton.tsx` component for error recovery actions
+- Create `ErrorIcon.tsx` component with different error type icons
+- Create `ErrorCard.tsx` component for contained error display
+- Add proper TypeScript interfaces for error types and props
+- Include error categorization (network, validation, server, client)
+- Add retry functionality with exponential backoff logic
+- Include proper accessibility attributes and keyboard navigation
+- Create consistent error styling using Tailwind CSS
+
+### 5. Create Specific Error Components (`src/components/error/`)
+- Create `NetworkErrorComponent.tsx` for connection/API errors
+- Create `NotFoundError.tsx` for 404 and missing resource errors
+- Create `ValidationError.tsx` for form and input validation errors
+- Create `ServerError.tsx` for 5xx server errors
+- Create `UnauthorizedError.tsx` for authentication/permission errors
+- Create `GenericError.tsx` for unknown/unexpected errors
+- Each component should provide specific messaging and recovery options
+- Include appropriate icons and visual indicators for error types
+- Add contextual help and troubleshooting suggestions
+- Provide clear calls-to-action for error resolution
+- Include error reporting functionality (console logging for now)
+
+### 6. Create Empty State Components (`src/components/ui/empty/`)
+- Create `EmptyState.tsx` component for no-data scenarios
+- Create `NoResultsFound.tsx` component for empty search results
+- Create `NoUpdatesAvailable.tsx` component for when no new features exist
+- Create `ComingSoon.tsx` component for planned but unimplemented features
+- Include appropriate illustrations or icons for each empty state
+- Add helpful messaging and suggested actions
+- Include proper accessibility attributes and semantic structure
+- Create consistent styling with main design system
+- Add optional action buttons for common user flows
+- Ensure empty states are responsive and mobile-friendly
+
+### 7. Create Loading & Error State Management (`src/lib/loading-error.ts`)
+- Create TypeScript types and interfaces for all loading states
+- Create error type definitions and categorization system
+- Add utility functions for error message generation
+- Create loading state management utilities
+- Add error logging and reporting functions
+- Create retry logic utilities with exponential backoff
+- Include error boundary helpers and HOC utilities
+- Add loading timeout management functions
+- Create proper error serialization for logging
+- Include development vs production error handling differences
+
+## Completion Checklist
+
+Before marking this task as complete, verify ALL of the following items:
+
+### Base Loading Skeleton Components Verification
+- [ ] `src/components/ui/loading/SkeletonCard.tsx` exists and renders properly
+- [ ] `src/components/ui/loading/SkeletonText.tsx` exists with line length variants
+- [ ] `src/components/ui/loading/SkeletonImage.tsx` exists with proper aspect ratios
+- [ ] `src/components/ui/loading/SkeletonButton.tsx` exists with size variants
+- [ ] `src/components/ui/loading/SkeletonGrid.tsx` exists for grid layouts
+- [ ] All skeleton components have proper TypeScript interfaces
+- [ ] Size variants (small, medium, large) work correctly
+- [ ] Pulsing/shimmer animations are implemented with Tailwind CSS
+- [ ] All skeletons are responsive and mobile-friendly
+- [ ] Proper accessibility attributes (aria-hidden, role) are included
+
+### Content-Specific Loading Components Verification
+- [ ] `src/components/loading/DashboardLoading.tsx` exists and matches expected layout
+- [ ] `src/components/loading/ToolGridLoading.tsx` exists with grid skeleton pattern
+- [ ] `src/components/loading/ToolCardLoading.tsx` exists matching tool card layout
+- [ ] `src/components/loading/ToolDetailLoading.tsx` exists for detailed views
+- [ ] `src/components/loading/UpdatesLoading.tsx` exists for feature updates
+- [ ] `src/components/loading/SearchLoading.tsx` exists for search results
+- [ ] All loading components use base skeleton components appropriately
+- [ ] Loading layouts match expected content structure
+- [ ] Smooth transitions and animations work properly
+- [ ] Screen reader announcements are properly implemented
+
+### Progressive Loading Indicators Verification
+- [ ] `src/components/ui/indicators/LoadingSpinner.tsx` exists with variants
+- [ ] `src/components/ui/indicators/ProgressBar.tsx` exists for longer operations
+- [ ] `src/components/ui/indicators/PulsingDot.tsx` exists for subtle indicators
+- [ ] `src/components/ui/indicators/LoadingOverlay.tsx` exists for full-screen loading
+- [ ] All indicators have proper TypeScript interfaces
+- [ ] Accessibility features (aria-live, labels) are implemented
+- [ ] Smooth animations using Tailwind CSS work correctly
+- [ ] Different visual styles for different contexts
+- [ ] Screen reader compatibility is ensured
+- [ ] Keyboard navigation support where applicable
+
+### Base Error Components Verification
+- [ ] `src/components/ui/error/ErrorBoundary.tsx` exists and catches React errors
+- [ ] `src/components/ui/error/ErrorMessage.tsx` exists with user-friendly messages
+- [ ] `src/components/ui/error/RetryButton.tsx` exists with retry functionality
+- [ ] `src/components/ui/error/ErrorIcon.tsx` exists with different error type icons
+- [ ] `src/components/ui/error/ErrorCard.tsx` exists for contained error display
+- [ ] All error components have proper TypeScript interfaces
+- [ ] Error categorization system is implemented
+- [ ] Retry functionality with exponential backoff works
+- [ ] Accessibility attributes and keyboard navigation included
+- [ ] Consistent error styling using Tailwind CSS
+
+### Specific Error Components Verification
+- [ ] `src/components/error/NetworkErrorComponent.tsx` exists for connection errors
+- [ ] `src/components/error/NotFoundError.tsx` exists for 404 errors
+- [ ] `src/components/error/ValidationError.tsx` exists for validation errors
+- [ ] `src/components/error/ServerError.tsx` exists for server errors
+- [ ] `src/components/error/UnauthorizedError.tsx` exists for auth errors
+- [ ] `src/components/error/GenericError.tsx` exists for unknown errors
+- [ ] Each component provides specific messaging and recovery options
+- [ ] Appropriate icons and visual indicators for error types
+- [ ] Contextual help and troubleshooting suggestions included
+- [ ] Clear calls-to-action for error resolution
+- [ ] Error reporting functionality implemented
+
+### Empty State Components Verification
+- [ ] `src/components/ui/empty/EmptyState.tsx` exists for no-data scenarios
+- [ ] `src/components/ui/empty/NoResultsFound.tsx` exists for empty search
+- [ ] `src/components/ui/empty/NoUpdatesAvailable.tsx` exists for no new features
+- [ ] `src/components/ui/empty/ComingSoon.tsx` exists for planned features
+- [ ] Appropriate illustrations or icons for each empty state
+- [ ] Helpful messaging and suggested actions included
+- [ ] Proper accessibility attributes and semantic structure
+- [ ] Consistent styling with main design system
+- [ ] Optional action buttons for common user flows
+- [ ] Responsive and mobile-friendly design
+
+### Loading & Error State Management Verification
+- [ ] `src/lib/loading-error.ts` exists with TypeScript types
+- [ ] Error type definitions and categorization system implemented
+- [ ] Utility functions for error message generation exist
+- [ ] Loading state management utilities implemented
+- [ ] Error logging and reporting functions created
+- [ ] Retry logic utilities with exponential backoff work
+- [ ] Error boundary helpers and HOC utilities included
+- [ ] Loading timeout management functions implemented
+- [ ] Error serialization for logging works properly
+- [ ] Development vs production error handling differences handled
+
+### Accessibility and UX Verification
+- [ ] All loading components have proper ARIA attributes
+- [ ] Screen reader announcements work for loading states
+- [ ] Error components are keyboard navigable
+- [ ] Focus management works properly in error states
+- [ ] Color contrast meets accessibility standards
+- [ ] Loading animations don't cause motion sensitivity issues
+- [ ] Error messages are clear and actionable
+- [ ] Empty states provide helpful guidance
+
+### TypeScript and Styling Verification
+- [ ] All components have proper TypeScript interfaces
+- [ ] No TypeScript errors or warnings exist
+- [ ] Strict mode compliance maintained
+- [ ] Consistent Tailwind CSS styling across all components
+- [ ] Responsive design works at all breakpoints
+- [ ] Animation and transition classes work properly
+- [ ] Design system consistency maintained
+
+### Testing and Integration Verification
+- [ ] All loading components render without errors
+- [ ] All error components display properly
+- [ ] Empty state components show appropriate content
+- [ ] Skeleton animations work smoothly
+- [ ] Error boundaries catch errors correctly
+- [ ] Retry functionality works as expected
+- [ ] Loading timeouts behave properly
+- [ ] Components integrate well with existing layout
+
+## Success Criteria
+Task 4.3 is complete when:
+1. All items in the completion checklist are verified ✓
+2. Comprehensive loading skeleton system is functional
+3. Error boundary and error handling system works properly
+4. Empty state components provide good user experience
+5. All components are accessible and keyboard navigable
+6. TypeScript strict mode compliance maintained
+7. No errors exist in console or compilation
+8. Components are ready for integration in subsequent tasks
+
+## Important Notes
+- **ONLY** work on loading and error components - do not implement business logic or data fetching
+- Focus on creating reusable, accessible components
+- Use placeholder content and mock error scenarios for testing
+- Ensure all animations are smooth and don't impact performance
+- Maintain design system consistency across all components
+- All styling should use Tailwind CSS utility classes
+- Test error boundaries with intentional errors during development
+- Ensure components work properly with screen readers

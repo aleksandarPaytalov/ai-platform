@@ -1,0 +1,316 @@
+---
+alwaysApply: false
+---
+# Task 7.1: Set Up Real-time Infrastructure
+
+## Context and Scope
+You are working on **Task 7.1** of the AI Feature Tracker project. This task focuses ONLY on setting up the foundational real-time infrastructure using Supabase Real-time for live database updates. Do NOT implement any UI components, specific data subscriptions, or features beyond what is explicitly listed in the AI Instructions below.
+
+## Technology Standards for This Task
+- **Supabase Real-time** with WebSocket connections and database subscriptions
+- **TypeScript** with comprehensive interfaces for real-time events and states
+- **React hooks** for real-time connection management and state
+- **Error handling** with comprehensive retry logic and fallback mechanisms
+- **Performance optimization** with connection pooling and resource management
+- **Event system** for real-time event dispatching and handling
+
+## AI Instructions
+
+Complete the following tasks in exact order:
+
+### 1. Create Real-time Client Configuration (`src/lib/realtime/client.ts`)
+- Create Supabase Real-time client configuration with proper initialization
+- Implement client instance management for different connection contexts
+- Add client configuration options (heartbeat interval, timeout settings, reconnection)
+- Include client authentication and security token management
+- Add client debugging and logging utilities for development
+- Implement client performance monitoring and metrics collection
+- Create TypeScript interfaces for client configuration and options
+- Add client error handling and connection failure management
+- Include client cleanup and resource management utilities
+- Add client testing utilities and mock implementations
+
+### 2. Create Channel Management System (`src/lib/realtime/channels.ts`)
+- Create channel management utilities for organizing Real-time subscriptions
+- Implement channel creation, subscription, and cleanup operations
+- Add channel state management (connecting, connected, disconnected, error)
+- Include channel configuration and customization options
+- Add channel multiplexing for efficient connection usage
+- Implement channel debugging and monitoring utilities
+- Create TypeScript interfaces for channel configuration and state
+- Add channel error handling and recovery mechanisms
+- Include channel performance optimization and resource management
+- Add channel testing utilities and mock channel implementations
+
+### 3. Create Subscription Manager (`src/lib/realtime/subscriptions.ts`)
+- Create subscription management system for database table changes
+- Implement subscription lifecycle management (create, active, cleanup)
+- Add subscription filtering and event type configuration
+- Include subscription state tracking and status monitoring
+- Add subscription batching and throttling for performance
+- Implement subscription error handling and retry logic
+- Create TypeScript interfaces for subscription configuration and events
+- Add subscription debugging and logging utilities
+- Include subscription performance optimization and memory management
+- Add subscription testing utilities and mock subscription handlers
+
+### 4. Create Connection Lifecycle Manager (`src/lib/realtime/connection.ts`)
+- Create connection lifecycle management utilities
+- Implement connection state machine (disconnected, connecting, connected, reconnecting, error)
+- Add connection health monitoring and heartbeat management
+- Include connection retry logic with exponential backoff
+- Add connection timeout handling and recovery mechanisms
+- Implement connection debugging and status reporting
+- Create TypeScript interfaces for connection state and configuration
+- Add connection performance monitoring and metrics
+- Include connection cleanup and resource disposal
+- Add connection testing utilities and mock connection states
+
+### 5. Create Real-time Event System (`src/lib/realtime/events.ts`)
+- Create real-time event system for handling database changes
+- Implement event types for different database operations (INSERT, UPDATE, DELETE)
+- Add event payload processing and data transformation
+- Include event validation and type checking
+- Add event routing and dispatching to appropriate handlers
+- Implement event debugging and logging utilities
+- Create TypeScript interfaces for event types and payloads
+- Add event performance optimization and batching
+- Include event error handling and recovery
+- Add event testing utilities and mock event generators
+
+### 6. Create Error Handling and Recovery (`src/lib/realtime/error-handling.ts`)
+- Create comprehensive error handling system for real-time operations
+- Implement error categorization (network, authentication, subscription, data)
+- Add error recovery strategies and automatic retry mechanisms
+- Include error logging and reporting utilities
+- Add error user notification and feedback systems
+- Implement error debugging and diagnostic utilities
+- Create TypeScript interfaces for error types and recovery strategies
+- Add error performance impact monitoring
+- Include error testing utilities and mock error scenarios
+- Add error documentation and troubleshooting guides
+
+### 7. Create Performance Optimization (`src/lib/realtime/performance.ts`)
+- Create performance optimization utilities for real-time operations
+- Implement connection pooling and resource sharing
+- Add subscription optimization and batching strategies
+- Include memory management and cleanup utilities
+- Add performance monitoring and metrics collection
+- Implement performance debugging and profiling tools
+- Create TypeScript interfaces for performance configuration and metrics
+- Add performance testing utilities and benchmarks
+- Include performance optimization recommendations
+- Add performance alerting and threshold monitoring
+
+### 8. Create Real-time Infrastructure Integration (`src/lib/realtime/index.ts`)
+- Create comprehensive export file for all real-time infrastructure
+- Set up real-time infrastructure composition with all systems integrated
+- Add infrastructure initialization and configuration utilities
+- Include infrastructure testing utilities and comprehensive mocks
+- Create infrastructure documentation and usage examples
+- Add infrastructure debugging dashboard for development
+- Include comprehensive TypeScript type exports for all interfaces
+- Create infrastructure monitoring and health check utilities
+- Add infrastructure backup and recovery utilities
+- Include infrastructure performance optimization and tuning guides
+
+## Completion Checklist
+
+Before marking this task as complete, verify ALL of the following items:
+
+### Real-time Client Configuration Verification
+- [ ] `src/lib/realtime/client.ts` exists with Supabase Real-time client setup
+- [ ] Client instance management for different contexts works correctly
+- [ ] Client configuration options (heartbeat, timeout, reconnection) implemented
+- [ ] Client authentication and security token management included
+- [ ] Client debugging and logging utilities for development added
+- [ ] Client performance monitoring and metrics collection implemented
+- [ ] TypeScript interfaces for client configuration defined
+- [ ] Client error handling and connection failure management works
+- [ ] Client cleanup and resource management utilities included
+- [ ] Client testing utilities and mock implementations created
+
+### Channel Management System Verification
+- [ ] `src/lib/realtime/channels.ts` exists with channel management utilities
+- [ ] Channel creation, subscription, and cleanup operations work correctly
+- [ ] Channel state management (connecting, connected, disconnected) implemented
+- [ ] Channel configuration and customization options included
+- [ ] Channel multiplexing for efficient connection usage works
+- [ ] Channel debugging and monitoring utilities implemented
+- [ ] TypeScript interfaces for channel configuration and state defined
+- [ ] Channel error handling and recovery mechanisms work correctly
+- [ ] Channel performance optimization and resource management included
+- [ ] Channel testing utilities and mock implementations created
+
+### Subscription Manager Verification
+- [ ] `src/lib/realtime/subscriptions.ts` exists with subscription management
+- [ ] Subscription lifecycle management (create, active, cleanup) works
+- [ ] Subscription filtering and event type configuration implemented
+- [ ] Subscription state tracking and status monitoring included
+- [ ] Subscription batching and throttling for performance works
+- [ ] Subscription error handling and retry logic implemented
+- [ ] TypeScript interfaces for subscription configuration defined
+- [ ] Subscription debugging and logging utilities added
+- [ ] Subscription performance optimization and memory management included
+- [ ] Subscription testing utilities and mock handlers created
+
+### Connection Lifecycle Manager Verification
+- [ ] `src/lib/realtime/connection.ts` exists with lifecycle management
+- [ ] Connection state machine implementation works correctly
+- [ ] Connection health monitoring and heartbeat management implemented
+- [ ] Connection retry logic with exponential backoff works
+- [ ] Connection timeout handling and recovery mechanisms included
+- [ ] Connection debugging and status reporting implemented
+- [ ] TypeScript interfaces for connection state and configuration defined
+- [ ] Connection performance monitoring and metrics added
+- [ ] Connection cleanup and resource disposal works correctly
+- [ ] Connection testing utilities and mock states created
+
+### Real-time Event System Verification
+- [ ] `src/lib/realtime/events.ts` exists with event system
+- [ ] Event types for database operations (INSERT, UPDATE, DELETE) implemented
+- [ ] Event payload processing and data transformation works
+- [ ] Event validation and type checking included
+- [ ] Event routing and dispatching to handlers works correctly
+- [ ] Event debugging and logging utilities implemented
+- [ ] TypeScript interfaces for event types and payloads defined
+- [ ] Event performance optimization and batching included
+- [ ] Event error handling and recovery works correctly
+- [ ] Event testing utilities and mock generators created
+
+### Error Handling and Recovery Verification
+- [ ] `src/lib/realtime/error-handling.ts` exists with comprehensive error handling
+- [ ] Error categorization (network, auth, subscription, data) implemented
+- [ ] Error recovery strategies and retry mechanisms work correctly
+- [ ] Error logging and reporting utilities included
+- [ ] Error user notification and feedback systems implemented
+- [ ] Error debugging and diagnostic utilities added
+- [ ] TypeScript interfaces for error types and strategies defined
+- [ ] Error performance impact monitoring included
+- [ ] Error testing utilities and mock scenarios created
+- [ ] Error documentation and troubleshooting guides added
+
+### Performance Optimization Verification
+- [ ] `src/lib/realtime/performance.ts` exists with optimization utilities
+- [ ] Connection pooling and resource sharing implemented
+- [ ] Subscription optimization and batching strategies work
+- [ ] Memory management and cleanup utilities included
+- [ ] Performance monitoring and metrics collection implemented
+- [ ] Performance debugging and profiling tools added
+- [ ] TypeScript interfaces for performance configuration defined
+- [ ] Performance testing utilities and benchmarks created
+- [ ] Performance optimization recommendations included
+- [ ] Performance alerting and threshold monitoring implemented
+
+### Integration and Export Verification
+- [ ] `src/lib/realtime/index.ts` exists with comprehensive exports
+- [ ] Real-time infrastructure composition with all systems integrated
+- [ ] Infrastructure initialization and configuration utilities included
+- [ ] Infrastructure testing utilities and mocks created
+- [ ] Infrastructure documentation and usage examples added
+- [ ] Infrastructure debugging dashboard for development included
+- [ ] Comprehensive TypeScript type exports defined
+- [ ] Infrastructure monitoring and health check utilities created
+- [ ] Infrastructure backup and recovery utilities included
+- [ ] Infrastructure performance optimization guides added
+
+### Connection and Network Verification
+- [ ] WebSocket connections establish successfully with Supabase
+- [ ] Connection authentication works with proper credentials
+- [ ] Connection heartbeat and keep-alive mechanisms function correctly
+- [ ] Network disconnections are detected and handled appropriately
+- [ ] Reconnection attempts work with proper backoff strategies
+- [ ] Connection timeout handling prevents hanging connections
+- [ ] Multiple concurrent connections are managed efficiently
+- [ ] Connection cleanup prevents memory leaks and resource issues
+
+### Channel and Subscription Verification
+- [ ] Channels can be created and configured for different database tables
+- [ ] Subscriptions can be established for INSERT, UPDATE, DELETE events
+- [ ] Channel state changes are tracked and reported accurately
+- [ ] Subscription filtering works for specific row conditions
+- [ ] Multiple subscriptions can coexist without conflicts
+- [ ] Subscription cleanup removes listeners and prevents memory leaks
+- [ ] Channel multiplexing reduces connection overhead
+- [ ] Subscription batching improves performance for high-frequency updates
+
+### Error Handling and Resilience Verification
+- [ ] Network errors are caught and handled gracefully
+- [ ] Authentication errors trigger appropriate re-authentication flows
+- [ ] Subscription errors are logged and recovery attempted
+- [ ] Connection failures trigger reconnection with backoff
+- [ ] Invalid event data is validated and rejected safely
+- [ ] Error states are communicated clearly to application layers
+- [ ] Recovery mechanisms restore functionality after errors
+- [ ] Error logging provides useful debugging information
+
+### Performance and Resource Management Verification
+- [ ] Connection pooling reduces resource usage efficiently
+- [ ] Subscription management prevents excessive memory usage
+- [ ] Event processing is optimized for high-throughput scenarios
+- [ ] Resource cleanup prevents memory leaks during long sessions
+- [ ] Performance metrics provide useful optimization insights
+- [ ] Batching strategies reduce unnecessary network traffic
+- [ ] Connection sharing improves overall application performance
+- [ ] Resource monitoring identifies optimization opportunities
+
+### TypeScript and Type Safety Verification
+- [ ] All real-time operations have comprehensive TypeScript interfaces
+- [ ] Event payloads are properly typed for database schema
+- [ ] Configuration objects have proper type validation
+- [ ] Error types provide specific error information and context
+- [ ] Connection states are typed with discriminated unions
+- [ ] Subscription options have proper type checking
+- [ ] No TypeScript errors or warnings exist in real-time code
+- [ ] Type definitions integrate well with Supabase types
+
+### Development and Testing Verification
+- [ ] Debugging utilities provide useful development information
+- [ ] Mock implementations enable testing without real connections
+- [ ] Testing utilities facilitate comprehensive unit and integration tests
+- [ ] Development dashboard provides real-time connection insights
+- [ ] Logging utilities help troubleshoot real-time issues
+- [ ] Performance profiling tools identify bottlenecks
+- [ ] Documentation provides clear implementation guidance
+- [ ] Examples demonstrate proper usage patterns
+
+### Security and Authentication Verification
+- [ ] Real-time connections use proper authentication tokens
+- [ ] Subscription permissions are validated against database RLS policies
+- [ ] Connection security prevents unauthorized access
+- [ ] Token refresh mechanisms maintain authenticated connections
+- [ ] Channel access is controlled by proper authorization
+- [ ] Event data is validated before processing
+- [ ] Security logging captures authentication and authorization events
+- [ ] Real-time infrastructure follows security best practices
+
+### Integration Readiness Verification
+- [ ] Real-time infrastructure integrates with existing Supabase client
+- [ ] Connection management works with data fetching from Task 5.1
+- [ ] Event system can dispatch updates to navigation state from Task 6.5
+- [ ] Error handling integrates with application error boundaries
+- [ ] Performance monitoring integrates with application metrics
+- [ ] Configuration management works with application settings
+- [ ] Real-time infrastructure is ready for specific feature implementations
+- [ ] Infrastructure provides foundation for live UI updates
+
+## Success Criteria
+Task 7.1 is complete when:
+1. All items in the completion checklist are verified ✓
+2. Supabase Real-time infrastructure is fully configured and operational
+3. Connection management provides reliable, resilient WebSocket connections
+4. Channel and subscription management enables efficient database change tracking
+5. Error handling and recovery mechanisms ensure robust real-time functionality
+6. Performance optimization provides efficient resource usage and throughput
+7. No errors exist in console or TypeScript compilation
+8. Real-time infrastructure is ready for specific feature implementations
+
+## Important Notes
+- **ONLY** work on real-time infrastructure - do not implement specific data subscriptions or UI updates
+- Focus on creating robust, scalable foundation for real-time functionality
+- Ensure all WebSocket connections are properly managed and cleaned up
+- Test connection resilience with network interruptions and reconnection scenarios
+- Optimize for performance with connection pooling and efficient resource usage
+- Use Supabase Real-time best practices for channel and subscription management
+- Ensure TypeScript interfaces provide comprehensive type safety
+- Test infrastructure thoroughly with various connection states and error scenarios

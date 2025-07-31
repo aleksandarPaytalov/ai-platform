@@ -1,0 +1,326 @@
+---
+alwaysApply: false
+---
+# Task 7.2: Create Real-time Connection Manager
+
+## Context and Scope
+You are working on **Task 7.2** of the AI Feature Tracker project. This task focuses ONLY on creating a comprehensive connection manager for handling WebSocket connections, automatic reconnection, and connection health monitoring. Do NOT implement any specific data subscriptions, UI components, or features beyond what is explicitly listed in the AI Instructions below.
+
+## Technology Standards for This Task
+- **WebSocket management** with connection lifecycle and state machine
+- **Automatic reconnection** with exponential backoff and intelligent retry logic
+- **Health monitoring** with heartbeat, latency tracking, and connection diagnostics
+- **TypeScript** with comprehensive interfaces for connection states and events
+- **React hooks** for connection state management and component integration
+- **Performance optimization** with connection pooling and resource management
+
+## AI Instructions
+
+Complete the following tasks in exact order:
+
+### 1. Create Connection State Machine (`src/lib/realtime/connection-manager/ConnectionStateMachine.ts`)
+- Create connection state machine managing all possible connection states
+- Implement states: DISCONNECTED, CONNECTING, CONNECTED, RECONNECTING, ERROR, CLOSING
+- Add state transitions with proper validation and event emission
+- Include state persistence for maintaining connection state across app sessions
+- Add state machine debugging and logging for development
+- Implement state machine performance optimization with efficient state updates
+- Create TypeScript interfaces for connection states and transition events
+- Add state machine testing utilities and mock state implementations
+- Include state machine visualization utilities for development debugging
+- Add state machine error handling for invalid state transitions
+
+### 2. Create WebSocket Connection Handler (`src/lib/realtime/connection-manager/WebSocketHandler.ts`)
+- Create WebSocket connection handler managing low-level WebSocket operations
+- Implement WebSocket event handling (open, close, error, message)
+- Add connection establishment with proper URL building and authentication
+- Include connection closing with proper cleanup and resource disposal
+- Add message sending with queuing and delivery confirmation
+- Implement WebSocket debugging and logging utilities
+- Create TypeScript interfaces for WebSocket configuration and events
+- Add WebSocket performance monitoring and metrics collection
+- Include WebSocket error handling and recovery mechanisms
+- Add WebSocket testing utilities and mock WebSocket implementations
+
+### 3. Create Automatic Reconnection System (`src/lib/realtime/connection-manager/ReconnectionManager.ts`)
+- Create automatic reconnection system with intelligent retry strategies
+- Implement exponential backoff with jitter for reconnection attempts
+- Add reconnection attempt limiting with maximum retry counts
+- Include reconnection condition evaluation (network status, authentication)
+- Add reconnection strategy customization based on error types
+- Implement reconnection debugging and metrics tracking
+- Create TypeScript interfaces for reconnection configuration and strategies
+- Add reconnection performance optimization to prevent resource exhaustion
+- Include reconnection user notification and feedback systems
+- Add reconnection testing utilities and mock reconnection scenarios
+
+### 4. Create Health Monitoring System (`src/lib/realtime/connection-manager/HealthMonitor.ts`)
+- Create connection health monitoring with comprehensive health metrics
+- Implement heartbeat system with configurable intervals and timeout detection
+- Add latency tracking with round-trip time measurement
+- Include connection quality assessment and scoring
+- Add network condition detection and adaptation
+- Implement health monitoring alerting and notification systems
+- Create TypeScript interfaces for health metrics and monitoring configuration
+- Add health monitoring performance optimization with efficient metrics collection
+- Include health monitoring debugging and diagnostic utilities
+- Add health monitoring testing utilities and mock health scenarios
+
+### 5. Create Connection Diagnostics (`src/lib/realtime/connection-manager/ConnectionDiagnostics.ts`)
+- Create connection diagnostics system for troubleshooting and debugging
+- Implement diagnostic data collection (connection history, error logs, performance metrics)
+- Add diagnostic reporting with detailed connection information
+- Include diagnostic problem identification and recommendation systems
+- Add diagnostic data export and sharing capabilities
+- Implement diagnostic debugging utilities and visualization tools
+- Create TypeScript interfaces for diagnostic data and reporting
+- Add diagnostic performance optimization with efficient data collection
+- Include diagnostic user interface for development and support
+- Add diagnostic testing utilities and mock diagnostic scenarios
+
+### 6. Create Connection Pool Manager (`src/lib/realtime/connection-manager/ConnectionPool.ts`)
+- Create connection pool manager for efficient connection resource management
+- Implement connection sharing and reuse strategies
+- Add connection pool sizing and optimization based on usage patterns
+- Include connection pool health monitoring and maintenance
+- Add connection pool cleanup and resource disposal
+- Implement connection pool debugging and monitoring utilities
+- Create TypeScript interfaces for connection pool configuration and management
+- Add connection pool performance optimization with efficient resource allocation
+- Include connection pool testing utilities and mock pool implementations
+- Add connection pool integration with connection lifecycle management
+
+### 7. Create Connection Event System (`src/lib/realtime/connection-manager/ConnectionEvents.ts`)
+- Create connection event system for connection lifecycle event handling
+- Implement event types for all connection states and transitions
+- Add event payload standardization and validation
+- Include event subscription and unsubscription management
+- Add event debugging and logging utilities
+- Implement event performance optimization with efficient event dispatching
+- Create TypeScript interfaces for connection events and event handlers
+- Add event testing utilities and mock event systems
+- Include event error handling and recovery mechanisms
+- Add event integration with application-wide event systems
+
+### 8. Create Connection Manager Integration (`src/lib/realtime/connection-manager/index.ts`)
+- Create comprehensive export file for all connection manager components
+- Set up connection manager composition with all systems integrated
+- Add connection manager initialization and configuration utilities
+- Include connection manager React hooks for component integration
+- Create connection manager testing utilities and comprehensive mocks
+- Add connection manager documentation and usage examples
+- Include comprehensive TypeScript type exports for all interfaces
+- Create connection manager debugging dashboard for development
+- Add connection manager performance monitoring and optimization utilities
+- Include connection manager backup and recovery utilities
+
+## Completion Checklist
+
+Before marking this task as complete, verify ALL of the following items:
+
+### Connection State Machine Verification
+- [ ] `src/lib/realtime/connection-manager/ConnectionStateMachine.ts` exists with state management
+- [ ] Connection states (DISCONNECTED, CONNECTING, CONNECTED, RECONNECTING, ERROR, CLOSING) implemented
+- [ ] State transitions with proper validation and event emission work correctly
+- [ ] State persistence for maintaining state across app sessions included
+- [ ] State machine debugging and logging for development added
+- [ ] State machine performance optimization with efficient updates implemented
+- [ ] TypeScript interfaces for connection states and events defined
+- [ ] State machine testing utilities and mock implementations created
+- [ ] State machine visualization utilities for debugging included
+- [ ] State machine error handling for invalid transitions implemented
+
+### WebSocket Connection Handler Verification
+- [ ] `src/lib/realtime/connection-manager/WebSocketHandler.ts` exists with WebSocket management
+- [ ] WebSocket event handling (open, close, error, message) implemented correctly
+- [ ] Connection establishment with URL building and authentication works
+- [ ] Connection closing with proper cleanup and resource disposal included
+- [ ] Message sending with queuing and delivery confirmation implemented
+- [ ] WebSocket debugging and logging utilities added
+- [ ] TypeScript interfaces for WebSocket configuration and events defined
+- [ ] WebSocket performance monitoring and metrics collection implemented
+- [ ] WebSocket error handling and recovery mechanisms included
+- [ ] WebSocket testing utilities and mock implementations created
+
+### Automatic Reconnection System Verification
+- [ ] `src/lib/realtime/connection-manager/ReconnectionManager.ts` exists with retry strategies
+- [ ] Exponential backoff with jitter for reconnection attempts implemented
+- [ ] Reconnection attempt limiting with maximum retry counts works correctly
+- [ ] Reconnection condition evaluation (network, auth) included
+- [ ] Reconnection strategy customization based on error types implemented
+- [ ] Reconnection debugging and metrics tracking added
+- [ ] TypeScript interfaces for reconnection configuration defined
+- [ ] Reconnection performance optimization prevents resource exhaustion
+- [ ] Reconnection user notification and feedback systems included
+- [ ] Reconnection testing utilities and mock scenarios created
+
+### Health Monitoring System Verification
+- [ ] `src/lib/realtime/connection-manager/HealthMonitor.ts` exists with health metrics
+- [ ] Heartbeat system with configurable intervals and timeout detection works
+- [ ] Latency tracking with round-trip time measurement implemented
+- [ ] Connection quality assessment and scoring included
+- [ ] Network condition detection and adaptation works correctly
+- [ ] Health monitoring alerting and notification systems implemented
+- [ ] TypeScript interfaces for health metrics and configuration defined
+- [ ] Health monitoring performance optimization with efficient collection implemented
+- [ ] Health monitoring debugging and diagnostic utilities included
+- [ ] Health monitoring testing utilities and mock scenarios created
+
+### Connection Diagnostics Verification
+- [ ] `src/lib/realtime/connection-manager/ConnectionDiagnostics.ts` exists with diagnostics
+- [ ] Diagnostic data collection (history, errors, metrics) implemented
+- [ ] Diagnostic reporting with detailed connection information works
+- [ ] Diagnostic problem identification and recommendations included
+- [ ] Diagnostic data export and sharing capabilities implemented
+- [ ] Diagnostic debugging utilities and visualization tools added
+- [ ] TypeScript interfaces for diagnostic data and reporting defined
+- [ ] Diagnostic performance optimization with efficient collection implemented
+- [ ] Diagnostic user interface for development and support included
+- [ ] Diagnostic testing utilities and mock scenarios created
+
+### Connection Pool Manager Verification
+- [ ] `src/lib/realtime/connection-manager/ConnectionPool.ts` exists with pool management
+- [ ] Connection sharing and reuse strategies implemented correctly
+- [ ] Connection pool sizing and optimization based on usage works
+- [ ] Connection pool health monitoring and maintenance included
+- [ ] Connection pool cleanup and resource disposal implemented
+- [ ] Connection pool debugging and monitoring utilities added
+- [ ] TypeScript interfaces for pool configuration and management defined
+- [ ] Connection pool performance optimization with efficient allocation implemented
+- [ ] Connection pool testing utilities and mock implementations created
+- [ ] Connection pool integration with lifecycle management included
+
+### Connection Event System Verification
+- [ ] `src/lib/realtime/connection-manager/ConnectionEvents.ts` exists with event handling
+- [ ] Event types for all connection states and transitions implemented
+- [ ] Event payload standardization and validation works correctly
+- [ ] Event subscription and unsubscription management included
+- [ ] Event debugging and logging utilities added
+- [ ] Event performance optimization with efficient dispatching implemented
+- [ ] TypeScript interfaces for connection events and handlers defined
+- [ ] Event testing utilities and mock event systems created
+- [ ] Event error handling and recovery mechanisms included
+- [ ] Event integration with application-wide event systems works
+
+### Integration and Export Verification
+- [ ] `src/lib/realtime/connection-manager/index.ts` exists with comprehensive exports
+- [ ] Connection manager composition with all systems integrated properly
+- [ ] Connection manager initialization and configuration utilities included
+- [ ] Connection manager React hooks for component integration created
+- [ ] Connection manager testing utilities and mocks implemented
+- [ ] Connection manager documentation and usage examples added
+- [ ] Comprehensive TypeScript type exports for all interfaces defined
+- [ ] Connection manager debugging dashboard for development included
+- [ ] Connection manager performance monitoring utilities implemented
+- [ ] Connection manager backup and recovery utilities included
+
+### Connection Lifecycle Management Verification
+- [ ] Connection establishment process works reliably and efficiently
+- [ ] Connection state transitions occur smoothly without race conditions
+- [ ] Connection cleanup prevents memory leaks and resource issues
+- [ ] Connection authentication integrates properly with Supabase tokens
+- [ ] Connection URL building handles different environments correctly
+- [ ] Connection configuration supports customization and optimization
+- [ ] Connection lifecycle events are emitted at appropriate times
+- [ ] Connection state persistence maintains consistency across sessions
+
+### Reconnection and Resilience Verification
+- [ ] Automatic reconnection triggers appropriately after connection loss
+- [ ] Exponential backoff prevents overwhelming the server with retry attempts
+- [ ] Reconnection attempts respect maximum retry limits
+- [ ] Network condition changes trigger appropriate reconnection behavior
+- [ ] Authentication failures are handled correctly during reconnection
+- [ ] Reconnection success restores full connection functionality
+- [ ] Reconnection failures provide appropriate user feedback
+- [ ] Reconnection performance doesn't impact application responsiveness
+
+### Health Monitoring and Diagnostics Verification
+- [ ] Heartbeat system accurately detects connection health status
+- [ ] Latency tracking provides useful connection performance metrics
+- [ ] Connection quality assessment reflects actual connection performance
+- [ ] Health monitoring alerts trigger appropriately for connection issues
+- [ ] Diagnostic data collection captures relevant troubleshooting information
+- [ ] Health metrics are efficiently collected without impacting performance
+- [ ] Connection diagnostics provide actionable troubleshooting information
+- [ ] Health monitoring integrates well with application monitoring systems
+
+### Performance and Resource Management Verification
+- [ ] Connection pool efficiently manages connection resources
+- [ ] Connection sharing reduces resource usage and improves performance
+- [ ] Memory usage remains reasonable during extended connection sessions
+- [ ] Connection manager performance doesn't impact overall application performance
+- [ ] Resource cleanup prevents accumulation of unused connection resources
+- [ ] Performance metrics provide useful optimization insights
+- [ ] Connection management scales appropriately with application usage
+- [ ] Resource allocation adapts to changing connection requirements
+
+### Error Handling and Recovery Verification
+- [ ] Connection errors are properly categorized and handled appropriately
+- [ ] Error recovery mechanisms restore connection functionality effectively
+- [ ] Error logging provides useful debugging and troubleshooting information
+- [ ] Critical errors trigger appropriate application-level error handling
+- [ ] Error states are communicated clearly to application components
+- [ ] Error recovery doesn't interfere with normal connection operations
+- [ ] Unrecoverable errors are handled gracefully with appropriate fallbacks
+- [ ] Error handling performance doesn't impact connection responsiveness
+
+### Integration with Real-time Infrastructure Verification
+- [ ] Connection manager integrates seamlessly with infrastructure from Task 7.1
+- [ ] Connection state integrates properly with channel management
+- [ ] Connection events integrate with real-time event system
+- [ ] Connection configuration works with infrastructure configuration
+- [ ] Connection debugging integrates with infrastructure debugging tools
+- [ ] Connection performance monitoring works with infrastructure metrics
+- [ ] Connection testing utilities work with infrastructure testing systems
+- [ ] Connection manager provides foundation for subscription management
+
+### TypeScript and Type Safety Verification
+- [ ] All connection operations have comprehensive TypeScript interfaces
+- [ ] Connection states are properly typed with discriminated unions
+- [ ] Event payloads have proper type definitions and validation
+- [ ] Configuration objects have comprehensive type checking
+- [ ] Error types provide specific error information and context
+- [ ] Connection metrics have proper typing for data analysis
+- [ ] No TypeScript errors or warnings exist in connection manager code
+- [ ] Type definitions integrate well with real-time infrastructure types
+
+### Development and Testing Verification
+- [ ] Connection manager debugging tools provide useful development insights
+- [ ] Mock implementations enable comprehensive testing without real connections
+- [ ] Testing utilities facilitate unit and integration testing
+- [ ] Development dashboard provides real-time connection status and metrics
+- [ ] Logging provides appropriate detail for development and production
+- [ ] Performance profiling tools identify connection optimization opportunities
+- [ ] Documentation provides clear implementation and usage guidance
+- [ ] Examples demonstrate proper connection manager usage patterns
+
+### Security and Authentication Verification
+- [ ] Connection authentication works properly with Supabase authentication
+- [ ] Connection security prevents unauthorized access and data exposure
+- [ ] Token refresh mechanisms maintain authenticated connections
+- [ ] Connection encryption and security protocols are properly implemented
+- [ ] Authentication errors are handled securely without exposing sensitive data
+- [ ] Connection security logging captures relevant security events
+- [ ] Security best practices are followed throughout connection management
+- [ ] Connection manager respects security policies and configurations
+
+## Success Criteria
+Task 7.2 is complete when:
+1. All items in the completion checklist are verified ✓
+2. Connection manager provides robust, reliable WebSocket connection management
+3. Automatic reconnection works seamlessly with intelligent retry strategies
+4. Health monitoring provides comprehensive connection status and diagnostics
+5. Performance is optimized with efficient resource management and connection pooling
+6. Error handling and recovery mechanisms ensure connection resilience
+7. No errors exist in console or TypeScript compilation
+8. Connection manager is ready for integration with live data synchronization
+
+## Important Notes
+- **ONLY** work on connection manager - do not implement specific data subscriptions or UI updates
+- Focus on creating robust, resilient connection management foundation
+- Ensure all WebSocket connections are properly managed throughout their lifecycle
+- Test connection resilience thoroughly with network interruptions and various error scenarios
+- Optimize performance with connection pooling and efficient resource management
+- Use proper exponential backoff strategies to prevent overwhelming servers
+- Ensure comprehensive error handling covers all possible connection failure scenarios
+- Test connection manager with various network conditions and authentication states

@@ -1,0 +1,242 @@
+---
+alwaysApply: false
+---
+# Task 4.4: Implement Responsive Grid System
+
+## Context and Scope
+You are working on **Task 4.4** of the AI Feature Tracker project. This task focuses ONLY on creating a responsive grid system with flexible layout components and breakpoint management. Do NOT implement any content components, data fetching, or business logic beyond what is explicitly listed in the AI Instructions below.
+
+## Technology Standards for This Task
+- **Tailwind CSS** with custom grid utilities and responsive breakpoints
+- **CSS Grid** and **Flexbox** for advanced layout capabilities
+- **Mobile-first** responsive design approach
+- **TypeScript** with proper interfaces for grid component props
+- **Accessibility** with proper semantic structure and navigation
+- **Performance** optimized for different screen sizes and devices
+
+## AI Instructions
+
+Complete the following tasks in exact order:
+
+### 1. Create Base Grid Components (`src/components/ui/grid/`)
+- Create `Grid.tsx` component as the main container with responsive grid layout
+- Create `GridItem.tsx` component for individual grid items with span options
+- Create `AutoGrid.tsx` component for automatic responsive grid sizing
+- Create `MasonryGrid.tsx` component for masonry-style layouts
+- Add proper TypeScript interfaces for all grid components with customizable props
+- Include grid configuration options (columns, gaps, alignment)
+- Add responsive breakpoint props (sm, md, lg, xl, 2xl configurations)
+- Implement proper semantic HTML structure (section, div with appropriate roles)
+- Ensure all grid components work with CSS Grid and Flexbox
+- Add accessibility attributes for screen readers and keyboard navigation
+
+### 2. Create Layout Container Components (`src/components/layout/containers/`)
+- Create `Container.tsx` component for main content width constraints
+- Create `Section.tsx` component for major page sections with proper spacing
+- Create `ContentArea.tsx` component for main content regions
+- Create `Sidebar.tsx` component for sidebar layouts with responsive behavior
+- Create `TwoColumnLayout.tsx` component for split content layouts
+- Add proper TypeScript interfaces with responsive and spacing props
+- Include maximum width constraints and center alignment options
+- Add responsive padding and margin utilities
+- Implement proper semantic HTML5 structure (main, section, aside)
+- Ensure containers work properly at all breakpoint sizes
+
+### 3. Create Responsive Breakpoint System (`src/lib/breakpoints.ts`)
+- Define breakpoint constants matching Tailwind CSS defaults
+- Create TypeScript types for breakpoint names and values
+- Add utility functions for breakpoint detection and media queries
+- Create responsive prop utilities for component configuration
+- Add breakpoint-specific styling helpers
+- Include custom breakpoint definitions for the application
+- Create hooks for responsive behavior in React components
+- Add utilities for conditional rendering based on screen size
+- Include breakpoint testing and debugging utilities
+- Create documentation for breakpoint usage patterns
+
+### 4. Create Spacing and Alignment Utilities (`src/components/ui/layout/`)
+- Create `Spacer.tsx` component for consistent spacing between elements
+- Create `Stack.tsx` component for vertical layout with controlled spacing
+- Create `Inline.tsx` component for horizontal layout with gap control
+- Create `Center.tsx` component for centering content horizontally and vertically
+- Create `Flex.tsx` component for flexible layouts with responsive options
+- Add proper TypeScript interfaces for spacing and alignment props
+- Include direction options (horizontal, vertical, responsive direction changes)
+- Add alignment options (start, center, end, stretch, baseline)
+- Implement gap controls with Tailwind spacing scale
+- Ensure all layout components are responsive and accessible
+
+### 5. Create Grid Pattern Components (`src/components/ui/patterns/`)
+- Create `CardGrid.tsx` component optimized for card-based layouts
+- Create `ListGrid.tsx` component for list-style responsive grids
+- Create `GalleryGrid.tsx` component for image/media gallery layouts
+- Create `DashboardGrid.tsx` component for dashboard widget layouts
+- Create `ToolGrid.tsx` component specifically designed for AI tool display
+- Add proper TypeScript interfaces with pattern-specific options
+- Include responsive behavior for different content types
+- Add loading states integration with grid patterns
+- Implement proper spacing and alignment for each pattern type
+- Ensure patterns work with different content densities
+
+### 6. Create Responsive Utilities and Helpers (`src/lib/responsive.ts`)
+- Create viewport detection utilities for client-side responsive behavior
+- Add device type detection (mobile, tablet, desktop)
+- Create responsive class generation utilities
+- Add screen size hooks for React components
+- Include responsive image utilities and helpers
+- Create touch detection utilities for mobile interactions
+- Add orientation change handling utilities
+- Include responsive typography scaling helpers
+- Create responsive spacing calculation utilities
+- Add performance optimization utilities for responsive layouts
+
+### 7. Create Grid Testing and Documentation (`src/components/ui/grid/examples/`)
+- Create `GridShowcase.tsx` component demonstrating all grid capabilities
+- Create `ResponsiveDemo.tsx` component showing breakpoint behavior
+- Create `LayoutExamples.tsx` component with common layout patterns
+- Add visual grid debugging utilities for development
+- Create grid performance testing components
+- Include accessibility testing examples for grid layouts
+- Add documentation components explaining grid usage
+- Create interactive examples for different grid configurations
+- Include responsive behavior demonstrations
+- Add best practices examples and anti-patterns
+
+## Completion Checklist
+
+Before marking this task as complete, verify ALL of the following items:
+
+### Base Grid Components Verification
+- [ ] `src/components/ui/grid/Grid.tsx` exists with responsive grid layout
+- [ ] `src/components/ui/grid/GridItem.tsx` exists with span options
+- [ ] `src/components/ui/grid/AutoGrid.tsx` exists with automatic sizing
+- [ ] `src/components/ui/grid/MasonryGrid.tsx` exists for masonry layouts
+- [ ] All grid components have proper TypeScript interfaces
+- [ ] Grid configuration options (columns, gaps, alignment) work correctly
+- [ ] Responsive breakpoint props (sm, md, lg, xl, 2xl) function properly
+- [ ] Proper semantic HTML structure implemented
+- [ ] CSS Grid and Flexbox integration works correctly
+- [ ] Accessibility attributes for screen readers included
+
+### Layout Container Components Verification
+- [ ] `src/components/layout/containers/Container.tsx` exists with width constraints
+- [ ] `src/components/layout/containers/Section.tsx` exists with proper spacing
+- [ ] `src/components/layout/containers/ContentArea.tsx` exists for main content
+- [ ] `src/components/layout/containers/Sidebar.tsx` exists with responsive behavior
+- [ ] `src/components/layout/containers/TwoColumnLayout.tsx` exists for split layouts
+- [ ] All containers have proper TypeScript interfaces
+- [ ] Maximum width constraints and center alignment work
+- [ ] Responsive padding and margin utilities function correctly
+- [ ] Proper semantic HTML5 structure (main, section, aside)
+- [ ] Containers work properly at all breakpoint sizes
+
+### Responsive Breakpoint System Verification
+- [ ] `src/lib/breakpoints.ts` exists with breakpoint constants
+- [ ] TypeScript types for breakpoint names and values defined
+- [ ] Utility functions for breakpoint detection work correctly
+- [ ] Responsive prop utilities for component configuration exist
+- [ ] Breakpoint-specific styling helpers implemented
+- [ ] Custom breakpoint definitions for the application
+- [ ] React hooks for responsive behavior created
+- [ ] Utilities for conditional rendering based on screen size
+- [ ] Breakpoint testing and debugging utilities included
+- [ ] Documentation for breakpoint usage patterns
+
+### Spacing and Alignment Utilities Verification
+- [ ] `src/components/ui/layout/Spacer.tsx` exists for consistent spacing
+- [ ] `src/components/ui/layout/Stack.tsx` exists for vertical layouts
+- [ ] `src/components/ui/layout/Inline.tsx` exists for horizontal layouts
+- [ ] `src/components/ui/layout/Center.tsx` exists for centering content
+- [ ] `src/components/ui/layout/Flex.tsx` exists for flexible layouts
+- [ ] All layout components have proper TypeScript interfaces
+- [ ] Direction options (horizontal, vertical, responsive) work correctly
+- [ ] Alignment options (start, center, end, stretch, baseline) function properly
+- [ ] Gap controls with Tailwind spacing scale implemented
+- [ ] All layout components are responsive and accessible
+
+### Grid Pattern Components Verification
+- [ ] `src/components/ui/patterns/CardGrid.tsx` exists for card layouts
+- [ ] `src/components/ui/patterns/ListGrid.tsx` exists for list-style grids
+- [ ] `src/components/ui/patterns/GalleryGrid.tsx` exists for media galleries
+- [ ] `src/components/ui/patterns/DashboardGrid.tsx` exists for dashboard widgets
+- [ ] `src/components/ui/patterns/ToolGrid.tsx` exists for AI tool display
+- [ ] All pattern components have proper TypeScript interfaces
+- [ ] Responsive behavior for different content types implemented
+- [ ] Loading states integration with grid patterns works
+- [ ] Proper spacing and alignment for each pattern type
+- [ ] Patterns work with different content densities
+
+### Responsive Utilities and Helpers Verification
+- [ ] `src/lib/responsive.ts` exists with viewport detection utilities
+- [ ] Device type detection (mobile, tablet, desktop) works correctly
+- [ ] Responsive class generation utilities implemented
+- [ ] Screen size hooks for React components created
+- [ ] Responsive image utilities and helpers included
+- [ ] Touch detection utilities for mobile interactions work
+- [ ] Orientation change handling utilities implemented
+- [ ] Responsive typography scaling helpers created
+- [ ] Responsive spacing calculation utilities work correctly
+- [ ] Performance optimization utilities for responsive layouts included
+
+### Grid Testing and Documentation Verification
+- [ ] `src/components/ui/grid/examples/GridShowcase.tsx` exists
+- [ ] `src/components/ui/grid/examples/ResponsiveDemo.tsx` exists
+- [ ] `src/components/ui/grid/examples/LayoutExamples.tsx` exists
+- [ ] Visual grid debugging utilities for development included
+- [ ] Grid performance testing components created
+- [ ] Accessibility testing examples for grid layouts included
+- [ ] Documentation components explaining grid usage exist
+- [ ] Interactive examples for different grid configurations work
+- [ ] Responsive behavior demonstrations included
+- [ ] Best practices examples and anti-patterns documented
+
+### Breakpoint Testing Verification
+- [ ] Mobile breakpoint (320px - 767px) layouts work correctly
+- [ ] Tablet breakpoint (768px - 1023px) layouts work correctly
+- [ ] Desktop breakpoint (1024px - 1279px) layouts work correctly
+- [ ] Large desktop breakpoint (1280px - 1535px) layouts work correctly
+- [ ] Extra large breakpoint (1536px+) layouts work correctly
+- [ ] Breakpoint transitions are smooth and don't cause layout shifts
+- [ ] Grid reflows properly when resizing browser window
+- [ ] Touch interactions work properly on mobile devices
+
+### Accessibility and Performance Verification
+- [ ] All grid components have proper semantic structure
+- [ ] Keyboard navigation works correctly in grid layouts
+- [ ] Screen reader compatibility verified for grid components
+- [ ] Focus management works properly in responsive grids
+- [ ] Grid layouts don't cause horizontal scrolling on mobile
+- [ ] Performance is optimized for different screen sizes
+- [ ] No layout shifts during responsive breakpoint changes
+- [ ] Grid components work properly with reduced motion preferences
+
+### TypeScript and Integration Verification
+- [ ] All components have proper TypeScript interfaces
+- [ ] No TypeScript errors or warnings exist
+- [ ] Strict mode compliance maintained
+- [ ] Grid components integrate well with existing layout system
+- [ ] Consistent Tailwind CSS class usage throughout
+- [ ] Proper prop validation and default values
+- [ ] Components are easily composable and reusable
+- [ ] Error handling for invalid grid configurations
+
+## Success Criteria
+Task 4.4 is complete when:
+1. All items in the completion checklist are verified ✓
+2. Comprehensive responsive grid system is functional across all breakpoints
+3. All grid components are reusable and properly typed
+4. Mobile-first responsive design approach is implemented
+5. Grid system integrates well with Tailwind CSS utilities
+6. Performance is optimized for different screen sizes
+7. No errors exist in console or TypeScript compilation
+8. Grid system is ready for content integration in subsequent tasks
+
+## Important Notes
+- **ONLY** work on grid system and layout components - do not implement content or business logic
+- Focus on creating flexible, reusable grid components
+- Ensure mobile-first responsive approach throughout
+- Test grid behavior at all major breakpoints
+- Maintain accessibility standards for all grid layouts
+- All styling should use Tailwind CSS utility classes
+- Optimize for performance across different devices
+- Create comprehensive examples for future development reference

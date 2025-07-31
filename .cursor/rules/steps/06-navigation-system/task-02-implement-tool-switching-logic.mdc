@@ -1,0 +1,295 @@
+---
+alwaysApply: false
+---
+# Task 6.2: Implement Tool Switching Logic
+
+## Context and Scope
+You are working on **Task 6.2** of the AI Feature Tracker project. This task focuses ONLY on implementing the logic for switching between different AI tools, including state management, URL synchronization, and smooth transitions. Do NOT implement any tool content display, data fetching beyond what's needed for tool switching, or features beyond what is explicitly listed in the AI Instructions below.
+
+## Technology Standards for This Task
+- **React state management** with proper hooks and context
+- **Next.js routing** with App Router and URL synchronization
+- **TypeScript** with comprehensive interfaces for tool switching
+- **Browser history API** for proper navigation behavior
+- **Performance optimization** with smooth transitions and state cleanup
+- **Error handling** for invalid tool states and edge cases
+
+## AI Instructions
+
+Complete the following tasks in exact order:
+
+### 1. Create Tool Switching Context (`src/contexts/ToolSwitchingContext.tsx`)
+- Create `ToolSwitchingContext` using React Context for global tool state management
+- Implement state structure including active tool, previous tool, loading states
+- Add tool switching actions (setActiveTool, switchTool, resetTool)
+- Include tool history tracking for navigation and analytics
+- Add state validation to ensure tool exists and is accessible
+- Implement state persistence using localStorage for session continuity
+- Create TypeScript interfaces for context state and actions
+- Add context provider component with proper initialization
+- Include context debugging utilities for development
+- Add context performance optimization to prevent unnecessary re-renders
+
+### 2. Create Tool Switching Hook (`src/hooks/useToolSwitching.ts`)
+- Create `useToolSwitching` custom hook consuming ToolSwitchingContext
+- Implement hook methods for tool switching operations (switchToTool, switchBySlug, switchById)
+- Add tool validation methods (isValidTool, canSwitchToTool, getToolBySlug)
+- Include tool switching state queries (isActive, isPrevious, isLoading)
+- Add tool switching utilities (getNextTool, getPreviousTool, getToolIndex)
+- Implement error handling for invalid tool switching attempts
+- Create TypeScript interface for hook return values and methods
+- Add hook performance optimization with proper memoization
+- Include hook debugging and logging utilities
+- Add hook testing utilities and mock implementations
+
+### 3. Create URL Synchronization System (`src/lib/url-sync.ts`)
+- Create URL synchronization utilities for tool state and browser history
+- Implement URL parameter management for active tool (e.g., ?tool=claude)
+- Add deep linking support for direct tool access via URL
+- Include URL validation and sanitization for security
+- Add browser history integration with proper back/forward navigation
+- Implement URL state restoration on page refresh or navigation
+- Create TypeScript interfaces for URL state management
+- Add URL change detection and automatic state synchronization
+- Include URL debugging utilities for development and troubleshooting
+- Add URL performance optimization to prevent unnecessary updates
+
+### 4. Create Transition Management (`src/components/navigation/ToolTransitions.tsx`)
+- Create `ToolTransitions` component managing smooth transitions between tools
+- Implement fade in/out animations for tool content switching
+- Add slide transitions with proper direction based on tool order
+- Include loading state transitions with skeleton components
+- Add error state transitions with recovery animations
+- Implement transition timing and easing for smooth user experience
+- Create TypeScript interface for transition configuration and states
+- Add accessibility support for reduced motion preferences
+- Include transition performance optimization to prevent layout shifts
+- Add transition debugging utilities for development
+
+### 5. Create Browser History Integration (`src/lib/history-manager.ts`)
+- Create browser history management utilities for tool navigation
+- Implement history stack management with proper state preservation
+- Add history navigation handlers (back, forward, replace, push)
+- Include history state validation and recovery mechanisms
+- Add history event listeners for browser navigation events
+- Implement history cleanup and memory management
+- Create TypeScript interfaces for history state and management
+- Add history debugging and logging for development
+- Include history performance optimization for large navigation stacks
+- Add history testing utilities and mock implementations
+
+### 6. Create Tool State Validation (`src/lib/tool-validation.ts`)
+- Create comprehensive tool state validation utilities
+- Implement tool existence validation against available tools list
+- Add tool accessibility validation (active, deprecated, disabled states)
+- Include tool permission validation for restricted tools
+- Add tool dependency validation for tools requiring prerequisites
+- Implement tool conflict resolution for invalid state combinations
+- Create TypeScript interfaces for validation rules and results
+- Add validation error handling with user-friendly messages
+- Include validation performance optimization for large tool lists
+- Add validation testing utilities and mock scenarios
+
+### 7. Create Tool Switching Performance (`src/lib/switching-performance.ts`)
+- Create performance optimization utilities for tool switching
+- Implement preloading strategies for likely next tools
+- Add caching mechanisms for tool data and state
+- Include lazy loading for tool-specific resources
+- Add performance monitoring and metrics collection
+- Implement memory management and cleanup for unused tool data
+- Create TypeScript interfaces for performance configuration
+- Add performance debugging and profiling utilities
+- Include performance testing utilities and benchmarks
+- Add performance optimization recommendations and best practices
+
+### 8. Create Tool Switching Integration (`src/components/navigation/ToolSwitching/index.ts`)
+- Create comprehensive export file for all tool switching components
+- Set up tool switching composition with all utilities integrated
+- Add tool switching configuration presets for different scenarios
+- Include integration with tab navigation from Task 6.1
+- Create tool switching testing utilities and mock data
+- Add tool switching documentation and usage examples
+- Include comprehensive TypeScript type exports
+- Create accessibility testing helpers for tool switching
+- Add debugging utilities for tool switching troubleshooting
+- Include performance monitoring and optimization utilities
+
+## Completion Checklist
+
+Before marking this task as complete, verify ALL of the following items:
+
+### Tool Switching Context Verification
+- [ ] `src/contexts/ToolSwitchingContext.tsx` exists with global state management
+- [ ] State structure includes active tool, previous tool, loading states
+- [ ] Tool switching actions (setActiveTool, switchTool, resetTool) work correctly
+- [ ] Tool history tracking for navigation and analytics implemented
+- [ ] State validation ensures tool exists and is accessible
+- [ ] State persistence using localStorage for session continuity works
+- [ ] TypeScript interfaces for context state and actions defined
+- [ ] Context provider component with proper initialization implemented
+- [ ] Context debugging utilities for development included
+- [ ] Context performance optimization prevents unnecessary re-renders
+
+### Tool Switching Hook Verification
+- [ ] `src/hooks/useToolSwitching.ts` exists consuming ToolSwitchingContext
+- [ ] Hook methods for switching operations (switchToTool, switchBySlug) work
+- [ ] Tool validation methods (isValidTool, canSwitchToTool) function correctly
+- [ ] Tool switching state queries (isActive, isPrevious, isLoading) work
+- [ ] Tool switching utilities (getNextTool, getPreviousTool) implemented
+- [ ] Error handling for invalid switching attempts works correctly
+- [ ] TypeScript interface for hook return values and methods defined
+- [ ] Hook performance optimization with proper memoization implemented
+- [ ] Hook debugging and logging utilities included
+- [ ] Hook testing utilities and mock implementations created
+
+### URL Synchronization System Verification
+- [ ] `src/lib/url-sync.ts` exists with URL synchronization utilities
+- [ ] URL parameter management for active tool works correctly
+- [ ] Deep linking support for direct tool access via URL functions
+- [ ] URL validation and sanitization for security implemented
+- [ ] Browser history integration with back/forward navigation works
+- [ ] URL state restoration on page refresh or navigation functions
+- [ ] TypeScript interfaces for URL state management defined
+- [ ] URL change detection and automatic synchronization works
+- [ ] URL debugging utilities for development included
+- [ ] URL performance optimization prevents unnecessary updates
+
+### Transition Management Verification
+- [ ] `src/components/navigation/ToolTransitions.tsx` exists for smooth transitions
+- [ ] Fade in/out animations for tool content switching work correctly
+- [ ] Slide transitions with proper direction based on tool order implemented
+- [ ] Loading state transitions with skeleton components function properly
+- [ ] Error state transitions with recovery animations work
+- [ ] Transition timing and easing provide smooth user experience
+- [ ] TypeScript interface for transition configuration and states defined
+- [ ] Accessibility support for reduced motion preferences implemented
+- [ ] Transition performance optimization prevents layout shifts
+- [ ] Transition debugging utilities for development included
+
+### Browser History Integration Verification
+- [ ] `src/lib/history-manager.ts` exists with history management utilities
+- [ ] History stack management with state preservation implemented
+- [ ] History navigation handlers (back, forward, replace, push) work correctly
+- [ ] History state validation and recovery mechanisms function properly
+- [ ] History event listeners for browser navigation events implemented
+- [ ] History cleanup and memory management works correctly
+- [ ] TypeScript interfaces for history state and management defined
+- [ ] History debugging and logging for development included
+- [ ] History performance optimization for large navigation stacks implemented
+- [ ] History testing utilities and mock implementations created
+
+### Tool State Validation Verification
+- [ ] `src/lib/tool-validation.ts` exists with comprehensive validation
+- [ ] Tool existence validation against available tools list works
+- [ ] Tool accessibility validation (active, deprecated, disabled) functions
+- [ ] Tool permission validation for restricted tools implemented
+- [ ] Tool dependency validation for prerequisites works correctly
+- [ ] Tool conflict resolution for invalid state combinations implemented
+- [ ] TypeScript interfaces for validation rules and results defined
+- [ ] Validation error handling with user-friendly messages works
+- [ ] Validation performance optimization for large tool lists implemented
+- [ ] Validation testing utilities and mock scenarios created
+
+### Tool Switching Performance Verification
+- [ ] `src/lib/switching-performance.ts` exists with optimization utilities
+- [ ] Preloading strategies for likely next tools implemented
+- [ ] Caching mechanisms for tool data and state work correctly
+- [ ] Lazy loading for tool-specific resources functions properly
+- [ ] Performance monitoring and metrics collection implemented
+- [ ] Memory management and cleanup for unused tool data works
+- [ ] TypeScript interfaces for performance configuration defined
+- [ ] Performance debugging and profiling utilities included
+- [ ] Performance testing utilities and benchmarks created
+- [ ] Performance optimization recommendations and best practices included
+
+### Integration and Export Verification
+- [ ] `src/components/navigation/ToolSwitching/index.ts` exists with exports
+- [ ] Tool switching composition with all utilities integrated properly
+- [ ] Tool switching configuration presets for different scenarios included
+- [ ] Integration with tab navigation from Task 6.1 functions correctly
+- [ ] Tool switching testing utilities and mock data created
+- [ ] Tool switching documentation and usage examples included
+- [ ] Comprehensive TypeScript type exports defined
+- [ ] Accessibility testing helpers for tool switching included
+- [ ] Debugging utilities for troubleshooting added
+- [ ] Performance monitoring and optimization utilities included
+
+### State Management Verification
+- [ ] Active tool state updates correctly when switching tools
+- [ ] Previous tool state maintains history for navigation
+- [ ] Loading states display appropriately during tool switches
+- [ ] Error states handle invalid tool switching attempts gracefully
+- [ ] State persistence works across browser sessions
+- [ ] State synchronization with URL parameters functions correctly
+- [ ] State validation prevents invalid tool states
+- [ ] State cleanup prevents memory leaks and performance issues
+
+### URL and Navigation Verification
+- [ ] URL updates correctly when switching tools (e.g., ?tool=claude)
+- [ ] Deep linking works for direct tool access via URL
+- [ ] Browser back/forward buttons work correctly with tool switching
+- [ ] Page refresh maintains active tool state from URL
+- [ ] Invalid tool URLs redirect or show appropriate error handling
+- [ ] URL changes trigger appropriate tool switching behavior
+- [ ] URL history integrates properly with browser navigation
+- [ ] URL parameters are properly encoded and decoded
+
+### Transition and Animation Verification
+- [ ] Tool switching animations are smooth and performant
+- [ ] Loading states provide appropriate visual feedback during switches
+- [ ] Error transitions handle failed tool switches gracefully
+- [ ] Transition timing doesn't interfere with user interactions
+- [ ] Reduced motion preferences are respected for accessibility
+- [ ] Transitions work correctly on all device types and screen sizes
+- [ ] Animation performance doesn't impact overall application performance
+- [ ] Transition states are properly managed and cleaned up
+
+### Performance and Memory Verification
+- [ ] Tool switching doesn't cause memory leaks or performance degradation
+- [ ] State management is optimized for efficient re-renders
+- [ ] Preloading strategies improve perceived performance
+- [ ] Caching reduces unnecessary data fetching and processing
+- [ ] Memory cleanup prevents accumulation of unused tool data
+- [ ] Performance monitoring provides useful metrics and insights
+- [ ] Large tool lists don't impact switching performance
+- [ ] Concurrent tool switches are handled appropriately
+
+### Error Handling and Edge Cases Verification
+- [ ] Invalid tool switching attempts are handled gracefully
+- [ ] Missing or unavailable tools show appropriate error messages
+- [ ] Network errors during tool switching are handled properly
+- [ ] Malformed URL parameters are sanitized and validated
+- [ ] Concurrent switching attempts don't cause race conditions
+- [ ] Tool dependency conflicts are resolved appropriately
+- [ ] Browser compatibility issues are handled gracefully
+- [ ] Edge cases like disabled JavaScript are considered
+
+### Integration with Existing Components Verification
+- [ ] Tool switching integrates properly with TabNavigation from Task 6.1
+- [ ] ToolCard, ToolGrid, and ToolDetail components respond to tool changes
+- [ ] Data fetching hooks from Task 5.1 work with tool switching
+- [ ] Loading and error components display correctly during switches
+- [ ] Tool switching doesn't interfere with other navigation systems
+- [ ] State management works with existing application architecture
+- [ ] Performance optimization doesn't conflict with other optimizations
+
+## Success Criteria
+Task 6.2 is complete when:
+1. All items in the completion checklist are verified ✓
+2. Tool switching logic works smoothly for all 15 AI tools
+3. URL synchronization and browser history integration function correctly
+4. State management is robust with proper persistence and validation
+5. Transitions and animations provide smooth user experience
+6. Performance is optimized with appropriate caching and preloading
+7. No errors exist in console or TypeScript compilation
+8. Tool switching is ready for integration with content display logic
+
+## Important Notes
+- **ONLY** work on tool switching logic - do not implement tool content display or data fetching
+- Focus on creating robust, performant state management for tool switching
+- Ensure URL synchronization works properly with Next.js App Router
+- Test browser navigation (back/forward) thoroughly with tool switching
+- Maintain performance optimization to prevent unnecessary re-renders
+- Use data structures from Task 5.1 for tool identification and validation
+- Ensure tool switching doesn't conflict with existing navigation systems
+- Test edge cases like invalid URLs, missing tools, and concurrent switches

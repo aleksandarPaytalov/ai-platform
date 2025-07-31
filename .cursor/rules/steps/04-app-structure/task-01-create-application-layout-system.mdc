@@ -1,0 +1,182 @@
+---
+alwaysApply: false
+---
+# Task 4.1: Create Application Layout System
+
+## Context and Scope
+You are working on **Task 4.1** of the AI Feature Tracker project. This task focuses ONLY on creating the foundational application layout system with responsive header, footer, and global HTML structure. Do NOT implement any other features, components, or functionality beyond what is explicitly listed in the AI Instructions below.
+
+## Technology Standards for This Task
+- **Next.js 14+** with App Router and server components
+- **TypeScript** with strict mode and proper type definitions
+- **Tailwind CSS** for styling with mobile-first responsive design
+- **Semantic HTML5** with proper accessibility attributes
+- **SEO optimization** with meta tags and Open Graph configuration
+
+## AI Instructions
+
+Complete the following tasks in exact order:
+
+### 1. Create Root Layout (`app/layout.tsx`)
+- Create `app/layout.tsx` with proper HTML5 document structure
+- Include proper `<html>`, `<head>`, and `<body>` tags with TypeScript interfaces
+- Add essential meta tags: viewport, charset, description
+- Configure Next.js metadata API with title template and default metadata
+- Include Open Graph and Twitter Card meta tags for social sharing
+- Add favicon and app icon configuration
+- Import and apply global CSS and Tailwind CSS
+- Set up proper font configuration (system fonts or Google Fonts)
+- Add proper TypeScript interface for layout props with children
+
+### 2. Create Header Component (`src/components/layout/Header.tsx`)
+- Design responsive header component with semantic `<header>` element
+- Include application logo/brand (placeholder text "AI Feature Tracker" for now)
+- Add navigation placeholder structure (empty `<nav>` element for future implementation)
+- Include search bar placeholder (empty `<div>` with search styling for future implementation)
+- Implement responsive behavior: mobile hamburger menu placeholder, desktop horizontal layout
+- Use Tailwind CSS for styling with consistent spacing and colors
+- Add proper ARIA labels and accessibility attributes
+- Include TypeScript interface for Header props (if any)
+- Make header sticky/fixed at top with proper z-index
+- Add proper semantic HTML structure with heading hierarchy
+
+### 3. Create Footer Component (`src/components/layout/Footer.tsx`)
+- Design footer component with semantic `<footer>` element
+- Include copyright information and current year (dynamic)
+- Add placeholder links section (About, Privacy, Terms, Contact)
+- Include "Last updated" information display (placeholder for now)
+- Add social media links placeholders (GitHub, Twitter, etc.)
+- Use Tailwind CSS for consistent styling and responsive layout
+- Include proper semantic HTML with navigation and content sections
+- Add TypeScript interface for Footer props (if any)
+- Ensure footer sticks to bottom on short content pages
+- Include proper accessibility attributes and ARIA labels
+
+### 4. Integrate Layout Components
+- Import Header and Footer components into `app/layout.tsx`
+- Create proper layout structure: Header → Main Content → Footer
+- Add proper semantic HTML5 structure with `<main>` element for content area
+- Configure proper spacing and layout flow between components
+- Ensure main content area expands to fill available space
+- Add proper CSS classes for layout structure and responsiveness
+- Test layout responsiveness at different screen sizes (mobile, tablet, desktop)
+- Verify semantic HTML structure and accessibility
+
+### 5. Configure Global Styling and Responsive Design
+- Set up Tailwind CSS configuration if not already done
+- Create global CSS file (`src/app/globals.css`) with base styles
+- Configure responsive breakpoints and mobile-first approach
+- Add smooth scrolling behavior and focus management styles
+- Set up consistent color scheme and typography scale
+- Configure proper spacing and layout utilities
+- Add print styles (basic) for better printing experience
+- Ensure proper contrast ratios for accessibility compliance
+
+### 6. Add SEO and Performance Optimization
+- Configure Next.js metadata API with proper title templates
+- Add structured data markup (JSON-LD) for website/organization
+- Set up proper canonical URLs and meta descriptions
+- Configure robots.txt directives in metadata
+- Add proper lang attribute and locale configuration
+- Optimize font loading and prevent layout shift
+- Add proper meta tags for mobile optimization
+- Configure proper viewport and scaling settings
+
+### 7. Implement Accessibility Features
+- Add skip-to-content link for keyboard navigation
+- Ensure proper heading hierarchy (h1, h2, h3, etc.)
+- Add proper ARIA landmarks (banner, main, contentinfo)
+- Include focus management and visible focus indicators
+- Add proper alt text placeholders for future images
+- Ensure keyboard navigation works properly
+- Test with screen reader accessibility (basic semantic structure)
+- Add proper contrast and color accessibility
+
+## Completion Checklist
+
+Before marking this task as complete, verify ALL of the following items:
+
+### File Structure Verification
+- [ ] `app/layout.tsx` exists and contains proper root layout structure
+- [ ] `src/components/layout/Header.tsx` exists and is properly implemented
+- [ ] `src/components/layout/Footer.tsx` exists and is properly implemented
+- [ ] `src/app/globals.css` exists with global styles configured
+
+### Layout Structure Verification
+- [ ] Root layout includes proper HTML5 document structure (`<html>`, `<head>`, `<body>`)
+- [ ] Header component is imported and rendered in layout
+- [ ] Footer component is imported and rendered in layout
+- [ ] Main content area (`<main>`) is properly structured between header and footer
+- [ ] Layout flows correctly: Header → Main → Footer
+
+### Header Component Verification
+- [ ] Header uses semantic `<header>` element
+- [ ] Logo/brand "AI Feature Tracker" is displayed
+- [ ] Navigation placeholder (`<nav>`) is present for future implementation
+- [ ] Search bar placeholder is present with proper styling
+- [ ] Header is responsive (mobile and desktop layouts)
+- [ ] Header is sticky/fixed at top with proper z-index
+- [ ] Proper ARIA labels and accessibility attributes are included
+
+### Footer Component Verification
+- [ ] Footer uses semantic `<footer>` element
+- [ ] Copyright with dynamic current year is displayed
+- [ ] Placeholder links section is implemented
+- [ ] "Last updated" placeholder is present
+- [ ] Social media link placeholders are included
+- [ ] Footer styling is consistent and responsive
+- [ ] Footer sticks to bottom on short content pages
+
+### Styling and Responsiveness Verification
+- [ ] Tailwind CSS is properly configured and working
+- [ ] Layout is responsive at mobile (320px+), tablet (768px+), and desktop (1024px+) breakpoints
+- [ ] Mobile-first approach is implemented
+- [ ] Consistent spacing and typography throughout
+- [ ] Proper color scheme and contrast ratios
+- [ ] Smooth scrolling and focus management styles are applied
+
+### SEO and Metadata Verification
+- [ ] Next.js metadata API is properly configured
+- [ ] Title template is set up for dynamic page titles
+- [ ] Essential meta tags are included (viewport, charset, description)
+- [ ] Open Graph and Twitter Card meta tags are configured
+- [ ] Favicon and app icons are configured
+- [ ] Proper lang attribute and locale settings
+
+### Accessibility Verification
+- [ ] Skip-to-content link is implemented
+- [ ] Proper heading hierarchy is established
+- [ ] ARIA landmarks are properly implemented (banner, main, contentinfo)
+- [ ] Keyboard navigation works properly
+- [ ] Focus indicators are visible and accessible
+- [ ] Basic screen reader compatibility is ensured
+
+### TypeScript Verification
+- [ ] All components have proper TypeScript interfaces
+- [ ] No TypeScript errors or warnings
+- [ ] Proper type definitions for props and state
+- [ ] Strict mode compliance
+
+### Testing Verification
+- [ ] Layout renders correctly without errors
+- [ ] Responsive behavior works at all breakpoints
+- [ ] No console errors or warnings
+- [ ] Basic accessibility testing completed
+- [ ] Cross-browser compatibility verified (Chrome, Firefox, Safari, Edge)
+
+## Success Criteria
+Task 4.1 is complete when:
+1. All items in the completion checklist are verified ✓
+2. The application has a complete, responsive layout system
+3. Header and Footer components are properly integrated
+4. SEO and accessibility foundations are established
+5. No errors exist in console or TypeScript compilation
+6. Layout system is ready for content integration in subsequent tasks
+
+## Important Notes
+- **ONLY** work on layout system components - do not implement navigation logic, search functionality, or content components
+- Use placeholder content where future features will be integrated
+- Focus on semantic HTML and accessibility from the start
+- Ensure mobile-first responsive design approach
+- All styling should use Tailwind CSS utility classes
+- Maintain TypeScript strict mode compliance throughout

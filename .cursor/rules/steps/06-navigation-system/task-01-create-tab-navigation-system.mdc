@@ -1,0 +1,276 @@
+---
+alwaysApply: false
+---
+# Task 6.1: Create Tab Navigation System
+
+## Context and Scope
+You are working on **Task 6.1** of the AI Feature Tracker project. This task focuses ONLY on creating the tab navigation system for switching between the 15 AI tools. Do NOT implement any tool content display, data fetching beyond what's needed for tab information, or features beyond what is explicitly listed in the AI Instructions below.
+
+## Technology Standards for This Task
+- **React components** with TypeScript and proper interfaces
+- **Tab navigation** with proper ARIA attributes and keyboard support
+- **Responsive design** with horizontal scrolling on mobile devices
+- **Tailwind CSS** for styling with smooth transitions and animations
+- **Accessibility** with WCAG 2.1 AA compliance and screen reader support
+- **Performance optimization** with lazy loading and efficient rendering
+
+## AI Instructions
+
+Complete the following tasks in exact order:
+
+### 1. Create Base Tab Navigation Component (`src/components/navigation/TabNavigation.tsx`)
+- Create main `TabNavigation` component managing tab state and rendering
+- Implement horizontal tab layout with proper spacing and alignment
+- Add active tab highlighting with smooth transitions and visual feedback
+- Include tab overflow handling with horizontal scrolling on smaller screens
+- Add proper semantic HTML structure using `<nav>`, `<ul>`, `<li>` elements
+- Implement ARIA attributes for tab navigation (role="tablist", aria-selected)
+- Create TypeScript interface for tab navigation props and active tab management
+- Add keyboard navigation support (Tab, Enter, Arrow keys for tab switching)
+- Include focus management with visible focus indicators
+- Add tab click handling with proper event management and state updates
+
+### 2. Create Individual Tab Component (`src/components/navigation/TabNavigation/Tab.tsx`)
+- Create `Tab` component for individual tool tabs with logo and name display
+- Implement tab layout with tool logo, name, and optional update indicators
+- Add hover effects and interactive states with smooth CSS transitions
+- Include active state styling with distinctive visual treatment
+- Add disabled state support for inactive or loading tools
+- Implement proper accessibility attributes (role="tab", aria-controls, aria-selected)
+- Create TypeScript interface for tab props including tool data and state
+- Add tab sizing options (compact, normal, expanded) for different contexts
+- Include tab badge support for showing update counts or status indicators
+- Add tab tooltip support for additional tool information on hover
+
+### 3. Create Tab Scrolling System (`src/components/navigation/TabNavigation/TabScroll.tsx`)
+- Create `TabScroll` component managing horizontal scrolling behavior
+- Implement smooth scrolling with scroll snap points for better UX
+- Add scroll indicators showing available content in both directions
+- Include scroll buttons for explicit navigation (previous/next arrows)
+- Add touch gesture support for mobile swipe navigation
+- Implement automatic scrolling to active tab when selection changes
+- Create TypeScript interface for scroll configuration and behavior
+- Add scroll position persistence across component re-renders
+- Include scroll accessibility features for keyboard and screen reader users
+- Add scroll performance optimization to prevent layout thrashing
+
+### 4. Create Tab Overflow Management (`src/components/navigation/TabNavigation/TabOverflow.tsx`)
+- Create `TabOverflow` component handling tab display when space is limited
+- Implement responsive tab sizing that adapts to available container width
+- Add tab truncation with ellipsis for long tool names
+- Include priority-based tab display (active tab always visible)
+- Add "more tabs" dropdown for tabs that don't fit in available space
+- Implement tab grouping and categorization for better organization
+- Create TypeScript interface for overflow configuration and responsive behavior
+- Add overflow indicators showing hidden tabs count
+- Include overflow accessibility features with proper ARIA labels
+- Add overflow animation and transition effects for smooth UX
+
+### 5. Create Keyboard Navigation Handler (`src/components/navigation/TabNavigation/KeyboardNav.tsx`)
+- Create `KeyboardNav` component managing all keyboard interactions
+- Implement arrow key navigation (Left/Right arrows for tab switching)
+- Add Home/End key support for jumping to first/last tabs
+- Include Enter/Space for tab activation and selection
+- Add Tab key support for focus management within tab navigation
+- Implement Escape key handling for closing dropdowns or overlays
+- Create TypeScript interface for keyboard event handling and configuration
+- Add keyboard shortcut support (Cmd/Ctrl + numbers for direct tab access)
+- Include keyboard navigation announcements for screen readers
+- Add keyboard navigation visual feedback and focus indicators
+
+### 6. Create Tab State Management (`src/components/navigation/TabNavigation/TabState.tsx`)
+- Create `TabState` component managing active tab state and transitions
+- Implement state persistence across browser sessions using localStorage
+- Add state synchronization with URL parameters for deep linking
+- Include state validation to ensure active tab exists and is valid
+- Add state change animations and smooth transitions between tabs
+- Implement state history management for browser back/forward navigation
+- Create TypeScript interface for tab state structure and management
+- Add state debugging utilities for development and troubleshooting
+- Include state error handling for invalid or missing tab configurations
+- Add state performance optimization to prevent unnecessary re-renders
+
+### 7. Create Tab Loading and Error States (`src/components/navigation/TabNavigation/TabStates.tsx`)
+- Create `TabStates` component handling loading and error scenarios
+- Implement tab loading skeletons matching actual tab layout
+- Add error state display for tabs that fail to load or are unavailable
+- Include retry functionality for failed tab loading attempts
+- Add progressive loading with tabs appearing as data becomes available
+- Implement placeholder tabs for tools not yet loaded
+- Create TypeScript interface for tab state management and error handling
+- Add loading animations and transition effects
+- Include accessibility announcements for loading and error states
+- Add error recovery mechanisms and user-friendly error messages
+
+### 8. Create Tab Navigation Integration (`src/components/navigation/TabNavigation/index.ts`)
+- Create comprehensive export file for all tab navigation components
+- Set up tab navigation composition with all subcomponents integrated
+- Add tab navigation configuration presets for different use cases
+- Include integration with tool data from previous tasks (Task 5.1)
+- Create tab navigation performance optimization utilities
+- Add tab navigation testing utilities and mock data generators
+- Include comprehensive TypeScript type exports for all interfaces
+- Create accessibility testing helpers for tab navigation
+- Add documentation and usage examples for tab implementation
+- Include debugging utilities for tab navigation troubleshooting
+
+## Completion Checklist
+
+Before marking this task as complete, verify ALL of the following items:
+
+### Base Tab Navigation Component Verification
+- [ ] `src/components/navigation/TabNavigation.tsx` exists and manages tab state
+- [ ] Horizontal tab layout with proper spacing and alignment implemented
+- [ ] Active tab highlighting with smooth transitions works correctly
+- [ ] Tab overflow handling with horizontal scrolling on smaller screens functions
+- [ ] Proper semantic HTML structure using nav, ul, li elements implemented
+- [ ] ARIA attributes for tab navigation (tablist, aria-selected) included
+- [ ] TypeScript interface for tab navigation props and state management defined
+- [ ] Keyboard navigation support (Tab, Enter, Arrow keys) works correctly
+- [ ] Focus management with visible focus indicators implemented
+- [ ] Tab click handling with event management and state updates functions
+
+### Individual Tab Component Verification
+- [ ] `src/components/navigation/TabNavigation/Tab.tsx` exists for individual tools
+- [ ] Tab layout with tool logo, name, and update indicators implemented
+- [ ] Hover effects and interactive states with smooth transitions work
+- [ ] Active state styling with distinctive visual treatment functions correctly
+- [ ] Disabled state support for inactive or loading tools implemented
+- [ ] Proper accessibility attributes (role="tab", aria-controls) included
+- [ ] TypeScript interface for tab props including tool data defined
+- [ ] Tab sizing options (compact, normal, expanded) work correctly
+- [ ] Tab badge support for update counts or status indicators included
+- [ ] Tab tooltip support for additional tool information functions
+
+### Tab Scrolling System Verification
+- [ ] `src/components/navigation/TabNavigation/TabScroll.tsx` exists for scrolling
+- [ ] Smooth scrolling with scroll snap points for better UX implemented
+- [ ] Scroll indicators showing available content in both directions work
+- [ ] Scroll buttons for explicit navigation (arrows) function correctly
+- [ ] Touch gesture support for mobile swipe navigation works
+- [ ] Automatic scrolling to active tab when selection changes functions
+- [ ] TypeScript interface for scroll configuration and behavior defined
+- [ ] Scroll position persistence across re-renders implemented
+- [ ] Scroll accessibility features for keyboard and screen readers included
+- [ ] Scroll performance optimization prevents layout thrashing
+
+### Tab Overflow Management Verification
+- [ ] `src/components/navigation/TabNavigation/TabOverflow.tsx` exists for limited space
+- [ ] Responsive tab sizing adapts to available container width
+- [ ] Tab truncation with ellipsis for long tool names works correctly
+- [ ] Priority-based tab display (active tab always visible) implemented
+- [ ] "More tabs" dropdown for tabs that don't fit functions correctly
+- [ ] Tab grouping and categorization for better organization included
+- [ ] TypeScript interface for overflow configuration and behavior defined
+- [ ] Overflow indicators showing hidden tabs count work correctly
+- [ ] Overflow accessibility features with proper ARIA labels included
+- [ ] Overflow animation and transition effects provide smooth UX
+
+### Keyboard Navigation Handler Verification
+- [ ] `src/components/navigation/TabNavigation/KeyboardNav.tsx` exists for interactions
+- [ ] Arrow key navigation (Left/Right) for tab switching works correctly
+- [ ] Home/End key support for jumping to first/last tabs functions
+- [ ] Enter/Space for tab activation and selection works properly
+- [ ] Tab key support for focus management within navigation functions
+- [ ] Escape key handling for closing dropdowns or overlays works
+- [ ] TypeScript interface for keyboard event handling defined
+- [ ] Keyboard shortcut support (Cmd/Ctrl + numbers) for direct access works
+- [ ] Keyboard navigation announcements for screen readers included
+- [ ] Keyboard navigation visual feedback and focus indicators work
+
+### Tab State Management Verification
+- [ ] `src/components/navigation/TabNavigation/TabState.tsx` exists for state management
+- [ ] State persistence across browser sessions using localStorage works
+- [ ] State synchronization with URL parameters for deep linking functions
+- [ ] State validation ensures active tab exists and is valid
+- [ ] State change animations and smooth transitions work correctly
+- [ ] State history management for browser navigation implemented
+- [ ] TypeScript interface for tab state structure and management defined
+- [ ] State debugging utilities for development included
+- [ ] State error handling for invalid configurations works correctly
+- [ ] State performance optimization prevents unnecessary re-renders
+
+### Tab Loading and Error States Verification
+- [ ] `src/components/navigation/TabNavigation/TabStates.tsx` exists for state handling
+- [ ] Tab loading skeletons matching actual tab layout implemented
+- [ ] Error state display for failed or unavailable tabs works correctly
+- [ ] Retry functionality for failed tab loading attempts functions
+- [ ] Progressive loading with tabs appearing as data available works
+- [ ] Placeholder tabs for tools not yet loaded implemented
+- [ ] TypeScript interface for tab state and error handling defined
+- [ ] Loading animations and transition effects work smoothly
+- [ ] Accessibility announcements for loading and error states included
+- [ ] Error recovery mechanisms and user-friendly messages work
+
+### Integration and Export Verification
+- [ ] `src/components/navigation/TabNavigation/index.ts` exists with comprehensive exports
+- [ ] Tab navigation composition with all subcomponents integrated properly
+- [ ] Tab navigation configuration presets for different use cases included
+- [ ] Integration with tool data from Task 5.1 functions correctly
+- [ ] Tab navigation performance optimization utilities implemented
+- [ ] Tab navigation testing utilities and mock data generators created
+- [ ] Comprehensive TypeScript type exports for all interfaces defined
+- [ ] Accessibility testing helpers for tab navigation included
+- [ ] Documentation and usage examples for implementation added
+- [ ] Debugging utilities for troubleshooting included
+
+### Responsive Design Verification
+- [ ] Tab navigation works correctly on mobile devices (320px - 767px)
+- [ ] Horizontal scrolling functions properly on narrow screens
+- [ ] Tab navigation displays properly on tablet devices (768px - 1023px)
+- [ ] Tab navigation functions correctly on desktop devices (1024px+)
+- [ ] Touch interactions work properly for tab selection and scrolling
+- [ ] Scroll indicators adapt appropriately to different screen sizes
+- [ ] Tab sizing adjusts properly across all breakpoints
+- [ ] Overflow handling works correctly at all screen widths
+
+### Accessibility Verification
+- [ ] All tab navigation is keyboard accessible (Tab, Arrow keys, Enter, Space)
+- [ ] Proper ARIA attributes and roles implemented throughout (tablist, tab, tabpanel)
+- [ ] Screen reader compatibility verified for tab navigation and selection
+- [ ] Focus management works correctly with visible focus indicators
+- [ ] Tab selection changes are properly announced to assistive technologies
+- [ ] Color is not the only way to convey active state (visual indicators included)
+- [ ] Keyboard shortcuts work without conflicting with browser/OS shortcuts
+- [ ] Loading and error states are accessible to screen readers
+
+### Performance Verification
+- [ ] Tab navigation renders efficiently with all 15 tools
+- [ ] Scrolling performance is smooth without lag or stuttering
+- [ ] State management doesn't cause unnecessary re-renders
+- [ ] Tab animations and transitions don't impact performance
+- [ ] Memory usage remains reasonable during extended navigation
+- [ ] Component updates are optimized and efficient
+- [ ] Large numbers of tabs don't degrade performance
+- [ ] Tab loading is progressive and doesn't block UI
+
+### Integration with AI Tools Verification
+- [ ] Tab navigation displays all 15 AI tools correctly (Claude, ChatGPT, Gemini, etc.)
+- [ ] Tool logos display correctly in tabs with proper fallbacks
+- [ ] Tool names are displayed clearly and truncated appropriately
+- [ ] Active tool selection works correctly for all tools
+- [ ] Tab badges show update indicators correctly for each tool
+- [ ] Tab state persists correctly when switching between tools
+- [ ] Tool-specific information displays properly in tab tooltips
+- [ ] Tab navigation integrates well with tool data from Task 5.1
+
+## Success Criteria
+Task 6.1 is complete when:
+1. All items in the completion checklist are verified ✓
+2. Tab navigation system works smoothly for all 15 AI tools
+3. Responsive design functions properly across all device sizes
+4. Keyboard navigation and accessibility standards are fully implemented
+5. Horizontal scrolling and overflow management work seamlessly
+6. Active state management and persistence function correctly
+7. No errors exist in console or TypeScript compilation
+8. Tab navigation is ready for integration with tool switching logic
+
+## Important Notes
+- **ONLY** work on tab navigation system - do not implement tool content switching or data fetching
+- Focus on creating smooth, accessible navigation experience
+- Ensure horizontal scrolling works well on mobile devices with touch gestures
+- Test keyboard navigation thoroughly with all supported key combinations
+- Maintain visual consistency with design system from previous tasks
+- Use tool data structure from Task 5.1 for tab information
+- Ensure tab navigation doesn't interfere with other page navigation
+- Test performance with all 15 tools to ensure smooth operation

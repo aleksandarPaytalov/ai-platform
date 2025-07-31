@@ -1,0 +1,277 @@
+---
+alwaysApply: false
+---
+# Task 5.2: Create ToolCard Component
+
+## Context and Scope
+You are working on **Task 5.2** of the AI Feature Tracker project. This task focuses ONLY on creating the ToolCard component for displaying individual AI tool information in a card format. Do NOT implement any data fetching logic, grid layouts, or features beyond what is explicitly listed in the AI Instructions below.
+
+## Technology Standards for This Task
+- **React components** with TypeScript and proper interfaces
+- **Supabase data integration** using the service functions from Task 5.1
+- **Tailwind CSS** for consistent styling and responsive design
+- **Accessibility** with proper ARIA attributes and keyboard navigation
+- **Interactive states** with hover effects and click handling
+- **Loading states** with skeleton components matching card layout
+
+## AI Instructions
+
+Complete the following tasks in exact order:
+
+### 1. Create Base ToolCard Component (`src/components/tools/ToolCard.tsx`)
+- Create main `ToolCard` component accepting tool data as props
+- Design card layout with tool logo, name, description, and category sections
+- Include visual indicators for tool status (active/inactive) and recent updates
+- Add "last updated" timestamp display with relative time formatting
+- Implement responsive card design that works on mobile, tablet, and desktop
+- Include proper semantic HTML structure with heading hierarchy
+- Add accessibility attributes (ARIA labels, roles, descriptions)
+- Create TypeScript interface for ToolCard props with tool data structure
+- Include error boundary handling for malformed tool data
+- Add default fallback content for missing tool information
+
+### 2. Create Tool Logo and Branding Section (`src/components/tools/ToolCard/ToolLogo.tsx`)
+- Create `ToolLogo` component for displaying tool logos with fallback handling
+- Implement image optimization and lazy loading for tool logos
+- Add fallback to tool name initials when logo is unavailable
+- Include logo aspect ratio preservation and consistent sizing
+- Add hover effects and visual feedback for interactive logos
+- Implement proper alt text and accessibility for logo images
+- Create TypeScript interface for logo props and image handling
+- Add loading states with skeleton placeholder for logo area
+- Include error handling for broken or missing logo images
+- Add support for different logo formats and sizes
+
+### 3. Create Tool Information Section (`src/components/tools/ToolCard/ToolInfo.tsx`)
+- Create `ToolInfo` component for tool name, description, and metadata
+- Implement truncated description with "read more" functionality
+- Add tool name with proper heading hierarchy and semantic structure
+- Include tool website link with external link indicators
+- Add tool category badge with color coding and visual distinction
+- Implement proper text overflow handling for long descriptions
+- Create TypeScript interface for tool information props
+- Add accessibility features for truncated content and expand/collapse
+- Include loading states with text skeleton placeholders
+- Add support for rich text content in tool descriptions
+
+### 4. Create Update Status Indicators (`src/components/tools/ToolCard/UpdateStatus.tsx`)
+- Create `UpdateStatus` component showing recent update information
+- Implement visual indicators for new updates (badges, dots, highlights)
+- Add "last updated" timestamp with relative time display (e.g., "2 days ago")
+- Include update impact level indicators (High, Medium, Low) with color coding
+- Add count of recent updates with proper pluralization
+- Implement update freshness indicators (new, recent, outdated)
+- Create TypeScript interface for update status props
+- Add accessibility announcements for update status changes
+- Include loading states for update status information
+- Add click handlers for navigating to update details
+
+### 5. Create Interactive Card States (`src/components/tools/ToolCard/CardStates.tsx`)
+- Implement hover effects with smooth transitions and visual feedback
+- Add focus states for keyboard navigation with visible focus indicators
+- Create active/pressed states for click interactions
+- Include disabled state for inactive tools with appropriate visual treatment
+- Add selection state for multi-select scenarios (future use)
+- Implement loading state overlay for card-level loading
+- Create error state display for failed data loading
+- Add TypeScript interface for card state management
+- Include proper ARIA state attributes for interactive elements
+- Add touch-friendly interactions for mobile devices
+
+### 6. Create Card Actions and Navigation (`src/components/tools/ToolCard/CardActions.tsx`)
+- Create `CardActions` component for tool-specific actions
+- Add "View Details" action with proper routing to tool detail page
+- Include "Visit Website" action with external link handling
+- Add bookmark/favorite functionality (placeholder for future implementation)
+- Include share functionality with native sharing API support
+- Implement context menu with additional actions (right-click, long-press)
+- Create TypeScript interface for card actions and event handlers
+- Add accessibility features for action buttons (labels, descriptions)
+- Include keyboard navigation support for all actions
+- Add loading states for actions that require data processing
+
+### 7. Create ToolCard Loading Skeleton (`src/components/tools/ToolCard/ToolCardSkeleton.tsx`)
+- Create `ToolCardSkeleton` component matching ToolCard layout exactly
+- Implement skeleton placeholders for logo, title, description, and metadata
+- Add pulsing animation effects using Tailwind CSS
+- Include responsive skeleton behavior matching actual card responsiveness
+- Add proper accessibility attributes for loading states (aria-busy, aria-label)
+- Create skeleton variants for different card sizes and layouts
+- Implement skeleton animation timing and smooth transitions
+- Add TypeScript interface for skeleton configuration options
+- Include skeleton color theming to match design system
+- Add proper semantic structure for screen reader compatibility
+
+### 8. Create ToolCard Integration and Export (`src/components/tools/index.ts`)
+- Create comprehensive export file for all ToolCard components
+- Set up proper component composition and integration
+- Add ToolCard variants (compact, detailed, featured) for different use cases
+- Include component documentation and usage examples
+- Create TypeScript type exports for all component interfaces
+- Add component testing utilities and mock data generators
+- Include accessibility testing helpers for ToolCard components
+- Create performance optimization utilities (memoization, lazy loading)
+- Add debugging utilities for development and troubleshooting
+- Include integration examples with data fetching hooks from Task 5.1
+
+## Completion Checklist
+
+Before marking this task as complete, verify ALL of the following items:
+
+### Base ToolCard Component Verification
+- [ ] `src/components/tools/ToolCard.tsx` exists and renders tool information correctly
+- [ ] Card layout includes tool logo, name, description, and category sections
+- [ ] Visual indicators for tool status and recent updates display properly
+- [ ] "Last updated" timestamp shows with relative time formatting
+- [ ] Responsive card design works on mobile, tablet, and desktop
+- [ ] Proper semantic HTML structure with heading hierarchy implemented
+- [ ] Accessibility attributes (ARIA labels, roles, descriptions) included
+- [ ] TypeScript interface for ToolCard props with tool data structure defined
+- [ ] Error boundary handling for malformed tool data works
+- [ ] Default fallback content for missing tool information displays
+
+### Tool Logo and Branding Section Verification
+- [ ] `src/components/tools/ToolCard/ToolLogo.tsx` exists and displays logos correctly
+- [ ] Image optimization and lazy loading for tool logos implemented
+- [ ] Fallback to tool name initials when logo unavailable works
+- [ ] Logo aspect ratio preservation and consistent sizing maintained
+- [ ] Hover effects and visual feedback for interactive logos work
+- [ ] Proper alt text and accessibility for logo images implemented
+- [ ] TypeScript interface for logo props and image handling defined
+- [ ] Loading states with skeleton placeholder for logo area work
+- [ ] Error handling for broken or missing logo images functions
+- [ ] Support for different logo formats and sizes implemented
+
+### Tool Information Section Verification
+- [ ] `src/components/tools/ToolCard/ToolInfo.tsx` exists with tool metadata
+- [ ] Truncated description with "read more" functionality works correctly
+- [ ] Tool name with proper heading hierarchy and semantic structure
+- [ ] Tool website link with external link indicators functions properly
+- [ ] Tool category badge with color coding and visual distinction displays
+- [ ] Proper text overflow handling for long descriptions implemented
+- [ ] TypeScript interface for tool information props defined
+- [ ] Accessibility features for truncated content and expand/collapse work
+- [ ] Loading states with text skeleton placeholders function correctly
+- [ ] Support for rich text content in tool descriptions implemented
+
+### Update Status Indicators Verification
+- [ ] `src/components/tools/ToolCard/UpdateStatus.tsx` exists with update info
+- [ ] Visual indicators for new updates (badges, dots, highlights) display
+- [ ] "Last updated" timestamp with relative time display works correctly
+- [ ] Update impact level indicators with color coding function properly
+- [ ] Count of recent updates with proper pluralization displays
+- [ ] Update freshness indicators (new, recent, outdated) work correctly
+- [ ] TypeScript interface for update status props defined
+- [ ] Accessibility announcements for update status changes implemented
+- [ ] Loading states for update status information work
+- [ ] Click handlers for navigating to update details function properly
+
+### Interactive Card States Verification
+- [ ] `src/components/tools/ToolCard/CardStates.tsx` implements hover effects
+- [ ] Smooth transitions and visual feedback work correctly
+- [ ] Focus states for keyboard navigation with visible indicators work
+- [ ] Active/pressed states for click interactions function properly
+- [ ] Disabled state for inactive tools with appropriate visual treatment
+- [ ] Selection state for multi-select scenarios implemented
+- [ ] Loading state overlay for card-level loading works
+- [ ] Error state display for failed data loading functions
+- [ ] TypeScript interface for card state management defined
+- [ ] Proper ARIA state attributes for interactive elements included
+- [ ] Touch-friendly interactions for mobile devices work correctly
+
+### Card Actions and Navigation Verification
+- [ ] `src/components/tools/ToolCard/CardActions.tsx` exists with tool actions
+- [ ] "View Details" action with proper routing to tool detail page works
+- [ ] "Visit Website" action with external link handling functions
+- [ ] Bookmark/favorite functionality placeholder implemented
+- [ ] Share functionality with native sharing API support works
+- [ ] Context menu with additional actions (right-click, long-press) functions
+- [ ] TypeScript interface for card actions and event handlers defined
+- [ ] Accessibility features for action buttons implemented
+- [ ] Keyboard navigation support for all actions works correctly
+- [ ] Loading states for actions requiring data processing function
+
+### ToolCard Loading Skeleton Verification
+- [ ] `src/components/tools/ToolCard/ToolCardSkeleton.tsx` matches ToolCard layout
+- [ ] Skeleton placeholders for logo, title, description, metadata implemented
+- [ ] Pulsing animation effects using Tailwind CSS work correctly
+- [ ] Responsive skeleton behavior matches actual card responsiveness
+- [ ] Proper accessibility attributes for loading states included
+- [ ] Skeleton variants for different card sizes and layouts work
+- [ ] Skeleton animation timing and smooth transitions function properly
+- [ ] TypeScript interface for skeleton configuration options defined
+- [ ] Skeleton color theming matches design system
+- [ ] Proper semantic structure for screen reader compatibility implemented
+
+### Integration and Export Verification
+- [ ] `src/components/tools/index.ts` exists with comprehensive exports
+- [ ] Proper component composition and integration set up
+- [ ] ToolCard variants (compact, detailed, featured) for different use cases
+- [ ] Component documentation and usage examples included
+- [ ] TypeScript type exports for all component interfaces defined
+- [ ] Component testing utilities and mock data generators created
+- [ ] Accessibility testing helpers for ToolCard components included
+- [ ] Performance optimization utilities (memoization, lazy loading) implemented
+- [ ] Debugging utilities for development and troubleshooting added
+- [ ] Integration examples with data fetching hooks from Task 5.1 included
+
+### Responsive Design Verification
+- [ ] ToolCard works correctly on mobile devices (320px - 767px)
+- [ ] ToolCard displays properly on tablet devices (768px - 1023px)
+- [ ] ToolCard functions correctly on desktop devices (1024px+)
+- [ ] All interactive elements have appropriate touch targets (44px minimum)
+- [ ] Text remains readable at all screen sizes
+- [ ] Images and logos scale appropriately across breakpoints
+- [ ] Card spacing and padding adjust properly for different screen sizes
+- [ ] Navigation and actions work correctly on touch devices
+
+### Accessibility Verification
+- [ ] All interactive elements are keyboard navigable
+- [ ] Proper ARIA attributes and roles implemented throughout
+- [ ] Screen reader compatibility verified for all content
+- [ ] Focus indicators are visible and meet contrast requirements
+- [ ] Color information is not the only way to convey meaning
+- [ ] Alternative text provided for all images and icons
+- [ ] Loading states are properly announced to assistive technologies
+- [ ] Error states provide clear, actionable information
+
+### TypeScript and Performance Verification
+- [ ] All components have comprehensive TypeScript interfaces
+- [ ] No TypeScript errors or warnings exist
+- [ ] Strict mode compliance maintained throughout
+- [ ] Component props are properly validated and typed
+- [ ] Performance optimizations implemented (React.memo where appropriate)
+- [ ] Loading states prevent layout shifts
+- [ ] Images are optimized and lazy loaded
+- [ ] Component renders efficiently with large datasets
+
+### Integration Testing Verification
+- [ ] ToolCard integrates properly with data from Task 5.1 service functions
+- [ ] Loading states display while data is being fetched
+- [ ] Error states handle data fetching failures gracefully
+- [ ] Card actions trigger appropriate navigation and external links
+- [ ] Responsive behavior works correctly in different container sizes
+- [ ] Component works properly when embedded in grid layouts
+- [ ] All animations and transitions perform smoothly
+- [ ] No console errors or warnings during component usage
+
+## Success Criteria
+Task 5.2 is complete when:
+1. All items in the completion checklist are verified ✓
+2. ToolCard component displays AI tool information comprehensively
+3. All interactive states and animations work smoothly
+4. Component is fully responsive and accessible
+5. Loading skeletons match actual content layout perfectly
+6. TypeScript integration is complete with proper type safety
+7. No errors exist in console or TypeScript compilation
+8. Component is ready for integration into tool grid layouts
+
+## Important Notes
+- **ONLY** work on ToolCard component and its subcomponents - do not implement grid layouts or data fetching
+- Focus on creating a polished, interactive card component
+- Ensure all interactive elements work properly on both mouse and touch devices
+- Test component with various tool data scenarios (missing logos, long descriptions, etc.)
+- Maintain consistent styling with the design system from Task 4.5
+- Use service functions from Task 5.1 for data integration examples
+- Ensure skeleton loading states match the actual content layout exactly
+- Test accessibility with keyboard navigation and screen readers

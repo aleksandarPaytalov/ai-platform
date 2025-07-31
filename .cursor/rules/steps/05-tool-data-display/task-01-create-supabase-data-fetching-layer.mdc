@@ -1,0 +1,268 @@
+---
+alwaysApply: false
+---
+# Task 5.1: Create Supabase Data Fetching Layer
+
+## Context and Scope
+You are working on **Task 5.1** of the AI Feature Tracker project. This task focuses ONLY on creating the data fetching layer for Supabase integration with service functions, React hooks, and proper error handling. Do NOT implement any UI components, business logic beyond data operations, or features beyond what is explicitly listed in the AI Instructions below.
+
+## Technology Standards for This Task
+- **Supabase client** with proper TypeScript integration and auto-generated types
+- **React hooks** for data fetching with proper state management
+- **Error handling** with comprehensive error types and user-friendly messages
+- **Caching strategies** for performance optimization
+- **TypeScript** with strict typing for all data operations
+- **Loading states** and optimistic updates for better UX
+
+## AI Instructions
+
+Complete the following tasks in exact order:
+
+### 1. Set Up Supabase Client Configuration (`src/lib/supabase/`)
+- Create `client.ts` with Supabase client initialization for different contexts (client-side, server-side)
+- Create `types.ts` with comprehensive TypeScript interfaces for all database tables
+- Create `config.ts` with Supabase configuration constants and environment variable handling
+- Set up proper error handling and connection management
+- Add client instance management for different use cases (public, authenticated, service role)
+- Include proper TypeScript types from Supabase auto-generation
+- Add connection health checking and retry logic
+- Create client debugging utilities for development
+- Include proper environment variable validation
+- Add client performance monitoring and logging setup
+
+### 2. Create Tool Service Functions (`src/lib/supabase/services/toolsService.ts`)
+- Create `getAllTools()` function to fetch all AI tools with category information
+- Create `getToolBySlug(slug: string)` function to fetch individual tool by slug
+- Create `getToolsByCategory(categoryId: string)` function to fetch tools by category
+- Create `getActiveTools()` function to fetch only active/enabled tools
+- Create `searchTools(query: string)` function for tool search functionality
+- Add proper TypeScript return types for all service functions
+- Include comprehensive error handling with specific error types
+- Add query optimization with proper joins and select statements
+- Implement caching strategies for frequently accessed data
+- Include data validation and sanitization for all inputs
+
+### 3. Create Feature Updates Service Functions (`src/lib/supabase/services/updatesService.ts`)
+- Create `getLatestUpdates(limit?: number)` function to fetch recent feature updates
+- Create `getUpdatesByTool(toolId: string, limit?: number)` function for tool-specific updates
+- Create `getUpdateById(updateId: string)` function for individual update details
+- Create `getUpdatesByDateRange(startDate: Date, endDate: Date)` function for date filtering
+- Create `searchUpdates(query: string)` function for update content search
+- Create `getUpdatesByImpactLevel(impactLevel: string)` function for impact filtering
+- Add proper TypeScript interfaces for update data structures
+- Include sorting and pagination parameters for all list functions
+- Add comprehensive error handling and validation
+- Implement query optimization with proper indexing considerations
+
+### 4. Create Category Service Functions (`src/lib/supabase/services/categoriesService.ts`)
+- Create `getAllCategories()` function to fetch all tool categories
+- Create `getCategoryById(categoryId: string)` function for individual category
+- Create `getCategoryWithTools(categoryId: string)` function including related tools
+- Create `getPopularCategories()` function based on tool count or usage
+- Add proper TypeScript interfaces for category data
+- Include error handling and validation for all category operations
+- Add caching for category data (changes infrequently)
+- Include category statistics and metadata
+- Add category color and styling information management
+- Implement category sorting and organization logic
+
+### 5. Create React Hooks for Data Fetching (`src/hooks/data/`)
+- Create `useTools()` hook for fetching and managing tools data
+- Create `useToolBySlug(slug: string)` hook for individual tool fetching
+- Create `useToolUpdates(toolId?: string)` hook for update management
+- Create `useLatestUpdates(limit?: number)` hook for recent updates
+- Create `useCategories()` hook for category data management
+- Create `useSearch(query: string, type: 'tools' | 'updates')` hook for search functionality
+- Add proper loading states, error states, and data states for all hooks
+- Include automatic refetching and cache invalidation logic
+- Implement optimistic updates for better user experience
+- Add proper TypeScript typing for all hook return values
+
+### 6. Create Error Handling and Utilities (`src/lib/supabase/utils/`)
+- Create `errorHandler.ts` with comprehensive error type definitions and handling
+- Create `validators.ts` with input validation functions for all data operations
+- Create `formatters.ts` with data formatting utilities for consistent output
+- Create `cache.ts` with caching utilities and cache invalidation strategies
+- Create `retry.ts` with retry logic for failed operations
+- Add proper TypeScript interfaces for all utility functions
+- Include logging utilities for debugging and monitoring
+- Add performance monitoring utilities for query optimization
+- Create data transformation utilities for API responses
+- Include proper error serialization and reporting
+
+### 7. Create Data Fetching Configuration and Constants (`src/lib/supabase/constants/`)
+- Create `queries.ts` with pre-defined query configurations and optimizations
+- Create `endpoints.ts` with API endpoint constants and URL building utilities
+- Create `defaults.ts` with default values for pagination, limits, and filters
+- Create `tables.ts` with table name constants and relationship definitions
+- Add proper TypeScript types for all configuration constants
+- Include query performance optimization settings
+- Add default error messages and user-friendly error text
+- Create cache configuration constants and TTL settings
+- Include API rate limiting and quota management constants
+- Add debugging and development configuration options
+
+### 8. Create Integration Tests and Mock Data (`src/lib/supabase/tests/`)
+- Create `mockData.ts` with comprehensive test data for all entities
+- Create `serviceTests.ts` with unit tests for all service functions
+- Create `hookTests.ts` with React hook testing utilities
+- Create `errorTests.ts` with error handling scenario tests
+- Add proper TypeScript typing for all test utilities
+- Include integration tests with actual Supabase connections (for development)
+- Create performance tests for query optimization validation
+- Add accessibility tests for data structure compliance
+- Include data validation tests for all input/output scenarios
+- Create debugging utilities for troubleshooting data issues
+
+## Completion Checklist
+
+Before marking this task as complete, verify ALL of the following items:
+
+### Supabase Client Configuration Verification
+- [ ] `src/lib/supabase/client.ts` exists with proper client initialization
+- [ ] `src/lib/supabase/types.ts` exists with comprehensive TypeScript interfaces
+- [ ] `src/lib/supabase/config.ts` exists with configuration constants
+- [ ] Client instances for different contexts (client-side, server-side) work correctly
+- [ ] Error handling and connection management implemented
+- [ ] TypeScript types from Supabase auto-generation integrated
+- [ ] Connection health checking and retry logic implemented
+- [ ] Client debugging utilities for development included
+- [ ] Environment variable validation works correctly
+- [ ] Client performance monitoring and logging setup completed
+
+### Tool Service Functions Verification
+- [ ] `src/lib/supabase/services/toolsService.ts` exists with all required functions
+- [ ] `getAllTools()` function fetches all tools with category information
+- [ ] `getToolBySlug(slug)` function fetches individual tool correctly
+- [ ] `getToolsByCategory(categoryId)` function filters by category properly
+- [ ] `getActiveTools()` function returns only active tools
+- [ ] `searchTools(query)` function performs search correctly
+- [ ] All service functions have proper TypeScript return types
+- [ ] Comprehensive error handling with specific error types implemented
+- [ ] Query optimization with proper joins and select statements
+- [ ] Caching strategies for frequently accessed data implemented
+- [ ] Data validation and sanitization for all inputs working
+
+### Feature Updates Service Functions Verification
+- [ ] `src/lib/supabase/services/updatesService.ts` exists with all required functions
+- [ ] `getLatestUpdates(limit)` function fetches recent updates correctly
+- [ ] `getUpdatesByTool(toolId, limit)` function filters by tool properly
+- [ ] `getUpdateById(updateId)` function fetches individual updates
+- [ ] `getUpdatesByDateRange(startDate, endDate)` function date filtering works
+- [ ] `searchUpdates(query)` function searches update content correctly
+- [ ] `getUpdatesByImpactLevel(impactLevel)` function impact filtering works
+- [ ] All functions have proper TypeScript interfaces
+- [ ] Sorting and pagination parameters work for all list functions
+- [ ] Comprehensive error handling and validation implemented
+- [ ] Query optimization with proper indexing considerations
+
+### Category Service Functions Verification
+- [ ] `src/lib/supabase/services/categoriesService.ts` exists with all functions
+- [ ] `getAllCategories()` function fetches all categories correctly
+- [ ] `getCategoryById(categoryId)` function fetches individual category
+- [ ] `getCategoryWithTools(categoryId)` function includes related tools
+- [ ] `getPopularCategories()` function works based on usage/count
+- [ ] All functions have proper TypeScript interfaces
+- [ ] Error handling and validation for category operations implemented
+- [ ] Caching for category data implemented (infrequent changes)
+- [ ] Category statistics and metadata included
+- [ ] Category color and styling information management works
+- [ ] Category sorting and organization logic implemented
+
+### React Hooks Verification
+- [ ] `src/hooks/data/useTools.ts` exists and manages tools data correctly
+- [ ] `src/hooks/data/useToolBySlug.ts` exists and fetches individual tools
+- [ ] `src/hooks/data/useToolUpdates.ts` exists and manages updates
+- [ ] `src/hooks/data/useLatestUpdates.ts` exists and fetches recent updates
+- [ ] `src/hooks/data/useCategories.ts` exists and manages category data
+- [ ] `src/hooks/data/useSearch.ts` exists and handles search functionality
+- [ ] All hooks have proper loading states, error states, and data states
+- [ ] Automatic refetching and cache invalidation logic works
+- [ ] Optimistic updates implemented for better UX
+- [ ] Proper TypeScript typing for all hook return values
+
+### Error Handling and Utilities Verification
+- [ ] `src/lib/supabase/utils/errorHandler.ts` exists with error types and handling
+- [ ] `src/lib/supabase/utils/validators.ts` exists with input validation
+- [ ] `src/lib/supabase/utils/formatters.ts` exists with data formatting
+- [ ] `src/lib/supabase/utils/cache.ts` exists with caching utilities
+- [ ] `src/lib/supabase/utils/retry.ts` exists with retry logic
+- [ ] All utility functions have proper TypeScript interfaces
+- [ ] Logging utilities for debugging and monitoring included
+- [ ] Performance monitoring utilities for query optimization work
+- [ ] Data transformation utilities for API responses implemented
+- [ ] Error serialization and reporting working correctly
+
+### Configuration and Constants Verification
+- [ ] `src/lib/supabase/constants/queries.ts` exists with query configurations
+- [ ] `src/lib/supabase/constants/endpoints.ts` exists with API constants
+- [ ] `src/lib/supabase/constants/defaults.ts` exists with default values
+- [ ] `src/lib/supabase/constants/tables.ts` exists with table definitions
+- [ ] All configuration constants have proper TypeScript types
+- [ ] Query performance optimization settings included
+- [ ] Default error messages and user-friendly text defined
+- [ ] Cache configuration constants and TTL settings implemented
+- [ ] API rate limiting and quota management constants defined
+- [ ] Debugging and development configuration options included
+
+### Integration Tests and Mock Data Verification
+- [ ] `src/lib/supabase/tests/mockData.ts` exists with comprehensive test data
+- [ ] `src/lib/supabase/tests/serviceTests.ts` exists with unit tests
+- [ ] `src/lib/supabase/tests/hookTests.ts` exists with React hook tests
+- [ ] `src/lib/supabase/tests/errorTests.ts` exists with error scenario tests
+- [ ] All test utilities have proper TypeScript typing
+- [ ] Integration tests with Supabase connections work (development)
+- [ ] Performance tests for query optimization validation included
+- [ ] Data validation tests for input/output scenarios work
+- [ ] Debugging utilities for troubleshooting data issues included
+
+### TypeScript and Integration Verification
+- [ ] All service functions have comprehensive TypeScript interfaces
+- [ ] No TypeScript errors or warnings exist
+- [ ] Strict mode compliance maintained throughout
+- [ ] Auto-generated Supabase types properly integrated
+- [ ] Database schema changes automatically reflected in types
+- [ ] Proper error type definitions and handling
+- [ ] All hooks return properly typed data structures
+- [ ] Service functions integrate well with React components
+
+### Performance and Caching Verification
+- [ ] Query optimization implemented for all database operations
+- [ ] Caching strategies reduce unnecessary API calls
+- [ ] Loading states provide good user experience
+- [ ] Error handling gracefully manages connection issues
+- [ ] Retry logic handles temporary failures appropriately
+- [ ] Cache invalidation works correctly for data updates
+- [ ] Performance monitoring provides useful metrics
+- [ ] Database connection pooling optimized
+
+### Error Handling and Edge Cases Verification
+- [ ] Network errors handled gracefully with user-friendly messages
+- [ ] Invalid input validation prevents database errors
+- [ ] Missing data scenarios handled appropriately
+- [ ] Rate limiting respected with proper backoff strategies
+- [ ] Authentication errors handled correctly
+- [ ] Database constraint violations handled gracefully
+- [ ] Timeout scenarios managed appropriately
+- [ ] Offline scenarios handled with appropriate fallbacks
+
+## Success Criteria
+Task 5.1 is complete when:
+1. All items in the completion checklist are verified ✓
+2. Comprehensive Supabase data fetching layer is functional
+3. All service functions work correctly with proper error handling
+4. React hooks provide efficient data management with loading/error states
+5. TypeScript integration is complete with auto-generated types
+6. Caching and performance optimization strategies are implemented
+7. No errors exist in console or TypeScript compilation
+8. Data fetching layer is ready for integration with UI components
+
+## Important Notes
+- **ONLY** work on data fetching layer - do not implement UI components or business logic
+- Focus on creating robust, type-safe data operations
+- Ensure all functions handle errors gracefully with user-friendly messages
+- Implement proper caching to avoid unnecessary API calls
+- Test all service functions with various input scenarios
+- Maintain TypeScript strict mode compliance throughout
+- Use Supabase best practices for query optimization
+- Create comprehensive error handling for all edge cases

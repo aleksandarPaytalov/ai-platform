@@ -1,0 +1,316 @@
+---
+alwaysApply: false
+---
+# Task 6.5: Create Navigation State Management
+
+## Context and Scope
+You are working on **Task 6.5** of the AI Feature Tracker project. This task focuses ONLY on creating a comprehensive state management system for all navigation components and features. Do NOT implement any UI components, analytics tracking beyond basic events, or features beyond what is explicitly listed in the AI Instructions below.
+
+## Technology Standards for This Task
+- **React state management** with Context API and custom hooks
+- **TypeScript** with comprehensive interfaces and state typing
+- **State persistence** with localStorage and session management
+- **Performance optimization** with memoization and selective updates
+- **Event system** for navigation tracking and component communication
+- **Configuration management** for navigation settings and preferences
+
+## AI Instructions
+
+Complete the following tasks in exact order:
+
+### 1. Create Navigation State Context (`src/contexts/NavigationStateContext.tsx`)
+- Create `NavigationStateContext` using React Context for global navigation state
+- Implement comprehensive state structure including active tool, navigation history, user preferences
+- Add state actions for tool switching, filter updates, search state, bookmark changes
+- Include state validation and normalization for data consistency
+- Add state persistence integration with localStorage and session storage
+- Implement state debugging utilities for development and troubleshooting
+- Create TypeScript interfaces for navigation state structure and actions
+- Add state migration utilities for handling state schema changes
+- Include state performance optimization with selective context updates
+- Add state error handling and recovery mechanisms for corrupted state
+
+### 2. Create Navigation State Hook (`src/hooks/useNavigationState.ts`)
+- Create `useNavigationState` custom hook consuming NavigationStateContext
+- Implement hook methods for all navigation operations (tool switching, filtering, search)
+- Add state query methods (getCurrentTool, getActiveFilters, getSearchState)
+- Include state mutation methods (updateTool, setFilters, updateSearch, toggleBookmark)
+- Add state computed properties (filteredTools, searchResults, recentTools)
+- Implement hook performance optimization with proper memoization
+- Create TypeScript interface for hook return values and methods
+- Add hook debugging utilities and development helpers
+- Include hook error handling for invalid state operations
+- Add hook testing utilities and mock implementations
+
+### 3. Create State Persistence System (`src/lib/navigation-persistence.ts`)
+- Create state persistence utilities for navigation preferences and history
+- Implement localStorage management with data versioning and migration
+- Add session storage integration for temporary navigation state
+- Include state serialization and deserialization with validation
+- Add persistence configuration for different state categories (preferences, history, cache)
+- Implement data cleanup and storage optimization to prevent bloat
+- Create TypeScript interfaces for persistence configuration and data structures
+- Add persistence error handling for storage failures and quota exceeded
+- Include persistence debugging utilities for development
+- Add persistence testing utilities and mock storage implementations
+
+### 4. Create Navigation Event System (`src/lib/navigation-events.ts`)
+- Create navigation event system for component communication and tracking
+- Implement event types for all navigation actions (tool switch, search, filter, bookmark)
+- Add event listeners and dispatchers for cross-component communication
+- Include event payload validation and type safety
+- Add event performance optimization with debouncing and throttling
+- Implement event debugging and logging for development
+- Create TypeScript interfaces for event types and payloads
+- Add event cleanup and memory management for component unmounting
+- Include event error handling for failed event processing
+- Add event testing utilities and mock event systems
+
+### 5. Create Configuration Management (`src/lib/navigation-config.ts`)
+- Create navigation configuration system for settings and preferences
+- Implement default configuration values and user preference overrides
+- Add configuration categories (appearance, behavior, keyboard shortcuts, accessibility)
+- Include configuration validation and type checking
+- Add configuration persistence and synchronization across sessions
+- Implement configuration reset and factory defaults functionality
+- Create TypeScript interfaces for configuration structure and validation
+- Add configuration debugging and development utilities
+- Include configuration error handling for invalid settings
+- Add configuration testing utilities and mock configurations
+
+### 6. Create State Performance Optimization (`src/lib/navigation-performance.ts`)
+- Create performance optimization utilities for navigation state management
+- Implement selective state updates and component re-render prevention
+- Add state memoization and caching for computed values
+- Include performance monitoring and metrics collection
+- Add lazy loading and code splitting for navigation features
+- Implement memory management and cleanup for navigation state
+- Create TypeScript interfaces for performance configuration and metrics
+- Add performance debugging and profiling utilities
+- Include performance testing utilities and benchmarks
+- Add performance optimization recommendations and best practices
+
+### 7. Create State Migration System (`src/lib/navigation-migration.ts`)
+- Create state migration utilities for handling navigation state schema changes
+- Implement version detection and automatic migration between state versions
+- Add migration scripts for different state structure changes
+- Include migration validation and rollback mechanisms
+- Add migration performance optimization for large state objects
+- Implement migration debugging and logging for troubleshooting
+- Create TypeScript interfaces for migration configuration and version management
+- Add migration error handling and recovery for failed migrations
+- Include migration testing utilities and mock migration scenarios
+- Add migration documentation and version history tracking
+
+### 8. Create Navigation State Integration (`src/lib/navigation-state/index.ts`)
+- Create comprehensive export file for all navigation state utilities
+- Set up navigation state composition with all systems integrated
+- Add state initialization and setup utilities for application bootstrap
+- Include state testing utilities and comprehensive mock implementations
+- Create state documentation and usage examples
+- Add state performance monitoring and optimization utilities
+- Include comprehensive TypeScript type exports for all interfaces
+- Create state debugging dashboard for development
+- Add state validation utilities and error reporting
+- Include state backup and restoration utilities
+
+## Completion Checklist
+
+Before marking this task as complete, verify ALL of the following items:
+
+### Navigation State Context Verification
+- [ ] `src/contexts/NavigationStateContext.tsx` exists with global state management
+- [ ] Comprehensive state structure includes active tool, history, preferences
+- [ ] State actions for tool switching, filters, search, bookmarks work correctly
+- [ ] State validation and normalization for data consistency implemented
+- [ ] State persistence integration with localStorage and session storage works
+- [ ] State debugging utilities for development included
+- [ ] TypeScript interfaces for state structure and actions defined
+- [ ] State migration utilities for schema changes implemented
+- [ ] State performance optimization with selective updates included
+- [ ] State error handling and recovery mechanisms work correctly
+
+### Navigation State Hook Verification
+- [ ] `src/hooks/useNavigationState.ts` exists consuming NavigationStateContext
+- [ ] Hook methods for navigation operations work correctly
+- [ ] State query methods (getCurrentTool, getActiveFilters) function properly
+- [ ] State mutation methods (updateTool, setFilters, toggleBookmark) work
+- [ ] State computed properties (filteredTools, searchResults) implemented
+- [ ] Hook performance optimization with memoization included
+- [ ] TypeScript interface for hook return values and methods defined
+- [ ] Hook debugging utilities and development helpers added
+- [ ] Hook error handling for invalid operations implemented
+- [ ] Hook testing utilities and mock implementations created
+
+### State Persistence System Verification
+- [ ] `src/lib/navigation-persistence.ts` exists with persistence utilities
+- [ ] localStorage management with data versioning and migration works
+- [ ] Session storage integration for temporary state functions correctly
+- [ ] State serialization and deserialization with validation implemented
+- [ ] Persistence configuration for different state categories works
+- [ ] Data cleanup and storage optimization prevents bloat
+- [ ] TypeScript interfaces for persistence configuration defined
+- [ ] Persistence error handling for storage failures implemented
+- [ ] Persistence debugging utilities for development included
+- [ ] Persistence testing utilities and mock storage created
+
+### Navigation Event System Verification
+- [ ] `src/lib/navigation-events.ts` exists with event system
+- [ ] Event types for all navigation actions implemented correctly
+- [ ] Event listeners and dispatchers for cross-component communication work
+- [ ] Event payload validation and type safety included
+- [ ] Event performance optimization with debouncing implemented
+- [ ] Event debugging and logging for development added
+- [ ] TypeScript interfaces for event types and payloads defined
+- [ ] Event cleanup and memory management implemented
+- [ ] Event error handling for failed processing included
+- [ ] Event testing utilities and mock systems created
+
+### Configuration Management Verification
+- [ ] `src/lib/navigation-config.ts` exists with configuration system
+- [ ] Default configuration values and user overrides work correctly
+- [ ] Configuration categories (appearance, behavior, shortcuts) implemented
+- [ ] Configuration validation and type checking functions properly
+- [ ] Configuration persistence and synchronization works across sessions
+- [ ] Configuration reset and factory defaults functionality included
+- [ ] TypeScript interfaces for configuration structure defined
+- [ ] Configuration debugging and development utilities added
+- [ ] Configuration error handling for invalid settings implemented
+- [ ] Configuration testing utilities and mock configurations created
+
+### State Performance Optimization Verification
+- [ ] `src/lib/navigation-performance.ts` exists with optimization utilities
+- [ ] Selective state updates and re-render prevention implemented
+- [ ] State memoization and caching for computed values works
+- [ ] Performance monitoring and metrics collection included
+- [ ] Lazy loading and code splitting for features implemented
+- [ ] Memory management and cleanup for state works correctly
+- [ ] TypeScript interfaces for performance configuration defined
+- [ ] Performance debugging and profiling utilities added
+- [ ] Performance testing utilities and benchmarks created
+- [ ] Performance optimization recommendations included
+
+### State Migration System Verification
+- [ ] `src/lib/navigation-migration.ts` exists with migration utilities
+- [ ] Version detection and automatic migration works correctly
+- [ ] Migration scripts for state structure changes implemented
+- [ ] Migration validation and rollback mechanisms included
+- [ ] Migration performance optimization for large objects works
+- [ ] Migration debugging and logging implemented
+- [ ] TypeScript interfaces for migration configuration defined
+- [ ] Migration error handling and recovery implemented
+- [ ] Migration testing utilities and mock scenarios created
+- [ ] Migration documentation and version history included
+
+### Integration and Export Verification
+- [ ] `src/lib/navigation-state/index.ts` exists with comprehensive exports
+- [ ] Navigation state composition with all systems integrated
+- [ ] State initialization and setup utilities for bootstrap included
+- [ ] State testing utilities and mock implementations created
+- [ ] State documentation and usage examples added
+- [ ] State performance monitoring and optimization utilities included
+- [ ] Comprehensive TypeScript type exports defined
+- [ ] State debugging dashboard for development created
+- [ ] State validation utilities and error reporting implemented
+- [ ] State backup and restoration utilities included
+
+### State Structure and Types Verification
+- [ ] State structure includes all necessary navigation data (active tool, filters, search, bookmarks, history, preferences)
+- [ ] TypeScript interfaces are comprehensive and type-safe
+- [ ] State normalization ensures data consistency and integrity
+- [ ] State validation prevents invalid or corrupted state
+- [ ] State computed properties are efficiently calculated and cached
+- [ ] State actions are properly typed and validated
+- [ ] State selectors provide efficient data access
+- [ ] State immutability is maintained throughout updates
+
+### Persistence and Storage Verification
+- [ ] localStorage integration works reliably across browser sessions
+- [ ] Session storage handles temporary state appropriately
+- [ ] State serialization handles complex data structures correctly
+- [ ] Data versioning allows for backward compatibility
+- [ ] Storage quotas are respected and managed appropriately
+- [ ] Data cleanup prevents unbounded storage growth
+- [ ] Persistence failures are handled gracefully with fallbacks
+- [ ] Storage security prevents data leakage or corruption
+
+### Performance and Optimization Verification
+- [ ] State updates trigger minimal component re-renders
+- [ ] Computed properties are properly memoized and cached
+- [ ] Large state objects don't impact application performance
+- [ ] Memory usage remains reasonable with complex navigation state
+- [ ] State operations are optimized for speed and efficiency
+- [ ] Performance monitoring provides useful metrics and insights
+- [ ] Performance degradation is detected and handled appropriately
+- [ ] Optimization strategies effectively improve user experience
+
+### Event System and Communication Verification
+- [ ] Navigation events are dispatched correctly for all actions
+- [ ] Event listeners receive proper event data and payloads
+- [ ] Cross-component communication works seamlessly through events
+- [ ] Event performance doesn't impact overall application performance
+- [ ] Event cleanup prevents memory leaks and performance issues
+- [ ] Event debugging provides useful development information
+- [ ] Event error handling manages failed event processing
+- [ ] Event system integrates well with existing component architecture
+
+### Configuration and Preferences Verification
+- [ ] User preferences are properly stored and retrieved
+- [ ] Configuration changes take effect immediately
+- [ ] Default configurations provide reasonable baseline behavior
+- [ ] Configuration validation prevents invalid settings
+- [ ] Configuration reset functionality works correctly
+- [ ] Configuration synchronization maintains consistency
+- [ ] Configuration categories are logically organized
+- [ ] Configuration accessibility supports different user needs
+
+### Error Handling and Recovery Verification
+- [ ] State corruption is detected and handled appropriately
+- [ ] Invalid state operations are prevented or recovered
+- [ ] Persistence failures have appropriate fallback mechanisms
+- [ ] Migration errors are handled with rollback capabilities
+- [ ] Configuration errors are managed with default fallbacks
+- [ ] Event processing errors don't break navigation functionality
+- [ ] Performance issues are detected and mitigated
+- [ ] User-facing errors provide helpful guidance and recovery options
+
+### Integration with Navigation Components Verification
+- [ ] State management integrates seamlessly with TabNavigation from Task 6.1
+- [ ] Tool switching logic from Task 6.2 works with state management
+- [ ] Mobile drawer from Task 6.3 properly uses navigation state
+- [ ] Enhancement features from Task 6.4 integrate with state system
+- [ ] All navigation components can access and update state appropriately
+- [ ] State changes propagate correctly to all relevant components
+- [ ] Navigation state doesn't conflict with other application state
+- [ ] State management performance doesn't impact navigation responsiveness
+
+### Testing and Development Verification
+- [ ] Comprehensive test utilities enable thorough testing of state management
+- [ ] Mock implementations facilitate component testing in isolation
+- [ ] Debugging utilities provide useful development information
+- [ ] State inspection tools help with development and troubleshooting
+- [ ] Performance profiling tools identify optimization opportunities
+- [ ] Documentation provides clear guidance for using state management
+- [ ] Examples demonstrate proper usage patterns and best practices
+- [ ] Development tools integrate well with React DevTools and debugging
+
+## Success Criteria
+Task 6.5 is complete when:
+1. All items in the completion checklist are verified ✓
+2. Navigation state management provides robust, type-safe state handling
+3. State persistence works reliably across browser sessions
+4. Performance is optimized with minimal unnecessary re-renders
+5. Event system enables seamless component communication
+6. Configuration management supports user preferences and accessibility
+7. No errors exist in console or TypeScript compilation
+8. State management is ready for integration across all navigation components
+
+## Important Notes
+- **ONLY** work on navigation state management - do not implement UI components or analytics
+- Focus on creating robust, performant state management foundation
+- Ensure all state operations are type-safe with comprehensive TypeScript interfaces
+- Test state persistence thoroughly across different browsers and storage scenarios
+- Optimize performance to prevent unnecessary component re-renders
+- Maintain state immutability and prevent direct state mutations
+- Use efficient data structures and algorithms for state operations
+- Ensure state management integrates seamlessly with all existing navigation components
