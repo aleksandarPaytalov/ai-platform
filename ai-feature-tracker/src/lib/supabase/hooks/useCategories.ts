@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { categoriesService } from '@/lib/supabase/services/categoriesService';
-import { ToolCategory } from '@/types/database.types';
+import type { ToolCategory } from '@/types/database.types';
 
 /**
  * Hook for fetching all categories

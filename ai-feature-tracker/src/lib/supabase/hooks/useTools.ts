@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { toolsService } from '@/lib/supabase/services/toolsService';
-import { AITool, ToolWithLatestUpdate, ToolCategory } from '@/types/database.types';
+import type { AITool, ToolWithLatestUpdate, ToolCategory } from '@/types/database.types';
 
 /**
  * Hook for fetching all active tools

@@ -1,4 +1,4 @@
-import { PostgrestError } from '@supabase/supabase-js';
+import type { PostgrestError } from '@supabase/supabase-js';
 
 /**
  * Enhanced database error type for better error handling

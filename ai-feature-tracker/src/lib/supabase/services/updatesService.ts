@@ -1,5 +1,5 @@
 import { supabase, supabaseAdmin } from '@/lib/supabase/client';
-import { 
+import type { 
   FeatureUpdate, 
   FeatureUpdateInsert,
   FeatureUpdateUpdate,

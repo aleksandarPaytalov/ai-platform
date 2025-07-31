@@ -74,12 +74,12 @@ try {
       ANTHROPIC_RATE_LIMIT_TPM:
         Number(process.env['ANTHROPIC_RATE_LIMIT_TPM']) || 100000,
       NEXT_PUBLIC_APP_ENV:
-        (process.env.NEXT_PUBLIC_APP_ENV as any) || 'development',
+        (process.env.NEXT_PUBLIC_APP_ENV as 'development' | 'production' | 'test') || 'development',
       NEXT_PUBLIC_APP_URL:
         process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000',
       DATABASE_URL: process.env['DATABASE_URL'],
       WEBHOOK_SECRET: process.env['WEBHOOK_SECRET'],
-      LOG_LEVEL: (process.env['LOG_LEVEL'] as any) || 'info',
+      LOG_LEVEL: (process.env['LOG_LEVEL'] as 'debug' | 'info' | 'warn' | 'error') || 'info',
       ENABLE_AI_VALIDATION:
         process.env['ENABLE_AI_VALIDATION'] === 'true' || false,
       ENABLE_REALTIME: process.env['ENABLE_REALTIME'] !== 'false',

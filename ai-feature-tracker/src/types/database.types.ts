@@ -345,7 +345,7 @@ export type Database = {
 }
 
 // Import PostgrestError for response types
-import { PostgrestError } from '@supabase/supabase-js';
+import type { PostgrestError } from '@supabase/supabase-js';
 
 // Enhanced types for better application development (similar to C# model classes)
 export type ToolCategory = Database['public']['Tables']['tool_categories']['Row'];

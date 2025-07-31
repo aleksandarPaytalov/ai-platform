@@ -130,7 +130,7 @@ export async function testDatabaseIntegration(): Promise<{
           category: handledError.category,
         };
       }
-    } catch (err: any) {
+    } catch {
       results['errorHandling'] = {
         errorHandled: true,
         userMessage: 'Error handling test completed',

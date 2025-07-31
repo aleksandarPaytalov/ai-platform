@@ -178,7 +178,7 @@ export function useConnectionHealth(intervalMs: number = 30000, enabled: boolean
     checkHealth();
 
     // Set up interval
-    intervalId = setInterval(checkHealth, intervalMs);
+    intervalId = setInterval(checkHealth, intervalMs); // eslint-disable-line prefer-const
 
     return () => {
       if (intervalId) clearInterval(intervalId);

@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { updatesService } from '@/lib/supabase/services/updatesService';
-import { FeatureUpdate, RecentFeatureUpdate, ImpactLevel, ValidationStatus } from '@/types/database.types';
+import type { FeatureUpdate, RecentFeatureUpdate, ImpactLevel, ValidationStatus } from '@/types/database.types';
 
 /**
  * Hook for fetching latest feature updates
