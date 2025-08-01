@@ -10,6 +10,15 @@ export * from './error';
 // Empty State Components
 export * from './empty';
 
+// Grid System Components
+export * from './grid';
+
+// Layout Components
+export * from './layout';
+
+// Grid Pattern Components
+export * from './patterns';
+
 // Component exports - will be uncommented as components are created
 // export { default as Button } from './button/Button';
 // export { default as Input } from './input/Input';
