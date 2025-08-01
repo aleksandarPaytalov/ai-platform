@@ -1,0 +1,218 @@
+---
+alwaysApply: false
+---
+# Step 10 Task 3: Set Up Scheduled Task Execution
+
+## Context and Scope
+You are working on **Step 10: Automated Update System** of the AI Feature Tracker project. This is **Task 10.3** focusing exclusively on setting up the scheduled task execution system for automated daily updates.
+
+**IMPORTANT**: This rule references and must comply with:
+- `global-behavior.mdc` - AI behavior and communication patterns
+- `technology-standards.mdc` - Technology stack standards and patterns  
+- `quality-standards.mdc` - Code quality and testing requirements
+
+## Current Step Context
+- **Phase**: Phase 4 - AI Integration
+- **Step**: 10 - Automated Update System  
+- **Task**: 10.3 - Set Up Scheduled Task Execution
+- **Prerequisites**: Content Scraping System (Task 10.2) and Supabase Edge Functions (Task 10.1) must be completed
+
+## Task Objective
+Create a robust scheduled task execution system that can reliably trigger daily automated updates, manage job queues, handle failures gracefully, and provide comprehensive monitoring and analytics for the update process.
+
+## AI Instructions
+
+### 1. Configure Cron Jobs for Daily Automated Update Execution
+- Set up Supabase Edge Functions cron trigger configuration for daily execution
+- Create cron job configuration using Supabase's built-in cron scheduling capabilities
+- Implement flexible cron expressions allowing different schedules for different AI tools based on their update patterns
+- Add timezone handling to ensure updates run at optimal times globally (consider AI tool company locations)
+- Create backup scheduling mechanisms using external cron services (GitHub Actions, Vercel Cron) as fallbacks
+- Implement cron job health monitoring to detect missed or failed scheduled executions
+- Add cron job configuration management allowing schedule changes without redeployment
+
+### 2. Create Scheduling System with Flexible Timing and Timezone Handling
+- Design scheduling configuration schema supporting multiple schedule types (daily, weekly, custom intervals)
+- Implement timezone-aware scheduling using proper timezone libraries (date-fns-tz or similar)
+- Create intelligent scheduling that distributes tool checks across time periods to avoid peak loads
+- Add schedule optimization based on historical update patterns for each AI tool
+- Implement dynamic schedule adjustment based on content change frequency analysis
+- Create holiday and weekend scheduling considerations for business-focused AI tools
+- Add manual schedule override capabilities for immediate or delayed execution
+
+### 3. Implement Job Queue Management for Processing Multiple Tools Concurrently
+- Create job queue system using Supabase database tables for job storage and state management
+- Implement concurrent job processing with configurable concurrency limits to prevent resource exhaustion
+- Add job prioritization system based on tool importance, last update time, and user interest
+- Create job batching capabilities to group related tasks for efficient processing
+- Implement job dependency management ensuring prerequisite tasks complete before dependent tasks
+- Add job queue monitoring with real-time status updates and queue depth tracking
+- Create job cleanup mechanisms to remove completed jobs and prevent queue bloat
+
+### 4. Add Job Monitoring, Logging, and Failure Notifications
+- Implement comprehensive job execution logging with structured data (job ID, tool, start time, duration, status)
+- Create job status tracking system with states (queued, running, completed, failed, retrying)
+- Add real-time job monitoring dashboard accessible via API endpoints for status checking
+- Implement failure notification system using email, Slack, or Discord webhooks for critical failures
+- Create job performance analytics tracking execution times, success rates, and resource usage
+- Add job execution history with searchable logs and filtering capabilities
+- Implement alerting system for unusual job patterns (long execution times, high failure rates)
+
+### 5. Create Manual Trigger Capabilities for Testing and Immediate Updates
+- Implement manual job trigger endpoints accessible via API calls for immediate execution
+- Create admin interface or CLI commands for triggering specific tool updates manually
+- Add bulk trigger capabilities for updating multiple tools simultaneously
+- Implement job preview functionality showing what would be processed without actual execution
+- Create test mode execution that runs full pipeline with mock data for testing purposes
+- Add job cancellation capabilities for stopping long-running or problematic jobs
+- Implement job debugging mode with enhanced logging and step-by-step execution tracking
+
+### 6. Implement Job History and Execution Analytics
+- Create comprehensive job history database schema tracking all execution attempts and outcomes
+- Implement job execution analytics with metrics (average execution time, success rate, error patterns)
+- Add trend analysis for job performance over time with visualization-ready data
+- Create job comparison analytics showing performance differences between tools and time periods
+- Implement cost tracking for job execution resources and API usage
+- Add job efficiency metrics identifying optimization opportunities
+- Create historical data retention policies with archiving for long-term storage
+
+### 7. Add Job Retry Mechanisms and Failure Recovery
+- Implement intelligent retry logic with exponential backoff for failed jobs
+- Create retry configuration per job type with different strategies for different failure types
+- Add circuit breaker pattern to prevent cascade failures when external services are down
+- Implement partial failure recovery allowing jobs to resume from last successful checkpoint
+- Create failure categorization system distinguishing between retryable and permanent failures
+- Add dead letter queue for jobs that exceed maximum retry attempts
+- Implement automatic failure recovery procedures with escalation to manual intervention when needed
+
+## Expected Deliverables
+- Complete scheduled task execution system integrated with Supabase Edge Functions
+- Flexible cron job configuration with timezone handling and schedule optimization
+- Job queue management system with concurrent processing and prioritization
+- Comprehensive job monitoring and logging with failure notifications
+- Manual trigger capabilities with admin interface for immediate updates
+- Job history and analytics system with performance metrics and trend analysis
+- Robust retry mechanisms and failure recovery with automatic escalation
+- Integration testing demonstrating reliable automated execution
+
+## Technical Requirements
+- **Scheduling**: Supabase cron triggers with fallback scheduling mechanisms
+- **Concurrency**: Configurable concurrent job processing with resource limits
+- **Monitoring**: Real-time job status tracking with comprehensive logging
+- **Reliability**: Retry mechanisms, circuit breakers, and failure recovery
+- **Analytics**: Job performance metrics and historical trend analysis
+- **Administration**: Manual trigger capabilities and job management interface
+
+## Completion Checklist
+
+**Before marking this task as complete, verify ALL of the following:**
+
+### Cron Job Configuration
+- [ ] Supabase Edge Functions cron trigger configuration set up for daily execution
+- [ ] Flexible cron expressions implemented allowing different schedules for different tools
+- [ ] Timezone handling implemented ensuring updates run at optimal global times
+- [ ] Backup scheduling mechanisms configured using external services (GitHub Actions/Vercel)
+- [ ] Cron job health monitoring implemented detecting missed or failed executions
+- [ ] Cron job configuration management allowing schedule changes without redeployment
+- [ ] Cron job testing completed with successful scheduled execution verification
+
+### Scheduling System Implementation
+- [ ] Scheduling configuration schema supporting multiple schedule types created
+- [ ] Timezone-aware scheduling using proper timezone libraries implemented
+- [ ] Intelligent scheduling distributing tool checks across time periods working
+- [ ] Schedule optimization based on historical update patterns implemented
+- [ ] Dynamic schedule adjustment based on content change frequency working
+- [ ] Holiday and weekend scheduling considerations implemented
+- [ ] Manual schedule override capabilities for immediate/delayed execution working
+
+### Job Queue Management System
+- [ ] Job queue system using Supabase database tables implemented for state management
+- [ ] Concurrent job processing with configurable concurrency limits working
+- [ ] Job prioritization system based on tool importance and update patterns implemented
+- [ ] Job batching capabilities for grouping related tasks implemented
+- [ ] Job dependency management ensuring prerequisite task completion working
+- [ ] Job queue monitoring with real-time status updates implemented
+- [ ] Job cleanup mechanisms preventing queue bloat implemented and tested
+
+### Job Monitoring and Logging
+- [ ] Comprehensive job execution logging with structured data implemented
+- [ ] Job status tracking system with all states (queued, running, completed, failed, retrying) working
+- [ ] Real-time job monitoring dashboard accessible via API endpoints implemented
+- [ ] Failure notification system using webhooks for critical failures working
+- [ ] Job performance analytics tracking execution times and success rates implemented
+- [ ] Job execution history with searchable logs and filtering implemented
+- [ ] Alerting system for unusual job patterns (long times, high failure rates) working
+
+### Manual Trigger Capabilities
+- [ ] Manual job trigger endpoints accessible via API calls implemented
+- [ ] Admin interface or CLI commands for triggering specific tool updates created
+- [ ] Bulk trigger capabilities for updating multiple tools simultaneously working
+- [ ] Job preview functionality showing processing plan without execution implemented
+- [ ] Test mode execution with mock data for testing purposes working
+- [ ] Job cancellation capabilities for stopping problematic jobs implemented
+- [ ] Job debugging mode with enhanced logging and step-by-step tracking working
+
+### Job History and Analytics
+- [ ] Comprehensive job history database schema tracking all execution attempts created
+- [ ] Job execution analytics with metrics (execution time, success rate, errors) implemented
+- [ ] Trend analysis for job performance over time with visualization data working
+- [ ] Job comparison analytics showing performance differences implemented
+- [ ] Cost tracking for job execution resources and API usage implemented
+- [ ] Job efficiency metrics identifying optimization opportunities working
+- [ ] Historical data retention policies with archiving implemented
+
+### Retry Mechanisms and Failure Recovery
+- [ ] Intelligent retry logic with exponential backoff for failed jobs implemented
+- [ ] Retry configuration per job type with different strategies for failure types working
+- [ ] Circuit breaker pattern preventing cascade failures when services are down implemented
+- [ ] Partial failure recovery allowing jobs to resume from checkpoints working
+- [ ] Failure categorization distinguishing retryable vs permanent failures implemented
+- [ ] Dead letter queue for jobs exceeding maximum retry attempts working
+- [ ] Automatic failure recovery with escalation to manual intervention implemented
+
+### Integration and System Testing
+- [ ] Integration with Supabase Edge Functions from Task 10.1 working seamlessly
+- [ ] Integration with Content Scraping System from Task 10.2 working properly
+- [ ] End-to-end scheduled execution testing completed successfully
+- [ ] Concurrent job processing tested with multiple tools simultaneously
+- [ ] Failure scenarios tested with proper recovery and retry mechanisms
+- [ ] Manual trigger testing completed with immediate execution verification
+- [ ] Performance testing completed with acceptable resource usage
+
+### Production Configuration
+- [ ] Production cron schedules configured for optimal execution times
+- [ ] Job queue concurrency limits properly configured for production load
+- [ ] Monitoring and alerting configured for production environment
+- [ ] Failure notification endpoints configured with proper escalation
+- [ ] Job history retention configured for production data requirements
+- [ ] Security measures implemented for manual trigger endpoints
+- [ ] Backup and disaster recovery procedures documented and tested
+
+### Quality Verification
+- [ ] Unit tests created for all scheduling and job management components with >80% coverage
+- [ ] Integration tests created for end-to-end job execution workflows
+- [ ] Load testing completed with expected concurrent job processing
+- [ ] Failure testing completed with various error scenarios and recovery verification
+- [ ] Performance testing completed showing acceptable execution times
+- [ ] Security testing completed for manual trigger endpoints and admin access
+- [ ] Documentation created for job scheduling configuration and troubleshooting
+
+### Operational Readiness
+- [ ] Job execution runs successfully in production environment
+- [ ] Monitoring dashboards showing real-time job status and metrics
+- [ ] Alerting system tested and confirmed working for various failure scenarios
+- [ ] Manual trigger capabilities tested and accessible to authorized users
+- [ ] Job history and analytics accessible and showing meaningful data
+- [ ] Retry mechanisms tested with simulated failures and confirmed recovery
+- [ ] Escalation procedures documented and contact information configured
+
+### Final Validation
+- [ ] Successfully execute scheduled job updating at least 3 AI tools automatically
+- [ ] Manual trigger successfully executes immediate update for specific tool
+- [ ] Job failure successfully triggers retry mechanism and eventual recovery
+- [ ] Job queue handles concurrent processing without resource exhaustion
+- [ ] Monitoring system shows accurate job status and performance metrics
+- [ ] Alert system successfully notifies of job failures requiring attention
+- [ ] Job history provides complete audit trail of all execution attempts
+
+**CONFIRMATION STATEMENT**: "I confirm that ALL checklist items above have been completed and verified. The scheduled task execution system is fully functional, reliable, and ready for production use. All scheduling, job queue management, monitoring, and failure recovery mechanisms are operational and tested."

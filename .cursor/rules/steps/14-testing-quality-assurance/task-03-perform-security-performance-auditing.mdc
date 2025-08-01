@@ -1,1 +1,266 @@
+---
+alwaysApply: false
+---
+# Step 14 Task 3: Perform Security and Performance Auditing
 
+## Context and Scope
+You are working on **Step 14: Testing & Quality Assurance** of the AI Feature Tracker project. This is **Task 14.3** focusing exclusively on performing comprehensive security and performance auditing to ensure the application meets enterprise-grade security standards and optimal performance requirements.
+
+**IMPORTANT**: This rule references and must comply with:
+- `global-behavior.mdc` - AI behavior and communication patterns
+- `technology-standards.mdc` - Technology stack standards and patterns  
+- `quality-standards.mdc` - Code quality and testing requirements
+
+## Current Step Context
+- **Phase**: Phase 6 - Deployment & Production
+- **Step**: 14 - Testing & Quality Assurance  
+- **Task**: 14.3 - Perform Security and Performance Auditing
+- **Prerequisites**: Cross-Browser and Device Testing (Task 14.2) and Automated Testing Suite (Task 14.1) must be completed
+
+## Task Objective
+Create comprehensive security and performance auditing system including vulnerability assessments, penetration testing, performance analysis, security compliance validation, API security testing, data protection auditing, performance benchmarking, and continuous monitoring to ensure enterprise-grade security and optimal performance standards.
+
+## AI Instructions
+
+### 1. Conduct Security Audit for API Endpoints and Data Protection
+- Perform comprehensive API security audit testing authentication, authorization, input validation, and output encoding
+- Create API endpoint vulnerability assessment checking for injection attacks, authentication bypass, and privilege escalation
+- Implement data protection audit ensuring proper encryption at rest and in transit, PII handling, and data anonymization
+- Add API rate limiting testing validating protection against brute force attacks and resource exhaustion
+- Create session management audit testing session security, timeout handling, and secure session termination
+- Implement CORS policy audit ensuring proper cross-origin resource sharing configuration and security
+- Add API documentation security review ensuring no sensitive information exposure in documentation or error messages
+
+### 2. Test Authentication and Authorization Mechanisms
+- Create comprehensive authentication testing covering login, logout, session management, and multi-factor authentication scenarios
+- Implement authorization testing ensuring proper role-based access control and permission enforcement
+- Add authentication bypass testing attempting to circumvent authentication mechanisms and access controls
+- Create privilege escalation testing ensuring users cannot gain unauthorized access to higher privilege functions
+- Implement password security testing validating password policies, storage, and reset mechanisms
+- Add token security testing for JWT tokens, API keys, and session tokens with proper validation and expiration
+- Create authentication failure handling testing ensuring proper error messages and security logging
+
+### 3. Validate Input Sanitization and XSS Protection
+- Perform comprehensive input validation testing for all user inputs, API parameters, and data processing endpoints
+- Create XSS (Cross-Site Scripting) testing with various payload types and attack vectors across all input fields
+- Implement SQL injection testing for database queries and parameterized statement validation
+- Add command injection testing for any system command execution or file processing functionality
+- Create CSRF (Cross-Site Request Forgery) protection testing ensuring proper token validation and implementation
+- Implement file upload security testing validating file type restrictions, size limits, and malware scanning
+- Add output encoding testing ensuring proper data sanitization before rendering to prevent XSS attacks
+
+### 4. Perform Performance Auditing with Lighthouse and Web Vitals
+- Create comprehensive Lighthouse auditing across all major pages with detailed performance, accessibility, and SEO analysis
+- Implement Core Web Vitals monitoring and analysis with LCP, FID, CLS measurements and optimization recommendations
+- Add performance budgeting validation ensuring all pages meet established performance thresholds and standards
+- Create resource loading analysis identifying optimization opportunities for images, scripts, and stylesheets
+- Implement network performance analysis measuring request efficiency, compression effectiveness, and caching utilization
+- Add mobile performance auditing ensuring optimal performance across various mobile devices and network conditions
+- Create performance regression testing ensuring new features don't degrade overall application performance
+
+### 5. Test Database Security and Row Level Security Policies
+- Perform comprehensive database security audit testing connection security, encryption, and access controls
+- Create Row Level Security (RLS) policy testing ensuring proper data isolation and access restrictions
+- Implement database injection testing validating prepared statements and parameterized query usage
+- Add database privilege testing ensuring proper user roles and permission enforcement
+- Create backup security testing validating backup encryption, access controls, and restoration procedures
+- Implement database logging audit ensuring proper security event logging and monitoring
+- Add database performance security testing ensuring security measures don't significantly impact performance
+
+### 6. Audit Third-Party Integrations and API Security
+- Create comprehensive third-party integration security audit for Anthropic API, Supabase services, and external dependencies
+- Implement API key security testing ensuring proper storage, rotation, and access control for all external APIs
+- Add dependency security scanning using automated tools to identify known vulnerabilities in third-party packages
+- Create supply chain security audit ensuring integrity and security of all external dependencies and services
+- Implement external service communication security testing validating encryption, authentication, and data protection
+- Add third-party service availability testing ensuring proper fallback mechanisms and graceful degradation
+- Create vendor security assessment ensuring third-party providers meet security standards and compliance requirements
+
+### 7. Validate Environment Variable and Secret Management
+- Perform comprehensive environment variable security audit ensuring no sensitive information exposure in logs or configuration
+- Create secret management testing validating proper storage, access control, and rotation of sensitive credentials
+- Implement configuration security audit ensuring proper separation of development, staging, and production configurations
+- Add deployment security testing ensuring secure deployment processes and environment isolation
+- Create infrastructure security audit validating server configuration, network security, and access controls
+- Implement monitoring and alerting security testing ensuring security events are properly logged and reported
+- Add compliance validation testing ensuring adherence to security standards and regulatory requirements
+
+## Expected Deliverables
+- Comprehensive security audit report with vulnerability assessments and remediation recommendations
+- Authentication and authorization testing results with security validation and compliance verification
+- Input sanitization and XSS protection validation with comprehensive attack vector testing
+- Performance audit report with Lighthouse scores, Core Web Vitals analysis, and optimization recommendations
+- Database security audit with RLS policy validation and access control verification
+- Third-party integration security assessment with dependency vulnerability analysis
+- Environment and secret management audit with configuration security validation
+- Detailed remediation plan with prioritized security and performance improvements
+
+## Technical Requirements
+- **Security Standards**: OWASP Top 10 compliance with comprehensive vulnerability assessment
+- **Performance Standards**: Lighthouse scores >90 for Performance, Accessibility, SEO across all pages
+- **Core Web Vitals**: LCP < 2.5s, FID < 100ms, CLS < 0.1 across all devices and network conditions
+- **Security Testing**: Automated vulnerability scanning with manual penetration testing validation
+- **Compliance**: GDPR, CCPA compliance with data protection and privacy requirement validation
+- **Documentation**: Comprehensive audit documentation with evidence and remediation procedures
+
+## Completion Checklist
+
+**Before marking this task as complete, verify ALL of the following:**
+
+### API Security and Data Protection Audit
+- [ ] Comprehensive API security audit testing authentication, authorization, input validation, output encoding performed
+- [ ] API endpoint vulnerability assessment checking injection attacks, authentication bypass, privilege escalation completed
+- [ ] Data protection audit ensuring proper encryption at rest/transit, PII handling, anonymization conducted
+- [ ] API rate limiting testing validating protection against brute force and resource exhaustion performed
+- [ ] Session management audit testing session security, timeout handling, secure termination completed
+- [ ] CORS policy audit ensuring proper cross-origin resource sharing configuration conducted
+- [ ] API documentation security review ensuring no sensitive information exposure completed
+
+### Authentication and Authorization Testing
+- [ ] Comprehensive authentication testing covering login, logout, session management, MFA scenarios performed
+- [ ] Authorization testing ensuring proper role-based access control and permission enforcement completed
+- [ ] Authentication bypass testing attempting to circumvent authentication mechanisms conducted
+- [ ] Privilege escalation testing ensuring users cannot gain unauthorized access performed
+- [ ] Password security testing validating policies, storage, reset mechanisms completed
+- [ ] Token security testing for JWT tokens, API keys, session tokens with validation conducted
+- [ ] Authentication failure handling testing ensuring proper error messages and logging performed
+
+### Input Validation and XSS Protection
+- [ ] Comprehensive input validation testing for all user inputs, API parameters, data processing performed
+- [ ] XSS (Cross-Site Scripting) testing with various payload types and attack vectors completed
+- [ ] SQL injection testing for database queries and parameterized statement validation conducted
+- [ ] Command injection testing for system command execution or file processing performed
+- [ ] CSRF (Cross-Site Request Forgery) protection testing ensuring proper token validation completed
+- [ ] File upload security testing validating restrictions, size limits, malware scanning conducted
+- [ ] Output encoding testing ensuring proper data sanitization before rendering performed
+
+### Performance Auditing and Analysis
+- [ ] Comprehensive Lighthouse auditing across all major pages with performance, accessibility, SEO analysis completed
+- [ ] Core Web Vitals monitoring and analysis with LCP, FID, CLS measurements and recommendations performed
+- [ ] Performance budgeting validation ensuring all pages meet established thresholds conducted
+- [ ] Resource loading analysis identifying optimization opportunities for images, scripts, stylesheets completed
+- [ ] Network performance analysis measuring request efficiency, compression, caching utilization performed
+- [ ] Mobile performance auditing ensuring optimal performance across devices and network conditions conducted
+- [ ] Performance regression testing ensuring new features don't degrade performance completed
+
+### Database Security and RLS Policy Testing
+- [ ] Comprehensive database security audit testing connection security, encryption, access controls performed
+- [ ] Row Level Security (RLS) policy testing ensuring proper data isolation and access restrictions completed
+- [ ] Database injection testing validating prepared statements and parameterized query usage conducted
+- [ ] Database privilege testing ensuring proper user roles and permission enforcement performed
+- [ ] Backup security testing validating backup encryption, access controls, restoration procedures completed
+- [ ] Database logging audit ensuring proper security event logging and monitoring conducted
+- [ ] Database performance security testing ensuring security measures don't impact performance performed
+
+### Third-Party Integration Security Audit
+- [ ] Comprehensive third-party integration security audit for Anthropic API, Supabase, external dependencies performed
+- [ ] API key security testing ensuring proper storage, rotation, access control for external APIs completed
+- [ ] Dependency security scanning using automated tools to identify known vulnerabilities conducted
+- [ ] Supply chain security audit ensuring integrity and security of external dependencies performed
+- [ ] External service communication security testing validating encryption, authentication, data protection completed
+- [ ] Third-party service availability testing ensuring proper fallback mechanisms conducted
+- [ ] Vendor security assessment ensuring third-party providers meet security standards performed
+
+### Environment and Secret Management Validation
+- [ ] Comprehensive environment variable security audit ensuring no sensitive information exposure performed
+- [ ] Secret management testing validating proper storage, access control, rotation of credentials completed
+- [ ] Configuration security audit ensuring proper separation of dev, staging, production configurations conducted
+- [ ] Deployment security testing ensuring secure deployment processes and environment isolation performed
+- [ ] Infrastructure security audit validating server configuration, network security, access controls completed
+- [ ] Monitoring and alerting security testing ensuring security events are properly logged conducted
+- [ ] Compliance validation testing ensuring adherence to security standards and regulatory requirements performed
+
+### OWASP Top 10 Vulnerability Assessment
+- [ ] Injection vulnerability testing (SQL, NoSQL, OS, LDAP injection) with comprehensive attack vectors
+- [ ] Broken authentication testing with session management and credential security validation
+- [ ] Sensitive data exposure testing ensuring proper encryption and data protection measures
+- [ ] XML External Entities (XXE) testing for XML processing vulnerabilities and input validation
+- [ ] Broken access control testing ensuring proper authorization and permission enforcement
+- [ ] Security misconfiguration testing validating server, database, and application configuration
+- [ ] Cross-Site Scripting (XSS) testing with stored, reflected, and DOM-based XSS validation
+- [ ] Insecure deserialization testing for object serialization vulnerabilities
+- [ ] Using components with known vulnerabilities testing with dependency scanning
+- [ ] Insufficient logging and monitoring testing ensuring proper security event tracking
+
+### Security Header and Browser Protection Testing
+- [ ] Content Security Policy (CSP) testing ensuring proper implementation and XSS protection
+- [ ] HTTP Strict Transport Security (HSTS) testing validating proper SSL/TLS enforcement
+- [ ] X-Frame-Options testing ensuring proper clickjacking protection implementation
+- [ ] X-Content-Type-Options testing validating MIME type sniffing protection
+- [ ] Referrer-Policy testing ensuring proper referrer information control
+- [ ] Permissions-Policy testing validating browser feature access control
+- [ ] Security header completeness testing ensuring all recommended headers are implemented
+
+### Data Privacy and Compliance Auditing
+- [ ] GDPR compliance testing ensuring proper consent management and data protection rights
+- [ ] CCPA compliance testing validating California consumer privacy protections
+- [ ] PII (Personally Identifiable Information) handling audit ensuring proper data anonymization
+- [ ] Data retention policy testing validating proper data lifecycle management
+- [ ] Cookie policy compliance testing ensuring proper cookie consent and management
+- [ ] Privacy policy accuracy testing ensuring documentation matches actual data practices
+- [ ] Data breach response testing validating incident response procedures and notifications
+
+### Performance Optimization Validation
+- [ ] Image optimization testing ensuring proper format selection, compression, and lazy loading
+- [ ] CSS optimization testing validating minification, critical path extraction, and loading strategies
+- [ ] JavaScript optimization testing ensuring proper minification, code splitting, and loading
+- [ ] Caching strategy testing validating browser caching, CDN caching, and API response caching
+- [ ] Database query optimization testing ensuring efficient queries and proper indexing
+- [ ] Network optimization testing validating HTTP/2, compression, and resource prioritization
+- [ ] Progressive Web App optimization testing ensuring proper service worker and caching implementation
+
+### Mobile Security and Performance Testing
+- [ ] Mobile-specific security testing ensuring touch interaction security and gesture protection
+- [ ] Mobile performance testing validating Core Web Vitals on various mobile devices
+- [ ] PWA security testing ensuring proper service worker security and offline functionality
+- [ ] Mobile authentication testing validating biometric authentication and secure storage
+- [ ] Mobile data protection testing ensuring proper encryption and secure transmission
+- [ ] Mobile application security testing for PWA installation and app-like functionality
+- [ ] Mobile accessibility security testing ensuring screen reader and assistive technology compatibility
+
+### Automated Security Scanning Integration
+- [ ] SAST (Static Application Security Testing) integration with automated code analysis
+- [ ] DAST (Dynamic Application Security Testing) integration with runtime vulnerability scanning
+- [ ] Dependency scanning integration with automated vulnerability detection for third-party packages
+- [ ] Container security scanning if using containerized deployment environments
+- [ ] Infrastructure security scanning for cloud resources and network configuration
+- [ ] Continuous security monitoring integration with real-time threat detection
+- [ ] Security alert and incident response automation with proper escalation procedures
+
+### Documentation and Reporting
+- [ ] Comprehensive security audit report with detailed findings and risk assessments
+- [ ] Performance audit report with detailed analysis and optimization recommendations
+- [ ] Vulnerability assessment report with prioritized remediation steps and timelines
+- [ ] Compliance validation report documenting adherence to regulatory requirements
+- [ ] Security testing methodology documentation with procedures and best practices
+- [ ] Performance testing results documentation with benchmarks and improvement tracking
+- [ ] Remediation tracking documentation with progress monitoring and validation procedures
+
+### Quality Verification and Validation
+- [ ] Security audit results validation with manual testing and expert review
+- [ ] Performance audit results validation with real-world testing scenarios
+- [ ] Vulnerability assessment accuracy validation with manual penetration testing
+- [ ] Compliance validation with legal and regulatory requirement verification
+- [ ] Third-party security assessment validation with vendor security reviews
+- [ ] Automated scanning results validation with manual verification procedures
+- [ ] Audit methodology validation ensuring comprehensive coverage and accuracy
+
+### Remediation Planning and Implementation
+- [ ] Critical vulnerability remediation plan with immediate action items and timelines
+- [ ] High-priority performance optimization plan with implementation roadmap
+- [ ] Security improvement roadmap with long-term security enhancement strategies
+- [ ] Performance optimization roadmap with continuous improvement procedures
+- [ ] Compliance gap remediation plan with regulatory requirement implementation
+- [ ] Monitoring and alerting improvement plan with enhanced detection capabilities
+- [ ] Security training and awareness plan for development and operations teams
+
+### Final Validation
+- [ ] All critical and high-severity security vulnerabilities identified and remediation plans created
+- [ ] Performance audit shows Lighthouse scores >90 for Performance, Accessibility, SEO across all pages
+- [ ] Core Web Vitals meet excellent thresholds (LCP < 2.5s, FID < 100ms, CLS < 0.1) on all devices
+- [ ] Database security audit confirms proper RLS implementation and access controls
+- [ ] Third-party integration security assessment shows no critical vulnerabilities
+- [ ] Input validation and XSS protection testing confirms comprehensive attack prevention
+- [ ] Compliance validation confirms adherence to GDPR, CCPA, and industry security standards
+
+**CONFIRMATION STATEMENT**: "I confirm that ALL checklist items above have been completed and verified. The security and performance auditing is fully comprehensive with vulnerability assessments, penetration testing, performance analysis, compliance validation, and detailed remediation planning. The application meets enterprise-grade security standards and optimal performance requirements with comprehensive documentation and monitoring."

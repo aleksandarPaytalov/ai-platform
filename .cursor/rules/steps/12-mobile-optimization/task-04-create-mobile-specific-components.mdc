@@ -1,0 +1,263 @@
+---
+alwaysApply: false
+---
+# Step 12 Task 4: Create Mobile-Specific Components
+
+## Context and Scope
+You are working on **Step 12: Mobile Optimization & Responsive Design** of the AI Feature Tracker project. This is **Task 12.4** focusing exclusively on creating mobile-specific UI components optimized for touch interaction and small screen experiences.
+
+**IMPORTANT**: This rule references and must comply with:
+- `global-behavior.mdc` - AI behavior and communication patterns
+- `technology-standards.mdc` - Technology stack standards and patterns  
+- `quality-standards.mdc` - Code quality and testing requirements
+
+## Current Step Context
+- **Phase**: Phase 5 - Advanced Features
+- **Step**: 12 - Mobile Optimization & Responsive Design  
+- **Task**: 12.4 - Create Mobile-Specific Components
+- **Prerequisites**: Mobile Performance Optimization (Task 12.3), Touch Interactions (Task 12.2), and Mobile Navigation (Task 12.1) must be completed
+
+## Task Objective
+Create comprehensive mobile-specific UI component library including bottom sheets, mobile-optimized cards, voice input interfaces, touch-friendly forms, swipe-based galleries, mobile loading states, and keyboard-optimized input handling to provide native app-like user experience on mobile devices.
+
+## AI Instructions
+
+### 1. Design Mobile-Optimized Card Layouts and Grid Systems
+- Create mobile-first card components with touch-friendly sizing, spacing, and interaction areas optimized for thumb navigation
+- Implement responsive grid system adapting from single column on small screens to multi-column on larger mobile devices
+- Add mobile card variants with different layouts (compact, expanded, media-focused) for various content types and screen contexts
+- Create card interaction patterns with touch feedback, swipe actions, and expandable content areas
+- Implement card accessibility with proper focus management, ARIA labels, and screen reader optimization
+- Add card performance optimization with virtual scrolling for large card lists and efficient rendering
+- Create card customization allowing users to adjust card density, information display, and interaction preferences
+
+### 2. Create Bottom Sheet Components for Mobile-Friendly Interactions
+- Implement bottom sheet component following material design principles with smooth slide-up animations and proper gesture handling
+- Create different bottom sheet variants (modal, persistent, standard) with appropriate use cases and interaction patterns
+- Add bottom sheet content management with scrollable content, nested interactions, and proper backdrop handling
+- Implement bottom sheet accessibility with focus trapping, keyboard navigation, and screen reader announcements
+- Create bottom sheet gesture controls with drag-to-dismiss, snap points, and resize functionality
+- Add bottom sheet integration with other mobile components ensuring consistent interaction patterns
+- Implement bottom sheet performance optimization with efficient animation and memory management
+
+### 3. Implement Mobile-Specific Search Interface with Voice Input Support
+- Create mobile search overlay with full-screen presentation and optimized keyboard interaction
+- Implement voice input integration using Web Speech API with proper microphone permissions and error handling
+- Add search suggestion interface optimized for mobile with touch-friendly selection and clear visual hierarchy
+- Create search result presentation with mobile-optimized layouts, quick actions, and swipe gestures
+- Implement search history and recent searches with mobile-friendly management and privacy controls
+- Add search keyboard optimization with appropriate input types, autocomplete, and suggestion handling
+- Create search performance optimization with debounced input, efficient rendering, and smooth animations
+
+### 4. Add Mobile-Friendly Date Pickers and Form Controls
+- Design mobile-optimized date picker with native-like wheel selectors and touch-friendly navigation
+- Create form control components with proper touch target sizing and clear visual feedback
+- Implement mobile input optimization with appropriate keyboard types (numeric, email, tel, url) and input modes
+- Add form validation with mobile-friendly error messaging and inline feedback that doesn't obstruct content
+- Create multi-step form components with progress indicators and mobile-optimized navigation
+- Implement form accessibility with proper labeling, error announcements, and keyboard navigation
+- Add form performance optimization with efficient state management and validation
+
+### 5. Create Swipe-Based Image Carousels and Galleries
+- Implement touch-friendly image carousel with smooth swipe navigation and momentum scrolling
+- Create gallery component with full-screen image viewing, pinch-to-zoom, and gesture-based navigation
+- Add image lazy loading and progressive enhancement for optimal mobile performance and data usage
+- Implement carousel accessibility with keyboard navigation, screen reader support, and alternative navigation methods
+- Create carousel customization with different transition effects, indicator styles, and autoplay options
+- Add performance optimization with efficient image loading, memory management, and smooth animations
+- Implement gallery sharing and action features with mobile-optimized interfaces and native sharing integration
+
+### 6. Implement Mobile-Specific Loading States and Animations
+- Create mobile-optimized loading indicators with appropriate sizing and animation for touch interfaces
+- Implement skeleton loading screens that match actual content layout for better perceived performance
+- Add progressive loading animations showing content appearance in logical order for mobile users
+- Create loading state accessibility with screen reader announcements and keyboard navigation during loading
+- Implement loading performance optimization with efficient animations and minimal battery impact
+- Add loading customization with different animation styles and timing appropriate for mobile contexts
+- Create loading analytics tracking loading times and user experience during loading states
+
+### 7. Add Mobile Keyboard Optimization and Input Handling
+- Implement intelligent keyboard management with proper viewport adjustment and scroll prevention
+- Create keyboard-aware layouts that adapt when virtual keyboard appears and disappears
+- Add input focus management with smooth scrolling to focused elements and proper keyboard dismissal
+- Implement mobile input enhancements with autocomplete, autocorrect, and input suggestion optimization
+- Create keyboard accessibility with proper tab order, focus indicators, and screen reader compatibility
+- Add keyboard performance optimization with efficient event handling and smooth transitions
+- Implement keyboard analytics tracking input patterns and optimization opportunities
+
+## Expected Deliverables
+- Complete mobile card component library with responsive grid systems and touch optimization
+- Bottom sheet component system with gesture controls and accessibility features
+- Mobile search interface with voice input and optimized user experience
+- Mobile-friendly form controls with date pickers and keyboard optimization
+- Swipe-based image carousel and gallery components with performance optimization
+- Mobile loading states and animations with skeleton screens and progressive enhancement
+- Keyboard optimization system with viewport management and intelligent input handling
+- Integration testing demonstrating seamless mobile component interaction and performance
+
+## Technical Requirements
+- **Touch Targets**: Minimum 44px (iOS) / 48dp (Android) for all interactive elements
+- **Performance**: 60fps animations and smooth interactions on mobile devices
+- **Accessibility**: WCAG 2.1 AA compliance with mobile screen reader optimization
+- **Keyboard Handling**: Intelligent virtual keyboard management with proper viewport adjustment
+- **Voice Input**: Web Speech API integration with proper error handling and permissions
+- **Progressive Enhancement**: Components work without JavaScript with enhanced functionality when available
+
+## Completion Checklist
+
+**Before marking this task as complete, verify ALL of the following:**
+
+### Mobile Card Layouts and Grid Systems
+- [ ] Mobile-first card components with touch-friendly sizing and spacing optimized for thumb navigation created
+- [ ] Responsive grid system adapting from single to multi-column on larger mobile devices implemented
+- [ ] Mobile card variants with different layouts (compact, expanded, media-focused) for various contexts added
+- [ ] Card interaction patterns with touch feedback, swipe actions, and expandable areas implemented
+- [ ] Card accessibility with focus management, ARIA labels, and screen reader optimization created
+- [ ] Card performance optimization with virtual scrolling and efficient rendering added
+- [ ] Card customization for user adjustment of density, display, and interaction preferences implemented
+
+### Bottom Sheet Components
+- [ ] Bottom sheet component following material design with slide-up animations and gestures implemented
+- [ ] Different bottom sheet variants (modal, persistent, standard) with appropriate use cases created
+- [ ] Bottom sheet content management with scrollable content and backdrop handling added
+- [ ] Bottom sheet accessibility with focus trapping and keyboard navigation implemented
+- [ ] Bottom sheet gesture controls with drag-to-dismiss, snap points, and resize functionality created
+- [ ] Bottom sheet integration with other mobile components for consistent patterns added
+- [ ] Bottom sheet performance optimization with efficient animation and memory management implemented
+
+### Mobile Search Interface with Voice Input
+- [ ] Mobile search overlay with full-screen presentation and keyboard optimization created
+- [ ] Voice input integration using Web Speech API with permissions and error handling implemented
+- [ ] Search suggestion interface optimized for mobile with touch-friendly selection added
+- [ ] Search result presentation with mobile layouts, quick actions, and swipe gestures implemented
+- [ ] Search history and recent searches with mobile-friendly management created
+- [ ] Search keyboard optimization with input types, autocomplete, and suggestions added
+- [ ] Search performance optimization with debounced input and smooth animations implemented
+
+### Mobile Form Controls and Date Pickers
+- [ ] Mobile-optimized date picker with native-like wheel selectors and touch navigation created
+- [ ] Form control components with proper touch target sizing and visual feedback implemented
+- [ ] Mobile input optimization with appropriate keyboard types and input modes added
+- [ ] Form validation with mobile-friendly error messaging and inline feedback implemented
+- [ ] Multi-step form components with progress indicators and mobile navigation created
+- [ ] Form accessibility with proper labeling, error announcements, and keyboard navigation added
+- [ ] Form performance optimization with efficient state management and validation implemented
+
+### Swipe-Based Image Carousels and Galleries
+- [ ] Touch-friendly image carousel with smooth swipe navigation and momentum scrolling implemented
+- [ ] Gallery component with full-screen viewing, pinch-to-zoom, and gesture navigation created
+- [ ] Image lazy loading and progressive enhancement for mobile performance and data usage added
+- [ ] Carousel accessibility with keyboard navigation and alternative navigation methods implemented
+- [ ] Carousel customization with transition effects, indicators, and autoplay options created
+- [ ] Performance optimization with efficient loading, memory management, and animations added
+- [ ] Gallery sharing and actions with mobile-optimized interfaces and native sharing implemented
+
+### Mobile Loading States and Animations
+- [ ] Mobile-optimized loading indicators with appropriate sizing and animation for touch interfaces created
+- [ ] Skeleton loading screens matching actual content layout for perceived performance implemented
+- [ ] Progressive loading animations showing content in logical order for mobile users added
+- [ ] Loading state accessibility with screen reader announcements and keyboard navigation implemented
+- [ ] Loading performance optimization with efficient animations and minimal battery impact created
+- [ ] Loading customization with different styles and timing for mobile contexts added
+- [ ] Loading analytics tracking loading times and user experience implemented
+
+### Mobile Keyboard Optimization
+- [ ] Intelligent keyboard management with viewport adjustment and scroll prevention implemented
+- [ ] Keyboard-aware layouts adapting when virtual keyboard appears/disappears created
+- [ ] Input focus management with smooth scrolling and proper keyboard dismissal added
+- [ ] Mobile input enhancements with autocomplete, autocorrect, and suggestions implemented
+- [ ] Keyboard accessibility with tab order, focus indicators, and screen reader compatibility created
+- [ ] Keyboard performance optimization with efficient event handling and transitions added
+- [ ] Keyboard analytics tracking input patterns and optimization opportunities implemented
+
+### React Component Architecture
+- [ ] All mobile components built using React functional components with proper TypeScript interfaces
+- [ ] Custom hooks created for mobile functionality (useMobileKeyboard, useBottomSheet, useVoiceInput)
+- [ ] Mobile component state management optimized for performance and accessibility
+- [ ] Component composition following React best practices with reusable mobile patterns
+- [ ] Mobile component styling using Tailwind CSS with responsive design classes
+- [ ] Component error boundaries implemented for graceful mobile error handling
+- [ ] Component testing using React Testing Library with mobile interaction testing
+
+### Voice Input and Speech Recognition
+- [ ] Web Speech API integration with proper browser compatibility detection implemented
+- [ ] Voice input permissions handling with user-friendly prompts and error messages created
+- [ ] Speech recognition accuracy optimization with noise reduction and language detection added
+- [ ] Voice input accessibility with visual feedback and alternative input methods implemented
+- [ ] Voice input privacy controls with clear data handling and user consent created
+- [ ] Voice input performance optimization with efficient processing and battery usage added
+- [ ] Voice input analytics tracking usage patterns and accuracy metrics implemented
+
+### Mobile-Specific Interactions
+- [ ] Long-press interactions for context menus and additional actions implemented
+- [ ] Double-tap gestures for quick actions like zooming and selection created
+- [ ] Swipe gestures for navigation, dismissal, and content manipulation added
+- [ ] Pull-to-refresh integration with mobile components implemented
+- [ ] Haptic feedback integration with component interactions where supported created
+- [ ] Touch feedback with visual ripples and state changes for all interactions added
+- [ ] Gesture conflict resolution ensuring smooth multi-gesture scenarios implemented
+
+### Responsive Behavior and Adaptation
+- [ ] Component adaptation for different mobile screen sizes (320px - 768px) implemented
+- [ ] Orientation change handling with proper layout adjustments created
+- [ ] Safe area handling for devices with notches and rounded corners added
+- [ ] Device-specific optimizations for iOS and Android implemented
+- [ ] Density-independent sizing with proper scaling for different pixel densities created
+- [ ] Platform-specific component behavior following iOS and Android guidelines added
+- [ ] Progressive enhancement ensuring functionality across mobile browser capabilities implemented
+
+### Integration with Existing Features
+- [ ] Integration with mobile navigation from Task 12.1 ensuring seamless component interaction
+- [ ] Integration with touch interactions from Task 12.2 leveraging gesture capabilities
+- [ ] Integration with performance optimization from Task 12.3 maintaining mobile performance
+- [ ] Integration with search and filtering system using mobile-optimized components
+- [ ] Integration with real-time features ensuring mobile components work with live data
+- [ ] Integration with AI features providing mobile-friendly interfaces for AI interactions
+- [ ] All existing features enhanced with mobile-specific component variants
+
+### Accessibility and Inclusive Design
+- [ ] Screen reader optimization with proper ARIA labels and descriptions for mobile
+- [ ] Keyboard navigation support for mobile users with external keyboards
+- [ ] Voice control compatibility with mobile voice assistants and accessibility features
+- [ ] High contrast support for mobile users with visual impairments
+- [ ] Motion sensitivity accommodation with reduced animation preferences
+- [ ] Touch accessibility with appropriate target sizes and spacing for motor impairments
+- [ ] Cognitive accessibility with clear component states and feedback
+
+### Performance and Memory Optimization
+- [ ] Component rendering optimization with React.memo and proper prop comparison
+- [ ] Animation performance using CSS transforms and GPU acceleration
+- [ ] Memory usage optimization with proper component lifecycle management
+- [ ] Lazy loading for heavy components with intersection observer API
+- [ ] Bundle size optimization with code splitting for mobile-specific components
+- [ ] Network usage optimization with efficient API calls and caching
+- [ ] Battery usage optimization with efficient animations and background processes
+
+### Quality Verification and Testing
+- [ ] Unit tests created for all mobile components with >80% coverage
+- [ ] Integration tests for mobile component workflows and interactions
+- [ ] Accessibility testing with mobile screen readers and assistive technology
+- [ ] Performance testing on various mobile devices with acceptable metrics
+- [ ] Voice input testing across different mobile browsers and devices
+- [ ] Gesture interaction testing with various touch patterns and edge cases
+- [ ] Cross-device testing ensuring consistent behavior across iOS and Android
+
+### Production Configuration and Monitoring
+- [ ] Mobile component analytics configured for usage tracking and optimization insights
+- [ ] Performance monitoring for mobile components with Core Web Vitals tracking
+- [ ] Error tracking configured for mobile-specific component issues
+- [ ] A/B testing framework for mobile component optimization
+- [ ] Feature flags for mobile component rollout and experimentation
+- [ ] User feedback system for mobile component usability and preferences
+- [ ] Documentation created for mobile component usage and customization
+
+### Final Validation
+- [ ] Successfully use all mobile components with native app-like feel and performance
+- [ ] Bottom sheets provide smooth, gesture-controlled interactions for mobile actions
+- [ ] Voice input works reliably across supported mobile browsers with good accuracy
+- [ ] Mobile forms provide excellent user experience with proper keyboard and validation
+- [ ] Image carousels and galleries offer smooth, intuitive navigation and viewing
+- [ ] Loading states provide clear feedback and maintain user engagement during waits
+- [ ] Mobile keyboard handling adapts layouts properly without interfering with user experience
+
+**CONFIRMATION STATEMENT**: "I confirm that ALL checklist items above have been completed and verified. The mobile-specific components are fully functional with native app-like interactions, comprehensive accessibility, voice input support, and excellent performance. All components integrate seamlessly with existing features and provide superior mobile user experience."

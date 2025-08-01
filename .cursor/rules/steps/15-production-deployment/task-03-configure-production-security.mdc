@@ -1,1 +1,263 @@
+---
+alwaysApply: false
+---
+# Step 15 Task 3: Configure Production Security
 
+## Context and Scope
+You are working on **Step 15: Production Deployment & Monitoring** of the AI Feature Tracker project. This is **Task 15.3** focusing exclusively on configuring comprehensive production security measures to protect against threats and ensure data protection compliance.
+
+**IMPORTANT**: This rule references and must comply with:
+- `global-behavior.mdc` - AI behavior and communication patterns
+- `technology-standards.mdc` - Technology stack standards and patterns  
+- `quality-standards.mdc` - Code quality and testing requirements
+
+## Current Step Context
+- **Phase**: Phase 6 - Deployment & Production
+- **Step**: 15 - Production Deployment & Monitoring  
+- **Task**: 15.3 - Configure Production Security
+- **Prerequisites**: Production Monitoring (Task 15.2) and Production Deployment Configuration (Task 15.1) must be completed
+
+## Task Objective
+Create comprehensive production security configuration including security headers and protective measures, access controls and authentication systems, data protection and encryption implementation, security monitoring and threat detection, security incident response procedures, compliance validation and audit procedures, and ongoing security maintenance with vulnerability management to ensure enterprise-grade security protection.
+
+## AI Instructions
+
+### 1. Implement Security Headers and Protective Measures
+- Configure comprehensive Content Security Policy (CSP) headers with strict directives preventing XSS attacks and unauthorized resource loading
+- Implement HTTP Strict Transport Security (HSTS) with proper max-age, includeSubDomains, and preload directives for forced HTTPS
+- Add X-Frame-Options header with appropriate DENY or SAMEORIGIN settings to prevent clickjacking attacks
+- Create X-Content-Type-Options header preventing MIME type sniffing vulnerabilities and content type confusion
+- Implement Referrer-Policy header controlling referrer information leakage with privacy-focused settings
+- Add Permissions-Policy header (formerly Feature-Policy) controlling browser feature access and privacy protection
+- Create security header monitoring with validation testing and compliance verification for all protective headers
+
+### 2. Set Up Access Controls and Authentication Systems
+- Implement comprehensive access control system with role-based permissions and principle of least privilege
+- Configure authentication security with multi-factor authentication options and secure session management
+- Add API access controls with proper authentication, rate limiting, and endpoint-specific permissions
+- Create administrative access controls with enhanced security measures and audit logging
+- Implement service-to-service authentication with secure credential management and automated rotation
+- Add access monitoring with login tracking, failed authentication alerts, and suspicious activity detection
+- Create access review procedures with regular permission audits and access certification processes
+
+### 3. Configure Data Protection and Encryption
+- Implement comprehensive data encryption with encryption at rest and in transit using industry-standard algorithms
+- Configure database encryption with transparent data encryption and key management best practices
+- Add API communication encryption with TLS 1.3 and certificate pinning for enhanced security
+- Create sensitive data protection with PII identification, masking, and secure handling procedures
+- Implement backup encryption with secure backup storage and encrypted disaster recovery procedures
+- Add key management system with secure key storage, rotation procedures, and access controls
+- Create data protection compliance with GDPR, CCPA, and industry-specific regulatory requirements
+
+### 4. Implement Security Monitoring and Threat Detection
+- Set up comprehensive security monitoring with real-time threat detection and automated response capabilities
+- Configure intrusion detection system with network monitoring and suspicious activity analysis
+- Add vulnerability scanning with automated security assessments and immediate threat identification
+- Create security event correlation with intelligent analysis and pattern recognition for threat identification
+- Implement threat intelligence integration with external threat feeds and security research data
+- Add security incident tracking with automated incident creation and escalation procedures
+- Create security analytics with trend analysis, attack pattern recognition, and predictive threat modeling
+
+### 5. Create Security Incident Response Procedures
+- Develop comprehensive incident response plan with clear procedures, roles, and communication protocols
+- Configure automated incident detection with immediate notification and response team activation
+- Add incident containment procedures with automated isolation and damage limitation capabilities
+- Create incident investigation procedures with forensic analysis and evidence collection protocols
+- Implement incident recovery procedures with secure restoration and validation processes
+- Add incident communication procedures with stakeholder notification and public disclosure protocols
+- Create incident learning procedures with post-incident review and security improvement implementation
+
+### 6. Add Compliance Validation and Audit Procedures
+- Implement comprehensive compliance monitoring with regulatory requirement tracking and validation
+- Configure audit logging with detailed security event recording and tamper-proof log storage
+- Add compliance reporting with automated evidence collection and compliance status dashboards
+- Create security audit procedures with regular assessments and third-party security evaluations
+- Implement compliance validation testing with automated checks and manual verification procedures
+- Add regulatory compliance tracking with requirement updates and implementation verification
+- Create compliance documentation with policies, procedures, and evidence for audit requirements
+
+### 7. Establish Ongoing Security Maintenance and Vulnerability Management
+- Create comprehensive vulnerability management program with regular scanning and assessment procedures
+- Implement security patch management with automated updates and emergency patch procedures
+- Add security training programs with team education and security awareness initiatives
+- Create security review procedures with regular assessments and continuous improvement processes
+- Implement security metrics tracking with KPI monitoring and security posture measurement
+- Add security budget management with resource allocation and security investment planning
+- Create security roadmap with strategic security initiatives and long-term security planning
+
+## Expected Deliverables
+- Comprehensive security headers configuration with protective measures against common web vulnerabilities
+- Access control and authentication systems with role-based permissions and secure session management
+- Data protection and encryption implementation with comprehensive key management and compliance
+- Security monitoring infrastructure with threat detection and automated response capabilities
+- Security incident response procedures with clear protocols and communication plans
+- Compliance validation and audit systems with regulatory requirement tracking and evidence collection
+- Ongoing security maintenance program with vulnerability management and continuous improvement
+- Complete security documentation with policies, procedures, and emergency response protocols
+
+## Technical Requirements
+- **Security Headers**: Complete implementation passing security header analysis tools with A+ ratings
+- **Encryption**: Industry-standard encryption (AES-256, TLS 1.3) with proper key management
+- **Access Controls**: Role-based access with principle of least privilege and audit logging
+- **Monitoring**: 24/7 security monitoring with <5 minute threat detection and response
+- **Compliance**: Full GDPR, CCPA compliance with audit evidence and validation procedures
+- **Incident Response**: <1 hour incident detection and response with proper escalation protocols
+
+## Completion Checklist
+
+**Before marking this task as complete, verify ALL of the following:**
+
+### Security Headers and Protective Measures
+- [ ] Comprehensive Content Security Policy (CSP) headers with strict directives preventing XSS and unauthorized resources implemented
+- [ ] HTTP Strict Transport Security (HSTS) with proper max-age, includeSubDomains, preload directives configured
+- [ ] X-Frame-Options header with appropriate DENY or SAMEORIGIN settings to prevent clickjacking added
+- [ ] X-Content-Type-Options header preventing MIME type sniffing vulnerabilities implemented
+- [ ] Referrer-Policy header controlling referrer information leakage with privacy settings configured
+- [ ] Permissions-Policy header controlling browser feature access and privacy protection added
+- [ ] Security header monitoring with validation testing and compliance verification implemented
+
+### Access Controls and Authentication
+- [ ] Comprehensive access control system with role-based permissions and least privilege implemented
+- [ ] Authentication security with multi-factor authentication options and secure session management configured
+- [ ] API access controls with proper authentication, rate limiting, endpoint-specific permissions added
+- [ ] Administrative access controls with enhanced security measures and audit logging implemented
+- [ ] Service-to-service authentication with secure credential management and automated rotation configured
+- [ ] Access monitoring with login tracking, failed authentication alerts, suspicious activity detection added
+- [ ] Access review procedures with regular permission audits and access certification processes implemented
+
+### Data Protection and Encryption
+- [ ] Comprehensive data encryption with encryption at rest and in transit using industry standards implemented
+- [ ] Database encryption with transparent data encryption and key management best practices configured
+- [ ] API communication encryption with TLS 1.3 and certificate pinning for enhanced security added
+- [ ] Sensitive data protection with PII identification, masking, secure handling procedures implemented
+- [ ] Backup encryption with secure backup storage and encrypted disaster recovery configured
+- [ ] Key management system with secure storage, rotation procedures, access controls added
+- [ ] Data protection compliance with GDPR, CCPA, industry-specific regulatory requirements implemented
+
+### Security Monitoring and Threat Detection
+- [ ] Comprehensive security monitoring with real-time threat detection and automated response implemented
+- [ ] Intrusion detection system with network monitoring and suspicious activity analysis configured
+- [ ] Vulnerability scanning with automated security assessments and immediate threat identification added
+- [ ] Security event correlation with intelligent analysis and pattern recognition implemented
+- [ ] Threat intelligence integration with external threat feeds and security research data configured
+- [ ] Security incident tracking with automated incident creation and escalation procedures added
+- [ ] Security analytics with trend analysis, attack pattern recognition, predictive threat modeling implemented
+
+### Security Incident Response
+- [ ] Comprehensive incident response plan with clear procedures, roles, communication protocols developed
+- [ ] Automated incident detection with immediate notification and response team activation configured
+- [ ] Incident containment procedures with automated isolation and damage limitation capabilities added
+- [ ] Incident investigation procedures with forensic analysis and evidence collection protocols implemented
+- [ ] Incident recovery procedures with secure restoration and validation processes configured
+- [ ] Incident communication procedures with stakeholder notification and public disclosure protocols added
+- [ ] Incident learning procedures with post-incident review and security improvement implementation created
+
+### Compliance Validation and Audit
+- [ ] Comprehensive compliance monitoring with regulatory requirement tracking and validation implemented
+- [ ] Audit logging with detailed security event recording and tamper-proof log storage configured
+- [ ] Compliance reporting with automated evidence collection and compliance status dashboards added
+- [ ] Security audit procedures with regular assessments and third-party security evaluations implemented
+- [ ] Compliance validation testing with automated checks and manual verification procedures configured
+- [ ] Regulatory compliance tracking with requirement updates and implementation verification added
+- [ ] Compliance documentation with policies, procedures, evidence for audit requirements created
+
+### Ongoing Security Maintenance
+- [ ] Comprehensive vulnerability management program with regular scanning and assessment implemented
+- [ ] Security patch management with automated updates and emergency patch procedures configured
+- [ ] Security training programs with team education and security awareness initiatives added
+- [ ] Security review procedures with regular assessments and continuous improvement processes implemented
+- [ ] Security metrics tracking with KPI monitoring and security posture measurement configured
+- [ ] Security budget management with resource allocation and security investment planning added
+- [ ] Security roadmap with strategic security initiatives and long-term security planning created
+
+### Network Security Configuration
+- [ ] Firewall configuration with proper rules, port restrictions, and traffic filtering
+- [ ] Network segmentation with proper isolation of critical systems and services
+- [ ] VPN configuration for secure remote access with proper authentication and encryption
+- [ ] Network monitoring with traffic analysis and intrusion detection capabilities
+- [ ] DDoS protection with rate limiting, traffic shaping, and attack mitigation
+- [ ] Network access controls with proper authentication and authorization mechanisms
+- [ ] Network security testing with penetration testing and vulnerability assessments
+
+### Application Security Hardening
+- [ ] Application security configuration with secure coding practices and input validation
+- [ ] Session security with proper session management, timeout, and secure cookie configuration
+- [ ] Authentication security with strong password policies and account lockout mechanisms
+- [ ] Authorization security with proper role-based access controls and permission validation
+- [ ] Error handling security with proper error messages and information disclosure prevention
+- [ ] Logging security with comprehensive audit trails and secure log storage
+- [ ] Configuration security with secure default settings and hardening procedures
+
+### Database Security Configuration
+- [ ] Database access controls with proper user authentication and authorization
+- [ ] Database encryption with data-at-rest and data-in-transit protection
+- [ ] Database monitoring with query analysis and suspicious activity detection
+- [ ] Database backup security with encrypted backups and secure storage
+- [ ] Database connection security with encrypted connections and certificate validation
+- [ ] Database audit logging with comprehensive activity tracking and tamper protection
+- [ ] Database vulnerability scanning with regular security assessments
+
+### API Security Implementation
+- [ ] API authentication with proper token management and secure authentication mechanisms
+- [ ] API authorization with endpoint-specific permissions and access controls
+- [ ] API rate limiting with proper throttling and abuse prevention measures
+- [ ] API input validation with comprehensive parameter validation and sanitization
+- [ ] API output filtering with proper data exposure controls and information filtering
+- [ ] API monitoring with request analysis and suspicious activity detection
+- [ ] API security testing with automated vulnerability scanning and penetration testing
+
+### Third-Party Security Integration
+- [ ] Third-party service security assessment with vendor security evaluation
+- [ ] Integration security with secure communication and data exchange protocols
+- [ ] Dependency security scanning with vulnerability detection in third-party packages
+- [ ] Supply chain security with secure development and deployment pipelines
+- [ ] Vendor security monitoring with ongoing security posture assessment
+- [ ] Third-party access controls with proper authentication and authorization
+- [ ] Third-party incident response with coordinated security incident handling
+
+### Security Testing and Validation
+- [ ] Penetration testing with comprehensive security assessment and vulnerability identification
+- [ ] Security code review with static analysis and secure coding practice validation
+- [ ] Vulnerability scanning with automated and manual security testing procedures
+- [ ] Security compliance testing with regulatory requirement validation
+- [ ] Security performance testing ensuring security measures don't impact performance
+- [ ] Security user acceptance testing with real-world usage scenarios
+- [ ] Security disaster recovery testing with incident response and recovery validation
+
+### Security Documentation and Training
+- [ ] Comprehensive security documentation with policies, procedures, and guidelines
+- [ ] Security incident response documentation with step-by-step procedures and contacts
+- [ ] Security training materials with team education and awareness programs
+- [ ] Security troubleshooting guides with common issues and resolution procedures
+- [ ] Security compliance documentation with regulatory requirements and evidence
+- [ ] Security audit documentation with assessment procedures and findings
+- [ ] Security maintenance documentation with ongoing procedures and best practices
+
+### Security Metrics and Reporting
+- [ ] Security KPI tracking with metrics collection and performance measurement
+- [ ] Security dashboard with real-time visibility into security posture and threats
+- [ ] Security reporting with stakeholder-specific views and compliance evidence
+- [ ] Security trend analysis with historical data and pattern recognition
+- [ ] Security cost analysis with resource allocation and ROI measurement
+- [ ] Security effectiveness measurement with improvement tracking and validation
+- [ ] Security benchmarking with industry standards and competitive analysis
+
+### Legal and Regulatory Compliance
+- [ ] GDPR compliance with data protection rights and privacy controls implementation
+- [ ] CCPA compliance with California consumer privacy protections and data handling
+- [ ] SOC 2 compliance preparation with security controls and audit documentation
+- [ ] ISO 27001 alignment with information security management standards
+- [ ] Industry-specific compliance with relevant regulations and standards
+- [ ] Legal review with privacy policies and terms of service validation
+- [ ] Regulatory reporting with compliance evidence and audit trail documentation
+
+### Final Validation
+- [ ] All security headers properly implemented and passing security analysis tools with A+ ratings
+- [ ] Access controls and authentication systems provide comprehensive protection with audit logging
+- [ ] Data protection and encryption meet industry standards with proper key management
+- [ ] Security monitoring detects threats within 5 minutes with automated response capabilities
+- [ ] Incident response procedures tested and validated with proper escalation protocols
+- [ ] Compliance validation confirms adherence to GDPR, CCPA, and industry standards
+- [ ] Ongoing security maintenance program operational with vulnerability management and continuous improvement
+
+**CONFIRMATION STATEMENT**: "I confirm that ALL checklist items above have been completed and verified. The production security configuration is fully implemented with comprehensive security headers, access controls, data protection, threat monitoring, incident response procedures, compliance validation, and ongoing security maintenance. The application achieves enterprise-grade security protection with comprehensive threat detection and regulatory compliance."

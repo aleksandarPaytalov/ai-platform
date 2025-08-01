@@ -1,1 +1,254 @@
+---
+alwaysApply: false
+---
+# Step 15 Task 1: Configure Production Deployment
 
+## Context and Scope
+You are working on **Step 15: Production Deployment & Monitoring** of the AI Feature Tracker project. This is **Task 15.1** focusing exclusively on configuring comprehensive production deployment infrastructure for reliable, scalable, and maintainable production operations.
+
+**IMPORTANT**: This rule references and must comply with:
+- `global-behavior.mdc` - AI behavior and communication patterns
+- `technology-standards.mdc` - Technology stack standards and patterns  
+- `quality-standards.mdc` - Code quality and testing requirements
+
+## Current Step Context
+- **Phase**: Phase 6 - Deployment & Production
+- **Step**: 15 - Production Deployment & Monitoring  
+- **Task**: 15.1 - Configure Production Deployment
+- **Prerequisites**: Step 14 (Testing & Quality Assurance) must be completed
+
+## Task Objective
+Create comprehensive production deployment configuration including Vercel project setup with optimized build settings, custom domain and SSL certificate configuration, production Supabase project with security and backup configuration, Supabase Edge Functions deployment, production API key and service authentication management, automated deployment pipeline with GitHub integration, and deployment rollback capabilities with blue-green deployment options.
+
+## AI Instructions
+
+### 1. Set Up Vercel Project with Proper Build Configuration and Environment Variables
+- Create new Vercel project with optimized production build configuration for Next.js application with proper framework detection
+- Configure Vercel build settings with appropriate Node.js version, build command optimization, and output directory configuration
+- Implement production environment variables management with secure storage and proper access control for sensitive credentials
+- Add Vercel build optimization with caching strategies, dependency management, and build performance optimization
+- Create Vercel deployment preview configuration for staging and testing environments with proper branch deployment rules
+- Implement Vercel serverless function configuration for optimal performance and resource allocation
+- Add Vercel monitoring integration with build analytics, performance tracking, and error reporting
+
+### 2. Configure Custom Domain, SSL Certificates, and DNS Settings
+- Set up custom domain configuration with proper DNS management and domain verification procedures
+- Implement SSL certificate configuration with automatic renewal and security best practices
+- Add DNS settings optimization with proper CNAME, A records, and subdomain configuration for optimal performance
+- Create domain security configuration with HSTS headers, certificate transparency, and security monitoring
+- Implement domain performance optimization with CDN integration and global edge caching
+- Add domain monitoring with uptime checks, SSL certificate expiration alerts, and DNS propagation validation
+- Create domain backup and disaster recovery procedures with alternative domain configuration
+
+### 3. Set Up Production Supabase Project with Proper Security and Backup Configuration
+- Create dedicated production Supabase project with proper isolation from development and staging environments
+- Configure production database with optimized performance settings, connection pooling, and resource allocation
+- Implement comprehensive security configuration with Row Level Security policies, API key management, and access controls
+- Add production backup configuration with automated daily backups, point-in-time recovery, and geographical distribution
+- Create database monitoring with performance metrics, connection monitoring, and query analysis
+- Implement database scaling configuration with read replicas, connection pooling, and performance optimization
+- Add database maintenance procedures with automated updates, index optimization, and performance tuning
+
+### 4. Deploy Supabase Edge Functions to Production Environment
+- Deploy all Supabase Edge Functions to production with proper configuration and resource allocation
+- Configure Edge Function environment variables with secure credential management and environment-specific settings
+- Implement Edge Function monitoring with performance tracking, error logging, and resource usage analytics
+- Add Edge Function security configuration with proper authentication, rate limiting, and access controls
+- Create Edge Function scaling configuration with auto-scaling and performance optimization
+- Implement Edge Function testing in production environment with health checks and validation procedures
+- Add Edge Function deployment automation with CI/CD integration and rollback capabilities
+
+### 5. Configure Production API Keys and Service Authentication
+- Set up production API key management with secure storage, rotation procedures, and access control
+- Configure Anthropic API production keys with proper usage monitoring, rate limiting, and cost management
+- Implement service authentication with proper credential management and security best practices
+- Add API key monitoring with usage tracking, rate limit monitoring, and security breach detection
+- Create API key backup and recovery procedures with emergency access and incident response protocols
+- Implement API key compliance with security standards and regulatory requirements
+- Add API key documentation with proper usage guidelines and security procedures
+
+### 6. Set Up Automated Deployment Pipeline with GitHub Integration
+- Create comprehensive CI/CD pipeline with GitHub Actions integration for automated deployment workflows
+- Implement automated testing pipeline with quality gates, security scanning, and performance validation
+- Add deployment automation with proper staging, production deployment, and rollback procedures
+- Create deployment approval workflow with stakeholder review and approval processes
+- Implement deployment monitoring with real-time status tracking and notification systems
+- Add deployment analytics with success rates, deployment time tracking, and performance impact analysis
+- Create deployment documentation with procedures, troubleshooting guides, and emergency protocols
+
+### 7. Add Deployment Rollback Capabilities and Blue-Green Deployment Options
+- Implement comprehensive rollback capabilities with immediate rollback procedures and automated rollback triggers
+- Create blue-green deployment configuration with zero-downtime deployment and instant rollback options
+- Add deployment versioning with proper version control and deployment history tracking
+- Implement canary deployment capabilities with gradual rollout and automatic rollback on issues
+- Create deployment health checks with automated monitoring and rollback triggers based on performance metrics
+- Add deployment disaster recovery with comprehensive backup and recovery procedures
+- Implement deployment communication with stakeholder notification and status updates during deployments
+
+## Expected Deliverables
+- Complete Vercel production project with optimized build configuration and environment management
+- Custom domain setup with SSL certificates and DNS configuration for optimal performance
+- Production Supabase project with comprehensive security, backup, and monitoring configuration
+- Deployed Supabase Edge Functions with production environment configuration and monitoring
+- Production API key management with secure storage, rotation, and monitoring procedures
+- Automated deployment pipeline with GitHub integration and comprehensive quality gates
+- Deployment rollback capabilities with blue-green deployment and disaster recovery options
+- Comprehensive deployment documentation with procedures and emergency protocols
+
+## Technical Requirements
+- **Deployment Speed**: Production builds complete within 5 minutes with optimized caching
+- **Uptime**: 99.9% availability with proper monitoring and automatic failover capabilities
+- **Security**: Production-grade security with encrypted credentials and access controls
+- **Performance**: Production environment maintains excellent Core Web Vitals under load
+- **Monitoring**: Comprehensive deployment monitoring with real-time alerts and status tracking
+- **Rollback**: <5 minute rollback capability with automated health checks and triggers
+
+## Completion Checklist
+
+**Before marking this task as complete, verify ALL of the following:**
+
+### Vercel Project Setup and Configuration
+- [ ] New Vercel project created with optimized production build configuration for Next.js application implemented
+- [ ] Vercel build settings configured with appropriate Node.js version, build commands, output directory created
+- [ ] Production environment variables management with secure storage and access control implemented
+- [ ] Vercel build optimization with caching strategies, dependency management, performance optimization added
+- [ ] Vercel deployment preview configuration for staging and testing environments created
+- [ ] Vercel serverless function configuration for optimal performance and resource allocation implemented
+- [ ] Vercel monitoring integration with build analytics, performance tracking, error reporting added
+
+### Custom Domain and SSL Configuration
+- [ ] Custom domain configuration with proper DNS management and domain verification procedures set up
+- [ ] SSL certificate configuration with automatic renewal and security best practices implemented
+- [ ] DNS settings optimization with proper CNAME, A records, subdomain configuration created
+- [ ] Domain security configuration with HSTS headers, certificate transparency, monitoring added
+- [ ] Domain performance optimization with CDN integration and global edge caching implemented
+- [ ] Domain monitoring with uptime checks, SSL expiration alerts, DNS propagation validation created
+- [ ] Domain backup and disaster recovery procedures with alternative domain configuration added
+
+### Production Supabase Project Setup
+- [ ] Dedicated production Supabase project with proper isolation from dev/staging environments created
+- [ ] Production database configured with optimized performance settings, connection pooling, resource allocation
+- [ ] Comprehensive security configuration with RLS policies, API key management, access controls implemented
+- [ ] Production backup configuration with automated daily backups, point-in-time recovery, geographical distribution added
+- [ ] Database monitoring with performance metrics, connection monitoring, query analysis created
+- [ ] Database scaling configuration with read replicas, connection pooling, performance optimization implemented
+- [ ] Database maintenance procedures with automated updates, index optimization, performance tuning added
+
+### Supabase Edge Functions Production Deployment
+- [ ] All Supabase Edge Functions deployed to production with proper configuration and resource allocation
+- [ ] Edge Function environment variables configured with secure credential management and settings
+- [ ] Edge Function monitoring with performance tracking, error logging, resource usage analytics implemented
+- [ ] Edge Function security configuration with authentication, rate limiting, access controls added
+- [ ] Edge Function scaling configuration with auto-scaling and performance optimization created
+- [ ] Edge Function testing in production environment with health checks and validation procedures implemented
+- [ ] Edge Function deployment automation with CI/CD integration and rollback capabilities added
+
+### Production API Keys and Authentication
+- [ ] Production API key management with secure storage, rotation procedures, access control set up
+- [ ] Anthropic API production keys configured with usage monitoring, rate limiting, cost management
+- [ ] Service authentication implemented with proper credential management and security practices
+- [ ] API key monitoring with usage tracking, rate limit monitoring, security breach detection added
+- [ ] API key backup and recovery procedures with emergency access and incident response created
+- [ ] API key compliance with security standards and regulatory requirements implemented
+- [ ] API key documentation with proper usage guidelines and security procedures added
+
+### Automated Deployment Pipeline
+- [ ] Comprehensive CI/CD pipeline with GitHub Actions integration for automated deployment workflows created
+- [ ] Automated testing pipeline with quality gates, security scanning, performance validation implemented
+- [ ] Deployment automation with proper staging, production deployment, rollback procedures added
+- [ ] Deployment approval workflow with stakeholder review and approval processes created
+- [ ] Deployment monitoring with real-time status tracking and notification systems implemented
+- [ ] Deployment analytics with success rates, deployment time tracking, performance impact analysis added
+- [ ] Deployment documentation with procedures, troubleshooting guides, emergency protocols created
+
+### Rollback and Blue-Green Deployment
+- [ ] Comprehensive rollback capabilities with immediate rollback procedures and automated triggers implemented
+- [ ] Blue-green deployment configuration with zero-downtime deployment and instant rollback options created
+- [ ] Deployment versioning with proper version control and deployment history tracking added
+- [ ] Canary deployment capabilities with gradual rollout and automatic rollback on issues implemented
+- [ ] Deployment health checks with automated monitoring and rollback triggers based on metrics created
+- [ ] Deployment disaster recovery with comprehensive backup and recovery procedures added
+- [ ] Deployment communication with stakeholder notification and status updates during deployments implemented
+
+### Environment Configuration and Management
+- [ ] Production environment isolation with proper separation from development and staging environments
+- [ ] Environment-specific configuration management with secure variable storage and access controls
+- [ ] Configuration validation ensuring all production settings are properly configured and tested
+- [ ] Environment synchronization procedures for deploying configuration changes safely
+- [ ] Environment monitoring with configuration drift detection and compliance validation
+- [ ] Environment backup and recovery procedures with configuration restoration capabilities
+- [ ] Environment documentation with configuration guides and troubleshooting procedures
+
+### Security and Compliance Configuration
+- [ ] Production security configuration with comprehensive security measures and compliance standards
+- [ ] Security scanning integration with automated vulnerability detection and reporting
+- [ ] Compliance validation ensuring adherence to regulatory requirements and security standards
+- [ ] Security monitoring with intrusion detection, threat monitoring, and incident response
+- [ ] Security incident response procedures with escalation and communication protocols
+- [ ] Security audit logging with comprehensive tracking and analysis capabilities
+- [ ] Security documentation with policies, procedures, and compliance evidence
+
+### Performance and Scalability Configuration
+- [ ] Production performance optimization with caching, CDN, and resource optimization
+- [ ] Scalability configuration with auto-scaling, load balancing, and resource allocation
+- [ ] Performance monitoring with real-time metrics, alerting, and optimization recommendations
+- [ ] Capacity planning with resource forecasting and scaling procedures
+- [ ] Performance testing integration with load testing and capacity validation
+- [ ] Performance optimization procedures with continuous improvement and monitoring
+- [ ] Performance documentation with benchmarks, optimization guides, and troubleshooting
+
+### Monitoring and Alerting Integration
+- [ ] Comprehensive monitoring integration with application performance, infrastructure, and business metrics
+- [ ] Alerting configuration with intelligent thresholds, escalation procedures, and notification systems
+- [ ] Dashboard configuration with real-time visibility into system health and performance
+- [ ] Log aggregation and analysis with centralized logging and search capabilities
+- [ ] Metrics collection and analysis with historical trending and pattern recognition
+- [ ] Incident response integration with automated ticket creation and escalation procedures
+- [ ] Monitoring documentation with configuration guides and troubleshooting procedures
+
+### Backup and Disaster Recovery
+- [ ] Comprehensive backup strategy with automated backups, retention policies, and validation procedures
+- [ ] Disaster recovery procedures with RTO/RPO definitions and recovery testing
+- [ ] Geographic distribution with multi-region backup and recovery capabilities
+- [ ] Backup monitoring with validation, integrity checking, and restoration testing
+- [ ] Disaster recovery testing with regular drills and procedure validation
+- [ ] Business continuity planning with alternative procedures and resource allocation
+- [ ] Recovery documentation with step-by-step procedures and emergency contacts
+
+### Quality Assurance and Testing
+- [ ] Production deployment testing with comprehensive validation of all functionality
+- [ ] Performance testing in production environment with load testing and capacity validation
+- [ ] Security testing with penetration testing and vulnerability assessment
+- [ ] User acceptance testing in production environment with real user scenarios
+- [ ] Integration testing with all external services and third-party integrations
+- [ ] Regression testing ensuring all previous functionality remains intact
+- [ ] End-to-end testing validating complete user workflows and business processes
+
+### Documentation and Knowledge Management
+- [ ] Comprehensive deployment documentation with step-by-step procedures and configurations
+- [ ] Operations documentation with monitoring, maintenance, and troubleshooting procedures
+- [ ] Emergency procedures documentation with incident response and disaster recovery
+- [ ] User documentation with deployment guides and configuration instructions
+- [ ] Team training documentation with knowledge transfer and operational procedures
+- [ ] Architecture documentation with system design and deployment topology
+- [ ] Compliance documentation with regulatory requirements and audit evidence
+
+### Stakeholder Communication and Training
+- [ ] Stakeholder communication plan with deployment notifications and status updates
+- [ ] Team training on production deployment procedures and emergency protocols
+- [ ] Operations handover with knowledge transfer and ongoing support procedures
+- [ ] User communication with deployment announcements and feature notifications
+- [ ] Support team training with troubleshooting procedures and escalation protocols
+- [ ] Management reporting with deployment metrics and business impact analysis
+- [ ] Feedback collection with user satisfaction and improvement opportunities
+
+### Final Validation
+- [ ] Production deployment completes successfully with all services operational
+- [ ] Custom domain resolves correctly with SSL certificate properly configured
+- [ ] All application functionality works correctly in production environment
+- [ ] Performance meets production requirements with excellent Core Web Vitals
+- [ ] Security configuration properly protects against identified threats
+- [ ] Monitoring and alerting systems provide comprehensive visibility and notifications
+- [ ] Rollback procedures tested and validated with successful rollback capability
+
+**CONFIRMATION STATEMENT**: "I confirm that ALL checklist items above have been completed and verified. The production deployment configuration is fully functional with Vercel project optimization, custom domain setup, production Supabase environment, Edge Functions deployment, secure API key management, automated deployment pipeline, and comprehensive rollback capabilities. The application is successfully deployed to production with enterprise-grade reliability and monitoring."

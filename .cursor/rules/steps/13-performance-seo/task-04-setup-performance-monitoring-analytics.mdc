@@ -1,0 +1,263 @@
+---
+alwaysApply: false
+---
+# Step 13 Task 4: Set Up Performance Monitoring and Analytics
+
+## Context and Scope
+You are working on **Step 13: Performance Optimization & SEO** of the AI Feature Tracker project. This is **Task 13.4** focusing exclusively on implementing comprehensive performance monitoring, analytics, and real user monitoring systems for continuous performance optimization.
+
+**IMPORTANT**: This rule references and must comply with:
+- `global-behavior.mdc` - AI behavior and communication patterns
+- `technology-standards.mdc` - Technology stack standards and patterns  
+- `quality-standards.mdc` - Code quality and testing requirements
+
+## Current Step Context
+- **Phase**: Phase 5 - Advanced Features
+- **Step**: 13 - Performance Optimization & SEO  
+- **Task**: 13.4 - Set Up Performance Monitoring and Analytics
+- **Prerequisites**: SEO Optimization (Task 13.3), Caching and Data Optimization (Task 13.2), and Code Splitting and Performance Optimization (Task 13.1) must be completed
+
+## Task Objective
+Create comprehensive performance monitoring and analytics system including Core Web Vitals tracking, real user monitoring (RUM), performance regression detection, user experience analytics, error tracking, performance dashboards, and A/B testing framework to provide actionable insights for continuous performance optimization.
+
+## AI Instructions
+
+### 1. Implement Core Web Vitals Monitoring and Reporting
+- Create comprehensive Core Web Vitals tracking for LCP (Largest Contentful Paint), FID (First Input Delay), and CLS (Cumulative Layout Shift)
+- Implement additional performance metrics including TTFB (Time to First Byte), FCP (First Contentful Paint), and TTI (Time to Interactive)
+- Add device-specific performance monitoring tracking metrics across desktop, tablet, and mobile devices separately
+- Create performance threshold monitoring with automated alerts when metrics exceed acceptable ranges
+- Implement historical performance tracking with trend analysis and performance regression detection
+- Add performance scoring system combining multiple metrics into overall performance health scores
+- Create Core Web Vitals reporting with detailed analysis and optimization recommendations for stakeholders
+
+### 2. Add Comprehensive Performance Metrics Collection
+- Implement detailed performance metrics collection including page load times, resource loading, and user interaction responsiveness
+- Create custom performance marks and measures for application-specific performance tracking (search time, filter application, content loading)
+- Add network performance monitoring tracking connection quality, request/response times, and data transfer efficiency
+- Implement browser performance monitoring with memory usage, JavaScript execution time, and rendering performance
+- Create performance budgets monitoring with automated tracking of bundle sizes, image sizes, and resource counts
+- Add performance correlation analysis linking performance metrics with user behavior and engagement data
+- Implement performance benchmarking comparing current performance against historical data and industry standards
+
+### 3. Create User Experience Analytics and Behavior Tracking
+- Implement user experience analytics tracking user journeys, interaction patterns, and engagement metrics
+- Create performance impact analysis correlating performance metrics with user satisfaction and conversion rates
+- Add user behavior tracking with heat maps, scroll depth, and interaction timing analysis
+- Implement session replay functionality for understanding user experience during performance issues
+- Create user feedback integration collecting user-reported performance issues and satisfaction ratings
+- Add device and browser analytics understanding performance variations across different user environments
+- Implement user segmentation analysis comparing performance impact across different user groups and usage patterns
+
+### 4. Implement Error Tracking and Performance Regression Alerts
+- Create comprehensive error tracking system monitoring JavaScript errors, network failures, and performance-related issues
+- Implement performance regression detection with automated alerts when performance degrades beyond acceptable thresholds
+- Add error correlation analysis linking errors with performance degradation and user experience impact
+- Create performance anomaly detection identifying unusual performance patterns and potential issues
+- Implement automated error reporting with detailed context including performance metrics at time of error
+- Add error trend analysis tracking error frequency, impact, and resolution effectiveness over time
+- Create error prioritization system focusing attention on errors with highest performance and user experience impact
+
+### 5. Add Real User Monitoring (RUM) for Production Performance Insights
+- Implement comprehensive Real User Monitoring collecting performance data from actual users in production environment
+- Create RUM data collection optimized for minimal performance impact while gathering comprehensive insights
+- Add geographic performance analysis understanding performance variations across different regions and locations
+- Implement connection type analysis tracking performance across different network conditions (WiFi, 3G, 4G, 5G)
+- Create RUM data visualization with interactive dashboards showing real-time and historical performance trends
+- Add RUM alerting system with intelligent thresholds based on real user experience rather than synthetic tests
+- Implement RUM data export and integration capabilities for advanced analysis and reporting tools
+
+### 6. Create Performance Dashboard and Reporting for Stakeholders
+- Design comprehensive performance dashboard with real-time metrics, trends, and actionable insights for different stakeholder groups
+- Create executive-level reporting with high-level performance KPIs, business impact metrics, and improvement recommendations
+- Add technical reporting with detailed performance metrics, optimization opportunities, and implementation guidance
+- Implement automated performance reporting with scheduled reports and proactive performance issue notifications
+- Create performance comparison reporting showing performance against competitors and industry benchmarks
+- Add performance ROI analysis demonstrating business impact of performance optimizations and improvements
+- Implement customizable reporting allowing stakeholders to focus on metrics most relevant to their responsibilities
+
+### 7. Include A/B Testing Framework for Performance Optimizations
+- Create A/B testing infrastructure for testing performance optimizations with statistical significance analysis
+- Implement performance-focused A/B tests comparing different optimization strategies and implementation approaches
+- Add A/B testing integration with performance monitoring ensuring tests don't negatively impact overall performance
+- Create A/B test result analysis with performance impact measurement and user experience correlation
+- Implement automated A/B test management with intelligent traffic allocation and result interpretation
+- Add A/B testing reporting with clear recommendations for implementing winning performance optimizations
+- Create A/B testing safety measures preventing performance degradation during testing and providing automatic rollback capabilities
+
+## Expected Deliverables
+- Core Web Vitals monitoring system with comprehensive LCP, FID, CLS tracking and reporting
+- Performance metrics collection system with custom marks, measures, and detailed analytics
+- User experience analytics with behavior tracking, session replay, and satisfaction correlation
+- Error tracking and regression alert system with intelligent anomaly detection
+- Real User Monitoring implementation with geographic and connection analysis
+- Performance dashboard and reporting system for different stakeholder needs
+- A/B testing framework for performance optimizations with statistical analysis
+- Integration testing demonstrating comprehensive performance insights and actionable optimization recommendations
+
+## Technical Requirements
+- **Core Web Vitals**: Continuous monitoring with LCP < 2.5s, FID < 100ms, CLS < 0.1
+- **Real User Monitoring**: <1% performance impact from monitoring overhead
+- **Alert Response**: Performance regression alerts within 5 minutes of detection
+- **Data Retention**: Historical performance data retention for trend analysis and comparison
+- **Dashboard Performance**: Real-time dashboard updates with <2 second load times
+- **Privacy Compliance**: User privacy protection in analytics with GDPR/CCPA compliance
+
+## Completion Checklist
+
+**Before marking this task as complete, verify ALL of the following:**
+
+### Core Web Vitals Monitoring Implementation
+- [ ] Comprehensive Core Web Vitals tracking for LCP, FID, CLS with detailed measurement and reporting implemented
+- [ ] Additional performance metrics including TTFB, FCP, TTI with comprehensive tracking created
+- [ ] Device-specific performance monitoring tracking metrics across desktop, tablet, mobile separately added
+- [ ] Performance threshold monitoring with automated alerts when metrics exceed ranges implemented
+- [ ] Historical performance tracking with trend analysis and regression detection created
+- [ ] Performance scoring system combining multiple metrics into overall health scores added
+- [ ] Core Web Vitals reporting with detailed analysis and optimization recommendations implemented
+
+### Performance Metrics Collection System
+- [ ] Detailed performance metrics collection including page load, resource loading, interaction responsiveness implemented
+- [ ] Custom performance marks and measures for application-specific tracking (search, filter, content loading) created
+- [ ] Network performance monitoring tracking connection quality, request/response times, data transfer added
+- [ ] Browser performance monitoring with memory usage, JavaScript execution, rendering performance implemented
+- [ ] Performance budgets monitoring with automated tracking of bundle sizes, images, resources created
+- [ ] Performance correlation analysis linking metrics with user behavior and engagement data added
+- [ ] Performance benchmarking comparing current performance against historical and industry standards implemented
+
+### User Experience Analytics
+- [ ] User experience analytics tracking journeys, interaction patterns, engagement metrics implemented
+- [ ] Performance impact analysis correlating metrics with user satisfaction and conversion rates created
+- [ ] User behavior tracking with heat maps, scroll depth, interaction timing analysis added
+- [ ] Session replay functionality for understanding user experience during performance issues implemented
+- [ ] User feedback integration collecting user-reported performance issues and satisfaction created
+- [ ] Device and browser analytics understanding performance variations across environments added
+- [ ] User segmentation analysis comparing performance impact across different groups implemented
+
+### Error Tracking and Regression Alerts
+- [ ] Comprehensive error tracking monitoring JavaScript errors, network failures, performance issues implemented
+- [ ] Performance regression detection with automated alerts when performance degrades created
+- [ ] Error correlation analysis linking errors with performance degradation and UX impact added
+- [ ] Performance anomaly detection identifying unusual patterns and potential issues implemented
+- [ ] Automated error reporting with detailed context including performance metrics created
+- [ ] Error trend analysis tracking frequency, impact, and resolution effectiveness over time added
+- [ ] Error prioritization system focusing on errors with highest performance and UX impact implemented
+
+### Real User Monitoring (RUM)
+- [ ] Comprehensive Real User Monitoring collecting performance data from actual production users implemented
+- [ ] RUM data collection optimized for minimal performance impact while gathering comprehensive insights created
+- [ ] Geographic performance analysis understanding variations across different regions and locations added
+- [ ] Connection type analysis tracking performance across network conditions (WiFi, 3G, 4G, 5G) implemented
+- [ ] RUM data visualization with interactive dashboards showing real-time and historical trends created
+- [ ] RUM alerting system with intelligent thresholds based on real user experience added
+- [ ] RUM data export and integration capabilities for advanced analysis and reporting implemented
+
+### Performance Dashboard and Reporting
+- [ ] Comprehensive performance dashboard with real-time metrics, trends, actionable insights implemented
+- [ ] Executive-level reporting with performance KPIs, business impact metrics, recommendations created
+- [ ] Technical reporting with detailed metrics, optimization opportunities, implementation guidance added
+- [ ] Automated performance reporting with scheduled reports and proactive notifications implemented
+- [ ] Performance comparison reporting against competitors and industry benchmarks created
+- [ ] Performance ROI analysis demonstrating business impact of optimizations and improvements added
+- [ ] Customizable reporting allowing stakeholders to focus on relevant metrics implemented
+
+### A/B Testing Framework
+- [ ] A/B testing infrastructure for testing performance optimizations with statistical significance implemented
+- [ ] Performance-focused A/B tests comparing different optimization strategies and approaches created
+- [ ] A/B testing integration with performance monitoring ensuring tests don't impact performance added
+- [ ] A/B test result analysis with performance impact measurement and UX correlation implemented
+- [ ] Automated A/B test management with intelligent traffic allocation and result interpretation created
+- [ ] A/B testing reporting with clear recommendations for implementing winning optimizations added
+- [ ] A/B testing safety measures preventing degradation and providing automatic rollback implemented
+
+### Analytics Integration and Data Management
+- [ ] Google Analytics 4 integration with enhanced ecommerce and custom event tracking for performance
+- [ ] Adobe Analytics or similar enterprise analytics platform integration for comprehensive insights
+- [ ] Custom analytics implementation with privacy-compliant data collection and processing
+- [ ] Data warehouse integration for advanced performance analysis and machine learning insights
+- [ ] Analytics data validation ensuring accuracy and consistency across different platforms
+- [ ] Analytics privacy compliance with GDPR, CCPA, and other privacy regulations
+- [ ] Analytics data retention policies with appropriate storage and deletion procedures
+
+### Performance Alerting and Notification System
+- [ ] Intelligent alerting system with configurable thresholds and escalation procedures
+- [ ] Multi-channel notifications (email, Slack, SMS) for different severity levels and stakeholders
+- [ ] Alert correlation preventing alert fatigue while ensuring critical issues are highlighted
+- [ ] Performance incident management integration with ticketing and resolution tracking
+- [ ] Alert analytics tracking alert accuracy, response times, and resolution effectiveness
+- [ ] Predictive alerting using machine learning to identify potential issues before they impact users
+- [ ] Alert customization allowing different teams to configure relevant alerts and thresholds
+
+### Performance Data Visualization
+- [ ] Interactive performance dashboards with drill-down capabilities and customizable views
+- [ ] Real-time performance monitoring with live updates and immediate issue identification
+- [ ] Historical performance trending with long-term analysis and pattern recognition
+- [ ] Performance comparison tools for before/after analysis of optimizations
+- [ ] Geolocation performance mapping showing performance variations across regions
+- [ ] Device and browser performance breakdown with detailed analysis capabilities
+- [ ] Performance heatmaps showing performance variations across different pages and features
+
+### Performance Optimization Insights
+- [ ] Automated performance optimization recommendations based on collected data and analysis
+- [ ] Performance bottleneck identification with specific areas for improvement highlighted
+- [ ] Resource optimization suggestions for images, scripts, and other assets
+- [ ] Code optimization recommendations based on performance profiling and analysis
+- [ ] Caching optimization suggestions based on usage patterns and performance data
+- [ ] Performance trend prediction using historical data and machine learning analysis
+- [ ] Competitive performance analysis comparing against similar applications and industry standards
+
+### Integration with Development Workflow
+- [ ] CI/CD integration with performance testing and quality gates in deployment pipeline
+- [ ] Performance regression testing with automated detection in staging and production environments
+- [ ] Developer performance tools with local performance testing and optimization guidance
+- [ ] Performance budget enforcement in development workflow with build-time validation
+- [ ] Performance documentation generation with automated insights and recommendations
+- [ ] Performance training and guidelines for development team with best practices and tools
+- [ ] Performance code review integration with automated suggestions and optimization opportunities
+
+### Mobile and Cross-Platform Monitoring
+- [ ] Mobile-specific performance monitoring with device capability and network condition analysis
+- [ ] Cross-browser performance tracking with detailed analysis across different browser engines
+- [ ] Progressive Web App performance monitoring with app-specific metrics and insights
+- [ ] Touch interaction performance monitoring with gesture response time and accuracy tracking
+- [ ] Mobile network performance analysis with detailed insights into cellular vs WiFi performance
+- [ ] Device performance correlation with hardware capabilities and performance variations
+- [ ] Platform-specific optimization recommendations based on iOS, Android, and desktop performance data
+
+### Security and Privacy Implementation
+- [ ] Privacy-compliant performance monitoring with user consent management and data anonymization
+- [ ] Secure data transmission with encryption for all performance data collection and reporting
+- [ ] Data access controls with proper authentication and authorization for performance dashboards
+- [ ] Audit logging for performance data access and configuration changes
+- [ ] Data breach protection with secure storage and transmission of performance analytics
+- [ ] Compliance documentation for performance monitoring practices and data handling
+- [ ] Privacy policy updates reflecting performance monitoring data collection and usage
+
+### Quality Verification and Testing
+- [ ] Unit tests created for all performance monitoring components with >80% coverage
+- [ ] Integration tests for performance monitoring system and alert functionality
+- [ ] Performance impact testing ensuring monitoring doesn't degrade application performance
+- [ ] Alert testing with simulated performance issues and degradation scenarios
+- [ ] Dashboard functionality testing with various data scenarios and edge cases
+- [ ] Cross-browser testing for monitoring code and dashboard compatibility
+- [ ] Load testing for monitoring infrastructure ensuring scalability under high usage
+
+### Production Configuration and Deployment
+- [ ] Production monitoring configuration optimized for performance and reliability
+- [ ] Monitoring infrastructure scaling configured for growing user base and data volume
+- [ ] Performance monitoring backup and disaster recovery procedures documented and tested
+- [ ] Monitoring cost optimization with efficient data collection and storage strategies
+- [ ] Performance monitoring maintenance procedures documented for ongoing operation
+- [ ] Monitoring team training and handover documentation for operational support
+- [ ] Documentation created for performance monitoring administration and troubleshooting
+
+### Final Validation
+- [ ] Core Web Vitals consistently monitored with accurate LCP, FID, CLS measurements
+- [ ] Real User Monitoring provides actionable insights with minimal performance overhead
+- [ ] Performance alerts trigger accurately within 5 minutes of performance degradation
+- [ ] Dashboard provides comprehensive performance insights for all stakeholder groups
+- [ ] A/B testing framework enables statistically significant performance optimization testing
+- [ ] Error tracking correlates performance issues with user experience impact effectively
+- [ ] All monitoring integrates seamlessly without degrading application performance or user experience
+
+**CONFIRMATION STATEMENT**: "I confirm that ALL checklist items above have been completed and verified. The performance monitoring and analytics system is fully functional with comprehensive Core Web Vitals tracking, real user monitoring, error tracking, performance dashboards, and A/B testing framework. The system provides actionable insights for continuous performance optimization while maintaining user privacy and minimal performance overhead."

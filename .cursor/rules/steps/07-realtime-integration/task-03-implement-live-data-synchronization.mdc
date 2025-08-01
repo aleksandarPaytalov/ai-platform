@@ -1,0 +1,316 @@
+---
+alwaysApply: false
+---
+# Task 7.3: Implement Live Data Synchronization
+
+## Context and Scope
+You are working on **Task 7.3** of the AI Feature Tracker project. This task focuses ONLY on implementing live data synchronization that automatically updates the UI when database changes occur. Do NOT implement any UI components, specific business logic, or features beyond what is explicitly listed in the AI Instructions below.
+
+## Technology Standards for This Task
+- **React hooks** with real-time data synchronization and state management
+- **Supabase Real-time** integration with database change subscriptions
+- **Optimistic updates** for immediate UI feedback and better UX
+- **Conflict resolution** for handling concurrent data modifications
+- **TypeScript** with comprehensive interfaces for real-time data operations
+- **Performance optimization** with efficient data merging and UI updates
+
+## AI Instructions
+
+Complete the following tasks in exact order:
+
+### 1. Create Real-time Data Hooks (`src/hooks/realtime/useRealtimeData.ts`)
+- Create `useRealtimeData` hook for subscribing to database table changes
+- Implement automatic UI refresh when database changes occur
+- Add subscription management with proper cleanup and resource management
+- Include data filtering and subscription configuration options
+- Add hook state management (loading, data, error, connected)
+- Implement hook performance optimization with efficient re-renders
+- Create TypeScript interfaces for hook configuration and return values
+- Add hook debugging and logging utilities for development
+- Include hook error handling and recovery mechanisms
+- Add hook testing utilities and mock real-time data implementations
+
+### 2. Create Tools Real-time Hook (`src/hooks/realtime/useRealtimeTools.ts`)
+- Create `useRealtimeTools` hook specifically for AI tools data synchronization
+- Implement tools list synchronization with real-time updates
+- Add tools filtering integration with real-time subscriptions
+- Include tools search synchronization with live data updates
+- Add tools state management with optimistic updates
+- Implement tools data merging and conflict resolution
+- Create TypeScript interfaces for tools real-time data and events
+- Add tools real-time debugging and monitoring utilities
+- Include tools real-time error handling and fallback mechanisms
+- Add tools real-time testing utilities and mock tools data
+
+### 3. Create Updates Real-time Hook (`src/hooks/realtime/useRealtimeUpdates.ts`)
+- Create `useRealtimeUpdates` hook for feature updates data synchronization
+- Implement updates timeline synchronization with real-time changes
+- Add updates filtering by tool, date, impact level with live updates
+- Include updates search synchronization with real-time results
+- Add updates state management with immediate UI reflection
+- Implement updates data validation and transformation
+- Create TypeScript interfaces for updates real-time data and events
+- Add updates real-time performance optimization for high-frequency changes
+- Include updates real-time error handling and data recovery
+- Add updates real-time testing utilities and mock updates data
+
+### 4. Create Optimistic Updates System (`src/lib/realtime/optimistic-updates.ts`)
+- Create optimistic updates system for immediate UI feedback
+- Implement optimistic state management with rollback capabilities
+- Add optimistic update queuing and batch processing
+- Include optimistic update conflict detection and resolution
+- Add optimistic update validation and error handling
+- Implement optimistic update performance optimization
+- Create TypeScript interfaces for optimistic update configuration and state
+- Add optimistic update debugging and monitoring utilities
+- Include optimistic update testing utilities and mock scenarios
+- Add optimistic update integration with real-time data synchronization
+
+### 5. Create Data Merging System (`src/lib/realtime/data-merging.ts`)
+- Create data merging system for combining local and remote changes
+- Implement merge strategies for different data types and conflict scenarios
+- Add data versioning and timestamp-based conflict resolution
+- Include data integrity validation and consistency checks
+- Add merge performance optimization with efficient algorithms
+- Implement merge debugging and logging utilities
+- Create TypeScript interfaces for merge configuration and strategies
+- Add merge error handling and recovery mechanisms
+- Include merge testing utilities and mock merge scenarios
+- Add merge integration with optimistic updates and real-time synchronization
+
+### 6. Create Conflict Resolution System (`src/lib/realtime/conflict-resolution.ts`)
+- Create conflict resolution system for handling concurrent data modifications
+- Implement conflict detection algorithms for identifying data conflicts
+- Add conflict resolution strategies (last-write-wins, merge, user-choice)
+- Include conflict notification and user interaction systems
+- Add conflict resolution performance optimization
+- Implement conflict resolution debugging and monitoring utilities
+- Create TypeScript interfaces for conflict types and resolution strategies
+- Add conflict resolution error handling and fallback mechanisms
+- Include conflict resolution testing utilities and mock conflict scenarios
+- Add conflict resolution integration with data merging and optimistic updates
+
+### 7. Create Synchronization State Management (`src/lib/realtime/sync-state.ts`)
+- Create synchronization state management for tracking sync status
+- Implement sync state machine (idle, syncing, conflict, error, offline)
+- Add sync state persistence and recovery across app sessions
+- Include sync state performance monitoring and metrics
+- Add sync state debugging and visualization utilities
+- Implement sync state error handling and recovery mechanisms
+- Create TypeScript interfaces for sync state and configuration
+- Add sync state testing utilities and mock sync scenarios
+- Include sync state integration with connection manager and data hooks
+- Add sync state user notification and feedback systems
+
+### 8. Create Live Data Synchronization Integration (`src/hooks/realtime/index.ts`)
+- Create comprehensive export file for all live data synchronization hooks
+- Set up synchronization composition with all systems integrated
+- Add synchronization configuration and customization utilities
+- Include synchronization React hooks for component integration
+- Create synchronization testing utilities and comprehensive mocks
+- Add synchronization documentation and usage examples
+- Include comprehensive TypeScript type exports for all interfaces
+- Create synchronization debugging dashboard for development
+- Add synchronization performance monitoring and optimization utilities
+- Include synchronization backup and recovery utilities
+
+## Completion Checklist
+
+Before marking this task as complete, verify ALL of the following items:
+
+### Real-time Data Hooks Verification
+- [ ] `src/hooks/realtime/useRealtimeData.ts` exists with database subscription management
+- [ ] Automatic UI refresh when database changes occur works correctly
+- [ ] Subscription management with proper cleanup and resource management implemented
+- [ ] Data filtering and subscription configuration options included
+- [ ] Hook state management (loading, data, error, connected) works properly
+- [ ] Hook performance optimization with efficient re-renders implemented
+- [ ] TypeScript interfaces for hook configuration and return values defined
+- [ ] Hook debugging and logging utilities for development added
+- [ ] Hook error handling and recovery mechanisms included
+- [ ] Hook testing utilities and mock implementations created
+
+### Tools Real-time Hook Verification
+- [ ] `src/hooks/realtime/useRealtimeTools.ts` exists for AI tools synchronization
+- [ ] Tools list synchronization with real-time updates works correctly
+- [ ] Tools filtering integration with real-time subscriptions implemented
+- [ ] Tools search synchronization with live data updates included
+- [ ] Tools state management with optimistic updates works properly
+- [ ] Tools data merging and conflict resolution implemented
+- [ ] TypeScript interfaces for tools real-time data and events defined
+- [ ] Tools real-time debugging and monitoring utilities added
+- [ ] Tools real-time error handling and fallback mechanisms included
+- [ ] Tools real-time testing utilities and mock data created
+
+### Updates Real-time Hook Verification
+- [ ] `src/hooks/realtime/useRealtimeUpdates.ts` exists for feature updates synchronization
+- [ ] Updates timeline synchronization with real-time changes works correctly
+- [ ] Updates filtering by tool, date, impact with live updates implemented
+- [ ] Updates search synchronization with real-time results included
+- [ ] Updates state management with immediate UI reflection works properly
+- [ ] Updates data validation and transformation implemented
+- [ ] TypeScript interfaces for updates real-time data and events defined
+- [ ] Updates real-time performance optimization for high-frequency changes implemented
+- [ ] Updates real-time error handling and data recovery included
+- [ ] Updates real-time testing utilities and mock data created
+
+### Optimistic Updates System Verification
+- [ ] `src/lib/realtime/optimistic-updates.ts` exists with immediate UI feedback
+- [ ] Optimistic state management with rollback capabilities works correctly
+- [ ] Optimistic update queuing and batch processing implemented
+- [ ] Optimistic update conflict detection and resolution included
+- [ ] Optimistic update validation and error handling works properly
+- [ ] Optimistic update performance optimization implemented
+- [ ] TypeScript interfaces for optimistic update configuration defined
+- [ ] Optimistic update debugging and monitoring utilities added
+- [ ] Optimistic update testing utilities and mock scenarios created
+- [ ] Optimistic update integration with real-time synchronization works
+
+### Data Merging System Verification
+- [ ] `src/lib/realtime/data-merging.ts` exists with merge capabilities
+- [ ] Merge strategies for different data types and conflicts implemented
+- [ ] Data versioning and timestamp-based conflict resolution works correctly
+- [ ] Data integrity validation and consistency checks included
+- [ ] Merge performance optimization with efficient algorithms implemented
+- [ ] Merge debugging and logging utilities added
+- [ ] TypeScript interfaces for merge configuration and strategies defined
+- [ ] Merge error handling and recovery mechanisms included
+- [ ] Merge testing utilities and mock scenarios created
+- [ ] Merge integration with optimistic updates and synchronization works
+
+### Conflict Resolution System Verification
+- [ ] `src/lib/realtime/conflict-resolution.ts` exists with conflict handling
+- [ ] Conflict detection algorithms for identifying conflicts work correctly
+- [ ] Conflict resolution strategies (last-write-wins, merge, user-choice) implemented
+- [ ] Conflict notification and user interaction systems included
+- [ ] Conflict resolution performance optimization implemented
+- [ ] Conflict resolution debugging and monitoring utilities added
+- [ ] TypeScript interfaces for conflict types and strategies defined
+- [ ] Conflict resolution error handling and fallback mechanisms included
+- [ ] Conflict resolution testing utilities and mock scenarios created
+- [ ] Conflict resolution integration with merging and optimistic updates works
+
+### Synchronization State Management Verification
+- [ ] `src/lib/realtime/sync-state.ts` exists with sync status tracking
+- [ ] Sync state machine (idle, syncing, conflict, error, offline) implemented
+- [ ] Sync state persistence and recovery across sessions works correctly
+- [ ] Sync state performance monitoring and metrics included
+- [ ] Sync state debugging and visualization utilities added
+- [ ] Sync state error handling and recovery mechanisms implemented
+- [ ] TypeScript interfaces for sync state and configuration defined
+- [ ] Sync state testing utilities and mock scenarios created
+- [ ] Sync state integration with connection manager and hooks works
+- [ ] Sync state user notification and feedback systems included
+
+### Integration and Export Verification
+- [ ] `src/hooks/realtime/index.ts` exists with comprehensive exports
+- [ ] Synchronization composition with all systems integrated properly
+- [ ] Synchronization configuration and customization utilities included
+- [ ] Synchronization React hooks for component integration created
+- [ ] Synchronization testing utilities and mocks implemented
+- [ ] Synchronization documentation and usage examples added
+- [ ] Comprehensive TypeScript type exports for all interfaces defined
+- [ ] Synchronization debugging dashboard for development included
+- [ ] Synchronization performance monitoring utilities implemented
+- [ ] Synchronization backup and recovery utilities included
+
+### Real-time Data Synchronization Verification
+- [ ] Database changes trigger immediate UI updates without page refresh
+- [ ] Tool data synchronization reflects changes across all components
+- [ ] Feature update synchronization shows new updates in real-time
+- [ ] Data filtering remains consistent during real-time updates
+- [ ] Search results update dynamically with database changes
+- [ ] Real-time subscriptions handle multiple concurrent users correctly
+- [ ] Data synchronization works reliably with network interruptions
+- [ ] Synchronization performance doesn't impact overall application responsiveness
+
+### Optimistic Updates and UX Verification
+- [ ] User actions provide immediate visual feedback through optimistic updates
+- [ ] Optimistic updates are rolled back correctly when operations fail
+- [ ] UI remains responsive during optimistic update processing
+- [ ] Optimistic update conflicts are resolved appropriately
+- [ ] User interactions feel smooth and responsive with optimistic updates
+- [ ] Optimistic update errors are communicated clearly to users
+- [ ] Optimistic update state is managed consistently across components
+- [ ] Optimistic updates integrate seamlessly with real-time synchronization
+
+### Data Consistency and Conflict Resolution Verification
+- [ ] Concurrent data modifications are detected and handled appropriately
+- [ ] Conflict resolution strategies work correctly for different conflict types
+- [ ] Data integrity is maintained during merge operations
+- [ ] Timestamp-based conflict resolution works accurately
+- [ ] User-choice conflict resolution provides clear options and feedback
+- [ ] Data versioning prevents data loss during conflicts
+- [ ] Merge algorithms efficiently combine local and remote changes
+- [ ] Conflict resolution doesn't cause data corruption or inconsistency
+
+### Performance and Resource Management Verification
+- [ ] Real-time synchronization doesn't cause excessive re-renders
+- [ ] Data merging operations are efficient and don't block UI
+- [ ] Memory usage remains reasonable during extended synchronization
+- [ ] Real-time subscriptions are cleaned up properly to prevent leaks
+- [ ] Synchronization performance scales appropriately with data volume
+- [ ] Batch processing optimizes high-frequency update scenarios
+- [ ] Resource cleanup prevents accumulation of unused subscriptions
+- [ ] Performance monitoring identifies optimization opportunities
+
+### Error Handling and Recovery Verification
+- [ ] Network disconnections are handled gracefully with appropriate fallbacks
+- [ ] Synchronization errors don't crash or break application functionality
+- [ ] Data corruption scenarios are detected and recovered appropriately
+- [ ] Invalid data updates are rejected and don't affect application state
+- [ ] Error states are communicated clearly to users with recovery options
+- [ ] Failed optimistic updates are rolled back without affecting other data
+- [ ] Synchronization recovery restores full functionality after errors
+- [ ] Error logging provides useful information for debugging and support
+
+### Integration with Existing Systems Verification
+- [ ] Real-time hooks integrate seamlessly with data fetching from Task 5.1
+- [ ] Synchronization works properly with navigation state from Task 6.5
+- [ ] Connection manager from Task 7.2 provides reliable connection foundation
+- [ ] Real-time infrastructure from Task 7.1 supports synchronization requirements
+- [ ] Tool and update components automatically reflect real-time changes
+- [ ] Search and filtering remain functional during real-time updates
+- [ ] Real-time synchronization doesn't conflict with existing state management
+- [ ] Performance optimization works with overall application performance
+
+### TypeScript and Type Safety Verification
+- [ ] All real-time operations have comprehensive TypeScript interfaces
+- [ ] Database change events are properly typed with schema information
+- [ ] Optimistic update operations have proper type validation
+- [ ] Conflict resolution types provide specific conflict information
+- [ ] Data merging operations maintain type safety throughout
+- [ ] Hook return values are properly typed for component usage
+- [ ] No TypeScript errors or warnings exist in synchronization code
+- [ ] Type definitions integrate well with existing application types
+
+### Development and Testing Verification
+- [ ] Real-time debugging tools provide useful development insights
+- [ ] Mock implementations enable testing without real database connections
+- [ ] Testing utilities facilitate comprehensive synchronization testing
+- [ ] Development dashboard shows real-time synchronization status
+- [ ] Logging provides appropriate detail for development and production
+- [ ] Performance profiling identifies synchronization optimization opportunities
+- [ ] Documentation provides clear implementation and usage guidance
+- [ ] Examples demonstrate proper real-time synchronization patterns
+
+## Success Criteria
+Task 7.3 is complete when:
+1. All items in the completion checklist are verified ✓
+2. Live data synchronization provides seamless, real-time UI updates
+3. Optimistic updates offer immediate feedback with proper conflict resolution
+4. Data merging maintains consistency across concurrent modifications
+5. Performance is optimized for smooth, responsive user experience
+6. Error handling ensures robust synchronization under various conditions
+7. No errors exist in console or TypeScript compilation
+8. Synchronization is ready for integration with real-time status indicators
+
+## Important Notes
+- **ONLY** work on live data synchronization - do not implement UI components or business logic
+- Focus on creating seamless, automatic UI updates when database changes occur
+- Ensure optimistic updates provide immediate feedback while maintaining data consistency
+- Test synchronization thoroughly with concurrent users and network interruptions
+- Optimize performance to prevent excessive re-renders and maintain responsiveness
+- Use proper conflict resolution strategies to handle concurrent data modifications
+- Ensure data integrity is maintained throughout all synchronization operations
+- Test with various data volumes and update frequencies to ensure scalability

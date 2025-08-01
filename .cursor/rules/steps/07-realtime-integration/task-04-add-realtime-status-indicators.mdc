@@ -1,0 +1,316 @@
+---
+alwaysApply: false
+---
+# Task 7.4: Add Real-time Status Indicators
+
+## Context and Scope
+You are working on **Task 7.4** of the AI Feature Tracker project. This task focuses ONLY on creating visual status indicators that show real-time connection status and live update notifications to users. Do NOT implement any data synchronization logic, complex business features, or functionality beyond what is explicitly listed in the AI Instructions below.
+
+## Technology Standards for This Task
+- **React components** with TypeScript and real-time status integration
+- **Visual indicators** with animations, colors, and clear status communication
+- **Accessibility** with proper ARIA attributes and screen reader support
+- **Responsive design** that works across all device sizes and contexts
+- **Performance optimization** with efficient status updates and animations
+- **User experience** with clear messaging and actionable feedback
+
+## AI Instructions
+
+Complete the following tasks in exact order:
+
+### 1. Create Connection Status Badge (`src/components/realtime/ConnectionStatusBadge.tsx`)
+- Create `ConnectionStatusBadge` component showing real-time connection status
+- Implement status variants: connected, connecting, disconnected, reconnecting, error
+- Add color-coded visual indicators with semantic meaning (green, yellow, red)
+- Include animated indicators for connecting and reconnecting states
+- Add tooltip integration showing detailed connection information
+- Implement accessibility features with proper ARIA labels and announcements
+- Create TypeScript interface for connection status props and state
+- Add badge positioning options (header, sidebar, floating, inline)
+- Include badge size variants (small, medium, large) for different contexts
+- Add badge click handling for connection diagnostics and troubleshooting
+
+### 2. Create Live Update Toast Notifications (`src/components/realtime/LiveUpdateToast.tsx`)
+- Create `LiveUpdateToast` component for new feature update notifications
+- Implement toast variants for different update types (new tool, feature update, system notification)
+- Add toast animation system with slide-in, fade-out, and stack management
+- Include toast content with update preview, tool information, and action buttons
+- Add toast timing configuration with auto-dismiss and manual dismiss options
+- Implement toast accessibility with proper announcements and keyboard navigation
+- Create TypeScript interface for toast props, content, and configuration
+- Add toast positioning system (top-right, bottom-right, center, custom)
+- Include toast grouping and batching for multiple simultaneous updates
+- Add toast interaction handling (click to view, dismiss, snooze)
+
+### 3. Create Connection Quality Indicator (`src/components/realtime/ConnectionQuality.tsx`)
+- Create `ConnectionQuality` component showing connection performance metrics
+- Implement quality visualization with signal bars, latency display, and health score
+- Add real-time latency tracking with color-coded performance indicators
+- Include connection quality history and trend visualization
+- Add quality alerts for performance degradation and improvement
+- Implement accessibility features with alternative text and descriptions
+- Create TypeScript interface for connection quality metrics and display
+- Add quality indicator customization for different display contexts
+- Include quality improvement suggestions and troubleshooting tips
+- Add quality monitoring integration with connection diagnostics
+
+### 4. Create Live Activity Indicator (`src/components/realtime/LiveActivityIndicator.tsx`)
+- Create `LiveActivityIndicator` component showing active real-time updates
+- Implement activity visualization with pulsing animations and update counters
+- Add activity filtering by type (tool updates, system changes, user activity)
+- Include activity timeline with recent update history and timestamps
+- Add activity pause/resume controls for user preference management
+- Implement accessibility features with activity announcements and descriptions
+- Create TypeScript interface for activity data and display configuration
+- Add activity indicator integration with live data synchronization
+- Include activity performance optimization with efficient update handling
+- Add activity debugging and monitoring utilities for development
+
+### 5. Create Status Banner System (`src/components/realtime/StatusBanner.tsx`)
+- Create `StatusBanner` component for system-wide status communications
+- Implement banner variants for different message types (info, warning, error, success)
+- Add banner content management with rich text, links, and action buttons
+- Include banner animation system with slide-down, fade-in, and dismissal
+- Add banner persistence and user dismissal preferences
+- Implement banner accessibility with proper heading hierarchy and navigation
+- Create TypeScript interface for banner content, styling, and behavior
+- Add banner positioning and layout integration with application design
+- Include banner priority system for multiple simultaneous banners
+- Add banner analytics and user interaction tracking
+
+### 6. Create Offline Status Handler (`src/components/realtime/OfflineStatusHandler.tsx`)
+- Create `OfflineStatusHandler` component for network connectivity status
+- Implement offline detection with browser APIs and connection monitoring
+- Add offline status visual indicators with appropriate messaging and actions
+- Include offline data caching and synchronization queue management
+- Add reconnection indicators and automatic retry status
+- Implement accessibility features with offline status announcements
+- Create TypeScript interface for offline status and recovery configuration
+- Add offline mode optimization with reduced functionality indicators
+- Include offline status integration with connection manager and sync systems
+- Add offline testing utilities and network condition simulation
+
+### 7. Create Status Indicator Orchestrator (`src/components/realtime/StatusOrchestrator.tsx`)
+- Create `StatusOrchestrator` component managing all status indicators
+- Implement indicator coordination to prevent overwhelming user with notifications
+- Add indicator priority system with smart notification management
+- Include indicator state management and cross-component coordination
+- Add indicator performance optimization with efficient update batching
+- Implement indicator accessibility coordination with proper announcement sequencing
+- Create TypeScript interface for orchestrator configuration and state management
+- Add indicator debugging and monitoring dashboard for development
+- Include indicator customization and user preference management
+- Add indicator integration with application-wide notification systems
+
+### 8. Create Real-time Status Integration (`src/components/realtime/status/index.ts`)
+- Create comprehensive export file for all real-time status components
+- Set up status indicator composition with all components integrated
+- Add status configuration system for enabling/disabling different indicators
+- Include status React hooks for component integration and state management
+- Create status testing utilities and comprehensive mock implementations
+- Add status documentation and usage examples for implementation
+- Include comprehensive TypeScript type exports for all status interfaces
+- Create status debugging utilities and development tools
+- Add status performance monitoring and optimization utilities
+- Include status accessibility testing helpers and validation tools
+
+## Completion Checklist
+
+Before marking this task as complete, verify ALL of the following items:
+
+### Connection Status Badge Verification
+- [ ] `src/components/realtime/ConnectionStatusBadge.tsx` exists with status display
+- [ ] Status variants (connected, connecting, disconnected, reconnecting, error) implemented
+- [ ] Color-coded visual indicators with semantic meaning work correctly
+- [ ] Animated indicators for connecting and reconnecting states function properly
+- [ ] Tooltip integration showing detailed connection information included
+- [ ] Accessibility features with ARIA labels and announcements implemented
+- [ ] TypeScript interface for connection status props and state defined
+- [ ] Badge positioning options (header, sidebar, floating, inline) work correctly
+- [ ] Badge size variants (small, medium, large) for different contexts included
+- [ ] Badge click handling for diagnostics and troubleshooting implemented
+
+### Live Update Toast Notifications Verification
+- [ ] `src/components/realtime/LiveUpdateToast.tsx` exists with update notifications
+- [ ] Toast variants for different update types implemented correctly
+- [ ] Toast animation system with slide-in, fade-out, stack management works
+- [ ] Toast content with update preview, tool info, action buttons included
+- [ ] Toast timing configuration with auto-dismiss and manual dismiss works
+- [ ] Toast accessibility with announcements and keyboard navigation implemented
+- [ ] TypeScript interface for toast props, content, configuration defined
+- [ ] Toast positioning system (top-right, bottom-right, center) works correctly
+- [ ] Toast grouping and batching for multiple updates implemented
+- [ ] Toast interaction handling (click to view, dismiss, snooze) works
+
+### Connection Quality Indicator Verification
+- [ ] `src/components/realtime/ConnectionQuality.tsx` exists with performance metrics
+- [ ] Quality visualization with signal bars, latency, health score implemented
+- [ ] Real-time latency tracking with color-coded indicators works correctly
+- [ ] Connection quality history and trend visualization included
+- [ ] Quality alerts for performance degradation and improvement work
+- [ ] Accessibility features with alternative text and descriptions implemented
+- [ ] TypeScript interface for quality metrics and display defined
+- [ ] Quality indicator customization for different contexts works
+- [ ] Quality improvement suggestions and troubleshooting tips included
+- [ ] Quality monitoring integration with diagnostics implemented
+
+### Live Activity Indicator Verification
+- [ ] `src/components/realtime/LiveActivityIndicator.tsx` exists with activity display
+- [ ] Activity visualization with pulsing animations and counters works correctly
+- [ ] Activity filtering by type (tool updates, system changes) implemented
+- [ ] Activity timeline with recent history and timestamps included
+- [ ] Activity pause/resume controls for user preferences work
+- [ ] Accessibility features with activity announcements implemented
+- [ ] TypeScript interface for activity data and configuration defined
+- [ ] Activity indicator integration with live synchronization works
+- [ ] Activity performance optimization with efficient updates implemented
+- [ ] Activity debugging and monitoring utilities included
+
+### Status Banner System Verification
+- [ ] `src/components/realtime/StatusBanner.tsx` exists with system communications
+- [ ] Banner variants for different message types implemented correctly
+- [ ] Banner content management with rich text, links, buttons works
+- [ ] Banner animation system with slide-down, fade-in, dismissal functions
+- [ ] Banner persistence and user dismissal preferences implemented
+- [ ] Banner accessibility with proper heading hierarchy implemented
+- [ ] TypeScript interface for banner content, styling, behavior defined
+- [ ] Banner positioning and layout integration works correctly
+- [ ] Banner priority system for multiple banners implemented
+- [ ] Banner analytics and interaction tracking included
+
+### Offline Status Handler Verification
+- [ ] `src/components/realtime/OfflineStatusHandler.tsx` exists with connectivity status
+- [ ] Offline detection with browser APIs and monitoring works correctly
+- [ ] Offline status visual indicators with messaging and actions implemented
+- [ ] Offline data caching and synchronization queue management included
+- [ ] Reconnection indicators and automatic retry status work
+- [ ] Accessibility features with offline announcements implemented
+- [ ] TypeScript interface for offline status and recovery defined
+- [ ] Offline mode optimization with reduced functionality indicators works
+- [ ] Offline status integration with connection manager implemented
+- [ ] Offline testing utilities and network simulation included
+
+### Status Indicator Orchestrator Verification
+- [ ] `src/components/realtime/StatusOrchestrator.tsx` exists with indicator management
+- [ ] Indicator coordination prevents overwhelming user with notifications
+- [ ] Indicator priority system with smart management works correctly
+- [ ] Indicator state management and cross-component coordination implemented
+- [ ] Indicator performance optimization with update batching works
+- [ ] Indicator accessibility coordination with announcement sequencing implemented
+- [ ] TypeScript interface for orchestrator configuration defined
+- [ ] Indicator debugging and monitoring dashboard included
+- [ ] Indicator customization and user preference management works
+- [ ] Indicator integration with application notifications implemented
+
+### Integration and Export Verification
+- [ ] `src/components/realtime/status/index.ts` exists with comprehensive exports
+- [ ] Status indicator composition with all components integrated properly
+- [ ] Status configuration system for enabling/disabling indicators works
+- [ ] Status React hooks for integration and state management created
+- [ ] Status testing utilities and mock implementations implemented
+- [ ] Status documentation and usage examples added
+- [ ] Comprehensive TypeScript type exports for all interfaces defined
+- [ ] Status debugging utilities and development tools created
+- [ ] Status performance monitoring and optimization utilities implemented
+- [ ] Status accessibility testing helpers and validation tools included
+
+### Visual Design and User Experience Verification
+- [ ] Status indicators use consistent color schemes with semantic meaning
+- [ ] Animations are smooth and don't cause motion sensitivity issues
+- [ ] Visual hierarchy clearly communicates importance and urgency
+- [ ] Status messages are clear, concise, and actionable
+- [ ] Indicators are positioned appropriately without obstructing content
+- [ ] Visual feedback is immediate and responsive to status changes
+- [ ] Design integrates seamlessly with existing application aesthetic
+- [ ] Status indicators work well across different screen sizes and devices
+
+### Accessibility and Screen Reader Support Verification
+- [ ] All status indicators have proper ARIA labels and roles
+- [ ] Status changes are announced appropriately to screen readers
+- [ ] Keyboard navigation works for all interactive status elements
+- [ ] Color is not the only way to convey status information
+- [ ] Focus management works correctly with status indicator interactions
+- [ ] Screen reader users can access all status information and actions
+- [ ] Status announcements don't overwhelm users with excessive notifications
+- [ ] Alternative text and descriptions provide clear status context
+
+### Performance and Resource Management Verification
+- [ ] Status indicators update efficiently without causing excessive re-renders
+- [ ] Animations are optimized and don't impact overall application performance
+- [ ] Status indicator memory usage remains reasonable during extended sessions
+- [ ] Status updates are batched appropriately to prevent performance issues
+- [ ] Resource cleanup prevents accumulation of unused status elements
+- [ ] Status indicator performance scales appropriately with application usage
+- [ ] Efficient status change detection prevents unnecessary updates
+- [ ] Status indicator rendering is optimized for smooth user experience
+
+### Real-time Integration and Functionality Verification
+- [ ] Connection status reflects actual real-time connection state accurately
+- [ ] Live update notifications trigger appropriately for database changes
+- [ ] Connection quality indicators show realistic performance metrics
+- [ ] Activity indicators reflect actual real-time synchronization activity
+- [ ] Offline status detection works reliably across different network conditions
+- [ ] Status indicators integrate seamlessly with connection manager from Task 7.2
+- [ ] Status updates synchronize properly with live data synchronization from Task 7.3
+- [ ] Status orchestration prevents conflicting or overwhelming notifications
+
+### User Interaction and Customization Verification
+- [ ] Users can interact with status indicators appropriately (click, dismiss, configure)
+- [ ] Status indicator preferences are saved and restored across sessions
+- [ ] Users can customize status indicator visibility and behavior
+- [ ] Status indicators provide helpful actions and next steps when appropriate
+- [ ] Dismissal and snooze functionality works correctly for notifications
+- [ ] Status indicators don't interfere with primary application functionality
+- [ ] User feedback mechanisms allow reporting of status indicator issues
+- [ ] Status indicators adapt to user behavior and preferences over time
+
+### Error Handling and Edge Cases Verification
+- [ ] Status indicators handle connection failures gracefully
+- [ ] Invalid status data doesn't break indicator functionality
+- [ ] Status indicators work correctly during rapid connection state changes
+- [ ] Network condition changes are reflected accurately in status indicators
+- [ ] Status indicator errors are logged and handled appropriately
+- [ ] Fallback states provide meaningful information when primary status unavailable
+- [ ] Status indicators work correctly across different browser environments
+- [ ] Edge cases like simultaneous status changes are handled properly
+
+### Integration with Existing Components Verification
+- [ ] Status indicators integrate properly with navigation components from Tasks 6.1-6.5
+- [ ] Status indicators work seamlessly with tool display components from Tasks 5.2-5.4
+- [ ] Status indicators don't conflict with existing loading and error states
+- [ ] Status indicators integrate with application-wide notification systems
+- [ ] Status indicators work properly with responsive design and mobile navigation
+- [ ] Status indicators maintain consistency with existing UI patterns
+- [ ] Status indicators integrate with application theming and design system
+- [ ] Status indicators work correctly with existing accessibility features
+
+### Development and Testing Verification
+- [ ] Status indicator debugging tools provide useful development insights
+- [ ] Mock implementations enable comprehensive testing of status scenarios
+- [ ] Testing utilities facilitate automated testing of status indicator behavior
+- [ ] Development tools allow easy simulation of different connection states
+- [ ] Status indicator logging provides appropriate detail for debugging
+- [ ] Performance profiling tools identify status indicator optimization opportunities
+- [ ] Documentation provides clear implementation and customization guidance
+- [ ] Examples demonstrate proper status indicator integration patterns
+
+## Success Criteria
+Task 7.4 is complete when:
+1. All items in the completion checklist are verified ✓
+2. Status indicators provide clear, immediate feedback about real-time connection status
+3. Live update notifications inform users of new content without being intrusive
+4. Visual design is consistent, accessible, and enhances user experience
+5. Performance is optimized with smooth animations and efficient updates
+6. Accessibility standards are met for screen readers and assistive technologies
+7. No errors exist in console or TypeScript compilation
+8. Status indicators are ready for integration with real-time event handling
+
+## Important Notes
+- **ONLY** work on visual status indicators - do not implement data synchronization or business logic
+- Focus on creating clear, user-friendly visual feedback for real-time status
+- Ensure all status indicators are accessible to users with disabilities
+- Test status indicators across different connection states and network conditions
+- Optimize animations and visual effects for performance and accessibility
+- Use consistent visual language and color coding throughout status indicators
+- Ensure status indicators don't overwhelm users or interfere with primary functionality
+- Test status indicators thoroughly on mobile devices and various screen sizes

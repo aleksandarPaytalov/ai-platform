@@ -1,0 +1,209 @@
+---
+alwaysApply: false
+---
+# Step 10 Task 2: Implement Content Scraping System
+
+## Context and Scope
+You are working on **Step 10: Automated Update System** of the AI Feature Tracker project. This is **Task 10.2** focusing exclusively on implementing the content scraping system for AI tool websites and platforms.
+
+**IMPORTANT**: This rule references and must comply with:
+- `global-behavior.mdc` - AI behavior and communication patterns
+- `technology-standards.mdc` - Technology stack standards and patterns  
+- `quality-standards.mdc` - Code quality and testing requirements
+
+## Current Step Context
+- **Phase**: Phase 4 - AI Integration
+- **Step**: 10 - Automated Update System  
+- **Task**: 10.2 - Implement Content Scraping System
+- **Prerequisites**: Supabase Edge Functions (Task 10.1) must be completed
+
+## Task Objective
+Create a comprehensive web scraping system that can reliably extract content from different AI tool websites and platforms, with robust error handling, respectful scraping practices, and security measures.
+
+## AI Instructions
+
+### 1. Create Web Scraping Utilities for Different AI Tool Websites and Platforms
+- Create modular scraping utilities in `lib/scraping/` directory with TypeScript interfaces
+- Implement base scraper class with common functionality (HTTP requests, headers, retries)
+- Create specialized scrapers for each AI tool platform type (WordPress blogs, GitHub releases, documentation sites, RSS feeds)
+- Add scraper factory pattern to dynamically create appropriate scraper based on source type
+- Implement URL validation and normalization for consistent scraping targets
+- Create scraping session management with proper connection pooling and resource cleanup
+- Add support for JavaScript-rendered content using headless browser capabilities where needed
+
+### 2. Implement Content Parsing for Various Formats
+- Create parsers for RSS feeds using XML parsing libraries compatible with Deno runtime
+- Implement HTML content parsing with DOM traversal for blog posts and announcement pages
+- Add JSON API endpoint parsing for tools that provide structured data endpoints
+- Create markdown file parsing for documentation and changelog formats
+- Implement PDF parsing capabilities for tools that publish updates in PDF format
+- Add support for social media content parsing (Twitter API, LinkedIn posts) where available
+- Create content format detection and automatic parser selection based on content type
+
+### 3. Add Content Change Detection to Avoid Duplicate Processing
+- Implement content hashing system using SHA-256 for detecting changes in scraped content
+- Create content fingerprinting that focuses on meaningful changes (not timestamps or ads)
+- Add database storage for content hashes with associated metadata (URL, last checked, hash value)
+- Implement incremental scraping that only processes changed content since last check
+- Create content diff analysis to identify specific sections that changed
+- Add smart caching with TTL (Time To Live) based on content update frequency patterns
+- Implement content versioning system for tracking historical changes
+
+### 4. Create Robust Error Handling for Scraping Failures and Rate Limiting
+- Implement comprehensive error categorization (network timeouts, HTTP errors, parsing failures, rate limits)
+- Add exponential backoff retry logic with jitter for failed requests
+- Create circuit breaker pattern to temporarily disable problematic sources
+- Implement rate limit detection and automatic backoff based on HTTP headers (429 responses, Retry-After)
+- Add fallback mechanisms when primary scraping methods fail
+- Create detailed error logging with context (URL, error type, retry attempts, timestamp)
+- Implement dead letter queue for repeatedly failing scrape attempts requiring manual review
+
+### 5. Implement Respectful Scraping Practices with Proper Delays and User Agents
+- Add configurable delays between requests with randomization to avoid detection
+- Implement robots.txt parsing and compliance for each target website
+- Create realistic user agent rotation with browser headers that match common patterns
+- Add IP rotation support for high-volume scraping (if using proxy services)
+- Implement request frequency limits based on website capacity and terms of service
+- Create scraping schedule optimization to distribute load across time periods
+- Add monitoring for scraping impact and automatic throttling if server response times increase
+
+### 6. Add Content Sanitization and Security Measures
+- Implement HTML sanitization to remove malicious scripts and unsafe content
+- Add input validation for all scraped URLs and content before processing
+- Create content filtering to remove ads, navigation, and irrelevant page elements
+- Implement XSS protection for content that will be displayed in the application
+- Add content length limits and validation to prevent oversized content processing
+- Create malware scanning integration for downloadable content and attachments
+- Implement data privacy compliance measures (GDPR, CCPA) for any personal information in scraped content
+
+### 7. Create Scraping Configuration Management for Different Sources
+- Design configuration schema for each AI tool source (URLs, selectors, update frequency, parsing rules)
+- Create JSON/YAML configuration files for easy maintenance and updates without code changes
+- Implement configuration validation and schema enforcement to prevent invalid settings
+- Add dynamic configuration reloading without restarting the scraping system
+- Create configuration versioning and rollback capabilities for problematic changes
+- Implement A/B testing for different scraping configurations to optimize success rates
+- Add configuration management UI or admin interface for non-technical configuration updates
+
+## Expected Deliverables
+- Complete content scraping system in `lib/scraping/` directory with modular architecture
+- Specialized scrapers for all 15 AI tools with their specific content formats
+- Robust error handling and retry mechanisms with comprehensive logging
+- Content change detection system with hash-based comparison
+- Respectful scraping implementation following robots.txt and rate limiting
+- Content sanitization and security measures protecting against malicious content
+- Configuration management system for easy maintenance and updates
+- Comprehensive test coverage for all scraping scenarios
+
+## Technical Requirements
+- **Runtime**: Deno-compatible libraries for Edge Functions environment
+- **Performance**: Concurrent scraping with proper throttling and resource management
+- **Security**: Input validation, content sanitization, and XSS protection
+- **Reliability**: Circuit breakers, retry logic, and graceful degradation
+- **Compliance**: robots.txt adherence and respectful scraping practices
+- **Monitoring**: Detailed logging and metrics for scraping performance and errors
+
+## Completion Checklist
+
+**Before marking this task as complete, verify ALL of the following:**
+
+### Web Scraping Utilities Infrastructure
+- [ ] Modular scraping utilities created in `lib/scraping/` directory with proper TypeScript interfaces
+- [ ] Base scraper class implemented with common functionality (HTTP, headers, retries)
+- [ ] Specialized scrapers created for different platform types (WordPress, GitHub, docs, RSS)
+- [ ] Scraper factory pattern implemented for dynamic scraper selection
+- [ ] URL validation and normalization system working
+- [ ] Scraping session management with connection pooling implemented
+- [ ] Headless browser support added for JavaScript-rendered content where needed
+
+### Content Parsing Implementation
+- [ ] RSS feed parser implemented using Deno-compatible XML parsing libraries
+- [ ] HTML content parser with DOM traversal working for blog posts and announcements
+- [ ] JSON API endpoint parsing implemented for structured data sources
+- [ ] Markdown file parsing working for documentation and changelog formats
+- [ ] PDF parsing capabilities implemented for PDF-based updates
+- [ ] Social media content parsing added where APIs are available
+- [ ] Content format detection and automatic parser selection working
+
+### Content Change Detection System
+- [ ] Content hashing system using SHA-256 implemented for change detection
+- [ ] Content fingerprinting focusing on meaningful changes (not timestamps/ads) working
+- [ ] Database storage for content hashes with metadata implemented
+- [ ] Incremental scraping processing only changed content since last check
+- [ ] Content diff analysis identifying specific changed sections implemented
+- [ ] Smart caching with TTL based on update frequency patterns working
+- [ ] Content versioning system for historical change tracking implemented
+
+### Error Handling and Reliability
+- [ ] Comprehensive error categorization implemented (network, HTTP, parsing, rate limits)
+- [ ] Exponential backoff retry logic with jitter implemented for failed requests
+- [ ] Circuit breaker pattern implemented to disable problematic sources temporarily
+- [ ] Rate limit detection and automatic backoff based on HTTP headers working
+- [ ] Fallback mechanisms implemented when primary scraping methods fail
+- [ ] Detailed error logging with context (URL, error type, attempts, timestamp) working
+- [ ] Dead letter queue implemented for repeatedly failing scrape attempts
+
+### Respectful Scraping Practices
+- [ ] Configurable delays between requests with randomization implemented
+- [ ] robots.txt parsing and compliance implemented for each target website
+- [ ] Realistic user agent rotation with browser headers implemented
+- [ ] IP rotation support added for high-volume scraping (if using proxies)
+- [ ] Request frequency limits based on website capacity implemented
+- [ ] Scraping schedule optimization distributing load across time periods working
+- [ ] Monitoring for scraping impact and automatic throttling implemented
+
+### Content Sanitization and Security
+- [ ] HTML sanitization removing malicious scripts and unsafe content implemented
+- [ ] Input validation for all scraped URLs and content before processing working
+- [ ] Content filtering removing ads, navigation, and irrelevant elements implemented
+- [ ] XSS protection for content displayed in application implemented
+- [ ] Content length limits and validation preventing oversized processing working
+- [ ] Malware scanning integration for downloadable content implemented
+- [ ] Data privacy compliance measures (GDPR, CCPA) for personal information implemented
+
+### Configuration Management System
+- [ ] Configuration schema designed for each AI tool source (URLs, selectors, frequency, rules)
+- [ ] JSON/YAML configuration files created for easy maintenance without code changes
+- [ ] Configuration validation and schema enforcement implemented
+- [ ] Dynamic configuration reloading without system restart working
+- [ ] Configuration versioning and rollback capabilities implemented
+- [ ] A/B testing for different scraping configurations implemented
+- [ ] Configuration management interface for non-technical updates created
+
+### Integration and Testing
+- [ ] All 15 AI tools have specific scraping configurations created and tested
+- [ ] Integration with Supabase Edge Functions from Task 10.1 working seamlessly
+- [ ] Content flows properly from scraping to processing pipeline
+- [ ] Error scenarios tested and handled gracefully without system crashes
+- [ ] Performance testing completed with acceptable resource usage
+- [ ] Security testing completed with no vulnerabilities identified
+- [ ] Load testing completed with proper throttling and rate limiting working
+
+### Quality Verification
+- [ ] Unit tests created for all scraping utilities with >80% coverage
+- [ ] Integration tests created for end-to-end scraping workflows
+- [ ] Mock data and test fixtures created for all AI tool source types
+- [ ] Error handling tested with various failure scenarios
+- [ ] Rate limiting and respectful scraping verified with target websites
+- [ ] Content sanitization tested with malicious content samples
+- [ ] Configuration management tested with various configuration changes
+
+### Production Readiness
+- [ ] All scrapers work in Supabase Edge Functions environment
+- [ ] Configuration files properly loaded and validated in production environment
+- [ ] Error logging and monitoring working in production context
+- [ ] Rate limiting and delays properly configured for production usage
+- [ ] Security measures verified and working in production environment
+- [ ] Performance monitoring showing acceptable resource usage
+- [ ] Documentation created for scraping system maintenance and troubleshooting
+
+### Final Validation
+- [ ] Successfully scrape content from at least 5 different AI tool sources
+- [ ] Content change detection working with real content updates
+- [ ] Error recovery working during simulated network failures
+- [ ] Rate limiting properly preventing server overload
+- [ ] Content sanitization removing unsafe elements from scraped content
+- [ ] Configuration changes applied without system restart
+- [ ] All logging and monitoring systems operational and showing expected data
+
+**CONFIRMATION STATEMENT**: "I confirm that ALL checklist items above have been completed and verified. The content scraping system is fully functional, secure, respectful, and ready for integration with the automated update processing pipeline. All 15 AI tools can be successfully scraped with proper error handling and content change detection."

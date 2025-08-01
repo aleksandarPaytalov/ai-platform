@@ -1,0 +1,326 @@
+---
+alwaysApply: false
+---
+# Task 7.5: Create Real-time Event Handling
+
+## Context and Scope
+You are working on **Task 7.5** of the AI Feature Tracker project. This task focuses ONLY on creating a comprehensive event handling system for processing real-time database changes and routing them to appropriate application components. Do NOT implement any UI components, specific business logic, or features beyond what is explicitly listed in the AI Instructions below.
+
+## Technology Standards for This Task
+- **Event-driven architecture** with proper event routing and handling
+- **Database change events** from Supabase Real-time with type safety
+- **Event processing** with payload validation and transformation
+- **React integration** with hooks and component event subscriptions
+- **TypeScript** with comprehensive interfaces for event types and handlers
+- **Performance optimization** with efficient event routing and processing
+
+## AI Instructions
+
+Complete the following tasks in exact order:
+
+### 1. Create Event Type System (`src/lib/realtime/events/EventTypes.ts`)
+- Create comprehensive event type definitions for all database change events
+- Implement event types for INSERT, UPDATE, DELETE operations on tools and updates tables
+- Add event payload interfaces with proper typing for database row data
+- Include event metadata interfaces (timestamp, source, user, transaction ID)
+- Add custom event types for application-specific real-time events
+- Implement event type validation and type guards for runtime safety
+- Create TypeScript discriminated unions for different event categories
+- Add event type utilities for event classification and filtering
+- Include event type documentation and usage examples
+- Add event type testing utilities and mock event generators
+
+### 2. Create Database Change Event Processor (`src/lib/realtime/events/DatabaseEventProcessor.ts`)
+- Create database change event processor for Supabase Real-time events
+- Implement event parsing and validation from Supabase Real-time payloads
+- Add event transformation and normalization for consistent application format
+- Include event filtering based on table, operation type, and conditions
+- Add event enrichment with additional metadata and context information
+- Implement event batching and throttling for high-frequency scenarios
+- Create TypeScript interfaces for event processing configuration and state
+- Add event processing debugging and logging utilities
+- Include event processing performance optimization and monitoring
+- Add event processing error handling and recovery mechanisms
+
+### 3. Create Event Router System (`src/lib/realtime/events/EventRouter.ts`)
+- Create event router system for directing events to appropriate handlers
+- Implement route registration and management for different event types
+- Add route matching with pattern-based and condition-based routing
+- Include route priority system for handling overlapping route conditions
+- Add route middleware support for event preprocessing and validation
+- Implement route debugging and monitoring utilities
+- Create TypeScript interfaces for route configuration and handler registration
+- Add route performance optimization with efficient matching algorithms
+- Include route error handling and fallback mechanisms
+- Add route testing utilities and mock routing scenarios
+
+### 4. Create Event Handler Registry (`src/lib/realtime/events/EventHandlerRegistry.ts`)
+- Create event handler registry for managing event subscribers and handlers
+- Implement handler registration and unregistration with proper cleanup
+- Add handler categorization by event type, component, and priority
+- Include handler lifecycle management with activation and deactivation
+- Add handler conflict resolution for multiple handlers on same events
+- Implement handler debugging and monitoring utilities
+- Create TypeScript interfaces for handler registration and management
+- Add handler performance optimization with efficient handler lookup
+- Include handler error handling and isolation to prevent cascade failures
+- Add handler testing utilities and mock handler implementations
+
+### 5. Create Component Event Integration (`src/hooks/realtime/useRealtimeEvents.ts`)
+- Create React hook for component-level real-time event subscriptions
+- Implement event subscription management with automatic cleanup
+- Add event filtering and conditional subscriptions based on component state
+- Include event handler registration with proper component lifecycle integration
+- Add event state management and component re-render optimization
+- Implement event debugging and monitoring utilities for development
+- Create TypeScript interfaces for hook configuration and event handling
+- Add event performance optimization with efficient subscription management
+- Include event error handling and component error boundary integration
+- Add event testing utilities and mock event scenarios for components
+
+### 6. Create Event Analytics and Monitoring (`src/lib/realtime/events/EventAnalytics.ts`)
+- Create event analytics system for monitoring real-time event performance
+- Implement event metrics collection (frequency, processing time, error rates)
+- Add event pattern analysis and anomaly detection
+- Include event performance monitoring and bottleneck identification
+- Add event debugging utilities with event timeline and inspection tools
+- Implement event analytics reporting and visualization
+- Create TypeScript interfaces for analytics configuration and metrics
+- Add event analytics performance optimization with efficient data collection
+- Include event analytics debugging and troubleshooting utilities
+- Add event analytics testing utilities and mock analytics scenarios
+
+### 7. Create Event Queue Management (`src/lib/realtime/events/EventQueue.ts`)
+- Create event queue management system for handling event processing order
+- Implement priority-based event queuing with proper ordering
+- Add event queue persistence and recovery across application sessions
+- Include event queue throttling and backpressure management
+- Add event queue monitoring and health checking
+- Implement event queue debugging and inspection utilities
+- Create TypeScript interfaces for queue configuration and management
+- Add event queue performance optimization with efficient queue operations
+- Include event queue error handling and recovery mechanisms
+- Add event queue testing utilities and mock queue scenarios
+
+### 8. Create Real-time Event Integration (`src/lib/realtime/events/index.ts`)
+- Create comprehensive export file for all real-time event handling components
+- Set up event handling composition with all systems integrated
+- Add event handling configuration and customization utilities
+- Include event handling React hooks and component integration utilities
+- Create event handling testing utilities and comprehensive mocks
+- Add event handling documentation and usage examples
+- Include comprehensive TypeScript type exports for all event interfaces
+- Create event handling debugging dashboard for development
+- Add event handling performance monitoring and optimization utilities
+- Include event handling backup and recovery utilities
+
+## Completion Checklist
+
+Before marking this task as complete, verify ALL of the following items:
+
+### Event Type System Verification
+- [ ] `src/lib/realtime/events/EventTypes.ts` exists with comprehensive event definitions
+- [ ] Event types for INSERT, UPDATE, DELETE operations implemented correctly
+- [ ] Event payload interfaces with proper typing for database data defined
+- [ ] Event metadata interfaces (timestamp, source, user, transaction) included
+- [ ] Custom event types for application-specific events implemented
+- [ ] Event type validation and type guards for runtime safety work correctly
+- [ ] TypeScript discriminated unions for event categories defined
+- [ ] Event type utilities for classification and filtering implemented
+- [ ] Event type documentation and usage examples included
+- [ ] Event type testing utilities and mock generators created
+
+### Database Change Event Processor Verification
+- [ ] `src/lib/realtime/events/DatabaseEventProcessor.ts` exists with event processing
+- [ ] Event parsing and validation from Supabase payloads works correctly
+- [ ] Event transformation and normalization for consistent format implemented
+- [ ] Event filtering based on table, operation, conditions works properly
+- [ ] Event enrichment with metadata and context information included
+- [ ] Event batching and throttling for high-frequency scenarios implemented
+- [ ] TypeScript interfaces for processing configuration defined
+- [ ] Event processing debugging and logging utilities added
+- [ ] Event processing performance optimization and monitoring included
+- [ ] Event processing error handling and recovery mechanisms implemented
+
+### Event Router System Verification
+- [ ] `src/lib/realtime/events/EventRouter.ts` exists with event routing
+- [ ] Route registration and management for different event types works correctly
+- [ ] Route matching with pattern-based and condition-based routing implemented
+- [ ] Route priority system for overlapping conditions works properly
+- [ ] Route middleware support for preprocessing and validation included
+- [ ] Route debugging and monitoring utilities implemented
+- [ ] TypeScript interfaces for route configuration defined
+- [ ] Route performance optimization with efficient matching implemented
+- [ ] Route error handling and fallback mechanisms included
+- [ ] Route testing utilities and mock scenarios created
+
+### Event Handler Registry Verification
+- [ ] `src/lib/realtime/events/EventHandlerRegistry.ts` exists with handler management
+- [ ] Handler registration and unregistration with cleanup works correctly
+- [ ] Handler categorization by event type, component, priority implemented
+- [ ] Handler lifecycle management with activation/deactivation included
+- [ ] Handler conflict resolution for multiple handlers works properly
+- [ ] Handler debugging and monitoring utilities implemented
+- [ ] TypeScript interfaces for handler registration defined
+- [ ] Handler performance optimization with efficient lookup implemented
+- [ ] Handler error handling and isolation prevents cascade failures
+- [ ] Handler testing utilities and mock implementations created
+
+### Component Event Integration Verification
+- [ ] `src/hooks/realtime/useRealtimeEvents.ts` exists with React integration
+- [ ] Event subscription management with automatic cleanup works correctly
+- [ ] Event filtering and conditional subscriptions based on state implemented
+- [ ] Event handler registration with lifecycle integration included
+- [ ] Event state management and re-render optimization works properly
+- [ ] Event debugging and monitoring utilities for development implemented
+- [ ] TypeScript interfaces for hook configuration defined
+- [ ] Event performance optimization with efficient subscriptions implemented
+- [ ] Event error handling and error boundary integration included
+- [ ] Event testing utilities and mock scenarios for components created
+
+### Event Analytics and Monitoring Verification
+- [ ] `src/lib/realtime/events/EventAnalytics.ts` exists with performance monitoring
+- [ ] Event metrics collection (frequency, processing time, errors) works correctly
+- [ ] Event pattern analysis and anomaly detection implemented
+-Inline event performance monitoring and bottleneck identification included
+- [ ] Event debugging utilities with timeline and inspection tools implemented
+- [ ] Event analytics reporting and visualization works properly
+- [ ] TypeScript interfaces for analytics configuration defined
+- [ ] Event analytics performance optimization with efficient collection implemented
+- [ ] Event analytics debugging and troubleshooting utilities included
+- [ ] Event analytics testing utilities and mock scenarios created
+
+### Event Queue Management Verification
+- [ ] `src/lib/realtime/events/EventQueue.ts` exists with queue management
+- [ ] Priority-based event queuing with proper ordering works correctly
+- [ ] Event queue persistence and recovery across sessions implemented
+- [ ] Event queue throttling and backpressure management included
+- [ ] Event queue monitoring and health checking works properly
+- [ ] Event queue debugging and inspection utilities implemented
+- [ ] TypeScript interfaces for queue configuration defined
+- [ ] Event queue performance optimization with efficient operations implemented
+- [ ] Event queue error handling and recovery mechanisms included
+- [ ] Event queue testing utilities and mock scenarios created
+
+### Integration and Export Verification
+- [ ] `src/lib/realtime/events/index.ts` exists with comprehensive exports
+- [ ] Event handling composition with all systems integrated properly
+- [ ] Event handling configuration and customization utilities included
+- [ ] Event handling React hooks and component utilities created
+- [ ] Event handling testing utilities and mocks implemented
+- [ ] Event handling documentation and usage examples added
+- [ ] Comprehensive TypeScript type exports for all interfaces defined
+- [ ] Event handling debugging dashboard for development included
+- [ ] Event handling performance monitoring utilities implemented
+- [ ] Event handling backup and recovery utilities included
+
+### Database Event Processing Verification
+- [ ] INSERT events for tools and updates are processed correctly
+- [ ] UPDATE events capture both old and new data values accurately
+- [ ] DELETE events provide necessary data for handling removed records
+- [ ] Event payloads are validated and transformed consistently
+- [ ] Database schema changes are handled gracefully in event processing
+- [ ] Event processing handles concurrent database operations correctly
+- [ ] Event filtering accurately identifies relevant events for application
+- [ ] Event enrichment adds useful context without impacting performance
+
+### Event Routing and Distribution Verification
+- [ ] Events are routed to appropriate handlers based on type and conditions
+- [ ] Route matching works efficiently with complex routing rules
+- [ ] Event routing handles high-frequency events without performance degradation
+- [ ] Route conflicts are resolved appropriately with priority system
+- [ ] Event routing integrates well with component lifecycle management
+- [ ] Routing errors are handled gracefully without affecting other routes
+- [ ] Route debugging provides useful information for development
+- [ ] Event routing scales appropriately with application complexity
+
+### Component Integration and React Hooks Verification
+- [ ] React components can subscribe to relevant real-time events easily
+- [ ] Event subscriptions are cleaned up properly when components unmount
+- [ ] Component state updates properly in response to real-time events
+- [ ] Event handling doesn't cause unnecessary component re-renders
+- [ ] Multiple components can subscribe to same events without conflicts
+- [ ] Event handling works correctly with React Strict Mode
+- [ ] Component event subscriptions integrate with application routing
+- [ ] Event handling respects component error boundaries
+
+### Performance and Scalability Verification
+- [ ] Event processing handles high-frequency database changes efficiently
+- [ ] Event routing and distribution doesn't create performance bottlenecks
+- [ ] Memory usage remains reasonable during extended event handling
+- [ ] Event queue management prevents overwhelming the application
+- [ ] Event processing scales appropriately with database activity
+- [ ] Performance monitoring identifies optimization opportunities
+- [ ] Event handling doesn't impact overall application responsiveness
+- [ ] Resource cleanup prevents accumulation of unused event handlers
+
+### Error Handling and Resilience Verification
+- [ ] Event processing errors don't crash the application or handlers
+- [ ] Invalid event payloads are handled gracefully with appropriate fallbacks
+- [ ] Network disconnections don't break event handling functionality
+- [ ] Event handler errors are isolated and don't affect other handlers
+- [ ] Event processing recovers gracefully after connection restoration
+- [ ] Error logging provides useful information for debugging
+- [ ] Event handling continues working after encountering errors
+- [ ] Critical event processing failures trigger appropriate alerts
+
+### Integration with Real-time Systems Verification
+- [ ] Event handling integrates seamlessly with infrastructure from Task 7.1
+- [ ] Connection manager from Task 7.2 provides reliable event delivery
+- [ ] Live data synchronization from Task 7.3 works with event handling
+- [ ] Status indicators from Task 7.4 reflect event processing status
+- [ ] Event handling works with existing data fetching from Task 5.1
+- [ ] Navigation state from Task 6.5 responds appropriately to events
+- [ ] Event handling doesn't conflict with existing application architecture
+- [ ] Real-time events integrate with application-wide state management
+
+### TypeScript and Type Safety Verification
+- [ ] All event types have comprehensive TypeScript definitions
+- [ ] Event payloads are properly typed with database schema information
+- [ ] Event handlers have proper type checking for payload data
+- [ ] Event routing configuration has proper type validation
+- [ ] Generic event handling utilities maintain type safety
+- [ ] No TypeScript errors or warnings exist in event handling code
+- [ ] Type definitions integrate well with existing application types
+- [ ] Event type guards provide runtime type safety
+
+### Development and Testing Verification
+- [ ] Event handling debugging tools provide useful development insights
+- [ ] Mock implementations enable comprehensive testing of event scenarios
+- [ ] Testing utilities facilitate automated testing of event processing
+- [ ] Development dashboard shows real-time event processing status
+- [ ] Event logging provides appropriate detail for debugging
+- [ ] Performance profiling identifies event handling optimization opportunities
+- [ ] Documentation provides clear implementation and integration guidance
+- [ ] Examples demonstrate proper event handling patterns and best practices
+
+### Analytics and Monitoring Verification
+- [ ] Event analytics provide useful insights into application behavior
+- [ ] Performance metrics help identify bottlenecks and optimization opportunities
+- [ ] Event monitoring alerts on unusual patterns or performance issues
+- [ ] Analytics data collection doesn't impact event processing performance
+- [ ] Event timeline and inspection tools help with debugging
+- [ ] Monitoring integrates with existing application monitoring systems
+- [ ] Analytics data is properly anonymized and respects user privacy
+- [ ] Event reporting provides actionable insights for application improvement
+
+## Success Criteria
+Task 7.5 is complete when:
+1. All items in the completion checklist are verified ✓
+2. Event handling system processes all database changes efficiently and accurately
+3. Event routing distributes events to appropriate application components
+4. Component integration enables easy real-time event subscriptions
+5. Performance is optimized for high-frequency event processing scenarios
+6. Error handling ensures robust event processing under various conditions
+7. No errors exist in console or TypeScript compilation
+8. Event handling system is ready for production deployment and monitoring
+
+## Important Notes
+- **ONLY** work on event handling system - do not implement UI components or specific business logic
+- Focus on creating robust, efficient event processing and routing foundation
+- Ensure all event types are properly typed and validated for runtime safety
+- Test event handling thoroughly with high-frequency database changes
+- Optimize performance for scenarios with many concurrent event subscriptions
+- Use proper error isolation to prevent cascading failures in event processing
+- Ensure event handling integrates seamlessly with existing real-time infrastructure
+- Test event processing with various database operation patterns and edge cases

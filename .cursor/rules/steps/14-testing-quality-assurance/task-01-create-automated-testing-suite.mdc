@@ -1,1 +1,263 @@
+---
+alwaysApply: false
+---
+# Step 14 Task 1: Create Automated Testing Suite
 
+## Context and Scope
+You are working on **Step 14: Testing & Quality Assurance** of the AI Feature Tracker project. This is **Task 14.1** focusing exclusively on creating a comprehensive automated testing suite to ensure application quality, reliability, and maintainability.
+
+**IMPORTANT**: This rule references and must comply with:
+- `global-behavior.mdc` - AI behavior and communication patterns
+- `technology-standards.mdc` - Technology stack standards and patterns  
+- `quality-standards.mdc` - Code quality and testing requirements
+
+## Current Step Context
+- **Phase**: Phase 6 - Deployment & Production
+- **Step**: 14 - Testing & Quality Assurance  
+- **Task**: 14.1 - Create Automated Testing Suite
+- **Prerequisites**: Step 13 (Performance Optimization & SEO) must be completed
+
+## Task Objective
+Create comprehensive automated testing infrastructure including Jest and React Testing Library setup, unit tests for critical business logic, integration tests for API endpoints and database operations, end-to-end testing with Playwright, visual regression testing, accessibility testing, and performance testing to ensure application quality and reliability.
+
+## AI Instructions
+
+### 1. Set Up Jest and React Testing Library for Component Testing
+- Install and configure Jest testing framework with proper TypeScript support and Next.js integration
+- Set up React Testing Library with comprehensive component testing utilities and custom render functions
+- Create Jest configuration optimized for React components, modules, and Next.js specific features
+- Implement testing utilities and helper functions for common testing patterns and component interactions
+- Add test environment configuration with proper DOM simulation and browser API mocking
+- Create testing setup files with global test configuration, mocks, and utility imports
+- Implement test coverage reporting with comprehensive metrics and threshold enforcement
+
+### 2. Create Unit Tests for Critical Business Logic and Utility Functions
+- Implement comprehensive unit tests for utility functions, helper methods, and pure business logic
+- Create tests for data transformation, validation, formatting, and calculation functions
+- Add tests for custom React hooks with proper hook testing patterns and state management validation
+- Implement tests for service layer functions including API client methods and data processing
+- Create tests for constants, configuration objects, and data structures with edge case coverage
+- Add tests for error handling, input validation, and boundary condition scenarios
+- Implement parameterized tests for functions with multiple input/output scenarios
+
+### 3. Implement Integration Tests for API Endpoints and Database Operations
+- Create integration tests for Next.js API routes with proper request/response testing and database interaction
+- Implement database integration tests with proper test database setup, seeding, and cleanup
+- Add Supabase integration tests covering database operations, real-time subscriptions, and authentication
+- Create tests for Anthropic API integration with proper mocking and error scenario coverage
+- Implement tests for external service integrations with proper network mocking and failure handling
+- Add tests for data flow between different application layers and service integrations
+- Create tests for caching mechanisms, data synchronization, and performance optimization features
+
+### 4. Add End-to-End Testing with Playwright for User Workflows
+- Install and configure Playwright for comprehensive end-to-end testing across multiple browsers
+- Create E2E tests for critical user workflows including tool navigation, search, filtering, and content viewing
+- Implement tests for mobile responsiveness, touch interactions, and Progressive Web App functionality
+- Add tests for real-time features, data updates, and live synchronization scenarios
+- Create tests for error scenarios, network failures, and offline functionality
+- Implement visual testing and screenshot comparison for UI consistency validation
+- Add performance testing integration measuring page load times and user interaction responsiveness
+
+### 5. Create Visual Regression Testing for UI Consistency
+- Set up visual regression testing using Playwright or dedicated visual testing tools
+- Create baseline screenshots for all major UI components and page layouts
+- Implement automated visual comparison with configurable threshold settings for acceptable differences
+- Add visual tests for responsive design across different screen sizes and device orientations
+- Create tests for theme consistency, color schemes, and visual design system compliance
+- Implement visual tests for interactive states, hover effects, and animation consistency
+- Add visual regression testing integration with CI/CD pipeline for automated validation
+
+### 6. Implement Accessibility Testing with Automated Tools
+- Set up accessibility testing using @axe-core/react, jest-axe, and Playwright accessibility features
+- Create comprehensive accessibility tests for WCAG 2.1 AA compliance across all components
+- Implement tests for keyboard navigation, screen reader compatibility, and focus management
+- Add tests for color contrast, text readability, and visual accessibility requirements
+- Create tests for ARIA attributes, semantic HTML structure, and accessibility labels
+- Implement tests for form accessibility, error messaging, and user guidance features
+- Add accessibility testing integration with development workflow and continuous validation
+
+### 7. Add Performance Testing and Load Testing for Critical Paths
+- Create performance testing for critical user paths using Playwright and performance monitoring tools
+- Implement load testing for API endpoints, database operations, and system scalability
+- Add performance regression tests ensuring optimizations don't degrade over time
+- Create tests for Core Web Vitals (LCP, FID, CLS) with automated threshold validation
+- Implement memory leak testing for long-running operations and real-time features
+- Add network performance testing for different connection speeds and conditions
+- Create performance testing reporting with detailed metrics and optimization recommendations
+
+## Expected Deliverables
+- Complete Jest and React Testing Library setup with comprehensive testing infrastructure
+- Unit test suite covering critical business logic with >80% code coverage
+- Integration test suite for API endpoints and database operations with realistic scenarios
+- End-to-end test suite using Playwright covering critical user workflows
+- Visual regression testing system ensuring UI consistency across changes
+- Accessibility testing suite ensuring WCAG 2.1 AA compliance
+- Performance testing suite validating Core Web Vitals and system performance
+- CI/CD integration with automated test execution and reporting
+
+## Technical Requirements
+- **Code Coverage**: >80% code coverage for critical business logic and components
+- **Test Performance**: Test suite execution under 10 minutes for rapid feedback
+- **Browser Coverage**: E2E tests across Chrome, Firefox, Safari, and Edge browsers
+- **Accessibility**: 100% automated accessibility test pass rate for WCAG 2.1 AA
+- **Performance**: Performance tests validating Core Web Vitals thresholds
+- **CI/CD Integration**: Automated test execution with proper reporting and failure handling
+
+## Completion Checklist
+
+**Before marking this task as complete, verify ALL of the following:**
+
+### Jest and React Testing Library Setup
+- [ ] Jest testing framework installed and configured with TypeScript support and Next.js integration
+- [ ] React Testing Library set up with comprehensive component testing utilities and custom render functions
+- [ ] Jest configuration optimized for React components, modules, and Next.js specific features created
+- [ ] Testing utilities and helper functions for common testing patterns and interactions implemented
+- [ ] Test environment configuration with proper DOM simulation and browser API mocking added
+- [ ] Testing setup files with global configuration, mocks, and utility imports created
+- [ ] Test coverage reporting with comprehensive metrics and threshold enforcement implemented
+
+### Unit Testing Implementation
+- [ ] Comprehensive unit tests for utility functions, helper methods, pure business logic implemented
+- [ ] Tests for data transformation, validation, formatting, calculation functions created
+- [ ] Tests for custom React hooks with proper testing patterns and state validation added
+- [ ] Tests for service layer functions including API clients and data processing implemented
+- [ ] Tests for constants, configuration objects, data structures with edge cases created
+- [ ] Tests for error handling, input validation, boundary conditions added
+- [ ] Parameterized tests for functions with multiple input/output scenarios implemented
+
+### Integration Testing Suite
+- [ ] Integration tests for Next.js API routes with request/response testing and database interaction implemented
+- [ ] Database integration tests with proper test database setup, seeding, cleanup created
+- [ ] Supabase integration tests covering database operations, real-time subscriptions, auth added
+- [ ] Tests for Anthropic API integration with proper mocking and error scenario coverage implemented
+- [ ] Tests for external service integrations with network mocking and failure handling created
+- [ ] Tests for data flow between application layers and service integrations added
+- [ ] Tests for caching mechanisms, data synchronization, performance features implemented
+
+### End-to-End Testing with Playwright
+- [ ] Playwright installed and configured for comprehensive E2E testing across multiple browsers
+- [ ] E2E tests for critical user workflows (navigation, search, filtering, content viewing) implemented
+- [ ] Tests for mobile responsiveness, touch interactions, PWA functionality created
+- [ ] Tests for real-time features, data updates, live synchronization scenarios added
+- [ ] Tests for error scenarios, network failures, offline functionality implemented
+- [ ] Visual testing and screenshot comparison for UI consistency validation created
+- [ ] Performance testing integration measuring page load times and interaction responsiveness added
+
+### Visual Regression Testing
+- [ ] Visual regression testing using Playwright or dedicated visual testing tools set up
+- [ ] Baseline screenshots for all major UI components and page layouts created
+- [ ] Automated visual comparison with configurable threshold settings implemented
+- [ ] Visual tests for responsive design across different screen sizes and orientations added
+- [ ] Tests for theme consistency, color schemes, design system compliance created
+- [ ] Visual tests for interactive states, hover effects, animation consistency implemented
+- [ ] Visual regression testing integration with CI/CD pipeline for automated validation added
+
+### Accessibility Testing Implementation
+- [ ] Accessibility testing using @axe-core/react, jest-axe, Playwright accessibility features set up
+- [ ] Comprehensive accessibility tests for WCAG 2.1 AA compliance across components implemented
+- [ ] Tests for keyboard navigation, screen reader compatibility, focus management created
+- [ ] Tests for color contrast, text readability, visual accessibility requirements added
+- [ ] Tests for ARIA attributes, semantic HTML structure, accessibility labels implemented
+- [ ] Tests for form accessibility, error messaging, user guidance features created
+- [ ] Accessibility testing integration with development workflow and validation added
+
+### Performance and Load Testing
+- [ ] Performance testing for critical user paths using Playwright and monitoring tools implemented
+- [ ] Load testing for API endpoints, database operations, system scalability created
+- [ ] Performance regression tests ensuring optimizations don't degrade over time added
+- [ ] Tests for Core Web Vitals (LCP, FID, CLS) with automated threshold validation implemented
+- [ ] Memory leak testing for long-running operations and real-time features created
+- [ ] Network performance testing for different connection speeds and conditions added
+- [ ] Performance testing reporting with detailed metrics and optimization recommendations implemented
+
+### Test Configuration and Infrastructure
+- [ ] Test database configuration with proper isolation and cleanup procedures
+- [ ] Mock server setup for external API testing with realistic response scenarios
+- [ ] Test data factories and fixtures for consistent and maintainable test data
+- [ ] Test environment variables and configuration management
+- [ ] Parallel test execution configuration for faster test suite performance
+- [ ] Test retry and flake detection mechanisms for reliable test execution
+- [ ] Test reporting and documentation generation for stakeholder visibility
+
+### Component Testing Coverage
+- [ ] Tests for all major UI components with comprehensive interaction and state testing
+- [ ] Tests for navigation components with routing and state management validation
+- [ ] Tests for search and filtering components with complex user interaction scenarios
+- [ ] Tests for real-time components with WebSocket and subscription testing
+- [ ] Tests for mobile-specific components with touch interaction and responsive behavior
+- [ ] Tests for form components with validation, submission, and error handling
+- [ ] Tests for modal and overlay components with accessibility and focus management
+
+### Service Layer Testing
+- [ ] Tests for Supabase service layer with database operations and error handling
+- [ ] Tests for Anthropic API service with request/response handling and rate limiting
+- [ ] Tests for caching service with cache hit/miss scenarios and invalidation
+- [ ] Tests for authentication service with login, logout, and session management
+- [ ] Tests for search service with query processing and result formatting
+- [ ] Tests for real-time service with subscription management and data synchronization
+- [ ] Tests for utility services with data transformation and validation
+
+### Error Handling and Edge Case Testing
+- [ ] Tests for network failure scenarios with proper error handling and recovery
+- [ ] Tests for invalid input handling with comprehensive validation and user feedback
+- [ ] Tests for authentication failures with proper error messaging and redirection
+- [ ] Tests for database connection issues with graceful degradation and retry logic
+- [ ] Tests for API rate limiting with proper backoff and user notification
+- [ ] Tests for browser compatibility issues with feature detection and fallbacks
+- [ ] Tests for memory and performance constraints with resource management
+
+### Mobile and Responsive Testing
+- [ ] Tests for mobile navigation and touch interactions with gesture recognition
+- [ ] Tests for responsive layout behavior across different screen sizes
+- [ ] Tests for mobile performance with network conditions and device capabilities
+- [ ] Tests for PWA functionality with offline mode and installation features
+- [ ] Tests for mobile accessibility with touch navigation and screen reader support
+- [ ] Tests for mobile-specific components with touch-friendly interactions
+- [ ] Tests for orientation changes and device rotation handling
+
+### CI/CD Integration and Automation
+- [ ] GitHub Actions or similar CI/CD integration with automated test execution
+- [ ] Test execution triggers on pull requests, merges, and scheduled intervals
+- [ ] Test result reporting with detailed failure information and logs
+- [ ] Test coverage reporting integration with code coverage tools
+- [ ] Performance test integration with performance regression detection
+- [ ] Visual regression test integration with automatic baseline management
+- [ ] Accessibility test integration with compliance reporting and validation
+
+### Test Maintenance and Documentation
+- [ ] Test documentation with clear descriptions and maintenance guidelines
+- [ ] Test naming conventions and organization for easy navigation and understanding
+- [ ] Test data management with proper cleanup and isolation procedures
+- [ ] Test debugging and troubleshooting procedures for failed tests
+- [ ] Test performance optimization with efficient execution and resource usage
+- [ ] Test review procedures with code review integration and quality gates
+- [ ] Test training documentation for team members and onboarding
+
+### Quality Verification and Validation
+- [ ] Code coverage analysis ensuring >80% coverage for critical business logic
+- [ ] Test reliability validation with consistent pass rates and minimal flakiness
+- [ ] Performance test validation with realistic load scenarios and thresholds
+- [ ] Accessibility test validation with manual testing and expert review
+- [ ] Cross-browser test validation with consistent behavior across platforms
+- [ ] Test suite performance optimization with execution time under 10 minutes
+- [ ] Test result analysis with trend tracking and quality metrics
+
+### Production Test Environment
+- [ ] Production-like test environment with realistic data and configurations
+- [ ] Test environment provisioning and management procedures
+- [ ] Test data seeding and management with privacy protection
+- [ ] Test environment monitoring and maintenance procedures
+- [ ] Test environment security with proper access controls and isolation
+- [ ] Test environment backup and recovery procedures
+- [ ] Test environment documentation with setup and configuration guidelines
+
+### Final Validation
+- [ ] All automated tests pass consistently with >95% reliability rate
+- [ ] Code coverage exceeds 80% for critical business logic and components
+- [ ] End-to-end tests cover all major user workflows without failures
+- [ ] Visual regression tests maintain UI consistency across all components
+- [ ] Accessibility tests achieve 100% pass rate for WCAG 2.1 AA compliance
+- [ ] Performance tests validate Core Web Vitals within acceptable thresholds
+- [ ] CI/CD integration executes all tests automatically with proper reporting
+
+**CONFIRMATION STATEMENT**: "I confirm that ALL checklist items above have been completed and verified. The automated testing suite is fully functional with comprehensive unit tests, integration tests, end-to-end testing, visual regression testing, accessibility testing, and performance testing. The testing infrastructure provides reliable quality assurance with >80% code coverage and CI/CD integration."

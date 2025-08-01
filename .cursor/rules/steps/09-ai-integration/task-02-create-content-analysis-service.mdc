@@ -1,0 +1,326 @@
+---
+alwaysApply: false
+---
+# Task 9.2: Create Content Analysis Service
+
+## Context and Scope
+You are working on **Task 9.2** of the AI Feature Tracker project. This task focuses ONLY on creating AI-powered content analysis services that process feature announcements and extract structured information. Do NOT implement any UI components, data persistence beyond processing results, or features beyond what is explicitly listed in the AI Instructions below.
+
+## Technology Standards for This Task
+- **Anthropic API integration** using the client from Task 9.1
+- **Structured prompt engineering** with consistent AI instructions and response formats
+- **Content processing** with input sanitization and output validation
+- **TypeScript** with comprehensive interfaces for analysis results and configuration
+- **Error handling** with fallback mechanisms and graceful degradation
+- **Performance optimization** with efficient AI usage and result caching
+
+## AI Instructions
+
+Complete the following tasks in exact order:
+
+### 1. Create Content Analysis Engine (`src/lib/ai/content-analyzer.ts`)
+- Create main content analysis engine for processing AI tool feature announcements
+- Implement structured prompt engineering for consistent AI analysis and extraction
+- Add content preprocessing with text cleaning, normalization, and format standardization
+- Include analysis result validation and structured data extraction
+- Add analysis performance optimization with efficient prompt design and token usage
+- Implement analysis error handling with fallback mechanisms and partial results
+- Create TypeScript interfaces for analysis input, output, and configuration
+- Add analysis debugging utilities for prompt testing and result validation
+- Include analysis caching system for avoiding duplicate processing
+- Add analysis integration with Anthropic client from Task 9.1
+
+### 2. Create Feature Information Extractor (`src/lib/ai/feature-extractor.ts`)
+- Create feature information extraction service for identifying key update details
+- Implement structured prompts for extracting feature names, descriptions, and capabilities
+- Add feature categorization with predefined categories and custom classification
+- Include feature impact assessment with reasoning and confidence scoring
+- Add feature target audience identification and use case analysis
+- Implement extraction result validation and data quality assurance
+- Create TypeScript interfaces for feature extraction results and metadata
+- Add extraction debugging utilities for testing and optimization
+- Include extraction performance optimization with efficient prompt engineering
+- Add extraction integration with content analysis pipeline
+
+### 3. Create Impact Assessment System (`src/lib/ai/impact-assessor.ts`)
+- Create impact assessment system for evaluating update significance and implications
+- Implement impact level classification (High, Medium, Low) with detailed reasoning
+- Add impact scope analysis (individual users, teams, enterprises, developers)
+- Include impact timeline assessment (immediate, short-term, long-term effects)
+- Add competitive impact analysis compared to other AI tools
+- Implement assessment confidence scoring with explanation of certainty levels
+- Create TypeScript interfaces for impact assessment results and criteria
+- Add assessment debugging utilities for testing and calibration
+- Include assessment performance optimization with focused prompt design
+- Add assessment integration with feature extraction and validation systems
+
+### 4. Create Content Categorization Service (`src/lib/ai/categorizer.ts`)
+- Create content categorization service for organizing updates by type and topic
+- Implement category classification with predefined taxonomy and custom categories
+- Add tag generation for detailed content labeling and organization
+- Include topic modeling and theme identification within updates
+- Add category confidence scoring with explanation of classification reasoning
+- Implement categorization consistency checking across similar content
+- Create TypeScript interfaces for category results and classification metadata
+- Add categorization debugging utilities for testing and optimization
+- Include categorization performance optimization with efficient classification
+- Add categorization integration with content analysis and extraction systems
+
+### 5. Create Duplicate Detection System (`src/lib/ai/duplicate-detector.ts`)
+- Create duplicate detection system for identifying similar or repeated content
+- Implement content similarity analysis with semantic understanding
+- Add duplicate classification (exact, near-duplicate, related, unique)
+- Include similarity scoring with detailed comparison and reasoning
+- Add deduplication recommendations with merge and consolidation suggestions
+- Implement detection performance optimization with efficient comparison algorithms
+- Create TypeScript interfaces for duplicate detection results and similarity metrics
+- Add detection debugging utilities for testing and threshold tuning
+- Include detection caching system for efficient similarity comparisons
+- Add detection integration with content analysis and processing pipeline
+
+### 6. Create Content Quality Assessment (`src/lib/ai/quality-assessor.ts`)
+- Create content quality assessment system for evaluating update reliability and completeness
+- Implement quality scoring across multiple dimensions (accuracy, completeness, clarity)
+- Add credibility assessment based on source, content structure, and claims
+- Include factual consistency checking and logical coherence analysis
+- Add quality improvement recommendations with specific suggestions
+- Implement assessment confidence scoring with explanation of quality metrics
+- Create TypeScript interfaces for quality assessment results and scoring criteria
+- Add assessment debugging utilities for testing and calibration
+- Include assessment performance optimization with focused evaluation prompts
+- Add assessment integration with validation and trust indicator systems
+
+### 7. Create Analysis Result Processing (`src/lib/ai/result-processor.ts`)
+- Create analysis result processing system for structuring and validating AI outputs
+- Implement result parsing and validation with schema checking and data cleaning
+- Add result aggregation for combining multiple analysis outputs
+- Include result confidence calculation based on multiple assessment factors
+- Add result formatting for consistent output structure and API integration
+- Implement processing error handling with partial result recovery
+- Create TypeScript interfaces for processed results and output formats
+- Add processing debugging utilities for result validation and testing
+- Include processing performance optimization with efficient data transformation
+- Add processing integration with all analysis services and output systems
+
+### 8. Create Content Analysis Integration (`src/lib/ai/index.ts`)
+- Create comprehensive export file for all content analysis services
+- Set up analysis pipeline composition with all services properly integrated
+- Add analysis configuration presets for different content types and use cases
+- Include analysis React hooks for easy component integration
+- Create analysis testing utilities and comprehensive mock implementations
+- Add analysis documentation and usage examples
+- Include comprehensive TypeScript type exports for all analysis interfaces
+- Create analysis debugging dashboard for development and optimization
+- Add analysis performance monitoring and optimization utilities
+- Include analysis quality assurance and validation testing helpers
+
+## Completion Checklist
+
+Before marking this task as complete, verify ALL of the following items:
+
+### Content Analysis Engine Verification
+- [ ] `src/lib/ai/content-analyzer.ts` exists with feature announcement processing
+- [ ] Structured prompt engineering for consistent analysis implemented correctly
+- [ ] Content preprocessing with cleaning and normalization works properly
+- [ ] Analysis result validation and structured extraction included
+- [ ] Analysis performance optimization with efficient prompts implemented
+- [ ] Analysis error handling with fallback mechanisms works correctly
+- [ ] TypeScript interfaces for analysis input/output defined comprehensively
+- [ ] Analysis debugging utilities for prompt testing created
+- [ ] Analysis caching system for duplicate processing avoidance implemented
+- [ ] Analysis integration with Anthropic client from Task 9.1 works
+
+### Feature Information Extractor Verification
+- [ ] `src/lib/ai/feature-extractor.ts` exists with key detail identification
+- [ ] Structured prompts for extracting names, descriptions, capabilities implemented
+- [ ] Feature categorization with predefined and custom classification works
+- [ ] Feature impact assessment with reasoning and confidence included
+- [ ] Feature target audience identification and use case analysis implemented
+- [ ] Extraction result validation and quality assurance works correctly
+- [ ] TypeScript interfaces for extraction results defined
+- [ ] Extraction debugging utilities for testing created
+- [ ] Extraction performance optimization with efficient prompts implemented
+- [ ] Extraction integration with content analysis pipeline works
+
+### Impact Assessment System Verification
+- [ ] `src/lib/ai/impact-assessor.ts` exists with significance evaluation
+- [ ] Impact level classification (High, Medium, Low) with reasoning implemented
+- [ ] Impact scope analysis (users, teams, enterprises, developers) works correctly
+- [ ] Impact timeline assessment (immediate, short-term, long-term) included
+- [ ] Competitive impact analysis compared to other tools implemented
+- [ ] Assessment confidence scoring with certainty explanation works
+- [ ] TypeScript interfaces for impact assessment results defined
+- [ ] Assessment debugging utilities for testing and calibration created
+- [ ] Assessment performance optimization with focused prompts implemented
+- [ ] Assessment integration with extraction and validation systems works
+
+### Content Categorization Service Verification
+- [ ] `src/lib/ai/categorizer.ts` exists with update organization by type/topic
+- [ ] Category classification with taxonomy and custom categories implemented
+- [ ] Tag generation for detailed labeling and organization works correctly
+- [ ] Topic modeling and theme identification included
+- [ ] Category confidence scoring with classification reasoning works
+- [ ] Categorization consistency checking across similar content implemented
+- [ ] TypeScript interfaces for category results defined
+- [ ] Categorization debugging utilities for testing created
+- [ ] Categorization performance optimization implemented
+- [ ] Categorization integration with analysis systems works
+
+### Duplicate Detection System Verification
+- [ ] `src/lib/ai/duplicate-detector.ts` exists with similarity identification
+- [ ] Content similarity analysis with semantic understanding implemented
+- [ ] Duplicate classification (exact, near-duplicate, related, unique) works
+- [ ] Similarity scoring with detailed comparison and reasoning included
+- [ ] Deduplication recommendations with merge suggestions implemented
+- [ ] Detection performance optimization with efficient algorithms works
+- [ ] TypeScript interfaces for detection results defined
+- [ ] Detection debugging utilities for testing and tuning created
+- [ ] Detection caching system for efficient comparisons implemented
+- [ ] Detection integration with processing pipeline works
+
+### Content Quality Assessment Verification
+- [ ] `src/lib/ai/quality-assessor.ts` exists with reliability evaluation
+- [ ] Quality scoring across multiple dimensions implemented correctly
+- [ ] Credibility assessment based on source and content structure works
+- [ ] Factual consistency checking and coherence analysis included
+- [ ] Quality improvement recommendations with suggestions implemented
+- [ ] Assessment confidence scoring with quality metrics explanation works
+- [ ] TypeScript interfaces for quality assessment results defined
+- [ ] Assessment debugging utilities for testing created
+- [ ] Assessment performance optimization with focused prompts implemented
+- [ ] Assessment integration with validation systems works
+
+### Analysis Result Processing Verification
+- [ ] `src/lib/ai/result-processor.ts` exists with output structuring and validation
+- [ ] Result parsing and validation with schema checking implemented
+- [ ] Result aggregation for combining multiple outputs works correctly
+- [ ] Result confidence calculation based on multiple factors included
+- [ ] Result formatting for consistent structure implemented
+- [ ] Processing error handling with partial result recovery works
+- [ ] TypeScript interfaces for processed results defined
+- [ ] Processing debugging utilities for validation created
+- [ ] Processing performance optimization implemented
+- [ ] Processing integration with all analysis services works
+
+### Integration and Export Verification
+- [ ] `src/lib/ai/index.ts` exists with comprehensive exports
+- [ ] Analysis pipeline composition with all services integrated properly
+- [ ] Analysis configuration presets for different content types included
+- [ ] Analysis React hooks for component integration created
+- [ ] Analysis testing utilities and mock implementations included
+- [ ] Analysis documentation and usage examples added
+- [ ] Comprehensive TypeScript type exports defined
+- [ ] Analysis debugging dashboard for development created
+- [ ] Analysis performance monitoring utilities implemented
+- [ ] Analysis quality assurance and validation helpers included
+
+### AI Prompt Engineering and Response Quality Verification
+- [ ] Prompts are structured consistently for reliable AI responses
+- [ ] Prompt instructions are clear and produce expected output formats
+- [ ] AI responses are validated against expected schemas and data types
+- [ ] Prompt optimization reduces token usage while maintaining quality
+- [ ] Error handling manages unexpected or malformed AI responses
+- [ ] Prompt versioning allows for testing and optimization over time
+- [ ] Response parsing handles various AI output formats gracefully
+- [ ] Prompt engineering follows best practices for Claude/Anthropic models
+
+### Content Processing and Data Extraction Verification
+- [ ] Raw content is properly preprocessed and cleaned before AI analysis
+- [ ] Feature extraction identifies key information accurately
+- [ ] Impact assessment provides meaningful and consistent evaluations
+- [ ] Categorization results are logical and useful for organization
+- [ ] Duplicate detection accurately identifies similar content
+- [ ] Quality assessment provides actionable insights for content improvement
+- [ ] Extracted data follows consistent schema and validation rules
+- [ ] Content processing handles various input formats and structures
+
+### Analysis Accuracy and Reliability Verification
+- [ ] Analysis results are consistent across similar content inputs
+- [ ] Confidence scores accurately reflect the reliability of analysis results
+- [ ] Impact assessments correlate appropriately with actual feature significance
+- [ ] Categorization results are accurate and useful for content organization
+- [ ] Duplicate detection has appropriate sensitivity and specificity
+- [ ] Quality assessments identify genuine content issues and strengths
+- [ ] Analysis results can be validated against known correct examples
+- [ ] Error rates are within acceptable thresholds for business requirements
+
+### Performance and Cost Optimization Verification
+- [ ] AI analysis requests are optimized for efficient token usage
+- [ ] Caching prevents unnecessary re-analysis of identical content
+- [ ] Batch processing optimizes API usage when analyzing multiple items
+- [ ] Analysis pipeline performance meets responsiveness requirements
+- [ ] Cost monitoring tracks and optimizes AI API usage
+- [ ] Performance metrics identify bottlenecks and optimization opportunities
+- [ ] Analysis scaling works appropriately with increasing content volume
+- [ ] Resource usage remains reasonable during extended analysis operations
+
+### Error Handling and Resilience Verification
+- [ ] Network errors during AI analysis are handled gracefully
+- [ ] Invalid or malformed AI responses don't break analysis pipeline
+- [ ] Partial analysis results are preserved when some steps fail
+- [ ] Analysis errors are logged with sufficient detail for debugging
+- [ ] Fallback mechanisms provide reasonable results when AI analysis fails
+- [ ] Analysis timeouts are handled appropriately with user feedback
+- [ ] Error recovery allows analysis to continue after transient failures
+- [ ] Analysis robustness handles edge cases and unexpected content formats
+
+### Integration with Application Architecture Verification
+- [ ] Content analysis integrates properly with Anthropic client from Task 9.1
+- [ ] Analysis results integrate with update components from Tasks 8.1-8.5
+- [ ] Analysis services work correctly in Next.js API routes and edge functions
+- [ ] TypeScript integration provides proper type safety throughout analysis pipeline
+- [ ] Error handling integrates with application-wide error management
+- [ ] Performance monitoring integrates with application metrics
+- [ ] Analysis configuration works with application environment management
+- [ ] Analysis results can be consumed by real-time systems from Tasks 7.1-7.5
+
+### Development and Testing Support Verification
+- [ ] Analysis debugging tools provide useful development insights
+- [ ] Mock implementations enable comprehensive testing without AI API calls
+- [ ] Testing utilities facilitate automated analysis functionality testing
+- [ ] Development configuration allows easy testing with sample content
+- [ ] Analysis logging provides appropriate detail for development and production
+- [ ] Performance profiling identifies analysis optimization opportunities
+- [ ] Documentation provides clear implementation and usage guidance
+- [ ] Examples demonstrate proper analysis service integration patterns
+
+### Data Quality and Validation Verification
+- [ ] Analysis input validation prevents malformed or dangerous content processing
+- [ ] Output validation ensures analysis results meet expected schemas
+- [ ] Data sanitization prevents injection attacks or malformed data propagation
+- [ ] Analysis result confidence scoring helps assess reliability
+- [ ] Quality metrics provide actionable insights for content improvement
+- [ ] Consistency checking identifies and handles conflicting analysis results
+- [ ] Analysis audit trails enable review and validation of results
+- [ ] Data integrity is maintained throughout the analysis pipeline
+
+### Business Logic and Domain Knowledge Verification
+- [ ] Analysis accurately identifies AI tool features and capabilities
+- [ ] Impact assessment considers relevant factors for AI tool ecosystem
+- [ ] Categorization uses appropriate taxonomy for AI and development tools
+- [ ] Duplicate detection understands semantic similarities in technical content
+- [ ] Quality assessment evaluates content against relevant criteria
+- [ ] Analysis results provide actionable insights for users
+- [ ] Domain-specific knowledge is properly incorporated into analysis prompts
+- [ ] Analysis results align with business requirements and user needs
+
+## Success Criteria
+Task 9.2 is complete when:
+1. All items in the completion checklist are verified ✓
+2. Content analysis services provide accurate, structured extraction of feature information
+3. AI-powered analysis produces consistent, reliable results with appropriate confidence scoring
+4. Performance is optimized for efficient AI API usage and responsive processing
+5. Error handling ensures robust analysis under various content and network conditions
+6. Integration with Anthropic client and application architecture works seamlessly
+7. No errors exist in console or TypeScript compilation
+8. Analysis services are ready for integration with feature validation systems
+
+## Important Notes
+- **ONLY** work on content analysis services - do not implement UI components or data persistence
+- Focus on creating accurate, reliable AI-powered content processing and extraction
+- Ensure all AI prompts are well-engineered for consistent, structured responses
+- Test analysis accuracy thoroughly with various types of feature announcement content
+- Optimize AI token usage while maintaining analysis quality and completeness
+- Use proper error handling and fallback mechanisms for robust analysis pipeline
+- Maintain consistent data schemas and validation throughout analysis process
+- Test performance and cost implications of analysis operations with realistic content volumes

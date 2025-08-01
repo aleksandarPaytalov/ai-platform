@@ -1,1 +1,263 @@
+---
+alwaysApply: false
+---
+# Step 15 Task 2: Set Up Production Monitoring
 
+## Context and Scope
+You are working on **Step 15: Production Deployment & Monitoring** of the AI Feature Tracker project. This is **Task 15.2** focusing exclusively on setting up comprehensive production monitoring systems to ensure optimal application performance, reliability, and user experience.
+
+**IMPORTANT**: This rule references and must comply with:
+- `global-behavior.mdc` - AI behavior and communication patterns
+- `technology-standards.mdc` - Technology stack standards and patterns  
+- `quality-standards.mdc` - Code quality and testing requirements
+
+## Current Step Context
+- **Phase**: Phase 6 - Deployment & Production
+- **Step**: 15 - Production Deployment & Monitoring  
+- **Task**: 15.2 - Set Up Production Monitoring
+- **Prerequisites**: Production Deployment Configuration (Task 15.1) must be completed
+
+## Task Objective
+Create comprehensive production monitoring infrastructure including application performance monitoring with error tracking and user experience analytics, uptime monitoring with global checks and status page integration, database and infrastructure monitoring with resource tracking, business metrics monitoring with user engagement and feature usage analytics, intelligent alerting system with escalation procedures, monitoring dashboards for different stakeholder groups, and incident response integration with automated ticket creation and escalation.
+
+## AI Instructions
+
+### 1. Implement Comprehensive Application Monitoring with Error Tracking (Sentry or Similar)
+- Set up comprehensive error tracking system using Sentry or equivalent service with proper SDK integration and configuration
+- Implement error categorization with automatic grouping, fingerprinting, and severity assessment for efficient issue management
+- Add performance monitoring integration tracking application performance, transaction tracing, and user experience metrics
+- Create error alerting system with intelligent thresholds, escalation procedures, and notification routing
+- Implement error analytics with trend analysis, impact assessment, and resolution tracking for continuous improvement
+- Add user context tracking with session information, user actions, and environmental data for better debugging
+- Create error dashboard with real-time visibility, filtering capabilities, and team collaboration features
+
+### 2. Set Up Uptime Monitoring for Critical Services and Endpoints
+- Implement comprehensive uptime monitoring with global monitoring locations and synthetic testing for critical endpoints
+- Create uptime checks for all critical services including application pages, API endpoints, and third-party integrations
+- Add response time monitoring with performance thresholds and geographic performance analysis
+- Implement status page integration with automatic updates and customer communication during outages
+- Create uptime alerting with immediate notifications for service disruptions and performance degradation
+- Add uptime analytics with availability metrics, downtime analysis, and service level agreement tracking
+- Implement uptime testing with complex user workflows and multi-step transaction monitoring
+
+### 3. Create Performance Monitoring Dashboard with Core Web Vitals Tracking
+- Set up comprehensive performance monitoring dashboard with real-time Core Web Vitals tracking (LCP, FID, CLS)
+- Implement performance trend analysis with historical data visualization and performance regression detection
+- Add device and browser performance breakdown with detailed analysis across different user environments
+- Create performance alerting with intelligent thresholds based on performance impact and user experience degradation
+- Implement performance correlation analysis linking performance metrics with user behavior and business outcomes
+- Add performance optimization recommendations with automated suggestions based on monitoring data
+- Create performance reporting with stakeholder-specific views and business impact analysis
+
+### 4. Add Database and Infrastructure Monitoring
+- Implement comprehensive database monitoring with query performance, connection metrics, and resource utilization tracking
+- Create infrastructure monitoring covering server resources, network performance, and system health metrics
+- Add Supabase-specific monitoring with database health, real-time subscriptions, and Edge Function performance
+- Implement resource alerting with thresholds for CPU usage, memory consumption, disk space, and network performance
+- Create capacity monitoring with growth trending and resource planning recommendations
+- Add security monitoring with intrusion detection, suspicious activity tracking, and compliance validation
+- Implement infrastructure analytics with cost optimization, resource utilization, and efficiency metrics
+
+### 5. Implement Business Metrics Monitoring with User Engagement and Feature Usage
+- Create comprehensive business metrics tracking with user engagement, feature adoption, and conversion analytics
+- Implement user behavior monitoring with session analysis, user journeys, and interaction patterns
+- Add feature usage analytics tracking tool utilization, search patterns, and content engagement
+- Create retention analytics with user return patterns, engagement trends, and churn analysis
+- Implement conversion tracking with goal completion, user actions, and business outcome measurement
+- Add A/B testing integration with experiment monitoring and statistical significance tracking
+- Create business intelligence dashboard with stakeholder-specific metrics and trend analysis
+
+### 6. Create Intelligent Alerting System with Escalation Procedures
+- Implement intelligent alerting system with machine learning-based threshold optimization and alert correlation
+- Create escalation procedures with automatic escalation based on severity, impact, and response time requirements
+- Add multi-channel alerting with email, Slack, SMS, and phone notifications based on alert priority
+- Implement alert fatigue prevention with intelligent grouping, deduplication, and noise reduction
+- Create on-call management integration with rotation schedules, escalation chains, and availability tracking
+- Add alert analytics with response time tracking, resolution effectiveness, and alert accuracy measurement
+- Implement alert automation with auto-remediation for common issues and self-healing capabilities
+
+### 7. Add Monitoring Analytics and Reporting for Stakeholders
+- Create comprehensive monitoring analytics with trend analysis, pattern recognition, and predictive insights
+- Implement stakeholder-specific reporting with executive summaries, technical details, and business impact analysis
+- Add automated reporting with scheduled delivery and customizable report formats for different audiences
+- Create monitoring ROI analysis demonstrating the value and impact of monitoring systems
+- Implement benchmark comparison with industry standards and competitive analysis
+- Add monitoring optimization recommendations with cost reduction and efficiency improvement suggestions
+- Create monitoring documentation with best practices, troubleshooting guides, and team training materials
+
+## Expected Deliverables
+- Comprehensive error tracking system with categorization, alerting, and analytics
+- Uptime monitoring infrastructure with global checks and status page integration
+- Performance monitoring dashboard with Core Web Vitals tracking and trend analysis
+- Database and infrastructure monitoring with resource tracking and capacity planning
+- Business metrics monitoring with user engagement and feature usage analytics
+- Intelligent alerting system with escalation procedures and multi-channel notifications
+- Monitoring analytics and reporting system with stakeholder-specific dashboards
+- Complete monitoring documentation with procedures and emergency protocols
+
+## Technical Requirements
+- **Error Detection**: 100% error capture rate with <1 minute detection time for critical issues
+- **Uptime Monitoring**: 99.9% monitoring availability with global check coverage
+- **Performance Tracking**: Real-time Core Web Vitals monitoring with trend analysis
+- **Alert Response**: <5 minute alert delivery with proper escalation procedures
+- **Data Retention**: 90 days detailed metrics, 1 year trend data with proper archiving
+- **Dashboard Performance**: <2 second dashboard load times with real-time updates
+
+## Completion Checklist
+
+**Before marking this task as complete, verify ALL of the following:**
+
+### Application Monitoring and Error Tracking
+- [ ] Comprehensive error tracking system using Sentry or equivalent with proper SDK integration implemented
+- [ ] Error categorization with automatic grouping, fingerprinting, severity assessment created
+- [ ] Performance monitoring integration tracking application performance, transaction tracing, UX metrics added
+- [ ] Error alerting system with intelligent thresholds, escalation procedures, notification routing implemented
+- [ ] Error analytics with trend analysis, impact assessment, resolution tracking created
+- [ ] User context tracking with session information, user actions, environmental data added
+- [ ] Error dashboard with real-time visibility, filtering capabilities, team collaboration features implemented
+
+### Uptime Monitoring Implementation
+- [ ] Comprehensive uptime monitoring with global monitoring locations and synthetic testing implemented
+- [ ] Uptime checks for all critical services including pages, API endpoints, third-party integrations created
+- [ ] Response time monitoring with performance thresholds and geographic analysis added
+- [ ] Status page integration with automatic updates and customer communication implemented
+- [ ] Uptime alerting with immediate notifications for service disruptions and performance degradation created
+- [ ] Uptime analytics with availability metrics, downtime analysis, SLA tracking added
+- [ ] Uptime testing with complex user workflows and multi-step transaction monitoring implemented
+
+### Performance Monitoring Dashboard
+- [ ] Comprehensive performance monitoring dashboard with real-time Core Web Vitals tracking implemented
+- [ ] Performance trend analysis with historical data visualization and regression detection created
+- [ ] Device and browser performance breakdown with detailed analysis across environments added
+- [ ] Performance alerting with intelligent thresholds based on impact and UX degradation implemented
+- [ ] Performance correlation analysis linking metrics with user behavior and business outcomes created
+- [ ] Performance optimization recommendations with automated suggestions based on data added
+- [ ] Performance reporting with stakeholder-specific views and business impact analysis implemented
+
+### Database and Infrastructure Monitoring
+- [ ] Comprehensive database monitoring with query performance, connection metrics, resource utilization implemented
+- [ ] Infrastructure monitoring covering server resources, network performance, system health created
+- [ ] Supabase-specific monitoring with database health, real-time subscriptions, Edge Function performance added
+- [ ] Resource alerting with thresholds for CPU, memory, disk space, network performance implemented
+- [ ] Capacity monitoring with growth trending and resource planning recommendations created
+- [ ] Security monitoring with intrusion detection, suspicious activity, compliance validation added
+- [ ] Infrastructure analytics with cost optimization, resource utilization, efficiency metrics implemented
+
+### Business Metrics and User Analytics
+- [ ] Comprehensive business metrics tracking with user engagement, feature adoption, conversion analytics implemented
+- [ ] User behavior monitoring with session analysis, user journeys, interaction patterns created
+- [ ] Feature usage analytics tracking tool utilization, search patterns, content engagement added
+- [ ] Retention analytics with user return patterns, engagement trends, churn analysis implemented
+- [ ] Conversion tracking with goal completion, user actions, business outcome measurement created
+- [ ] A/B testing integration with experiment monitoring and statistical significance tracking added
+- [ ] Business intelligence dashboard with stakeholder-specific metrics and trend analysis implemented
+
+### Intelligent Alerting System
+- [ ] Intelligent alerting system with ML-based threshold optimization and alert correlation implemented
+- [ ] Escalation procedures with automatic escalation based on severity, impact, response requirements created
+- [ ] Multi-channel alerting with email, Slack, SMS, phone notifications based on priority added
+- [ ] Alert fatigue prevention with intelligent grouping, deduplication, noise reduction implemented
+- [ ] On-call management integration with rotation schedules, escalation chains, availability tracking created
+- [ ] Alert analytics with response time tracking, resolution effectiveness, accuracy measurement added
+- [ ] Alert automation with auto-remediation for common issues and self-healing capabilities implemented
+
+### Monitoring Analytics and Reporting
+- [ ] Comprehensive monitoring analytics with trend analysis, pattern recognition, predictive insights implemented
+- [ ] Stakeholder-specific reporting with executive summaries, technical details, business impact created
+- [ ] Automated reporting with scheduled delivery and customizable formats for different audiences added
+- [ ] Monitoring ROI analysis demonstrating value and impact of monitoring systems implemented
+- [ ] Benchmark comparison with industry standards and competitive analysis created
+- [ ] Monitoring optimization recommendations with cost reduction and efficiency improvements added
+- [ ] Monitoring documentation with best practices, troubleshooting guides, team training implemented
+
+### Real User Monitoring (RUM) Integration
+- [ ] Real User Monitoring implementation collecting performance data from actual production users
+- [ ] RUM data analysis with geographic performance breakdown and device-specific insights
+- [ ] User experience analytics correlating performance metrics with user satisfaction and behavior
+- [ ] RUM alerting with thresholds based on real user experience rather than synthetic tests
+- [ ] RUM trend analysis identifying performance patterns and user experience improvements
+- [ ] RUM correlation with business metrics linking performance to conversion and engagement
+- [ ] RUM reporting with actionable insights for performance optimization and user experience
+
+### Log Management and Analysis
+- [ ] Centralized log aggregation with structured logging and searchable log management
+- [ ] Log analysis with pattern recognition, anomaly detection, and trend identification
+- [ ] Log alerting with intelligent thresholds and correlation with other monitoring metrics
+- [ ] Log retention policies with appropriate storage and archival procedures
+- [ ] Log security with proper access controls and sensitive data protection
+- [ ] Log correlation with error tracking and performance monitoring for comprehensive insights
+- [ ] Log analytics with business intelligence and operational insights extraction
+
+### API and Service Monitoring
+- [ ] Comprehensive API monitoring with endpoint performance, response time, and error rate tracking
+- [ ] Third-party service monitoring with availability, performance, and integration health checks
+- [ ] API rate limiting monitoring with usage tracking and quota management
+- [ ] Service dependency monitoring with upstream and downstream service health tracking
+- [ ] API security monitoring with authentication failures and suspicious activity detection
+- [ ] API analytics with usage patterns, performance trends, and optimization opportunities
+- [ ] Service level agreement monitoring with SLA compliance tracking and reporting
+
+### Mobile and PWA Monitoring
+- [ ] Mobile application monitoring with device-specific performance and error tracking
+- [ ] PWA monitoring with installation rates, offline usage, and app-like experience metrics
+- [ ] Mobile network monitoring with connection quality and data usage analysis
+- [ ] Mobile user experience monitoring with touch interaction and gesture performance
+- [ ] Mobile crash reporting with device information and crash pattern analysis
+- [ ] Mobile performance optimization with device capability and network condition adaptation
+- [ ] Mobile analytics with user engagement and feature adoption on mobile devices
+
+### Security Monitoring Integration
+- [ ] Security event monitoring with threat detection and suspicious activity analysis
+- [ ] Security incident correlation with application errors and performance degradation
+- [ ] Compliance monitoring with regulatory requirement tracking and validation
+- [ ] Security alerting with immediate notification of security events and breaches
+- [ ] Security analytics with threat pattern recognition and attack analysis
+- [ ] Security reporting with compliance evidence and audit trail documentation
+- [ ] Security incident response integration with automated containment and escalation
+
+### Cost and Resource Optimization Monitoring
+- [ ] Cost monitoring with resource usage tracking and cost optimization recommendations
+- [ ] Resource efficiency monitoring with utilization analysis and waste identification
+- [ ] Scaling monitoring with automatic scaling triggers and capacity optimization
+- [ ] Performance-cost correlation with cost-benefit analysis of performance improvements
+- [ ] Resource forecasting with growth projections and capacity planning
+- [ ] Cost alerting with budget thresholds and unexpected cost increase notifications
+- [ ] Cost optimization reporting with savings opportunities and efficiency improvements
+
+### Integration and Automation
+- [ ] Monitoring integration with CI/CD pipeline for deployment impact tracking
+- [ ] Automation integration with auto-scaling, self-healing, and incident response
+- [ ] Monitoring API integration with custom dashboards and third-party tools
+- [ ] Webhook integration with external systems for alert routing and automation
+- [ ] Monitoring data export with data warehouse integration and advanced analytics
+- [ ] Monitoring backup and disaster recovery with monitoring system resilience
+- [ ] Monitoring configuration management with version control and change tracking
+
+### Quality Verification and Testing
+- [ ] Monitoring system testing with simulated incidents and alert validation
+- [ ] Dashboard functionality testing with various data scenarios and edge cases
+- [ ] Alerting system testing with different severity levels and escalation paths
+- [ ] Performance impact testing ensuring monitoring doesn't degrade application performance
+- [ ] Disaster recovery testing with monitoring system backup and restoration
+- [ ] Integration testing with all external services and third-party monitoring tools
+- [ ] User acceptance testing with stakeholders validating dashboard functionality and reporting
+
+### Documentation and Training
+- [ ] Comprehensive monitoring documentation with setup, configuration, and maintenance procedures
+- [ ] Incident response procedures with step-by-step monitoring and escalation protocols
+- [ ] Dashboard usage training with user guides and best practices for different stakeholder groups
+- [ ] Troubleshooting documentation with common issues and resolution procedures
+- [ ] Monitoring optimization guides with performance tuning and cost optimization
+- [ ] Team training materials with monitoring tool usage and incident response procedures
+- [ ] Knowledge base with monitoring best practices and lessons learned documentation
+
+### Final Validation
+- [ ] All monitoring systems operational with comprehensive coverage of application and infrastructure
+- [ ] Error tracking captures 100% of application errors with proper categorization and alerting
+- [ ] Uptime monitoring provides global coverage with accurate availability metrics
+- [ ] Performance monitoring tracks Core Web Vitals with real-time alerts and trend analysis
+- [ ] Business metrics monitoring provides actionable insights into user engagement and feature usage
+- [ ] Intelligent alerting system delivers timely notifications with proper escalation procedures
+- [ ] Monitoring dashboards provide stakeholder-appropriate visibility with real-time updates
+
+**CONFIRMATION STATEMENT**: "I confirm that ALL checklist items above have been completed and verified. The production monitoring system is fully functional with comprehensive application monitoring, error tracking, uptime checking, performance analysis, business metrics, intelligent alerting, and stakeholder reporting. The monitoring infrastructure provides complete visibility and proactive issue detection for optimal production operations."

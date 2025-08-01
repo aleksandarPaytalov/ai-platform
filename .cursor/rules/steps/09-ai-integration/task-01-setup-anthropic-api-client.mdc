@@ -1,0 +1,336 @@
+---
+alwaysApply: false
+---
+# Task 9.1: Set Up Anthropic API Client
+
+## Context and Scope
+You are working on **Task 9.1** of the AI Feature Tracker project. This task focuses ONLY on setting up the foundational Anthropic API client infrastructure for integrating Claude AI capabilities. Do NOT implement any specific AI analysis features, content processing, or business logic beyond what is explicitly listed in the AI Instructions below.
+
+## Technology Standards for This Task
+- **Anthropic SDK** with proper TypeScript integration and configuration
+- **Authentication** with secure API key management and token handling
+- **Error handling** with comprehensive retry logic and user-friendly messages
+- **Rate limiting** with intelligent request throttling and queue management
+- **Performance optimization** with request caching and efficient API usage
+- **Security** with proper API key protection and request validation
+
+## AI Instructions
+
+Complete the following tasks in exact order:
+
+### 1. Create Anthropic Client Configuration (`src/lib/anthropic/client.ts`)
+- Create Anthropic client configuration with proper SDK initialization and setup
+- Implement client instance management for different contexts (server-side, edge functions)
+- Add client configuration options (model selection, timeout settings, retry configuration)
+- Include client authentication with secure API key management and validation
+- Add client debugging and logging utilities for development and monitoring
+- Implement client performance monitoring with request metrics and usage tracking
+- Create TypeScript interfaces for client configuration and initialization options
+- Add client error handling and connection failure management
+- Include client cleanup and resource management utilities
+- Add client testing utilities with mock implementations and validation
+
+### 2. Create Authentication System (`src/lib/anthropic/auth.ts`)
+- Create authentication system for Anthropic API with secure credential management
+- Implement API key validation and format checking
+- Add environment variable management for different deployment contexts
+- Include authentication error handling and credential validation
+- Add authentication debugging utilities for troubleshooting access issues
+- Implement authentication performance optimization with credential caching
+- Create TypeScript interfaces for authentication configuration and credentials
+- Add authentication testing utilities with mock credentials and validation
+- Include authentication integration with client configuration
+- Add authentication security measures and best practices implementation
+
+### 3. Create Rate Limiting System (`src/lib/anthropic/rate-limiter.ts`)
+- Create rate limiting system respecting Anthropic API quotas and usage tiers
+- Implement intelligent request throttling with exponential backoff and jitter
+- Add rate limit monitoring with usage tracking and quota management
+- Include rate limit queue management for handling burst requests
+- Add rate limit debugging utilities for monitoring and optimization
+- Implement rate limit performance optimization with efficient request scheduling
+- Create TypeScript interfaces for rate limiting configuration and metrics
+- Add rate limit testing utilities with mock scenarios and validation
+- Include rate limit integration with error handling and retry logic
+- Add rate limit user feedback and notification systems
+
+### 4. Create Error Handling System (`src/lib/anthropic/error-handler.ts`)
+- Create comprehensive error handling system for all Anthropic API scenarios
+- Implement error categorization (network, authentication, rate limit, validation, server)
+- Add error recovery strategies with intelligent retry logic and fallback mechanisms
+- Include user-friendly error messaging with actionable guidance
+- Add error logging and reporting with detailed diagnostic information
+- Implement error debugging utilities for development and troubleshooting
+- Create TypeScript interfaces for error types and recovery strategies
+- Add error testing utilities with mock error scenarios and validation
+- Include error integration with rate limiting and authentication systems
+- Add error performance optimization to prevent cascade failures
+
+### 5. Create Request/Response System (`src/lib/anthropic/request-handler.ts`)
+- Create request handling system with proper message formatting and validation
+- Implement request preprocessing with input sanitization and validation
+- Add response processing with output validation and transformation
+- Include request/response logging with detailed information and debugging
+- Add request/response caching with intelligent cache management
+- Implement request/response performance optimization with efficient processing
+- Create TypeScript interfaces for request/response data structures and configuration
+- Add request/response testing utilities with mock data and validation
+- Include request/response integration with error handling and rate limiting
+- Add request/response debugging utilities for development and optimization
+
+### 6. Create Usage Monitoring System (`src/lib/anthropic/usage-monitor.ts`)
+- Create usage monitoring system for tracking API consumption and costs
+- Implement usage metrics collection (requests, tokens, costs, response times)
+- Add usage analytics with pattern analysis and optimization recommendations
+- Include usage alerting with threshold monitoring and notifications
+- Add usage debugging utilities for consumption analysis and optimization
+- Implement usage performance optimization with efficient metrics collection
+- Create TypeScript interfaces for usage metrics and monitoring configuration
+- Add usage testing utilities with mock usage scenarios and validation
+- Include usage integration with rate limiting and cost management
+- Add usage reporting with detailed analytics and insights
+
+### 7. Create Client Utilities System (`src/lib/anthropic/utils.ts`)
+- Create utility functions for common Anthropic API operations and helpers
+- Implement message formatting utilities for consistent API communication
+- Add token counting and estimation utilities for usage optimization
+- Include model selection helpers with appropriate model recommendations
+- Add prompt engineering utilities for consistent and effective prompts
+- Implement client debugging utilities for development and testing
+- Create TypeScript interfaces for utility function parameters and returns
+- Add utility testing with comprehensive validation and edge case handling
+- Include utility integration with client configuration and error handling
+- Add utility performance optimization with efficient helper functions
+
+### 8. Create Anthropic Client Integration (`src/lib/anthropic/index.ts`)
+- Create comprehensive export file for all Anthropic client components
+- Set up client system composition with all components properly integrated
+- Add client configuration presets for different use cases and environments
+- Include client React hooks for easy component integration
+- Create client testing utilities and comprehensive mock implementations
+- Add client documentation and usage examples
+- Include comprehensive TypeScript type exports for all client interfaces
+- Create client debugging dashboard for development and monitoring
+- Add client performance monitoring and optimization utilities
+- Include client security validation and best practices verification
+
+## Completion Checklist
+
+Before marking this task as complete, verify ALL of the following items:
+
+### Anthropic Client Configuration Verification
+- [ ] `src/lib/anthropic/client.ts` exists with proper SDK initialization
+- [ ] Client instance management for different contexts implemented correctly
+- [ ] Client configuration options (model, timeout, retry) work properly
+- [ ] Client authentication with secure API key management included
+- [ ] Client debugging and logging utilities for development added
+- [ ] Client performance monitoring with metrics and tracking implemented
+- [ ] TypeScript interfaces for client configuration defined comprehensively
+- [ ] Client error handling and connection failure management included
+- [ ] Client cleanup and resource management utilities implemented
+- [ ] Client testing utilities with mock implementations created
+
+### Authentication System Verification
+- [ ] `src/lib/anthropic/auth.ts` exists with secure credential management
+- [ ] API key validation and format checking works correctly
+- [ ] Environment variable management for deployment contexts implemented
+- [ ] Authentication error handling and validation included
+- [ ] Authentication debugging utilities for troubleshooting added
+- [ ] Authentication performance optimization with caching implemented
+- [ ] TypeScript interfaces for authentication configuration defined
+- [ ] Authentication testing utilities with mock credentials created
+- [ ] Authentication integration with client configuration works
+- [ ] Authentication security measures and best practices implemented
+
+### Rate Limiting System Verification
+- [ ] `src/lib/anthropic/rate-limiter.ts` exists with quota management
+- [ ] Intelligent request throttling with backoff and jitter implemented
+- [ ] Rate limit monitoring with usage tracking included
+- [ ] Rate limit queue management for burst requests works correctly
+- [ ] Rate limit debugging utilities for monitoring added
+- [ ] Rate limit performance optimization with scheduling implemented
+- [ ] TypeScript interfaces for rate limiting configuration defined
+- [ ] Rate limit testing utilities with mock scenarios created
+- [ ] Rate limit integration with error handling works
+- [ ] Rate limit user feedback and notification systems included
+
+### Error Handling System Verification
+- [ ] `src/lib/anthropic/error-handler.ts` exists with comprehensive error handling
+- [ ] Error categorization (network, auth, rate limit, validation) implemented
+- [ ] Error recovery strategies with retry logic and fallbacks included
+- [ ] User-friendly error messaging with actionable guidance works
+- [ ] Error logging and reporting with diagnostic information added
+- [ ] Error debugging utilities for development included
+- [ ] TypeScript interfaces for error types and strategies defined
+- [ ] Error testing utilities with mock scenarios created
+- [ ] Error integration with rate limiting and authentication works
+- [ ] Error performance optimization to prevent cascades implemented
+
+### Request/Response System Verification
+- [ ] `src/lib/anthropic/request-handler.ts` exists with message handling
+- [ ] Request preprocessing with sanitization and validation implemented
+- [ ] Response processing with validation and transformation included
+- [ ] Request/response logging with detailed information added
+- [ ] Request/response caching with intelligent management implemented
+- [ ] Request/response performance optimization included
+- [ ] TypeScript interfaces for data structures defined
+- [ ] Request/response testing utilities with mock data created
+- [ ] Request/response integration with error handling works
+- [ ] Request/response debugging utilities added
+
+### Usage Monitoring System Verification
+- [ ] `src/lib/anthropic/usage-monitor.ts` exists with consumption tracking
+- [ ] Usage metrics collection (requests, tokens, costs, times) implemented
+- [ ] Usage analytics with pattern analysis included
+- [ ] Usage alerting with threshold monitoring works correctly
+- [ ] Usage debugging utilities for analysis added
+- [ ] Usage performance optimization with efficient collection implemented
+- [ ] TypeScript interfaces for usage metrics defined
+- [ ] Usage testing utilities with mock scenarios created
+- [ ] Usage integration with rate limiting works
+- [ ] Usage reporting with analytics and insights included
+
+### Client Utilities System Verification
+- [ ] `src/lib/anthropic/utils.ts` exists with common operations
+- [ ] Message formatting utilities for consistent communication implemented
+- [ ] Token counting and estimation utilities included
+- [ ] Model selection helpers with recommendations added
+- [ ] Prompt engineering utilities for effective prompts implemented
+- [ ] Client debugging utilities for development included
+- [ ] TypeScript interfaces for utility parameters defined
+- [ ] Utility testing with validation and edge cases created
+- [ ] Utility integration with client configuration works
+- [ ] Utility performance optimization implemented
+
+### Integration and Export Verification
+- [ ] `src/lib/anthropic/index.ts` exists with comprehensive exports
+- [ ] Client system composition with all components integrated properly
+- [ ] Client configuration presets for different use cases included
+- [ ] Client React hooks for component integration created
+- [ ] Client testing utilities and mock implementations included
+- [ ] Client documentation and usage examples added
+- [ ] Comprehensive TypeScript type exports defined
+- [ ] Client debugging dashboard for development created
+- [ ] Client performance monitoring utilities implemented
+- [ ] Client security validation and best practices verified
+
+### API Authentication and Security Verification
+- [ ] API key is securely stored and managed (not exposed in client code)
+- [ ] Authentication works correctly with Anthropic API endpoints
+- [ ] API key validation prevents invalid or malformed keys
+- [ ] Environment variable management works across different deployment contexts
+- [ ] Authentication errors are handled gracefully with appropriate feedback
+- [ ] Security best practices are followed for credential management
+- [ ] API key rotation and refresh mechanisms work if applicable
+- [ ] Authentication debugging provides useful information without exposing secrets
+
+### Rate Limiting and Quota Management Verification
+- [ ] Rate limiting respects Anthropic API tier limits and quotas
+- [ ] Request throttling works correctly with exponential backoff
+- [ ] Burst requests are queued and managed appropriately
+- [ ] Rate limit errors trigger appropriate retry and backoff behavior
+- [ ] Usage tracking accurately monitors API consumption
+- [ ] Quota warnings and alerts work before limits are reached
+- [ ] Rate limiting performance doesn't significantly impact request processing
+- [ ] Rate limit debugging provides useful insights for optimization
+
+### Error Handling and Resilience Verification
+- [ ] Network errors are caught and handled with appropriate retry logic
+- [ ] Authentication errors trigger proper error handling and user feedback
+- [ ] Rate limit errors are handled with backoff and retry mechanisms
+- [ ] Server errors (5xx) are handled with appropriate retry strategies
+- [ ] Client errors (4xx) are handled with proper user feedback
+- [ ] Error messages are user-friendly and provide actionable guidance
+- [ ] Error logging provides detailed information for debugging
+- [ ] Error recovery doesn't cause infinite retry loops or resource exhaustion
+
+### Request Processing and Data Handling Verification
+- [ ] Request formatting follows Anthropic API specifications correctly
+- [ ] Input validation prevents malformed requests from being sent
+- [ ] Response parsing handles all expected response formats
+- [ ] Response validation ensures data integrity and expected structure
+- [ ] Request/response logging provides useful debugging information
+- [ ] Caching strategies improve performance without violating API terms
+- [ ] Token counting and estimation help optimize API usage
+- [ ] Request processing performance is optimized for user experience
+
+### Performance and Resource Management Verification
+- [ ] API client performance doesn't impact overall application responsiveness
+- [ ] Request caching reduces unnecessary API calls appropriately
+- [ ] Memory usage remains reasonable during extended API usage
+- [ ] Resource cleanup prevents accumulation of unused client resources
+- [ ] Performance monitoring identifies optimization opportunities
+- [ ] Concurrent request handling works correctly without conflicts
+- [ ] Client initialization and configuration are optimized for speed
+- [ ] Performance metrics provide useful insights for optimization
+
+### Integration with Application Architecture Verification
+- [ ] Anthropic client integrates properly with Next.js API routes
+- [ ] Client works correctly in different execution contexts (server, edge)
+- [ ] TypeScript integration provides proper type safety and IntelliSense
+- [ ] Error handling integrates with application-wide error management
+- [ ] Performance monitoring integrates with application metrics
+- [ ] Client configuration works with application environment management
+- [ ] Security practices align with application security standards
+- [ ] Client testing integrates with application testing framework
+
+### Development and Testing Support Verification  
+- [ ] Client debugging tools provide useful development insights
+- [ ] Mock implementations enable comprehensive testing without API calls
+- [ ] Testing utilities facilitate automated client functionality testing
+- [ ] Development configuration allows easy testing and validation
+- [ ] Logging provides appropriate detail for development and production
+- [ ] Performance profiling tools identify client optimization opportunities
+- [ ] Documentation provides clear implementation and usage guidance
+- [ ] Examples demonstrate proper client integration patterns
+
+### Cost Management and Usage Optimization Verification
+- [ ] Usage monitoring tracks API consumption accurately
+- [ ] Cost estimation helps predict and manage API expenses
+- [ ] Usage analytics identify optimization opportunities
+- [ ] Token counting helps optimize prompt efficiency
+- [ ] Model selection utilities recommend appropriate models for tasks
+- [ ] Caching strategies reduce unnecessary API consumption
+- [ ] Usage alerts prevent unexpected cost overruns
+- [ ] Optimization recommendations help improve efficiency
+
+### Security and Best Practices Verification
+- [ ] API keys are never exposed in client-side code or logs
+- [ ] Request and response data is handled securely
+- [ ] Error messages don't leak sensitive information
+- [ ] Authentication follows security best practices
+- [ ] API communication uses proper encryption and security headers
+- [ ] Input validation prevents injection attacks or malformed requests
+- [ ] Security auditing identifies potential vulnerabilities
+- [ ] Best practices documentation guides secure implementation
+
+### Environment and Deployment Verification
+- [ ] Client works correctly in development environment
+- [ ] Client works correctly in production environment
+- [ ] Environment variable management works across deployment contexts
+- [ ] Client configuration adapts appropriately to different environments
+- [ ] Performance characteristics are acceptable in production
+- [ ] Error handling works correctly in production scenarios
+- [ ] Monitoring and logging work in production deployment
+- [ ] Client scales appropriately with application usage patterns
+
+## Success Criteria
+Task 9.1 is complete when:
+1. All items in the completion checklist are verified ✓
+2. Anthropic API client is properly configured with secure authentication
+3. Rate limiting and error handling provide robust API interaction
+4. Performance is optimized with appropriate caching and monitoring
+5. Security best practices are implemented throughout the client
+6. Integration with Next.js application architecture works seamlessly
+7. No errors exist in console or TypeScript compilation
+8. API client is ready for content analysis and validation implementation
+
+## Important Notes
+- **ONLY** work on API client infrastructure - do not implement specific AI analysis features
+- Focus on creating robust, secure foundation for Anthropic API integration
+- Ensure API keys are never exposed in client-side code or version control
+- Test rate limiting thoroughly to respect Anthropic API quotas and terms
+- Implement comprehensive error handling for all possible API scenarios
+- Use proper TypeScript typing for all API requests and responses
+- Optimize performance while respecting API usage guidelines and best practices
+- Test client functionality with various network conditions and error scenarios

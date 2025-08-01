@@ -1,0 +1,187 @@
+---
+alwaysApply: false
+---
+# Step 10 Task 1: Create Supabase Edge Functions
+
+## Context and Scope
+You are working on **Step 10: Automated Update System** of the AI Feature Tracker project. This is **Task 10.1** focusing exclusively on creating Supabase Edge Functions for automated content processing. 
+
+**IMPORTANT**: This rule references and must comply with:
+- `global-behavior.mdc` - AI behavior and communication patterns
+- `technology-standards.mdc` - Technology stack standards and patterns  
+- `quality-standards.mdc` - Code quality and testing requirements
+
+## Current Step Context
+- **Phase**: Phase 4 - AI Integration
+- **Step**: 10 - Automated Update System  
+- **Task**: 10.1 - Create Supabase Edge Functions
+- **Prerequisites**: Anthropic API integration (Step 9) must be completed
+
+## Task Objective
+Create Supabase Edge Functions infrastructure for automated daily processing of AI tool feature updates, including content scraping, parsing, error handling, and monitoring capabilities.
+
+## AI Instructions
+
+### 1. Create Edge Function for Automated Daily Update Processing
+- Set up new Supabase Edge Function using Deno runtime in `supabase/functions/` directory
+- Create main processing function named `daily-update-processor` with proper TypeScript structure
+- Implement function entry point following Supabase Edge Functions patterns with proper HTTP request/response handling
+- Create modular function architecture separating concerns (scraping, parsing, validation, storage)
+- Add proper environment variable handling for Supabase and external API credentials
+- Implement proper CORS handling and security headers for function execution
+- Create function configuration files (`supabase/functions/daily-update-processor/index.ts`)
+
+### 2. Implement Content Scraping from Official AI Tool Sources
+- Create scraping utilities for different AI tool official sources (blogs, release notes, documentation pages)
+- Implement HTTP client configuration with proper user agents, headers, and rate limiting
+- Add support for different content formats: HTML pages, RSS feeds, API endpoints, markdown files
+- Create source configuration management with URLs and scraping patterns for all 15 AI tools
+- Implement content change detection using checksums/hashes to avoid processing unchanged content
+- Add request retry logic with exponential backoff for failed scraping attempts
+- Create concurrent scraping with proper throttling to respect source server limits
+
+### 3. Add HTML Parsing and Content Extraction Logic
+- Implement HTML parsing using Deno-compatible libraries for content extraction
+- Create content selectors and parsing rules for different website structures and formats
+- Add text extraction, cleaning, and normalization for consistent data processing
+- Implement metadata extraction (publication dates, author information, categories)
+- Create image URL extraction and validation for screenshots and media content
+- Add structured data extraction (JSON-LD, Open Graph, meta tags) for richer information
+- Implement fallback parsing strategies when primary selectors fail
+
+### 4. Create Proper Error Handling and Logging
+- Implement comprehensive error handling for all scraping and parsing operations
+- Add structured logging with different levels (info, warn, error, debug) using Supabase Edge Function logging
+- Create error categorization (network errors, parsing errors, validation errors, rate limiting)
+- Implement error recovery strategies with graceful degradation for partial failures
+- Add detailed error context and stack traces for debugging purposes
+- Create error notification system for critical failures requiring manual intervention
+- Implement error rate monitoring and automatic function disabling for excessive failures
+
+### 5. Implement Function Deployment Configuration and Environment Management
+- Create deployment configuration files (`supabase/config.toml` updates for Edge Functions)
+- Set up environment variable management for different deployment environments (dev, staging, prod)
+- Configure function secrets and API keys using Supabase secrets management
+- Add function resource limits (memory, timeout, concurrent executions) appropriate for content processing
+- Create deployment scripts and automation for consistent function updates
+- Implement version management and rollback capabilities for function deployments
+- Add function dependency management and build optimization
+
+### 6. Add Function Monitoring and Performance Tracking
+- Implement function execution monitoring with metrics collection (execution time, success rate, errors)
+- Create performance logging for different processing stages (scraping, parsing, storage)
+- Add custom metrics for business logic (tools processed, updates found, validation success rate)
+- Implement health check endpoints for function availability monitoring
+- Create dashboard-compatible metrics export for Supabase monitoring
+- Add alerting configuration for function failures and performance degradation
+- Implement cost tracking and usage optimization monitoring
+
+### 7. Create Function Testing and Local Development Setup
+- Set up local Supabase development environment with Edge Functions support
+- Create comprehensive test suite for function logic using Deno testing framework
+- Implement unit tests for individual scraping and parsing functions
+- Add integration tests for end-to-end function execution with mock data
+- Create test data fixtures and mock responses for different AI tool sources
+- Implement local testing commands and scripts for development workflow
+- Add continuous integration setup for automated function testing
+
+## Expected Deliverables
+- Complete Supabase Edge Function infrastructure in `supabase/functions/daily-update-processor/`
+- Functional content scraping system supporting all 15 AI tools
+- Robust error handling and logging system with structured output
+- Local development and testing environment setup
+- Deployment configuration ready for production use
+- Monitoring and metrics collection system
+- Comprehensive test coverage for all function components
+
+## Technical Requirements
+- **Runtime**: Deno with TypeScript for Supabase Edge Functions
+- **Error Handling**: Comprehensive try-catch blocks with structured error responses
+- **Performance**: Function execution under 60 seconds with proper resource management
+- **Security**: Proper secrets management and input validation
+- **Monitoring**: Detailed logging and metrics for all operations
+- **Testing**: Unit and integration tests with >80% coverage for critical paths
+
+## Completion Checklist
+
+**Before marking this task as complete, verify ALL of the following:**
+
+### Edge Function Infrastructure
+- [ ] Supabase Edge Function created in `supabase/functions/daily-update-processor/index.ts`
+- [ ] Function entry point properly configured with HTTP request/response handling
+- [ ] Modular architecture implemented with separated concerns (scraping, parsing, validation)
+- [ ] Environment variable handling configured for all required credentials
+- [ ] CORS and security headers properly implemented
+- [ ] Function configuration files created and properly structured
+
+### Content Scraping Implementation
+- [ ] HTTP client configured with proper user agents and headers
+- [ ] Scraping utilities created for all 15 AI tools with their official sources
+- [ ] Support implemented for multiple content formats (HTML, RSS, API, markdown)
+- [ ] Source configuration management system created with URLs and patterns
+- [ ] Content change detection implemented using checksums/hashes
+- [ ] Request retry logic with exponential backoff implemented
+- [ ] Concurrent scraping with throttling properly configured
+
+### HTML Parsing and Content Extraction
+- [ ] HTML parsing library integrated and working with Deno runtime
+- [ ] Content selectors and parsing rules created for different website structures
+- [ ] Text extraction, cleaning, and normalization implemented
+- [ ] Metadata extraction working (dates, authors, categories)
+- [ ] Image URL extraction and validation implemented
+- [ ] Structured data extraction working (JSON-LD, Open Graph, meta tags)
+- [ ] Fallback parsing strategies implemented and tested
+
+### Error Handling and Logging
+- [ ] Comprehensive error handling implemented for all operations
+- [ ] Structured logging with multiple levels (info, warn, error, debug) working
+- [ ] Error categorization implemented (network, parsing, validation, rate limiting)
+- [ ] Error recovery strategies with graceful degradation implemented
+- [ ] Detailed error context and stack traces configured
+- [ ] Error notification system for critical failures implemented
+- [ ] Error rate monitoring and automatic disabling logic implemented
+
+### Deployment Configuration
+- [ ] `supabase/config.toml` updated for Edge Functions deployment
+- [ ] Environment variable management configured for all environments
+- [ ] Function secrets and API keys properly configured using Supabase secrets
+- [ ] Function resource limits appropriately set (memory, timeout, concurrency)
+- [ ] Deployment scripts and automation created
+- [ ] Version management and rollback capabilities implemented
+
+### Monitoring and Performance
+- [ ] Function execution monitoring with metrics collection implemented
+- [ ] Performance logging for different processing stages working
+- [ ] Custom business metrics implemented (tools processed, updates found, etc.)
+- [ ] Health check endpoints created and functional
+- [ ] Dashboard-compatible metrics export configured
+- [ ] Alerting configuration for failures and performance issues set up
+- [ ] Cost tracking and usage optimization monitoring implemented
+
+### Testing and Development Setup
+- [ ] Local Supabase development environment with Edge Functions working
+- [ ] Comprehensive test suite created using Deno testing framework
+- [ ] Unit tests implemented for individual scraping and parsing functions
+- [ ] Integration tests for end-to-end function execution created
+- [ ] Test data fixtures and mock responses created for all AI tools
+- [ ] Local testing commands and scripts working
+- [ ] CI setup for automated function testing implemented
+
+### Quality Verification
+- [ ] All functions execute without errors in local development environment
+- [ ] Function deployment successful to Supabase Edge Functions
+- [ ] All environment variables and secrets properly configured and accessible
+- [ ] Test suite passes with >80% coverage for critical functionality
+- [ ] Error handling verified with various failure scenarios
+- [ ] Performance monitoring working and showing expected metrics
+- [ ] Documentation created for function setup and maintenance
+
+### Final Validation
+- [ ] Function can be triggered manually and executes successfully
+- [ ] Content scraping works for at least 3 different AI tool sources
+- [ ] Parsed content is properly structured and stored
+- [ ] Error scenarios are handled gracefully without function crashes
+- [ ] All monitoring and logging systems are operational
+- [ ] Local development workflow is documented and functional
+
+**CONFIRMATION STATEMENT**: "I confirm that ALL checklist items above have been completed and verified. The Supabase Edge Functions infrastructure is fully functional, tested, and ready for integration with the automated update processing pipeline."

@@ -1,0 +1,263 @@
+---
+alwaysApply: false
+---
+# Step 13 Task 1: Implement Code Splitting and Performance Optimization
+
+## Context and Scope
+You are working on **Step 13: Performance Optimization & SEO** of the AI Feature Tracker project. This is **Task 13.1** focusing exclusively on implementing advanced code splitting, performance optimization strategies, and critical resource optimization for production-ready performance.
+
+**IMPORTANT**: This rule references and must comply with:
+- `global-behavior.mdc` - AI behavior and communication patterns
+- `technology-standards.mdc` - Technology stack standards and patterns  
+- `quality-standards.mdc` - Code quality and testing requirements
+
+## Current Step Context
+- **Phase**: Phase 5 - Advanced Features
+- **Step**: 13 - Performance Optimization & SEO  
+- **Task**: 13.1 - Implement Code Splitting and Performance Optimization
+- **Prerequisites**: Step 12 (Mobile Optimization & Responsive Design) must be completed
+
+## Task Objective
+Create comprehensive performance optimization system with advanced code splitting, intelligent preloading strategies, bundle analysis and optimization, component-level lazy loading, critical resource optimization, and performance monitoring to achieve production-ready performance standards across all devices and network conditions.
+
+## AI Instructions
+
+### 1. Set Up Advanced Code Splitting with Dynamic Imports for Components and Routes
+- Implement route-based code splitting using Next.js dynamic imports with intelligent loading boundaries for optimal performance
+- Create component-level code splitting for heavy components using React.lazy() and dynamic imports with proper error boundaries
+- Add feature-based code splitting allowing optional features to load on-demand based on user interaction patterns
+- Implement vendor code splitting separating third-party libraries from application code for better caching strategies
+- Create shared chunk optimization with intelligent bundling of common dependencies across routes and components
+- Add code splitting analysis with webpack-bundle-analyzer integration for visual bundle inspection and optimization
+- Implement code splitting testing ensuring all split chunks load correctly and maintain application functionality
+
+### 2. Implement Intelligent Preloading Strategies for Critical Resources
+- Create intelligent preloading system using Next.js prefetching with user behavior analysis and predictive loading
+- Implement critical resource preloading for above-the-fold content, fonts, and essential images with proper prioritization
+- Add preload hints for critical resources using resource hints (preload, prefetch, preconnect, dns-prefetch)
+- Create adaptive preloading based on network conditions, device capabilities, and user interaction patterns
+- Implement preloading analytics tracking preload effectiveness and user engagement with preloaded content
+- Add preloading optimization with intelligent timing and resource prioritization to avoid network congestion
+- Create preloading budget management preventing excessive preloading that could harm performance
+
+### 3. Add Bundle Analysis and Optimization for Smaller Payload Sizes
+- Implement comprehensive bundle analysis using webpack-bundle-analyzer and Next.js bundle analyzer
+- Create bundle size monitoring with automated alerts when bundle sizes exceed performance budgets
+- Add tree shaking optimization ensuring unused code is eliminated from production bundles
+- Implement dependency optimization replacing heavy libraries with lighter alternatives or polyfills
+- Create duplicate code detection and elimination across chunks and components
+- Add compression optimization using Brotli and Gzip with proper server configuration
+- Implement bundle optimization CI/CD integration with automated bundle size regression testing
+
+### 4. Create Component-Level Lazy Loading with Proper Loading Boundaries
+- Implement component lazy loading using React.lazy() with proper Suspense boundaries and error handling
+- Create intersection observer-based lazy loading for components below the fold with efficient loading triggers
+- Add lazy loading for heavy features like search, filtering, and AI integration with progressive enhancement
+- Implement lazy loading for third-party integrations and non-critical functionality with fallback mechanisms
+- Create loading state management with skeleton screens and progressive loading indicators
+- Add lazy loading performance optimization preventing layout shifts and maintaining smooth user experience
+- Implement lazy loading analytics tracking component loading patterns and user engagement
+
+### 5. Optimize Asset Loading with Next.js Image Component and Responsive Images
+- Implement Next.js Image component with automatic optimization, responsive images, and modern format serving
+- Create image optimization pipeline with WebP/AVIF format generation and fallbacks for browser compatibility
+- Add responsive image loading with srcset and sizes attributes optimized for different screen sizes and densities
+- Implement image lazy loading with intersection observer and progressive enhancement for better performance
+- Create image preloading for critical images with priority loading and resource hints
+- Add image compression optimization with quality settings balanced for performance and visual fidelity
+- Implement image loading analytics tracking image performance, format usage, and loading effectiveness
+
+### 6. Implement Critical CSS Extraction and Inline Optimization
+- Create critical CSS extraction identifying and inlining above-the-fold styles for faster initial rendering
+- Implement CSS code splitting with component-specific styles and lazy loading of non-critical CSS
+- Add CSS optimization with minification, unused style removal, and selector optimization
+- Create CSS delivery optimization with proper loading strategies and render-blocking prevention
+- Implement CSS performance monitoring tracking render-blocking resources and critical rendering path
+- Add CSS preprocessing optimization with efficient build processes and style generation
+- Create CSS caching strategies with proper versioning and cache invalidation for style updates
+
+### 7. Add Performance Budgets and Monitoring for Regression Prevention
+- Implement comprehensive performance budgets for bundle sizes, loading times, and Core Web Vitals metrics
+- Create automated performance monitoring with CI/CD integration and regression detection
+- Add real user monitoring (RUM) with performance metrics collection and analysis from actual users
+- Implement performance alerts with thresholds for performance degradation and automatic notifications
+- Create performance dashboard with historical data, trend analysis, and optimization recommendations
+- Add performance testing automation with regular performance audits and lighthouse score tracking
+- Implement performance optimization recommendations with automated suggestions for improvement opportunities
+
+## Expected Deliverables
+- Advanced code splitting system with route, component, and feature-based splitting
+- Intelligent preloading strategies with predictive loading and resource prioritization
+- Bundle analysis and optimization system with automated monitoring and alerts
+- Component lazy loading with proper loading boundaries and performance optimization
+- Asset optimization with Next.js Image component and responsive image loading
+- Critical CSS extraction with inline optimization and delivery strategies
+- Performance budgets and monitoring system with regression prevention and alerting
+- Comprehensive testing demonstrating significant performance improvements across all metrics
+
+## Technical Requirements
+- **Bundle Size**: Initial bundle under 250KB (compressed) with efficient code splitting
+- **Loading Performance**: First Contentful Paint (FCP) under 1.5 seconds on 3G connections
+- **Core Web Vitals**: LCP < 2.5s, FID < 100ms, CLS < 0.1 across all pages and devices
+- **Code Splitting**: Automatic splitting with <50KB individual chunks for optimal loading
+- **Image Optimization**: Modern formats (WebP/AVIF) with responsive loading and compression
+- **Monitoring**: Real-time performance monitoring with automated regression detection
+
+## Completion Checklist
+
+**Before marking this task as complete, verify ALL of the following:**
+
+### Advanced Code Splitting Implementation
+- [ ] Route-based code splitting using Next.js dynamic imports with intelligent loading boundaries implemented
+- [ ] Component-level code splitting for heavy components using React.lazy() with error boundaries created
+- [ ] Feature-based code splitting for optional features loading on-demand based on interaction patterns added
+- [ ] Vendor code splitting separating third-party libraries from application code implemented
+- [ ] Shared chunk optimization with intelligent bundling of common dependencies created
+- [ ] Code splitting analysis with webpack-bundle-analyzer integration for visual inspection added
+- [ ] Code splitting testing ensuring all split chunks load correctly and maintain functionality implemented
+
+### Intelligent Preloading Strategies
+- [ ] Intelligent preloading system using Next.js prefetching with user behavior analysis implemented
+- [ ] Critical resource preloading for above-the-fold content, fonts, and essential images created
+- [ ] Preload hints for critical resources using resource hints (preload, prefetch, preconnect, dns-prefetch) added
+- [ ] Adaptive preloading based on network conditions, device capabilities, and interaction patterns implemented
+- [ ] Preloading analytics tracking effectiveness and user engagement with preloaded content created
+- [ ] Preloading optimization with intelligent timing and resource prioritization added
+- [ ] Preloading budget management preventing excessive preloading that could harm performance implemented
+
+### Bundle Analysis and Optimization
+- [ ] Comprehensive bundle analysis using webpack-bundle-analyzer and Next.js bundle analyzer implemented
+- [ ] Bundle size monitoring with automated alerts when sizes exceed performance budgets created
+- [ ] Tree shaking optimization ensuring unused code elimination from production bundles added
+- [ ] Dependency optimization replacing heavy libraries with lighter alternatives implemented
+- [ ] Duplicate code detection and elimination across chunks and components created
+- [ ] Compression optimization using Brotli and Gzip with proper server configuration added
+- [ ] Bundle optimization CI/CD integration with automated size regression testing implemented
+
+### Component Lazy Loading
+- [ ] Component lazy loading using React.lazy() with proper Suspense boundaries and error handling implemented
+- [ ] Intersection observer-based lazy loading for below-the-fold components with efficient triggers created
+- [ ] Lazy loading for heavy features (search, filtering, AI integration) with progressive enhancement added
+- [ ] Lazy loading for third-party integrations and non-critical functionality with fallbacks implemented
+- [ ] Loading state management with skeleton screens and progressive loading indicators created
+- [ ] Lazy loading performance optimization preventing layout shifts and maintaining smooth UX added
+- [ ] Lazy loading analytics tracking component loading patterns and user engagement implemented
+
+### Asset Loading Optimization
+- [ ] Next.js Image component with automatic optimization, responsive images, and modern formats implemented
+- [ ] Image optimization pipeline with WebP/AVIF generation and browser compatibility fallbacks created
+- [ ] Responsive image loading with srcset and sizes attributes for different screen sizes added
+- [ ] Image lazy loading with intersection observer and progressive enhancement implemented
+- [ ] Image preloading for critical images with priority loading and resource hints created
+- [ ] Image compression optimization with quality settings balanced for performance and fidelity added
+- [ ] Image loading analytics tracking performance, format usage, and loading effectiveness implemented
+
+### Critical CSS Extraction and Optimization
+- [ ] Critical CSS extraction identifying and inlining above-the-fold styles for faster rendering implemented
+- [ ] CSS code splitting with component-specific styles and lazy loading of non-critical CSS created
+- [ ] CSS optimization with minification, unused style removal, and selector optimization added
+- [ ] CSS delivery optimization with proper loading strategies and render-blocking prevention implemented
+- [ ] CSS performance monitoring tracking render-blocking resources and critical rendering path created
+- [ ] CSS preprocessing optimization with efficient build processes and style generation added
+- [ ] CSS caching strategies with proper versioning and cache invalidation for updates implemented
+
+### Performance Budgets and Monitoring
+- [ ] Comprehensive performance budgets for bundle sizes, loading times, and Core Web Vitals implemented
+- [ ] Automated performance monitoring with CI/CD integration and regression detection created
+- [ ] Real user monitoring (RUM) with performance metrics collection and analysis from users added
+- [ ] Performance alerts with thresholds for degradation and automatic notifications implemented
+- [ ] Performance dashboard with historical data, trend analysis, and optimization recommendations created
+- [ ] Performance testing automation with regular audits and lighthouse score tracking added
+- [ ] Performance optimization recommendations with automated suggestions for improvements implemented
+
+### Next.js Optimization Configuration
+- [ ] Next.js configuration optimized for production with proper build settings and optimizations
+- [ ] Next.js experimental features enabled where beneficial (serverComponents, swcMinify, etc.)
+- [ ] Next.js image optimization configured with proper domains, formats, and quality settings
+- [ ] Next.js bundling optimization with proper chunk splitting and module federation
+- [ ] Next.js runtime optimization with proper Node.js settings and memory management
+- [ ] Next.js caching configuration with proper static generation and incremental regeneration
+- [ ] Next.js deployment optimization with proper environment configuration and CDN integration
+
+### Webpack and Build Optimization
+- [ ] Webpack configuration optimized for production builds with efficient chunk splitting
+- [ ] Webpack bundle analysis integrated with automated reporting and optimization recommendations
+- [ ] Webpack caching optimization with proper persistent caching and incremental builds
+- [ ] Webpack compression and minification optimized with modern techniques and algorithms
+- [ ] Webpack performance budgets configured with automated enforcement and alerts
+- [ ] Webpack plugin optimization with efficient plugin usage and build performance
+- [ ] Webpack source map optimization balancing debugging needs with performance requirements
+
+### Resource Loading and Caching
+- [ ] HTTP/2 server push configuration for critical resources with proper prioritization
+- [ ] CDN integration with edge caching and global content distribution optimization
+- [ ] Browser caching strategies with appropriate cache headers and invalidation policies
+- [ ] Service worker caching integration with performance optimization caching strategies
+- [ ] Resource hints (preload, prefetch, preconnect) strategically implemented for performance
+- [ ] Font loading optimization with proper display strategies and fallback handling
+- [ ] Third-party script optimization with async/defer loading and performance impact monitoring
+
+### Performance Metrics and Analytics
+- [ ] Core Web Vitals tracking with comprehensive LCP, FID, CLS monitoring across all pages
+- [ ] Real User Monitoring (RUM) implementation with detailed performance data collection
+- [ ] Synthetic performance monitoring with regular automated testing and alerts
+- [ ] Performance regression detection with automated alerts for performance degradation
+- [ ] Performance analytics dashboard with actionable insights and optimization recommendations
+- [ ] A/B testing framework for performance optimizations with statistical significance tracking
+- [ ] Performance correlation analysis linking performance improvements to user engagement
+
+### Development and Debugging Tools
+- [ ] Performance debugging tools configured for development environment with profiling capabilities
+- [ ] Bundle analysis tools integrated into development workflow with regular reporting
+- [ ] Performance testing automation with continuous integration and deployment pipelines
+- [ ] Performance profiling tools configured for identifying bottlenecks and optimization opportunities
+- [ ] Lighthouse integration with automated auditing and score tracking over time
+- [ ] Performance budget enforcement in development with pre-commit hooks and build warnings
+- [ ] Performance documentation created for team guidelines and optimization best practices
+
+### Integration with Existing Features
+- [ ] Performance optimization integrated with mobile features from Step 12 without degrading experience
+- [ ] Search and filtering performance optimized with code splitting and lazy loading
+- [ ] Real-time features optimized with efficient data loading and update strategies
+- [ ] AI integration performance optimized with proper caching and request optimization
+- [ ] Authentication and user features optimized with minimal performance impact
+- [ ] All existing features verified to work efficiently within performance constraints
+- [ ] Feature performance monitoring ensuring new features don't degrade overall performance
+
+### Cross-Browser and Device Performance
+- [ ] Performance optimization verified across major browsers (Chrome, Firefox, Safari, Edge)
+- [ ] Mobile device performance optimized with device-specific optimizations and testing
+- [ ] Low-end device performance ensured with appropriate fallbacks and optimization
+- [ ] Network condition performance optimized for various connection speeds and reliability
+- [ ] Performance consistency maintained across different user scenarios and usage patterns
+- [ ] Progressive enhancement ensuring core functionality performs well on all devices
+- [ ] Performance accessibility ensuring optimizations don't negatively impact assistive technology
+
+### Quality Verification and Testing
+- [ ] Unit tests created for performance optimization components with >80% coverage
+- [ ] Integration tests for code splitting and lazy loading functionality
+- [ ] Performance tests with automated verification of Core Web Vitals and loading metrics
+- [ ] Load testing ensuring performance under concurrent user scenarios
+- [ ] Regression testing for performance optimization ensuring no functionality breaks
+- [ ] Cross-browser performance testing with consistent optimization across platforms
+- [ ] Real device testing with performance monitoring on actual mobile and desktop devices
+
+### Production Configuration and Deployment
+- [ ] Production build configuration optimized for maximum performance and minimal size
+- [ ] CDN configuration optimized for global performance with edge caching strategies
+- [ ] Server configuration optimized for performance with proper compression and caching
+- [ ] Monitoring and alerting configured for production performance with real-time insights
+- [ ] Performance incident response procedures documented for handling performance issues
+- [ ] Performance optimization maintenance procedures documented for ongoing improvements
+- [ ] Documentation created for performance optimization maintenance and troubleshooting
+
+### Final Validation
+- [ ] Bundle size reduced to under 250KB compressed with efficient code splitting verified
+- [ ] First Contentful Paint consistently under 1.5 seconds on 3G connections achieved
+- [ ] Core Web Vitals meet excellent thresholds (LCP < 2.5s, FID < 100ms, CLS < 0.1) verified
+- [ ] Code splitting loads all components correctly without functionality loss confirmed
+- [ ] Image optimization provides modern formats with responsive loading working properly
+- [ ] Performance monitoring shows significant improvements with regression detection active
+- [ ] All performance optimizations integrate seamlessly without degrading user experience
+
+**CONFIRMATION STATEMENT**: "I confirm that ALL checklist items above have been completed and verified. The code splitting and performance optimization system is fully functional with advanced splitting strategies, intelligent preloading, comprehensive bundle analysis, efficient asset loading, critical CSS optimization, and robust performance monitoring. The application achieves production-ready performance standards across all devices and network conditions."
