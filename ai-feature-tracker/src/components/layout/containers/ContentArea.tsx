@@ -22,7 +22,7 @@ export interface ContentAreaProps {
   };
   maxWidth?: 'none' | 'prose' | 'content' | 'container';
   centerContent?: boolean;
-  as?: keyof JSX.IntrinsicElements;
+  as?: React.ElementType;
   'data-testid'?: string;
 }
 
@@ -72,7 +72,7 @@ export const ContentArea: React.FC<ContentAreaProps> = ({
   'data-testid': testId,
   ...props
 }) => {
-  const Component = as;
+  const Component: React.ElementType = as || 'main';
 
   // Build responsive padding classes
   const paddingClassNames = [
@@ -105,7 +105,7 @@ export const ContentArea: React.FC<ContentAreaProps> = ({
         className
       )}
       data-testid={testId}
-      {...props}
+      {...(props as any)}
     >
       {children}
     </Component>

@@ -201,10 +201,10 @@ export const ValidationError: React.FC<ValidationErrorProps> = ({
   const renderGroupedErrors = () => {
     const groupedErrors = getGroupedErrors();
 
-    if (groupedErrors.ungrouped) {
+    if (groupedErrors['ungrouped']) {
       return (
         <div className="space-y-2">
-          {groupedErrors.ungrouped.map((error, index) => 
+          {groupedErrors['ungrouped'].map((error, index) => 
             renderErrorItem(error, index)
           )}
         </div>

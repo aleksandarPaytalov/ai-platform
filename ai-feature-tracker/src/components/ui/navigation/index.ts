@@ -16,6 +16,9 @@ export {
   type TabsContentProps 
 } from './Tabs';
 
+export { TabList, type TabListProps } from './TabList';
+export { TabPanel, type TabPanelProps } from './TabPanel';
+
 export { Breadcrumb, type BreadcrumbProps, type BreadcrumbItem } from './Breadcrumb';
 export { Pagination, type PaginationProps } from './Pagination';
 export { Link, type LinkProps } from './Link';

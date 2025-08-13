@@ -353,9 +353,9 @@ export const theme = {
   light: {
     background: colors.neutral[50],
     foreground: colors.neutral[900],
-    card: colors.neutral[0],
+    card: colors.neutral[50],
     cardForeground: colors.neutral[950],
-    popover: colors.neutral[0],
+    popover: colors.neutral[50],
     popoverForeground: colors.neutral[950],
     primary: colors.primary[600],
     primaryForeground: colors.neutral[50],
@@ -366,7 +366,8 @@ export const theme = {
     accent: colors.secondary[100],
     accentForeground: colors.secondary[900],
     destructive: colors.error[500],
-    destructiveForeground: colors.neutral[50],
+    // Increase contrast: use very dark foreground on red background
+    destructiveForeground: colors.neutral[950],
     border: colors.secondary[200],
     input: colors.secondary[200],
     ring: colors.primary[600],
@@ -453,11 +454,14 @@ export type ButtonVariant = keyof typeof variants.button.variant;
 export type BadgeVariant = keyof typeof variants.badge.variant;
 
 // Utility functions for design system
-export const getColorValue = (color: string, shade: number = 500): string => {
+export const getColorValue = (color: string, _shade: number = 500): string => {
   const colorParts = color.split('.');
   if (colorParts.length === 2) {
-    const [colorName, shadeValue] = colorParts;
-    return (colors as any)[colorName]?.[shadeValue] || color;
+    const [colorName, shadeValue] = colorParts as [string, string];
+    const scale = (colors as Record<string, Record<string, string> | undefined>)[colorName];
+    if (scale && typeof scale === 'object') {
+      return (scale as Record<string, string>)[shadeValue] || color;
+    }
   }
   return color;
 };

@@ -1,5 +1,6 @@
 import React from 'react';
-import { ErrorIcon, ErrorIconType } from './ErrorIcon';
+import { ErrorIcon } from './ErrorIcon';
+import type { ErrorIconType } from './ErrorIcon';
 import { RetryButton } from './RetryButton';
 
 export interface ErrorCardProps {

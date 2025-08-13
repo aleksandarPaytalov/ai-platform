@@ -4,8 +4,7 @@ import { CardGrid } from '../../patterns/CardGrid';
 import { ListGrid } from '../../patterns/ListGrid';
 import { DashboardGrid } from '../../patterns/DashboardGrid';
 import { ToolGrid } from '../../patterns/ToolGrid';
-import { Container } from '../../layout/containers/Container';
-import { Section } from '../../layout/containers/Section';
+import { Container, Section } from '../../../layout/containers';
 import { Stack } from '../../layout/Stack';
 import { Inline } from '../../layout/Inline';
 

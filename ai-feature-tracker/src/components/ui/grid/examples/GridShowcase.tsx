@@ -123,7 +123,7 @@ export const GridShowcase: React.FC<GridShowcaseProps> = ({
           {Object.entries(demos).map(([key, demo]) => (
             <button
               key={key}
-              onClick={() => setSelectedDemo(key as any)}
+              onClick={() => setSelectedDemo(key as 'basic' | 'responsive' | 'auto' | 'masonry')}
               className={cn(
                 'px-4 py-2 rounded-lg text-sm font-medium transition-colors',
                 selectedDemo === key

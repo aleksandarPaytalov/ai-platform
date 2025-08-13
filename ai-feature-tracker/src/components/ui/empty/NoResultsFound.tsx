@@ -66,7 +66,7 @@ export interface NoResultsFoundProps {
 export const NoResultsFound: React.FC<NoResultsFoundProps> = ({
   searchQuery,
   contentType = 'generic',
-  message,
+  message: _message,
   showSuggestions = true,
   suggestions = [],
   onClearSearch,
@@ -79,57 +79,28 @@ export const NoResultsFound: React.FC<NoResultsFoundProps> = ({
 }) => {
   const [newSearchQuery, setNewSearchQuery] = React.useState('');
 
-  /**
-   * Generate appropriate message based on content type and search context
-   */
-  const getNoResultsMessage = (): string => {
-    if (message) return message;
-
-    const hasSearch = searchQuery && searchQuery.trim().length > 0;
-    const hasFilters = appliedFilters.length > 0;
-
-    if (hasSearch && hasFilters) {
-      return `No ${contentType} found matching "${searchQuery}" with the applied filters.`;
-    } else if (hasSearch) {
-      return `No ${contentType} found matching "${searchQuery}".`;
-    } else if (hasFilters) {
-      return `No ${contentType} match the applied filters.`;
-    }
-
-    switch (contentType) {
-      case 'tools':
-        return 'No AI tools found in the current view.';
-      case 'features':
-        return 'No features found matching your criteria.';
-      case 'updates':
-        return 'No updates found for the selected period.';
-      case 'users':
-        return 'No users found matching your search.';
-      default:
-        return 'No results found for your search.';
-    }
-  };
+  // Title is static; content-specific message is handled in description/actions
 
   /**
    * Generate helpful description with suggestions
    */
   const getDescription = (): string => {
-    const suggestions = [];
+    const tips: string[] = [];
 
     if (searchQuery) {
-      suggestions.push('Check your spelling');
-      suggestions.push('Try different keywords');
-      suggestions.push('Use more general terms');
+      tips.push('Check your spelling');
+      tips.push('Try different keywords');
+      tips.push('Use more general terms');
     }
 
     if (appliedFilters.length > 0) {
-      suggestions.push('Remove some filters');
-      suggestions.push('Adjust filter criteria');
+      tips.push('Remove some filters');
+      tips.push('Adjust filter criteria');
     }
 
-    suggestions.push('Browse all available items');
+    tips.push('Browse all available items');
 
-    return `Try the following: ${suggestions.join(', ')}.`;
+    return `Try the following: ${tips.join(', ')}.`;
   };
 
   /**
@@ -233,8 +204,8 @@ export const NoResultsFound: React.FC<NoResultsFoundProps> = ({
         title="No Results Found"
         description={getDescription()}
         icon="search"
-        primaryAction={getPrimaryAction()}
-        secondaryAction={getSecondaryAction()}
+        {...(getPrimaryAction() ? { primaryAction: getPrimaryAction()! } : {})}
+        {...(getSecondaryAction() ? { secondaryAction: getSecondaryAction()! } : {})}
         size={size}
         background="subtle"
       />

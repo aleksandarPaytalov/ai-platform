@@ -30,11 +30,12 @@ const VisuallyHidden = forwardRef<HTMLSpanElement, VisuallyHiddenProps>(
     ];
 
     if (asChild && React.isValidElement(children)) {
-      return React.cloneElement(children, {
-        className: cn(srOnlyClasses, children.props.className),
+      const element = children as React.ReactElement<any>;
+      return React.cloneElement(element, {
+        className: cn(srOnlyClasses, (element.props as any).className),
         ref,
-        ...props,
-      });
+        ...(props as any),
+      } as any);
     }
 
     return (

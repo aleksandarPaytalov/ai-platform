@@ -1,6 +1,6 @@
 'use client';
 
-import React, { forwardRef, useState, useRef, useEffect } from 'react';
+import React, { forwardRef, useState, useRef, useEffect, useCallback } from 'react';
 import { cn } from '@/lib/utils';
 import { createPortal } from 'react-dom';
 
@@ -54,15 +54,15 @@ const Popover = forwardRef<HTMLDivElement, PopoverProps>(
     const isOpen = controlledOpen !== undefined ? controlledOpen : internalOpen;
 
     // Handle open change
-    const handleOpenChange = (newOpen: boolean) => {
+    const handleOpenChange = useCallback((newOpen: boolean) => {
       if (controlledOpen === undefined) {
         setInternalOpen(newOpen);
       }
       onOpenChange?.(newOpen);
-    };
+    }, [controlledOpen, onOpenChange]);
 
     // Calculate popover position
-    const calculatePosition = () => {
+    const calculatePosition = useCallback(() => {
       const trigger = triggerRef.current;
       const popover = contentRef.current;
       
@@ -157,7 +157,7 @@ const Popover = forwardRef<HTMLDivElement, PopoverProps>(
 
       setPosition({ x: x + scrollX, y: y + scrollY });
       setActualSide(finalSide);
-    };
+    }, [align, offset, side]);
 
     // Handle trigger click
     const handleTriggerClick = () => {
@@ -183,7 +183,7 @@ const Popover = forwardRef<HTMLDivElement, PopoverProps>(
 
       document.addEventListener('mousedown', handleClickOutside);
       return () => document.removeEventListener('mousedown', handleClickOutside);
-    }, [isOpen, closeOnClickOutside]);
+    }, [isOpen, closeOnClickOutside, handleOpenChange]);
 
     // Handle escape key
     useEffect(() => {
@@ -197,7 +197,7 @@ const Popover = forwardRef<HTMLDivElement, PopoverProps>(
 
       document.addEventListener('keydown', handleEscape);
       return () => document.removeEventListener('keydown', handleEscape);
-    }, [isOpen, closeOnEscape]);
+    }, [isOpen, closeOnEscape, handleOpenChange]);
 
     // Handle focus management for modal popovers
     useEffect(() => {
@@ -265,7 +265,7 @@ const Popover = forwardRef<HTMLDivElement, PopoverProps>(
       if (isOpen) {
         calculatePosition();
       }
-    }, [isOpen, content]);
+    }, [isOpen, content, calculatePosition]);
 
     // Handle window resize and scroll
     useEffect(() => {
@@ -281,7 +281,7 @@ const Popover = forwardRef<HTMLDivElement, PopoverProps>(
         window.removeEventListener('resize', handleResize);
         window.removeEventListener('scroll', handleScroll, true);
       };
-    }, [isOpen]);
+    }, [isOpen, calculatePosition]);
 
     // Arrow classes based on side
     const arrowClasses = {

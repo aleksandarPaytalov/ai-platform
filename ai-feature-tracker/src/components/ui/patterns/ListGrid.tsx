@@ -1,6 +1,7 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
-import { Grid, GridProps } from '../grid/Grid';
+import { Grid } from '../grid/Grid';
+import type { GridProps } from '../grid/Grid';
 
 export interface ListGridProps extends Omit<GridProps, 'columns'> {
   children: React.ReactNode;
@@ -60,11 +61,12 @@ export const ListGrid: React.FC<ListGridProps> = ({
 
   // Process children to add list-specific styles
   const processedChildren = React.Children.map(children, (child, index) => {
-    if (React.isValidElement(child)) {
-      return React.cloneElement(child, {
+    if (React.isValidElement<any>(child)) {
+      const element = child as React.ReactElement<any>;
+      return React.cloneElement(element, {
         key: index,
         className: cn(
-          child.props.className,
+          (element.props as any).className,
           // Add dividers between items (except for multi-column layouts)
           dividers && variant === 'single' && index > 0 && 'border-t border-border',
           // Add zebra striping for single column
@@ -72,7 +74,7 @@ export const ListGrid: React.FC<ListGridProps> = ({
           // Ensure proper padding for list items
           'transition-colors duration-200'
         ),
-      });
+      } as any);
     }
     return child;
   });
@@ -90,9 +92,9 @@ export const ListGrid: React.FC<ListGridProps> = ({
       align={align}
       justify={justify}
       as={as}
-      style={itemMinWidth ? gridStyles : undefined}
+      {...(itemMinWidth ? { style: gridStyles } : {})}
       data-testid={testId}
-      role="list"
+      {...({ role: 'list' } as any)}
       aria-label="List grid"
       {...props}
     >

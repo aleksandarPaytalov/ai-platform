@@ -30,8 +30,8 @@ const CardImage = forwardRef<HTMLDivElement, CardImageProps>(
     objectFit = 'cover',
     priority = false,
     sizes,
-    width,
-    height,
+    width: _width,
+    height: _height,
     placeholder,
     blurDataURL,
     children,
@@ -101,8 +101,8 @@ const CardImage = forwardRef<HTMLDivElement, CardImageProps>(
           fill
           priority={priority}
           sizes={sizes || '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'}
-          placeholder={placeholder}
-          blurDataURL={blurDataURL}
+          {...(placeholder ? { placeholder } : {})}
+          {...(blurDataURL ? { blurDataURL } : {})}
         />
         
         {/* Overlay content */}

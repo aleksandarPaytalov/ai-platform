@@ -1,5 +1,6 @@
 import { useEffect, useState, useMemo } from 'react';
-import { BREAKPOINTS, BreakpointName, getCurrentBreakpoint, getDeviceType, DeviceType } from './breakpoints';
+import { BREAKPOINTS, getCurrentBreakpoint, getDeviceType } from './breakpoints';
+import type { BreakpointName, DeviceType } from './breakpoints';
 
 /**
  * Responsive Utilities and Helpers
@@ -38,7 +39,7 @@ export const getOrientation = (): 'portrait' | 'landscape' => {
 
 // Responsive class generation
 export const generateResponsiveClasses = (
-  baseClass: string,
+  _baseClass: string,
   responsiveValues: Partial<Record<BreakpointName | 'default', string>>
 ): string[] => {
   const classes: string[] = [];
@@ -212,7 +213,9 @@ export const useMediaQuery = (query: string): boolean => {
  * Hook for conditional rendering based on breakpoint
  */
 export const useShowAt = (breakpoint: BreakpointName, direction: 'up' | 'down' = 'up') => {
-  return direction === 'up' ? useBreakpointUp(breakpoint) : useBreakpointDown(breakpoint);
+  const showUp = useBreakpointUp(breakpoint);
+  const showDown = useBreakpointDown(breakpoint);
+  return direction === 'up' ? showUp : showDown;
 };
 
 /**
@@ -226,7 +229,7 @@ export const useContainerQuery = (containerRef: React.RefObject<HTMLElement>, qu
     
     const observer = new ResizeObserver((entries) => {
       for (const entry of entries) {
-        const { width, height } = entry.contentRect;
+        const { width } = entry.contentRect;
         // Simple width-based container query
         if (query.includes('min-width:')) {
           const minWidth = parseInt(query.match(/min-width:\s*(\d+)px/)?.[1] || '0');
@@ -258,7 +261,7 @@ export const getResponsiveImageSizes = (breakpoints?: Partial<Record<BreakpointN
   const mergedSizes = { ...defaultSizes, ...breakpoints };
   
   return Object.entries(mergedSizes)
-    .map(([bp, size]) => size)
+    .map(([_, size]) => size)
     .join(', ');
 };
 
@@ -305,7 +308,7 @@ export const debounce = <T extends (...args: any[]) => any>(
   
   return (...args: Parameters<T>) => {
     clearTimeout(timeout);
-    timeout = setTimeout(() => func.apply(null, args), wait);
+    timeout = setTimeout(() => func(...args), wait);
   };
 };
 
@@ -317,7 +320,7 @@ export const throttle = <T extends (...args: any[]) => any>(
   
   return (...args: Parameters<T>) => {
     if (!inThrottle) {
-      func.apply(null, args);
+      func(...args);
       inThrottle = true;
       setTimeout(() => (inThrottle = false), limit);
     }

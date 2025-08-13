@@ -1,5 +1,5 @@
 import React from 'react';
-import { SkeletonCard, SkeletonImage, SkeletonText, SkeletonButton } from '../ui/loading';
+import { SkeletonImage, SkeletonText, SkeletonButton } from '../ui/loading';
 
 export interface ToolCardLoadingProps {
   /**
@@ -111,7 +111,7 @@ export const ToolCardLoading: React.FC<ToolCardLoadingProps> = ({
       <div className="flex items-start gap-3">
         {/* Tool Logo */}
         <SkeletonImage
-          size={config.imageSize}
+          size={config.imageSize as 'small' | 'medium' | 'large' | 'custom'}
           aspectRatio="square"
           rounded="medium"
           showIcon={true}

@@ -2,7 +2,7 @@
 
 import React, { forwardRef } from 'react';
 import { cn } from '@/lib/utils';
-import { componentSizes, variants } from '@/lib/design-system';
+import { variants } from '@/lib/design-system';
 
 // TypeScript interfaces for Button props and variants
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -20,7 +20,8 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     className,
     variant = 'primary',
     size = 'md',
-    asChild = false,
+    // asChild is reserved for future composition; prefix to satisfy lint
+    asChild: _asChild = false,
     loading = false,
     leftIcon,
     rightIcon,

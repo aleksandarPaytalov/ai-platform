@@ -4,7 +4,7 @@ import React, { forwardRef } from 'react';
 import { cn } from '@/lib/utils';
 
 // TypeScript interfaces for Toggle props and validation
-export interface ToggleProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> {
+export interface ToggleProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type' | 'size'> {
   error?: boolean;
   errorMessage?: string;
   label?: string;
@@ -18,7 +18,7 @@ export interface ToggleProps extends Omit<React.InputHTMLAttributes<HTMLInputEle
 // Toggle component for boolean switches
 const Toggle = forwardRef<HTMLInputElement, ToggleProps>(
   ({
-    className,
+    className: _className,
     error = false,
     errorMessage,
     label,

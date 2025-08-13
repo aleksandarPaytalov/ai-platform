@@ -1,6 +1,7 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
-import { Grid, GridProps } from '../grid/Grid';
+import { Grid } from '../grid/Grid';
+import type { GridProps } from '../grid/Grid';
 
 export interface CardGridProps extends Omit<GridProps, 'columns'> {
   children: React.ReactNode;
@@ -77,9 +78,9 @@ export const CardGrid: React.FC<CardGridProps> = ({
       align={align}
       justify={justify}
       as={as}
-      style={minCardWidth ? gridStyles : undefined}
+      {...(minCardWidth ? { style: gridStyles } : {})}
       data-testid={testId}
-      role="grid"
+      {...({ role: 'grid' } as any)}
       aria-label="Card grid"
       {...props}
     >

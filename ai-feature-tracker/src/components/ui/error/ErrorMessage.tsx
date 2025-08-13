@@ -69,10 +69,9 @@ export const ErrorMessage: React.FC<ErrorMessageProps> = ({
 }) => {
   // Auto-dismiss effect
   React.useEffect(() => {
-    if (autoDismiss && onDismiss) {
-      const timer = setTimeout(onDismiss, autoDismiss);
-      return () => clearTimeout(timer);
-    }
+    if (!autoDismiss || !onDismiss) return;
+    const timer = setTimeout(onDismiss, autoDismiss);
+    return () => clearTimeout(timer);
   }, [autoDismiss, onDismiss]);
 
   // Type configurations

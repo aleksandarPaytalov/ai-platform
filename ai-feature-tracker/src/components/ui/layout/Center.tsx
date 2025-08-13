@@ -6,7 +6,7 @@ export interface CenterProps {
   className?: string;
   axis?: 'horizontal' | 'vertical' | 'both';
   inline?: boolean;
-  as?: keyof JSX.IntrinsicElements;
+  as?: React.ElementType;
   'data-testid'?: string;
 }
 
@@ -25,7 +25,7 @@ export const Center: React.FC<CenterProps> = ({
   'data-testid': testId,
   ...props
 }) => {
-  const Component = as;
+  const Component: React.ElementType = as || 'div';
 
   return (
     <Component

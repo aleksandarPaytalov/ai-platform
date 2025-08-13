@@ -22,7 +22,7 @@ export interface GridProps {
   };
   align?: 'start' | 'end' | 'center' | 'stretch';
   justify?: 'start' | 'end' | 'center' | 'between' | 'around' | 'evenly';
-  as?: keyof JSX.IntrinsicElements;
+  as?: React.ElementType;
   'data-testid'?: string;
 }
 
@@ -82,7 +82,7 @@ export const Grid: React.FC<GridProps> = ({
   'data-testid': testId,
   ...props
 }) => {
-  const Component = as;
+  const Component: React.ElementType = as || 'div';
 
   // Build responsive column classes
   const columnClassNames = [

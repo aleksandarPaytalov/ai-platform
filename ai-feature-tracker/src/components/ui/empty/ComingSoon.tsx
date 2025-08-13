@@ -247,7 +247,7 @@ export const ComingSoon: React.FC<ComingSoonProps> = ({
         title={getMainMessage()}
         description={getDescription()}
         icon={comingSoonIcon}
-        primaryAction={getPrimaryAction()}
+        {...(getPrimaryAction() ? { primaryAction: getPrimaryAction()! } : {})}
         size={size}
         background="subtle"
       />

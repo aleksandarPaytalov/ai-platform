@@ -156,11 +156,11 @@ const Link = forwardRef<HTMLAnchorElement, LinkProps>(
     return (
       <NextLink
         href={href}
-        prefetch={prefetch}
+        prefetch={prefetch ?? 'auto'}
         replace={replace}
         scroll={scroll}
         shallow={shallow}
-        {...linkProps}
+        {...(linkProps as any)}
       >
         {children}
       </NextLink>

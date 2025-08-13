@@ -108,9 +108,38 @@ export const SkeletonGrid: React.FC<SkeletonGridProps> = ({
 
       case 'mixed':
         // Alternate between different types for variety
-        const types = ['card', 'image', 'text'];
-        const type = types[index % types.length];
-        return renderSkeletonItem(index); // Recursively call with determined type
+        // Cycle through predefined templates by mapping index
+        switch (index % 3) {
+          case 0:
+            return (
+              <div key={index} className={baseClasses}>
+                <div className="bg-gray-300 w-full h-1/2 rounded-md mb-3" />
+                <div className="bg-gray-300 h-4 w-3/4 rounded mb-2" />
+                <div className="space-y-2">
+                  <div className="bg-gray-300 h-3 w-full rounded" />
+                  <div className="bg-gray-300 h-3 w-5/6 rounded" />
+                </div>
+              </div>
+            );
+          case 1:
+            return (
+              <div key={index} className={baseClasses}>
+                <div className="bg-gray-300 w-full h-3/4 rounded-md mb-2" />
+                <div className="bg-gray-300 h-4 w-2/3 rounded" />
+              </div>
+            );
+          default:
+            return (
+              <div key={index} className={baseClasses}>
+                <div className="space-y-2">
+                  <div className="bg-gray-300 h-4 w-3/4 rounded" />
+                  <div className="bg-gray-300 h-4 w-full rounded" />
+                  <div className="bg-gray-300 h-4 w-5/6 rounded" />
+                  <div className="bg-gray-300 h-4 w-2/3 rounded" />
+                </div>
+              </div>
+            );
+        }
 
       case 'card':
       default:

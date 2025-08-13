@@ -53,15 +53,15 @@ export interface ErrorInfo {
   category: ErrorCategory;
   severity: ErrorSeverity;
   timestamp: string;
-  context?: string;
-  stack?: string;
-  statusCode?: number;
-  statusText?: string;
-  url?: string;
-  userAgent?: string;
+  context?: string | undefined; // eslint-disable-line @typescript-eslint/no-unused-vars
+  stack?: string | undefined;
+  statusCode?: number | undefined;
+  statusText?: string | undefined;
+  url?: string | undefined;
+  userAgent?: string | undefined;
   userId?: string;
   sessionId?: string;
-  additionalData?: Record<string, any>;
+  additionalData?: Record<string, any> | undefined;
 }
 
 /**
@@ -101,7 +101,7 @@ export interface TimeoutConfig {
 /**
  * Classify error based on various error types and HTTP status codes
  */
-export function classifyError(error: unknown, statusCode?: number, url?: string): ErrorCategory {
+export function classifyError(error: unknown, statusCode?: number, _url?: string): ErrorCategory {
   // Network errors
   if (error instanceof TypeError && error.message.includes('fetch')) {
     return ErrorCategory.NETWORK;
@@ -145,8 +145,7 @@ export function classifyError(error: unknown, statusCode?: number, url?: string)
  */
 export function determineErrorSeverity(
   category: ErrorCategory,
-  statusCode?: number,
-  context?: string
+  statusCode?: number
 ): ErrorSeverity {
   // Critical errors that break core functionality
   if (category === ErrorCategory.SERVER && statusCode && statusCode >= 500) {
@@ -204,7 +203,7 @@ export function createErrorInfo(
   }
 
   const category = classifyError(error, statusCode, url);
-  const severity = determineErrorSeverity(category, statusCode, context);
+  const severity = determineErrorSeverity(category, statusCode);
 
   return {
     id,
@@ -241,12 +240,12 @@ export const DEFAULT_RETRY_CONFIG: RetryConfig = {
   baseDelay: 1000,
   exponentialBackoff: true,
   maxDelay: 10000,
-  retryCondition: (error, attempt) => {
+  retryCondition: (error, _attempt) => {
     // Retry network errors and temporary server errors
     return (
       error.category === ErrorCategory.NETWORK ||
       error.category === ErrorCategory.TIMEOUT ||
-      (error.category === ErrorCategory.SERVER && error.statusCode && error.statusCode >= 500)
+      (error.category === ErrorCategory.SERVER && error.statusCode !== undefined && error.statusCode >= 500)
     );
   },
 };
@@ -286,7 +285,7 @@ export function shouldRetryError(
   return (
     error.category === ErrorCategory.NETWORK ||
     error.category === ErrorCategory.TIMEOUT ||
-    (error.category === ErrorCategory.SERVER && error.statusCode && error.statusCode >= 500)
+    (error.category === ErrorCategory.SERVER && error.statusCode !== undefined && error.statusCode >= 500)
   );
 }
 
@@ -445,7 +444,7 @@ function getLogLevel(severity: ErrorSeverity): 'log' | 'warn' | 'error' {
 export function serializeError(error: ErrorInfo): string {
   try {
     return JSON.stringify(error, null, 2);
-  } catch (serializationError) {
+  } catch {
     // Fallback for non-serializable errors
     return `Error ID: ${error.id}\nMessage: ${error.message}\nCategory: ${error.category}\nSeverity: ${error.severity}\nTimestamp: ${error.timestamp}`;
   }
@@ -489,7 +488,7 @@ export async function reportError(error: ErrorInfo): Promise<boolean> {
  */
 export function withErrorBoundary<T extends Record<string, any>>(
   Component: React.ComponentType<T>,
-  errorBoundaryProps?: {
+  _errorBoundaryProps?: {
     fallback?: React.ComponentType<{ error: Error; retry: () => void }>;
     onError?: (error: Error, errorInfo: React.ErrorInfo) => void;
   }
@@ -574,7 +573,7 @@ export function isErrorStale(error: ErrorInfo, maxAge: number = 30000): boolean 
  */
 export function createErrorSummary(errors: ErrorInfo[]): string {
   if (errors.length === 0) return 'No errors';
-  if (errors.length === 1) return getDisplayErrorMessage(errors[0]);
+  if (errors.length === 1) return getDisplayErrorMessage(errors[0]!);
   
   const categories = new Set(errors.map(e => e.category));
   return `Multiple errors occurred (${categories.size} types, ${errors.length} total)`;

@@ -14,7 +14,7 @@ export interface SectionProps {
   };
   background?: 'none' | 'primary' | 'secondary' | 'muted' | 'accent';
   fullWidth?: boolean;
-  as?: keyof JSX.IntrinsicElements;
+  as?: React.ElementType;
   'data-testid'?: string;
 }
 
@@ -50,7 +50,7 @@ export const Section: React.FC<SectionProps> = ({
   'data-testid': testId,
   ...props
 }) => {
-  const Component = as;
+  const Component: React.ElementType = as || 'section';
 
   // Build responsive spacing classes
   const spacingClassNames = [
@@ -73,7 +73,7 @@ export const Section: React.FC<SectionProps> = ({
         className
       )}
       data-testid={testId}
-      {...props}
+      {...(props as any)}
     >
       {children}
     </Component>

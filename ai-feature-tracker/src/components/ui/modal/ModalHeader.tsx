@@ -4,7 +4,7 @@ import React, { forwardRef } from 'react';
 import { cn } from '@/lib/utils';
 
 // TypeScript interfaces for ModalHeader props
-export interface ModalHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface ModalHeaderProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> {
   title?: React.ReactNode;
   subtitle?: React.ReactNode;
   showCloseButton?: boolean;

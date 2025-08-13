@@ -15,7 +15,7 @@ export interface InlineProps {
   align?: 'start' | 'center' | 'end' | 'baseline' | 'stretch';
   justify?: 'start' | 'center' | 'end' | 'between' | 'around' | 'evenly';
   wrap?: boolean;
-  as?: keyof JSX.IntrinsicElements;
+  as?: React.ElementType;
   'data-testid'?: string;
 }
 
@@ -63,7 +63,7 @@ export const Inline: React.FC<InlineProps> = ({
   'data-testid': testId,
   ...props
 }) => {
-  const Component = as;
+  const Component: React.ElementType = as || 'div';
 
   // Build responsive gap classes
   const gapClassNames = [

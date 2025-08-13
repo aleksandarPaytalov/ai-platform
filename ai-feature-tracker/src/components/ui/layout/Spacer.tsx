@@ -12,7 +12,7 @@ export interface SpacerProps {
     '2xl'?: number;
   };
   direction?: 'horizontal' | 'vertical' | 'both';
-  as?: keyof JSX.IntrinsicElements;
+  as?: React.ElementType;
   'data-testid'?: string;
 }
 
@@ -75,7 +75,7 @@ export const Spacer: React.FC<SpacerProps> = ({
   'data-testid': testId,
   ...props
 }) => {
-  const Component = as;
+  const Component: React.ElementType = as || 'div';
 
   // Build responsive size classes
   const sizeClassMap = sizeClasses[direction];

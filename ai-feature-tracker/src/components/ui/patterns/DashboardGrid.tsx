@@ -1,6 +1,7 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
-import { Grid, GridProps } from '../grid/Grid';
+import { Grid } from '../grid/Grid';
+import type { GridProps } from '../grid/Grid';
 
 export interface DashboardGridProps extends Omit<GridProps, 'columns'> {
   children: React.ReactNode;
@@ -72,11 +73,12 @@ export const DashboardGrid: React.FC<DashboardGridProps> = ({
 
   // Process children to add dashboard-specific styles
   const processedChildren = React.Children.map(children, (child, index) => {
-    if (React.isValidElement(child)) {
-      return React.cloneElement(child, {
+    if (React.isValidElement<any>(child)) {
+      const element = child as React.ReactElement<any>;
+      return React.cloneElement(element, {
         key: index,
         className: cn(
-          child.props.className,
+          (element.props as any).className,
           // Add dashboard widget styling
           'bg-card border border-border rounded-lg shadow-sm',
           'transition-all duration-200 hover:shadow-md',
@@ -87,7 +89,7 @@ export const DashboardGrid: React.FC<DashboardGridProps> = ({
           // Add padding to widgets if they don't have it
           'p-4 md:p-6'
         ),
-      });
+      } as any);
     }
     return child;
   });
@@ -105,7 +107,7 @@ export const DashboardGrid: React.FC<DashboardGridProps> = ({
       align={align}
       justify={justify}
       as={as}
-      style={gridStyles}
+      {...({ style: gridStyles } as any)}
       data-testid={testId}
       role="region"
       aria-label="Dashboard widgets"

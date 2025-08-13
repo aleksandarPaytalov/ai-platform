@@ -20,7 +20,7 @@ export interface MasonryGridProps {
     xl?: number;
     '2xl'?: number;
   };
-  as?: keyof JSX.IntrinsicElements;
+  as?: React.ElementType;
   'data-testid'?: string;
 }
 
@@ -62,7 +62,7 @@ export const MasonryGrid: React.FC<MasonryGridProps> = ({
   'data-testid': testId,
   ...props
 }) => {
-  const Component = as;
+  const Component: React.ElementType = as || 'div';
   const containerRef = useRef<HTMLDivElement>(null);
   const [isLayoutComplete, setIsLayoutComplete] = useState(false);
 
@@ -103,19 +103,20 @@ export const MasonryGrid: React.FC<MasonryGridProps> = ({
 
   // Process children to add masonry-specific styles
   const processedChildren = React.Children.map(children, (child, index) => {
-    if (React.isValidElement(child)) {
-      return React.cloneElement(child, {
+    if (React.isValidElement<any>(child)) {
+      const element = child as React.ReactElement<any>;
+      return React.cloneElement(element, {
         key: index,
         className: cn(
           'break-inside-avoid mb-0',
-          child.props.className
+          (element.props as any).className
         ),
         style: {
           pageBreakInside: 'avoid',
           breakInside: 'avoid',
-          ...child.props.style,
+          ...(element.props as any).style,
         },
-      });
+      } as any);
     }
     return child;
   });

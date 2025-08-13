@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { Grid } from '../Grid';
-import { Container } from '../../layout/containers/Container';
+import { Container } from '../../../layout/containers';
 import { Stack } from '../../layout/Stack';
 import { useViewportSize, useBreakpoint, useDeviceType } from '@/lib/responsive';
 import { BREAKPOINTS } from '@/lib/breakpoints';

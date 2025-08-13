@@ -2,10 +2,9 @@
 
 import React, { forwardRef } from 'react';
 import { cn } from '@/lib/utils';
-import { componentSizes } from '@/lib/design-system';
 
 // TypeScript interfaces for Input props and validation
-export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
   size?: 'sm' | 'md' | 'lg';
   error?: boolean;
   errorMessage?: string;

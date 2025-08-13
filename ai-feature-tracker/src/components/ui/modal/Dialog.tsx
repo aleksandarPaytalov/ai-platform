@@ -168,13 +168,7 @@ const Dialog = forwardRef<HTMLDivElement, DialogProps>(
     };
 
     // Button variant mapping
-    const buttonVariants = {
-      default: 'primary',
-      destructive: 'destructive',
-      warning: 'warning',
-      success: 'primary',
-      info: 'primary',
-    };
+    // Button variant mapping (reserved for future use)
 
     // Default footer for confirm and alert dialogs
     const defaultFooter = type !== 'custom' && (
@@ -244,7 +238,7 @@ const Dialog = forwardRef<HTMLDivElement, DialogProps>(
       <Modal
         ref={ref}
         open={open}
-        onOpenChange={onOpenChange}
+        {...(onOpenChange ? { onOpenChange } : {})}
         size={size}
         closeOnBackdropClick={closeOnBackdropClick && !loading}
         closeOnEscape={closeOnEscape && !loading}

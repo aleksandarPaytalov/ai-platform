@@ -30,7 +30,7 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>(
     animation = 'scale',
     children,
     ...props
-  }, ref) => {
+  }, _ref) => {
     
     const modalRef = useRef<HTMLDivElement>(null);
     const previouslyFocusedElementRef = useRef<HTMLElement | null>(null);

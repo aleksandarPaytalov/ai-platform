@@ -14,7 +14,7 @@ export interface ContainerProps {
     '2xl'?: number;
   };
   centerContent?: boolean;
-  as?: keyof JSX.IntrinsicElements;
+  as?: React.ElementType;
   'data-testid'?: string;
 }
 
@@ -53,7 +53,7 @@ export const Container: React.FC<ContainerProps> = ({
   'data-testid': testId,
   ...props
 }) => {
-  const Component = as;
+  const Component: React.ElementType = as || 'div';
 
   // Build responsive padding classes
   const paddingClassNames = [
@@ -75,7 +75,7 @@ export const Container: React.FC<ContainerProps> = ({
         className
       )}
       data-testid={testId}
-      {...props}
+      {...(props as any)}
     >
       {children}
     </Component>

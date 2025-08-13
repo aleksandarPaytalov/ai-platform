@@ -33,7 +33,7 @@ export interface TwoColumnLayoutProps {
   stackOnMobile?: boolean;
   reverseOnMobile?: boolean;
   align?: 'start' | 'center' | 'end' | 'stretch';
-  as?: keyof JSX.IntrinsicElements;
+  as?: React.ElementType;
   'data-testid'?: string;
 }
 
@@ -73,7 +73,7 @@ export const TwoColumnLayout: React.FC<TwoColumnLayoutProps> = ({
   'data-testid': testId,
   ...props
 }) => {
-  const Component = as;
+  const Component: React.ElementType = as || 'div';
 
   // Build responsive gap classes
   const gapClassNames = [
@@ -116,9 +116,9 @@ export const TwoColumnLayout: React.FC<TwoColumnLayoutProps> = ({
         ...gapClassNames,
         className
       )}
-      style={!stackOnMobile || window?.innerWidth >= 768 ? getGridTemplateColumns() : undefined}
+      style={(!stackOnMobile || (typeof window !== 'undefined' && window.innerWidth >= 768)) ? getGridTemplateColumns() : undefined}
       data-testid={testId}
-      {...props}
+      {...(props as any)}
     >
       {content}
     </Component>

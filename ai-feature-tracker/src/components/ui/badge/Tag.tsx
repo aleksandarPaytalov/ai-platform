@@ -136,7 +136,7 @@ const Tag = forwardRef<HTMLDivElement, TagProps>(
           onToggle();
         }
         if (onClick) {
-          onClick(event as any);
+          onClick(event as unknown as React.MouseEvent<HTMLDivElement>);
         }
       }
     };

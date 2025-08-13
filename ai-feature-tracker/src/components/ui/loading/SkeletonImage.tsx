@@ -74,9 +74,9 @@ export const SkeletonImage: React.FC<SkeletonImageProps> = ({
   };
 
   // Use custom size or predefined size
-  const sizeClasses = size === 'custom' && width && height 
+  const sizeClasses: string = (size === 'custom' && width && height) 
     ? `w-[${width}] h-[${height}]`
-    : sizeConfig[size];
+    : (sizeConfig[size] as string);
 
   return (
     <div

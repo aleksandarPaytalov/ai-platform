@@ -25,7 +25,7 @@ export interface SidebarProps {
   collapsible?: boolean;
   collapsed?: boolean;
   onToggle?: () => void;
-  as?: keyof JSX.IntrinsicElements;
+  as?: React.ElementType;
   'data-testid'?: string;
 }
 
@@ -56,7 +56,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   'data-testid': testId,
   ...props
 }) => {
-  const Component = as;
+  const Component: React.ElementType = as || 'aside';
 
   // Build responsive padding classes
   const paddingClassNames = [
@@ -94,8 +94,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
       data-testid={testId}
       role="complementary"
       aria-label={`${position} sidebar`}
-      aria-expanded={collapsible ? !collapsed : undefined}
-      {...props}
+      {...(props as any)}
     >
       <div className={cn(
         'h-full overflow-y-auto',

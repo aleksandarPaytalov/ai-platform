@@ -48,14 +48,14 @@ const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
 
       const halfRange = Math.floor(maxPageNumbers / 2);
       let start = Math.max(1, currentPage - halfRange);
-      let end = Math.min(totalPages, start + maxPageNumbers - 1);
+      const end = Math.min(totalPages, start + maxPageNumbers - 1);
 
       // Adjust start if we're near the end
       if (end - start + 1 < maxPageNumbers) {
         start = Math.max(1, end - maxPageNumbers + 1);
       }
 
-      const pages = [];
+      const pages: Array<number | string> = [];
       
       // Add first page and ellipsis if needed
       if (start > 1) {

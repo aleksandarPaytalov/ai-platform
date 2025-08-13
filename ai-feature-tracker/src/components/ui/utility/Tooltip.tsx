@@ -1,6 +1,6 @@
 'use client';
 
-import React, { forwardRef, useState, useRef, useEffect } from 'react';
+import React, { forwardRef, useState, useRef, useEffect, useCallback } from 'react';
 import { cn } from '@/lib/utils';
 import { createPortal } from 'react-dom';
 
@@ -35,7 +35,7 @@ const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
     contentClassName,
     arrow = true,
     portal = true,
-  }, ref) => {
+  }, _ref) => {
     
     const [isOpen, setIsOpen] = useState(false);
     const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -43,13 +43,13 @@ const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
     
     const triggerRef = useRef<HTMLDivElement>(null);
     const tooltipRef = useRef<HTMLDivElement>(null);
-    const timeoutRef = useRef<NodeJS.Timeout>();
-    const skipTimeoutRef = useRef<NodeJS.Timeout>();
+    const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const skipTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
     const isPointerInside = useRef(false);
     const wasRecentlyOpen = useRef(false);
 
     // Calculate tooltip position
-    const calculatePosition = () => {
+    const calculatePosition = useCallback(() => {
       const trigger = triggerRef.current;
       const tooltip = tooltipRef.current;
       
@@ -144,7 +144,7 @@ const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
 
       setPosition({ x: x + scrollX, y: y + scrollY });
       setActualSide(finalSide);
-    };
+    }, [align, offset, side]);
 
     // Handle mouse enter
     const handleMouseEnter = () => {
@@ -204,7 +204,7 @@ const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
       if (isOpen) {
         calculatePosition();
       }
-    }, [isOpen, content]);
+    }, [isOpen, content, calculatePosition]);
 
     // Handle window resize and scroll
     useEffect(() => {
@@ -220,7 +220,7 @@ const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
         window.removeEventListener('resize', handleResize);
         window.removeEventListener('scroll', handleScroll, true);
       };
-    }, [isOpen]);
+    }, [isOpen, calculatePosition]);
 
     // Cleanup timeouts
     useEffect(() => {

@@ -1,7 +1,8 @@
 'use client';
 
 import React, { forwardRef, useState } from 'react';
-import { Button, ButtonProps } from './Button';
+import type { ButtonProps } from './Button';
+import { Button } from './Button';
 
 // TypeScript interfaces for LoadingButton props extending Button
 export interface LoadingButtonProps extends Omit<ButtonProps, 'loading'> {

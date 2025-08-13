@@ -211,11 +211,14 @@ const TabsTrigger = forwardRef<HTMLButtonElement, TabsTriggerProps>(
       }
 
       if (nextIndex !== currentIndex) {
-        tabs[nextIndex].focus();
-        if (activationMode === 'automatic') {
-          const newValue = tabs[nextIndex].getAttribute('data-value');
-          if (newValue) {
-            onValueChange?.(newValue);
+        const nextTab = tabs[nextIndex];
+        if (nextTab) {
+          nextTab.focus();
+          if (activationMode === 'automatic') {
+            const newValue = nextTab.getAttribute('data-value');
+            if (newValue) {
+              onValueChange?.(newValue);
+            }
           }
         }
       }
@@ -247,6 +250,7 @@ const TabsTrigger = forwardRef<HTMLButtonElement, TabsTriggerProps>(
         className={cn(...baseClasses)}
         ref={ref}
         role="tab"
+          id={`tab-${value}`}
         aria-selected={isSelected}
         aria-controls={`tabpanel-${value}`}
         disabled={disabled}

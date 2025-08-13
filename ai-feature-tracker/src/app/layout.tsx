@@ -4,6 +4,8 @@ import './globals.css';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 // import { validateEnvironment } from '@/lib/config'; // Temporarily disabled for build
+import { logContrastReport } from '@/lib/a11y';
+import AxeA11y from '@/components/dev/AxeA11y';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -92,6 +94,12 @@ interface RootLayoutProps {
 // }
 
 export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
+  if (process.env.NODE_ENV === 'development') {
+    // Log contrast report once in dev
+    try {
+      logContrastReport();
+    } catch {}
+  }
   return (
     <html lang="en" className="scroll-smooth">
       <head>
@@ -150,6 +158,7 @@ export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
         
         {/* Footer */}
         <Footer />
+        {process.env.NODE_ENV === 'development' ? <AxeA11y /> : null}
       </body>
     </html>
   );

@@ -23,7 +23,7 @@ export interface StackProps {
     '2xl'?: 'vertical' | 'horizontal';
   };
   wrap?: boolean;
-  as?: keyof JSX.IntrinsicElements;
+  as?: React.ElementType;
   'data-testid'?: string;
 }
 
@@ -76,7 +76,7 @@ export const Stack: React.FC<StackProps> = ({
   'data-testid': testId,
   ...props
 }) => {
-  const Component = as;
+  const Component: React.ElementType = as || 'div';
 
   // Build responsive gap classes
   const gapClassNames = [

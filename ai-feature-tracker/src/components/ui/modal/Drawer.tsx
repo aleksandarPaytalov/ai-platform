@@ -32,7 +32,7 @@ const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
     resizable = false,
     children,
     ...props
-  }, ref) => {
+  }, _ref) => {
     
     const drawerRef = useRef<HTMLDivElement>(null);
     const previouslyFocusedElementRef = useRef<HTMLElement | null>(null);

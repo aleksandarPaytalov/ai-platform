@@ -31,7 +31,7 @@ export interface FlexProps {
   align?: 'start' | 'center' | 'end' | 'baseline' | 'stretch';
   justify?: 'start' | 'center' | 'end' | 'between' | 'around' | 'evenly';
   inline?: boolean;
-  as?: keyof JSX.IntrinsicElements;
+  as?: React.ElementType;
   'data-testid'?: string;
 }
 
@@ -94,7 +94,7 @@ export const Flex: React.FC<FlexProps> = ({
   'data-testid': testId,
   ...props
 }) => {
-  const Component = as;
+  const Component: React.ElementType = as || 'div';
 
   // Build responsive direction classes
   const directionClassNames = [

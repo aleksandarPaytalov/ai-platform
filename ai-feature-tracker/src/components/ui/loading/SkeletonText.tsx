@@ -73,8 +73,8 @@ export const SkeletonText: React.FC<SkeletonTextProps> = ({
       
       case 'decreasing':
         // Progressively shorter lines
-        const decreaseWidths = ['w-full', 'w-5/6', 'w-4/6', 'w-3/6', 'w-2/6'];
-        return decreaseWidths[Math.min(index, decreaseWidths.length - 1)];
+        const decreaseWidths = ['w-full', 'w-5/6', 'w-4/6', 'w-3/6', 'w-2/6'] as const;
+        return decreaseWidths[Math.min(index, decreaseWidths.length - 1)] as string;
       
       case 'varied':
       default:
@@ -82,11 +82,11 @@ export const SkeletonText: React.FC<SkeletonTextProps> = ({
         const variedWidths = [
           'w-full', 'w-11/12', 'w-5/6', 'w-4/5', 'w-3/4', 
           'w-2/3', 'w-3/5', 'w-1/2', 'w-2/5'
-        ];
+        ] as const;
         
         // Use a pseudo-random but consistent pattern
         const seedIndex = (index * 7 + 3) % variedWidths.length;
-        return variedWidths[seedIndex];
+        return variedWidths[seedIndex] as string;
     }
   };
 

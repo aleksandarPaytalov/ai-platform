@@ -2,7 +2,6 @@
 
 import React, { forwardRef } from 'react';
 import { cn } from '@/lib/utils';
-import { variants } from '@/lib/design-system';
 
 // TypeScript interfaces for Badge props and variants
 export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {

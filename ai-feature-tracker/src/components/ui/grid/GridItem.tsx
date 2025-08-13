@@ -36,7 +36,7 @@ export interface GridItemProps {
     xl?: number;
     '2xl'?: number;
   };
-  as?: keyof JSX.IntrinsicElements;
+  as?: React.ElementType;
   'data-testid'?: string;
 }
 
@@ -111,7 +111,7 @@ export const GridItem: React.FC<GridItemProps> = ({
   'data-testid': testId,
   ...props
 }) => {
-  const Component = as;
+  const Component: React.ElementType = as || 'div';
 
   // Build responsive span classes
   const spanClassNames = span ? [

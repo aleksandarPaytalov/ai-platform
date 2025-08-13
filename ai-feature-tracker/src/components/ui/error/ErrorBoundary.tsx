@@ -1,4 +1,5 @@
-import React, { Component, ErrorInfo, ReactNode } from 'react';
+import React, { Component } from 'react';
+import type { ErrorInfo, ReactNode } from 'react';
 
 export interface ErrorBoundaryState {
   hasError: boolean;
@@ -55,7 +56,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
     };
   }
 
-  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+  override componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     // Log error details
     console.error('ErrorBoundary caught an error:', error);
     console.error('Error info:', errorInfo);
@@ -81,8 +82,8 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
   handleRetry = () => {
     this.setState({ 
       hasError: false, 
-      error: undefined, 
-      errorInfo: undefined 
+      error: undefined as unknown as Error, 
+      errorInfo: undefined as unknown as ErrorInfo 
     });
   };
 
@@ -193,7 +194,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
     );
   }
 
-  render() {
+  override render() {
     if (this.state.hasError) {
       // Custom fallback UI
       if (this.props.fallback && this.state.error && this.state.errorInfo) {

@@ -12,7 +12,7 @@ export interface BreadcrumbItem {
   disabled?: boolean;
 }
 
-export interface BreadcrumbProps extends React.HTMLAttributes<HTMLNavElement> {
+export interface BreadcrumbProps extends React.HTMLAttributes<HTMLElement> {
   items: BreadcrumbItem[];
   separator?: React.ReactNode;
   maxItems?: number;
@@ -53,7 +53,7 @@ const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(
 
     // Truncate items if maxItems is set
     let displayItems = [...items];
-    let hasEllipsis = false;
+    // Keep logic simple; remove unused variable
 
     if (maxItems && items.length > maxItems) {
       const keepFirst = Math.floor(maxItems / 2);
@@ -64,7 +64,7 @@ const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(
         { label: '...', disabled: true },
         ...items.slice(-keepLast),
       ];
-      hasEllipsis = true;
+      // Ellipsis item injected above
     }
 
     // Add root item if requested
@@ -156,4 +156,4 @@ const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(
 
 Breadcrumb.displayName = 'Breadcrumb';
 
-export { Breadcrumb, type BreadcrumbItem };
+export { Breadcrumb };

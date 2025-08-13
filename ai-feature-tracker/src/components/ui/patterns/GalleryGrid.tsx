@@ -1,7 +1,8 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
-import { Grid, GridProps } from '../grid/Grid';
-import { MasonryGrid, MasonryGridProps } from '../grid/MasonryGrid';
+import { Grid } from '../grid/Grid';
+import type { GridProps } from '../grid/Grid';
+import { MasonryGrid } from '../grid/MasonryGrid';
 
 export interface GalleryGridProps extends Omit<GridProps, 'columns'> {
   children: React.ReactNode;
@@ -70,11 +71,12 @@ export const GalleryGrid: React.FC<GalleryGridProps> = ({
 
   // Process children to add gallery-specific styles
   const processedChildren = React.Children.map(children, (child, index) => {
-    if (React.isValidElement(child)) {
-      return React.cloneElement(child, {
+    if (React.isValidElement<any>(child)) {
+      const element = child as React.ReactElement<any>;
+      return React.cloneElement(element, {
         key: index,
         className: cn(
-          child.props.className,
+          (element.props as any).className,
           // Apply aspect ratio to images
           aspectRatio !== 'auto' && aspectRatioClasses[aspectRatio],
           // Add gallery item styling
@@ -87,7 +89,7 @@ export const GalleryGrid: React.FC<GalleryGridProps> = ({
         ),
         children: (
           <>
-            {child.props.children}
+            {element.props.children}
             {showOverlay && (
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
                 <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-white text-sm font-medium">
@@ -97,7 +99,7 @@ export const GalleryGrid: React.FC<GalleryGridProps> = ({
             )}
           </>
         ),
-      });
+      } as any);
     }
     return child;
   });
@@ -113,7 +115,7 @@ export const GalleryGrid: React.FC<GalleryGridProps> = ({
         columns={finalConfig.columns}
         gap={finalConfig.gap}
         as={as}
-        data-testid={testId}
+        {...(testId ? { 'data-testid': testId } as any : {})}
         {...props}
       >
         {processedChildren}
@@ -134,7 +136,7 @@ export const GalleryGrid: React.FC<GalleryGridProps> = ({
       justify={justify}
       as={as}
       data-testid={testId}
-      role="img"
+      {...({ role: 'img' } as any)}
       aria-label="Image gallery"
       {...props}
     >

@@ -46,23 +46,24 @@ const ButtonGroup = forwardRef<HTMLDivElement, ButtonGroupProps>(
 
     // Clone children and apply consistent sizing and disabled state
     const processedChildren = React.Children.map(children, (child, index) => {
-      if (React.isValidElement(child)) {
+      if (React.isValidElement<any>(child)) {
+        const element = child as React.ReactElement<any>;
         // Apply size and disabled props to button children
-        if (child.type && typeof child.type === 'object' && 'displayName' in child.type) {
-          const displayName = (child.type as any).displayName;
+        if (element.type && typeof element.type === 'object' && 'displayName' in element.type) {
+          const displayName = (element.type as { displayName?: string }).displayName;
           if (displayName === 'Button' || displayName === 'IconButton') {
-            return React.cloneElement(child, {
-              size: child.props.size || size,
-              disabled: child.props.disabled || disabled,
-              key: child.key || index,
-            });
+            return React.cloneElement(element, {
+              size: (element.props as any).size || size,
+              disabled: (element.props as any).disabled || disabled,
+              key: element.key || index,
+            } as any);
           }
         }
         
         // For other elements, just add the key
-        return React.cloneElement(child, {
-          key: child.key || index,
-        });
+        return React.cloneElement(element, {
+          key: element.key || index,
+        } as any);
       }
       return child;
     });

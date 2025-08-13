@@ -106,8 +106,8 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
             if (searchable) {
               searchInputRef.current?.focus();
             }
-          } else if (highlightedIndex >= 0) {
-            handleSelect(filteredOptions[highlightedIndex].value);
+          } else if (highlightedIndex >= 0 && highlightedIndex < filteredOptions.length) {
+            handleSelect(filteredOptions[highlightedIndex]!.value);
           }
           event.preventDefault();
           break;
@@ -261,6 +261,7 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
             tabIndex={disabled ? -1 : 0}
             role="combobox"
             aria-expanded={isOpen}
+            aria-controls={`${selectId}-listbox`}
             aria-haspopup="listbox"
             aria-labelledby={label ? `${selectId}-label` : undefined}
           >
@@ -306,6 +307,7 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
                 ref={optionsRef}
                 className="max-h-60 overflow-auto p-1"
                 role="listbox"
+                id={`${selectId}-listbox`}
                 aria-labelledby={label ? `${selectId}-label` : undefined}
               >
                 {filteredOptions.length === 0 ? (

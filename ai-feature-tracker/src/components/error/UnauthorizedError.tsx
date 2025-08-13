@@ -1,5 +1,6 @@
 import React from 'react';
 import { ErrorCard } from '../ui/error';
+import type { ErrorCardProps } from '../ui/error';
 
 export interface UnauthorizedErrorProps {
   /**
@@ -253,8 +254,8 @@ Please help me resolve this access issue.
   /**
    * Get appropriate actions based on error type
    */
-  const getActions = () => {
-    const actions = [];
+  const getActions = (): NonNullable<ErrorCardProps['actions']> => {
+    const actions: NonNullable<ErrorCardProps['actions']> = [];
 
     // Login action
     if (showLogin && (type === 'authentication' || type === 'session')) {
@@ -279,7 +280,7 @@ Please help me resolve this access issue.
       actions.push({
         label: 'Contact Support',
         onClick: handleSupport,
-        variant: type === 'permission' || type === 'authorization' ? 'primary' : 'outline',
+        variant: (type === 'permission' || type === 'authorization') ? 'primary' as const : 'outline' as const,
       });
     }
 

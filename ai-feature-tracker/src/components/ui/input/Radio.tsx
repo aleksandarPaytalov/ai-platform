@@ -4,7 +4,7 @@ import React, { forwardRef, createContext, useContext } from 'react';
 import { cn } from '@/lib/utils';
 
 // TypeScript interfaces for Radio and RadioGroup
-export interface RadioProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> {
+export interface RadioProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type' | 'size'> {
   value: string;
   error?: boolean;
   label?: string;

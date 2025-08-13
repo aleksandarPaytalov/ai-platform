@@ -1,6 +1,7 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
-import { Grid, GridProps } from '../grid/Grid';
+import { Grid } from '../grid/Grid';
+import type { GridProps } from '../grid/Grid';
 
 export interface ToolGridProps extends Omit<GridProps, 'columns'> {
   children: React.ReactNode;
@@ -61,11 +62,12 @@ export const ToolGrid: React.FC<ToolGridProps> = ({
 
   // Process children to add tool-specific styles
   const processedChildren = React.Children.map(children, (child, index) => {
-    if (React.isValidElement(child)) {
-      return React.cloneElement(child, {
+    if (React.isValidElement<any>(child)) {
+      const element = child as React.ReactElement<any>;
+      return React.cloneElement(element, {
         key: index,
         className: cn(
-          child.props.className,
+          (element.props as any).className,
           // Base tool card styling
           view === 'card' && [
             'bg-card border border-border rounded-lg shadow-sm',
@@ -98,7 +100,7 @@ export const ToolGrid: React.FC<ToolGridProps> = ({
         'data-category': category,
         'data-sort': sortBy,
         'data-view': view,
-      });
+      } as any);
     }
     return child;
   });
@@ -151,9 +153,9 @@ export const ToolGrid: React.FC<ToolGridProps> = ({
         align={align}
         justify={justify}
         as={as}
-        style={view !== 'list' ? gridStyles : undefined}
+        {...(view !== 'list' ? { style: gridStyles } : {})}
         data-testid={testId}
-        role="grid"
+        {...({ role: 'grid' } as any)}
         aria-label={`AI tools grid - ${view} view`}
         aria-busy={loading}
         {...props}

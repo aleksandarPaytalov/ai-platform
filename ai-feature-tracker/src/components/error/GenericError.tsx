@@ -283,7 +283,7 @@ Additional details:
       details={getTechnicalDetails()}
       errorType={getIconType() as any}
       showRetry={showRetry}
-      onRetry={onRetry}
+      {...(onRetry ? { onRetry } : {})}
       size={size}
       className={className}
       actions={getActions()}

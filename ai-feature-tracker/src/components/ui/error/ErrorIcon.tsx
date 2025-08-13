@@ -97,7 +97,7 @@ export const ErrorIcon: React.FC<ErrorIconProps> = ({
     purple: 'text-purple-500',
   };
 
-  const iconColor = color || getDefaultColor(type);
+  const iconColor = color || (getDefaultColor(type) as keyof typeof colorConfig);
   const animationClass = animated ? 'animate-pulse' : '';
 
   /**

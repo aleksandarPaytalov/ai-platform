@@ -74,7 +74,7 @@ export const NoUpdatesAvailable: React.FC<NoUpdatesAvailableProps> = ({
   timePeriod = 'week',
   customPeriod,
   updateType = 'all',
-  message,
+  message: _message,
   showSubscription = true,
   onSubscribe,
   showRefresh = true,
@@ -125,17 +125,7 @@ export const NoUpdatesAvailable: React.FC<NoUpdatesAvailableProps> = ({
     }
   };
 
-  /**
-   * Generate appropriate message
-   */
-  const getNoUpdatesMessage = (): string => {
-    if (message) return message;
-
-    const periodText = getTimePeriodText();
-    const typeText = getUpdateTypeText();
-
-    return `No new ${typeText} ${periodText}.`;
-  };
+  // Message rendered via description/title; keep logic minimal
 
   /**
    * Get description with helpful context
@@ -245,8 +235,8 @@ export const NoUpdatesAvailable: React.FC<NoUpdatesAvailableProps> = ({
         title="All Caught Up!"
         description={getDescription()}
         icon={updatesIcon}
-        primaryAction={getPrimaryAction()}
-        secondaryAction={getSecondaryAction()}
+        {...(getPrimaryAction() ? { primaryAction: getPrimaryAction()! } : {})}
+        {...(getSecondaryAction() ? { secondaryAction: getSecondaryAction()! } : {})}
         size={size}
         background="subtle"
       />
