@@ -1,34 +1,43 @@
-// Loading Skeleton Components
-export * from './loading';
+/**
+ * UI Components Library
+ * 
+ * A comprehensive collection of accessible, composable UI components
+ * for the AI Feature Tracker application. All components follow
+ * WCAG 2.1 AA accessibility standards and include proper TypeScript typing.
+ */
 
-// Progressive Loading Indicators
-export * from './indicators';
+// Design System
+export * from '@/lib/design-system';
 
-// Error Components
-export * from './error';
+// Button Components
+export * from './button';
 
-// Empty State Components
-export * from './empty';
+// Input Components  
+export * from './input';
 
-// Grid System Components
+// Card Components
+export * from './card';
+
+// Badge and Tag Components
+export * from './badge';
+
+// Modal and Dialog Components
+export * from './modal';
+
+// Navigation Components
+export * from './navigation';
+
+// Utility Components
+export * from './utility';
+
+// Layout Components (existing)
+export * from './layout';
 export * from './grid';
 
-// Layout Components
-export * from './layout';
+// Loading Components (existing)
+export * from './loading';
+export * from './indicators';
 
-// Grid Pattern Components
-export * from './patterns';
-
-// Component exports - will be uncommented as components are created
-// export { default as Button } from './button/Button';
-// export { default as Input } from './input/Input';
-// export { default as Card } from './card/Card';
-// export { default as Badge } from './badge/Badge';
-// export { default as Modal } from './modal/Modal';
-
-// Type exports - will be uncommented as components are created
-// export type { ButtonProps } from './button/Button';
-// export type { InputProps } from './input/Input';
-// export type { CardProps } from './card/Card';
-// export type { BadgeProps } from './badge/Badge';
-// export type { ModalProps } from './modal/Modal';
+// Error Components (existing)
+export * from './error';
+export * from './empty';
