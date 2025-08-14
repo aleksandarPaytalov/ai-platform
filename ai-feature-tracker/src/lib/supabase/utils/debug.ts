@@ -40,7 +40,7 @@ export function formatPostgrestError(error: PostgrestError | null) {
   };
 }
 
-export async function timeAsync<T>(label: string, fn: () => Promise<T>): Promise<{ ms: number; result: T }> {
+export async function timeAsync<T>(_label: string, fn: () => Promise<T>): Promise<{ ms: number; result: T }> {
   const start = performance.now();
   try {
     const result = await fn();

@@ -27,10 +27,12 @@ export function getTextColorForBackground(bgHex: string): string {
     const g = parseInt(hex.substring(2, 4), 16);
     const b = parseInt(hex.substring(4, 6), 16);
     // Relative luminance (WCAG)
-    const [R, G, B] = [r, g, b].map((v) => {
-        const c = v / 255;
-        return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
-    });
+    const rc = r / 255;
+    const gc = g / 255;
+    const bc = b / 255;
+    const R = rc <= 0.03928 ? rc / 12.92 : Math.pow((rc + 0.055) / 1.055, 2.4);
+    const G = gc <= 0.03928 ? gc / 12.92 : Math.pow((gc + 0.055) / 1.055, 2.4);
+    const B = bc <= 0.03928 ? bc / 12.92 : Math.pow((bc + 0.055) / 1.055, 2.4);
     const luminance = 0.2126 * R + 0.7152 * G + 0.0722 * B;
     // Choose black for light backgrounds, white for dark backgrounds
     return luminance > 0.179 ? '#111827' /* gray-900 */ : '#ffffff';
