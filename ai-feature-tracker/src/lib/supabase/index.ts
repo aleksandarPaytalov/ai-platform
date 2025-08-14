@@ -24,6 +24,21 @@ export {
   testDatabaseConnectivity,
 } from './client';
 
+// Module config, constants, and utility types
+export * from './config';
+export * from './types';
+export * from './constants/queries';
+export * from './constants/endpoints';
+export * from './constants/defaults';
+export * from './constants/tables';
+
+// Utilities
+export * from './utils/errorHandler';
+export * from './utils/cache';
+export * from './utils/retry';
+export * from './utils/validators';
+export * from './utils/formatters';
+
 // Service layer (similar to repository pattern in C#)
 export { toolsService } from './services/toolsService';
 export { categoriesService } from './services/categoriesService';

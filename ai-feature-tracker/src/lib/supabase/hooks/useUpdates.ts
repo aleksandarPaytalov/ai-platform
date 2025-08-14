@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { updatesService } from '@/lib/supabase/services/updatesService';
+import { subscribeCache } from '@/lib/supabase/utils/cache';
 import type { FeatureUpdate, RecentFeatureUpdate, ImpactLevel, ValidationStatus } from '@/types/database.types';
 
 /**
@@ -18,7 +19,7 @@ export function useLatestUpdates(limit: number = 10) {
 
     const { data, error: fetchError } = await updatesService.getLatestUpdates(limit);
     
-    if (fetchError) {
+    if (fetchError && (fetchError as any).code !== 'OFFLINE_QUEUED') {
       setError(fetchError.message);
       console.error('Error fetching latest updates:', fetchError);
     } else {
@@ -30,6 +31,12 @@ export function useLatestUpdates(limit: number = 10) {
 
   useEffect(() => {
     fetchUpdates();
+    const unsubscribe = subscribeCache((key) => {
+      if (key.startsWith('updates:')) {
+        fetchUpdates();
+      }
+    });
+    return unsubscribe;
   }, [fetchUpdates]);
 
   const refetch = useCallback(() => {
@@ -61,7 +68,7 @@ export function useUpdatesByTool(toolId: string | null, limit: number = 5) {
 
     const { data, error: fetchError } = await updatesService.getUpdatesByTool(id, limit);
     
-    if (fetchError) {
+    if (fetchError && (fetchError as any).code !== 'OFFLINE_QUEUED') {
       setError(fetchError.message);
       console.error(`Error fetching updates for tool '${id}':`, fetchError);
     } else {
@@ -79,6 +86,12 @@ export function useUpdatesByTool(toolId: string | null, limit: number = 5) {
       setIsLoading(false);
       setError(null);
     }
+    const unsubscribe = subscribeCache((key) => {
+      if (key.startsWith('updates:')) {
+        if (toolId) fetchUpdates(toolId);
+      }
+    });
+    return unsubscribe;
   }, [toolId, fetchUpdates]);
 
   const refetch = useCallback(() => {
@@ -112,7 +125,7 @@ export function useUpdatesByImpact(impactLevel: ImpactLevel | null) {
 
     const { data, error: fetchError } = await updatesService.getUpdatesByImpact(impact);
     
-    if (fetchError) {
+    if (fetchError && (fetchError as any).code !== 'OFFLINE_QUEUED') {
       setError(fetchError.message);
       console.error(`Error fetching updates by impact '${impact}':`, fetchError);
     } else {
@@ -163,7 +176,7 @@ export function useUpdateSearch(searchTerm: string | null, debounceMs: number = 
 
     const { data, error: fetchError } = await updatesService.searchUpdates(term);
     
-    if (fetchError) {
+    if (fetchError && (fetchError as any).code !== 'OFFLINE_QUEUED') {
       setError(fetchError.message);
       console.error(`Error searching updates with term '${term}':`, fetchError);
     } else {
@@ -221,7 +234,7 @@ export function useUpdateById(id: string | null) {
 
     const { data, error: fetchError } = await updatesService.getUpdateById(updateId);
     
-    if (fetchError) {
+    if (fetchError && (fetchError as any).code !== 'OFFLINE_QUEUED') {
       setError(fetchError.message);
       console.error(`Error fetching update by ID '${updateId}':`, fetchError);
     } else {

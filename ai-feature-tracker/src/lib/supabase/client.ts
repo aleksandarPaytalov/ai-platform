@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
+import { Agent as UndiciAgent } from 'undici';
 import type { Database } from '@/types/database.types';
 
 // Environment variables validation
@@ -10,6 +11,23 @@ if (!supabaseUrl || !supabaseAnonKey) {
   throw new Error('Missing Supabase environment variables. Please check NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY are set.');
 }
 
+// Optimize HTTP connection reuse on the server via Undici keep-alive dispatcher
+const isServerEnv = typeof window === 'undefined';
+const undiciAgent = isServerEnv
+  ? new UndiciAgent({
+      keepAliveTimeout: 10_000,
+      keepAliveMaxTimeout: 60_000,
+      connections: 20,
+    })
+  : undefined;
+
+const fetchWithAgent: typeof fetch = ((input: RequestInfo | URL, init?: RequestInit) => {
+  if (undiciAgent) {
+    return fetch(input as any, { ...(init as any), dispatcher: undiciAgent } as any);
+  }
+  return fetch(input, init);
+}) as any;
+
 /**
  * Client-side Supabase client (public access)
  * This is similar to a DbContext in Entity Framework - your main database interface for public operations
@@ -20,6 +38,7 @@ export const supabase = createClient<Database>(supabaseUrl, supabaseAnonKey, {
     autoRefreshToken: false,
   },
   global: {
+    fetch: fetchWithAgent,
     headers: {
       'x-application-name': 'ai-feature-tracker',
     },
@@ -39,6 +58,7 @@ export const supabaseAdmin = createClient<Database>(
       autoRefreshToken: false,
     },
     global: {
+      fetch: fetchWithAgent,
       headers: {
         'x-application-name': 'ai-feature-tracker-admin',
       },
@@ -61,6 +81,7 @@ export const supabaseRealtime = createClient<Database>(supabaseUrl, supabaseAnon
     },
   },
   global: {
+    fetch: fetchWithAgent,
     headers: {
       'x-application-name': 'ai-feature-tracker-realtime',
     },

@@ -134,7 +134,7 @@ export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} min-h-screen flex flex-col antialiased bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100`}
+        className={`${geistSans.variable} ${geistMono.variable} min-h-screen flex flex-col antialiased bg-gradient-to-b from-gray-50 via-white to-gray-50 text-gray-900 dark:from-gray-900 dark:via-gray-950 dark:to-gray-900 dark:text-gray-100`}
       >
         {/* Skip to main content link for accessibility */}
         <a

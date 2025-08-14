@@ -3,9 +3,15 @@
 
 const { Client } = require('pg');
 
+try {
+    const dotenv = require('dotenv');
+    dotenv.config();
+    dotenv.config({ path: '.env.local', override: true });
+} catch {}
+
 async function verifySchema() {
     const client = new Client({
-        connectionString: 'postgresql://postgres:postgres@127.0.0.1:54322/postgres'
+        connectionString: process.env.DEV_DATABASE_URL
     });
 
     try {
@@ -94,7 +100,7 @@ async function verifySchema() {
 
         console.log('\n🎉 Schema verification complete!');
         console.log('\n🌐 Access Supabase Studio at: http://127.0.0.1:54323');
-        console.log('📊 Database URL: postgresql://postgres:postgres@127.0.0.1:54322/postgres');
+        console.log('📊 Database URL:', process.env.DEV_DATABASE_URL || '(set DEV_DATABASE_URL)');
 
     } catch (error) {
         console.error('❌ Error:', error.message);

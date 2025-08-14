@@ -1,4 +1,14 @@
 import { supabase, supabaseAdmin } from '@/lib/supabase/client';
+import { VIEWS } from '@/lib/supabase/constants/tables';
+import { SORTING } from '@/lib/supabase/constants/queries';
+import { clampLimit, sanitizeSearchQuery } from '@/lib/supabase/utils/validators';
+import { getFromCache, setInCache, invalidateCache } from '@/lib/supabase/utils/cache';
+import { withRetry } from '@/lib/supabase/utils/retry';
+import { DEFAULTS } from '@/lib/supabase/constants/defaults';
+import { getRateLimiter } from '@/lib/supabase/utils/rateLimiter';
+import { normalizeSupabaseError } from '@/lib/supabase/utils/errorHandler';
+import { isOffline } from '@/lib/supabase/utils/cache';
+import { queueWrite, offlineQueuedError } from '@/lib/supabase/utils/offline';
 import type { 
   FeatureUpdate, 
   FeatureUpdateInsert,
@@ -23,14 +33,25 @@ export const updatesService = {
    */
   async getLatestUpdates(limit: number = 10): Promise<SupabaseArrayResponse<RecentFeatureUpdate>> {
     try {
-      const { data, error } = await supabase
-        .from('recent_feature_updates')
-        .select('*')
-        .eq('validation_status', 'validated')
-        .order('published_date', { ascending: false })
-        .limit(limit);
+      const capped = clampLimit(limit, 1, 100);
+      const cacheKey = `updates:latest:${capped}`;
+      const cached = getFromCache<RecentFeatureUpdate[]>(cacheKey);
+      if (cached) return { data: cached, error: null } as SupabaseArrayResponse<RecentFeatureUpdate>;
+
+      const { data, error } = await withRetry(async () =>
+        await getRateLimiter('recent_feature_updates').execute(async () =>
+          await supabase
+            .from(VIEWS.recent_feature_updates)
+            .select('*')
+            .eq('validation_status', 'validated')
+            .order(SORTING.updatesByPublishedDesc.column, { ascending: SORTING.updatesByPublishedDesc.ascending })
+            .limit(capped)
+        )
+      );
+
+      if (!error && data) setInCache(cacheKey, data, DEFAULTS.cache.updatesLatestTtlMs);
       
-      return { data, error };
+      return { data, error: normalizeSupabaseError(error) as any };
     } catch (err) {
       return { 
         data: null, 
@@ -50,15 +71,19 @@ export const updatesService = {
    */
   async getUpdatesByTool(toolId: string, limit: number = 5): Promise<SupabaseArrayResponse<FeatureUpdate>> {
     try {
-      const { data, error } = await supabase
-        .from('feature_updates')
-        .select('*')
-        .eq('tool_id', toolId)
-        .eq('validation_status', 'validated')
-        .order('published_date', { ascending: false })
-        .limit(limit);
+      const { data, error } = await withRetry(async () =>
+        await getRateLimiter('feature_updates').execute(async () =>
+          await supabase
+            .from('feature_updates')
+            .select('*')
+            .eq('tool_id', toolId)
+            .eq('validation_status', 'validated')
+            .order('published_date', { ascending: false })
+            .limit(limit)
+        )
+      );
       
-      return { data, error };
+      return { data, error: normalizeSupabaseError(error) as any };
     } catch (err) {
       return { 
         data: null, 
@@ -78,14 +103,24 @@ export const updatesService = {
    */
   async getUpdatesByImpact(impactLevel: ImpactLevel): Promise<SupabaseArrayResponse<RecentFeatureUpdate>> {
     try {
-      const { data, error } = await supabase
-        .from('recent_feature_updates')
-        .select('*')
-        .eq('impact_level', impactLevel)
-        .eq('validation_status', 'validated')
-        .order('published_date', { ascending: false });
+      const cacheKey = `updates:impact:${impactLevel}`;
+      const cached = getFromCache<RecentFeatureUpdate[]>(cacheKey);
+      if (cached) return { data: cached, error: null } as SupabaseArrayResponse<RecentFeatureUpdate>;
+
+      const { data, error } = await withRetry(async () =>
+        await getRateLimiter('recent_feature_updates').execute(async () =>
+          await supabase
+            .from(VIEWS.recent_feature_updates)
+            .select('*')
+            .eq('impact_level', impactLevel)
+            .eq('validation_status', 'validated')
+            .order(SORTING.updatesByPublishedDesc.column, { ascending: SORTING.updatesByPublishedDesc.ascending })
+        )
+      );
+
+      if (!error && data) setInCache(cacheKey, data, DEFAULTS.cache.updatesLatestTtlMs);
       
-      return { data, error };
+      return { data, error: normalizeSupabaseError(error) as any };
     } catch (err) {
       return { 
         data: null, 
@@ -105,14 +140,19 @@ export const updatesService = {
    */
   async searchUpdates(searchTerm: string): Promise<SupabaseArrayResponse<RecentFeatureUpdate>> {
     try {
-      const { data, error } = await supabase
-        .from('recent_feature_updates')
-        .select('*')
-        .or(`title.ilike.%${searchTerm}%,description.ilike.%${searchTerm}%,content.ilike.%${searchTerm}%`)
-        .eq('validation_status', 'validated')
-        .order('published_date', { ascending: false });
+      const term = sanitizeSearchQuery(searchTerm);
+      const { data, error } = await withRetry(async () =>
+        await getRateLimiter('recent_feature_updates').execute(async () =>
+          await supabase
+            .from(VIEWS.recent_feature_updates)
+            .select('*')
+            .or(`title.ilike.%${term}%,description.ilike.%${term}%,content.ilike.%${term}%`)
+            .eq('validation_status', 'validated')
+            .order(SORTING.updatesByPublishedDesc.column, { ascending: SORTING.updatesByPublishedDesc.ascending })
+        )
+      );
       
-      return { data, error };
+      return { data, error: normalizeSupabaseError(error) as any };
     } catch (err) {
       return { 
         data: null, 
@@ -132,13 +172,17 @@ export const updatesService = {
    */
   async getUpdateById(id: string): Promise<SupabaseResponse<RecentFeatureUpdate>> {
     try {
-      const { data, error } = await supabase
-        .from('recent_feature_updates')
-        .select('*')
-        .eq('id', id)
-        .single();
+      const { data, error } = await withRetry(async () =>
+        await getRateLimiter('recent_feature_updates').execute(async () =>
+          await supabase
+            .from('recent_feature_updates')
+            .select('*')
+            .eq('id', id)
+            .single()
+        )
+      );
       
-      return { data, error };
+      return { data, error: normalizeSupabaseError(error) as any };
     } catch (err) {
       return { 
         data: null, 
@@ -158,15 +202,19 @@ export const updatesService = {
    */
   async getUpdatesByDateRange(startDate: string, endDate: string): Promise<SupabaseArrayResponse<RecentFeatureUpdate>> {
     try {
-      const { data, error } = await supabase
-        .from('recent_feature_updates')
-        .select('*')
-        .gte('published_date', startDate)
-        .lte('published_date', endDate)
-        .eq('validation_status', 'validated')
-        .order('published_date', { ascending: false });
+      const { data, error } = await withRetry(async () =>
+        await getRateLimiter('recent_feature_updates').execute(async () =>
+          await supabase
+            .from('recent_feature_updates')
+            .select('*')
+            .gte('published_date', startDate)
+            .lte('published_date', endDate)
+            .eq('validation_status', 'validated')
+            .order('published_date', { ascending: false })
+        )
+      );
       
-      return { data, error };
+      return { data, error: normalizeSupabaseError(error) as any };
     } catch (err) {
       return { 
         data: null, 
@@ -186,12 +234,16 @@ export const updatesService = {
    */
   async getUpdatesPaginated(offset: number = 0, limit: number = 20): Promise<SupabaseArrayResponse<RecentFeatureUpdate>> {
     try {
-      const { data, error } = await supabase
-        .from('recent_feature_updates')
-        .select('*')
-        .eq('validation_status', 'validated')
-        .order('published_date', { ascending: false })
-        .range(offset, offset + limit - 1);
+      const { data, error } = await withRetry(async () =>
+        await getRateLimiter('recent_feature_updates').execute(async () =>
+          await supabase
+            .from('recent_feature_updates')
+            .select('*')
+            .eq('validation_status', 'validated')
+            .order('published_date', { ascending: false })
+            .range(offset, offset + limit - 1)
+        )
+      );
       
       return { data, error };
     } catch (err) {
@@ -226,16 +278,28 @@ export const updatesService = {
         };
       }
 
-      const { data, error } = await supabaseAdmin
+      if (isOffline()) {
+        queueWrite('createUpdate', async () => {
+          await supabaseAdmin.from('feature_updates').insert({
+            ...update,
+            validation_status: update.validation_status || 'pending'
+          });
+          invalidateCache('updates:');
+        });
+        return { data: null, error: offlineQueuedError('Change queued while offline') as any };
+      }
+
+      const { data, error } = await withRetry(async () => await supabaseAdmin
         .from('feature_updates')
         .insert({
           ...update,
           validation_status: update.validation_status || 'pending'
         })
         .select()
-        .single();
+        .single());
       
-      return { data, error };
+      if (!error) invalidateCache('updates:');
+      return { data, error: normalizeSupabaseError(error) as any };
     } catch (err) {
       return { 
         data: null, 
@@ -251,7 +315,7 @@ export const updatesService = {
 
   /**
    * Admin: Update validation status (for AI processing workflow)
-   * Similar to: var update = await context.FeatureUpdates.FindAsync(id); update.ValidationStatus = status; update.AiAnalyzed = true; await context.SaveChangesAsync()
+   * Similar to: var update = await context.FeatureUpdates FindAsync(id); update.ValidationStatus = status; update.AiAnalyzed = true; await context.SaveChangesAsync()
    */
   async updateValidationStatus(
     id: string, 
@@ -267,14 +331,26 @@ export const updatesService = {
         ...(confidenceScore !== undefined && { confidence_score: confidenceScore }),
       };
 
-      const { data, error } = await supabaseAdmin
+      if (isOffline()) {
+        queueWrite('updateValidationStatus', async () => {
+          await supabaseAdmin
+            .from('feature_updates')
+            .update(updates)
+            .eq('id', id);
+          invalidateCache('updates:');
+        });
+        return { data: null, error: offlineQueuedError('Change queued while offline') as any };
+      }
+
+      const { data, error } = await withRetry(async () => await supabaseAdmin
         .from('feature_updates')
         .update(updates)
         .eq('id', id)
         .select()
-        .single();
+        .single());
       
-      return { data, error };
+      if (!error) invalidateCache('updates:');
+      return { data, error: normalizeSupabaseError(error) as any };
     } catch (err) {
       return { 
         data: null, 
@@ -290,11 +366,22 @@ export const updatesService = {
 
   /**
    * Admin: Update feature update
-   * Similar to: var update = await context.FeatureUpdates.FindAsync(id); update properties; await context.SaveChangesAsync()
+   * Similar to: var update = await context FeatureUpdates FindAsync(id); update properties; await context SaveChangesAsync()
    */
   async updateFeatureUpdate(id: string, updates: FeatureUpdateUpdate): Promise<SupabaseResponse<FeatureUpdate>> {
     try {
-      const { data, error } = await supabaseAdmin
+      if (isOffline()) {
+        queueWrite('updateFeatureUpdate', async () => {
+          await supabaseAdmin
+            .from('feature_updates')
+            .update({ ...updates, updated_at: new Date().toISOString() })
+            .eq('id', id);
+          invalidateCache('updates:');
+        });
+        return { data: null, error: offlineQueuedError('Change queued while offline') as any };
+      }
+
+      const { data, error } = await withRetry(async () => await supabaseAdmin
         .from('feature_updates')
         .update({
           ...updates,
@@ -302,9 +389,10 @@ export const updatesService = {
         })
         .eq('id', id)
         .select()
-        .single();
+        .single()
+      );
       
-      return { data, error };
+      return { data, error: normalizeSupabaseError(error) as any };
     } catch (err) {
       return { 
         data: null, 
@@ -320,16 +408,16 @@ export const updatesService = {
 
   /**
    * Admin: Get updates pending AI analysis
-   * Similar to: context.FeatureUpdates.Where(f => !f.AiAnalyzed).OrderBy(f => f.CreatedAt)
+   * Similar to: context.FeatureUpdates Where(f => !f.AiAnalyzed).OrderBy(f => f.CreatedAt)
    */
   async getPendingUpdates(limit: number = 50): Promise<SupabaseArrayResponse<FeatureUpdate>> {
     try {
-      const { data, error } = await supabaseAdmin
+      const { data, error } = await withRetry(async () => await supabaseAdmin
         .from('feature_updates')
         .select('*')
         .eq('ai_analyzed', false)
         .order('created_at', { ascending: true })
-        .limit(limit);
+        .limit(limit));
       
       return { data, error };
     } catch (err) {
@@ -347,15 +435,15 @@ export const updatesService = {
 
   /**
    * Admin: Get updates by validation status
-   * Similar to: context.FeatureUpdates.Where(f => f.ValidationStatus == status).OrderByDescending(f => f.CreatedAt)
+   * Similar to: context.FeatureUpdates Where(f => f.ValidationStatus == status).OrderByDescending(f => f.CreatedAt)
    */
   async getUpdatesByValidationStatus(status: ValidationStatus): Promise<SupabaseArrayResponse<FeatureUpdate>> {
     try {
-      const { data, error } = await supabaseAdmin
+      const { data, error } = await withRetry(async () => await supabaseAdmin
         .from('feature_updates')
         .select('*')
         .eq('validation_status', status)
-        .order('created_at', { ascending: false });
+        .order('created_at', { ascending: false }));
       
       return { data, error };
     } catch (err) {
@@ -373,16 +461,17 @@ export const updatesService = {
 
   /**
    * Admin: Delete update
-   * Similar to: context.FeatureUpdates.Remove(update); await context.SaveChangesAsync()
+   * Similar to: context FeatureUpdates Remove(update); await context SaveChangesAsync()
    */
   async deleteUpdate(id: string): Promise<SupabaseResponse<void>> {
     try {
-      const { error } = await supabaseAdmin
+      const { error } = await withRetry(async () => await supabaseAdmin
         .from('feature_updates')
         .delete()
-        .eq('id', id);
+        .eq('id', id));
       
-      return { data: null, error };
+      if (!error) invalidateCache('updates:');
+      return { data: null, error: normalizeSupabaseError(error) as any };
     } catch (err) {
       return { 
         data: null, 

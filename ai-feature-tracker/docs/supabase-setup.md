@@ -79,7 +79,7 @@ SELECT extname FROM pg_extension;
 - **API URL**: http://127.0.0.1:54321
 - **GraphQL URL**: http://127.0.0.1:54321/graphql/v1  
 - **S3 Storage URL**: http://127.0.0.1:54321/storage/v1/s3
-- **DB URL**: postgresql://postgres:postgres@127.0.0.1:54322/postgres
+- **DB URL**: set `DEV_DATABASE_URL` in `.env.local` 
 - **Studio URL**: http://127.0.0.1:54323
 - **Inbucket URL**: http://127.0.0.1:54324
 

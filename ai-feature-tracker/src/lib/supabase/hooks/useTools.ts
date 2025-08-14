@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
-import { toolsService } from '@/lib/supabase/services/toolsService';
+import { subscribeCache } from '@/lib/supabase/utils/cache';
 import type { AITool, ToolWithLatestUpdate, ToolCategory } from '@/types/database.types';
+import { toolsService } from '@/lib/supabase/services/toolsService';
 
 /**
  * Hook for fetching all active tools
@@ -18,7 +19,7 @@ export function useTools() {
 
     const { data, error: fetchError } = await toolsService.getAllTools();
     
-    if (fetchError) {
+    if (fetchError && fetchError.code !== 'OFFLINE_QUEUED') {
       setError(fetchError.message);
       console.error('Error fetching tools:', fetchError);
     } else {
@@ -30,17 +31,61 @@ export function useTools() {
 
   useEffect(() => {
     fetchTools();
+    const unsubscribe = subscribeCache((key) => {
+      if (key.startsWith('tools:')) {
+        fetchTools();
+      }
+    });
+    return unsubscribe;
   }, [fetchTools]);
 
   const refetch = useCallback(() => {
     fetchTools();
   }, [fetchTools]);
 
+  // Example of optimistic update helper (not auto-applied, but provided)
+  const optimisticUpdateTool = useCallback((id: string, updates: Partial<AITool>) => {
+    setTools(prev => prev.map(t => (t.id === id ? { ...t, ...updates } : t)));
+  }, []);
+
+	const updateToolOptimistic = useCallback(async (id: string, updates: Partial<AITool>) => {
+		// Snapshot for rollback
+		let snapshot: AITool[] | null = null;
+		setTools(prev => {
+			snapshot = prev;
+			return prev.map(t => (t.id === id ? { ...t, ...updates, updated_at: new Date().toISOString() } : t));
+		});
+
+		const result = await toolsService.updateTool(id, updates);
+		if (result.error && result.error.code !== 'OFFLINE_QUEUED' && snapshot) {
+			// Rollback on failure
+			setTools(snapshot);
+		}
+		return result;
+	}, []);
+
+	const deactivateToolOptimistic = useCallback(async (id: string) => {
+		let snapshot: AITool[] | null = null;
+		setTools(prev => {
+			snapshot = prev;
+			return prev.map(t => (t.id === id ? { ...t, is_active: false, updated_at: new Date().toISOString() } : t));
+		});
+
+		const result = await toolsService.deactivateTool(id);
+		if (result.error && result.error.code !== 'OFFLINE_QUEUED' && snapshot) {
+			setTools(snapshot);
+		}
+		return result;
+	}, []);
+
   return { 
     tools, 
     isLoading, 
     error, 
-    refetch,
+		refetch,
+    optimisticUpdateTool,
+		updateToolOptimistic,
+		deactivateToolOptimistic,
     count: tools.length 
   };
 }

@@ -1,9 +1,13 @@
 // Check trigger status and fix if needed
 const { Client } = require('pg');
 
+import dotenv from 'dotenv';
+dotenv.config();
+dotenv.config({ path: '.env.local', override: true });
+
 async function checkTriggers() {
     const client = new Client({
-        connectionString: 'postgresql://postgres:postgres@127.0.0.1:54322/postgres'
+        connectionString: process.env.DEV_DATABASE_URL
     });
 
     try {

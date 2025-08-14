@@ -1,4 +1,15 @@
 import { supabase, supabaseAdmin } from '@/lib/supabase/client';
+import { SELECTS, SORTING } from '@/lib/supabase/constants/queries';
+import { TABLES, VIEWS } from '@/lib/supabase/constants/tables';
+import { sanitizeSearchQuery } from '@/lib/supabase/utils/validators';
+import { getFromCache, setInCache, invalidateCache } from '@/lib/supabase/utils/cache';
+import { withRetry } from '@/lib/supabase/utils/retry';
+import { DEFAULTS } from '@/lib/supabase/constants/defaults';
+import { getRateLimiter } from '@/lib/supabase/utils/rateLimiter';
+import { normalizeSupabaseError } from '@/lib/supabase/utils/errorHandler';
+import { isOffline } from '@/lib/supabase/utils/cache';
+import { queueWrite, offlineQueuedError } from '@/lib/supabase/utils/offline';
+// offline fallback handled via cache short-circuit above
 import type { 
   AITool, 
   AIToolInsert,
@@ -20,15 +31,24 @@ export const toolsService = {
    * Get all active tools
    * Similar to: context.Tools.Where(t => t.IsActive).OrderBy(t => t.Name).ToListAsync()
    */
-  async getAllTools(): Promise<SupabaseArrayResponse<AITool>> {
+  async getAllTools(): Promise<SupabaseArrayResponse<AITool & { category: ToolCategory | null }>> {
     try {
-      const { data, error } = await supabase
-        .from('ai_tools')
-        .select('*')
-        .eq('is_active', true)
-        .order('name');
+      const cacheKey = 'tools:all-with-category';
+      const cached = getFromCache<(AITool & { category: ToolCategory | null })[]>(cacheKey);
+      if (cached) return { data: cached, error: null } as SupabaseArrayResponse<AITool & { category: ToolCategory | null }>;
+
+      const { data, error } = await withRetry(async () =>
+        await getRateLimiter('ai_tools').execute(async () =>
+          await supabase
+            .from(TABLES.ai_tools)
+            .select(SELECTS.toolsWithCategory)
+            .order(SORTING.toolsByName.column, { ascending: SORTING.toolsByName.ascending })
+        )
+      );
+
+      if (!error && data) setInCache(cacheKey, data as any, DEFAULTS.cache.toolsTtlMs);
       
-      return { data, error };
+      return { data, error: normalizeSupabaseError(error) as any };
     } catch (err) {
       return { 
         data: null, 
@@ -55,7 +75,7 @@ export const toolsService = {
         .eq('is_active', true)
         .single();
       
-      return { data, error };
+      return { data, error: normalizeSupabaseError(error) as any };
     } catch (err) {
       return { 
         data: null, 
@@ -81,7 +101,7 @@ export const toolsService = {
         .eq('id', id)
         .single();
       
-      return { data, error };
+      return { data, error: normalizeSupabaseError(error) as any };
     } catch (err) {
       return { 
         data: null, 
@@ -101,14 +121,24 @@ export const toolsService = {
    */
   async getToolsByCategory(categoryId: string): Promise<SupabaseArrayResponse<AITool>> {
     try {
-      const { data, error } = await supabase
-        .from('ai_tools')
-        .select('*')
-        .eq('category_id', categoryId)
-        .eq('is_active', true)
-        .order('name');
+      const cacheKey = `tools:category:${categoryId}`;
+      const cached = getFromCache<AITool[]>(cacheKey);
+      if (cached) return { data: cached, error: null } as SupabaseArrayResponse<AITool>;
+
+      const { data, error } = await withRetry(async () =>
+        await getRateLimiter('ai_tools').execute(async () =>
+          await supabase
+            .from(TABLES.ai_tools)
+            .select('*')
+            .eq('category_id', categoryId)
+            .eq('is_active', true)
+            .order(SORTING.toolsByName.column, { ascending: SORTING.toolsByName.ascending })
+        )
+      );
+
+      if (!error && data) setInCache(cacheKey, data, DEFAULTS.cache.toolsTtlMs);
       
-      return { data, error };
+      return { data, error: normalizeSupabaseError(error) as any };
     } catch (err) {
       return { 
         data: null, 
@@ -128,12 +158,22 @@ export const toolsService = {
    */
   async getToolsWithLatestUpdates(): Promise<SupabaseArrayResponse<ToolWithLatestUpdate>> {
     try {
-      const { data, error } = await supabase
-        .from('tools_with_latest_updates')
-        .select('*')
-        .order('latest_update_date', { ascending: false, nullsFirst: false });
+      const cacheKey = 'tools:with-latest-updates';
+      const cached = getFromCache<ToolWithLatestUpdate[]>(cacheKey);
+      if (cached) return { data: cached, error: null } as SupabaseArrayResponse<ToolWithLatestUpdate>;
+
+      const { data, error } = await withRetry(async () =>
+        await getRateLimiter('tools_with_latest_updates').execute(async () =>
+          await supabase
+            .from(VIEWS.tools_with_latest_updates)
+            .select(SELECTS.toolsWithLatestUpdatesView)
+            .order('latest_update_date', { ascending: false, nullsFirst: false })
+        )
+      );
+
+      if (!error && data) setInCache(cacheKey, data, DEFAULTS.cache.toolsWithUpdatesTtlMs);
       
-      return { data, error };
+      return { data, error: normalizeSupabaseError(error) as any };
     } catch (err) {
       return { 
         data: null, 
@@ -153,14 +193,21 @@ export const toolsService = {
    */
   async getToolsWithCategories(): Promise<SupabaseArrayResponse<AITool & { category: ToolCategory | null }>> {
     try {
-      const { data, error } = await supabase
-        .from('ai_tools')
-        .select(`
-          *,
-          category:tool_categories(*)
-        `)
-        .eq('is_active', true)
-        .order('name');
+      const cacheKey = 'tools:with-category';
+      const cached = getFromCache<(AITool & { category: ToolCategory | null })[]>(cacheKey);
+      if (cached) return { data: cached, error: null } as SupabaseArrayResponse<AITool & { category: ToolCategory | null }>;
+
+      const { data, error } = await withRetry(async () =>
+        await getRateLimiter('ai_tools').execute(async () =>
+          await supabase
+            .from(TABLES.ai_tools)
+            .select(SELECTS.toolsWithCategory)
+            .eq('is_active', true)
+            .order(SORTING.toolsByName.column, { ascending: SORTING.toolsByName.ascending })
+        )
+      );
+
+      if (!error && data) setInCache(cacheKey, data as any, DEFAULTS.cache.toolsTtlMs);
       
       return { data, error };
     } catch (err) {
@@ -182,12 +229,17 @@ export const toolsService = {
    */
   async searchTools(searchTerm: string): Promise<SupabaseArrayResponse<AITool>> {
     try {
-      const { data, error } = await supabase
-        .from('ai_tools')
-        .select('*')
-        .or(`name.ilike.%${searchTerm}%,description.ilike.%${searchTerm}%`)
-        .eq('is_active', true)
-        .order('name');
+      const term = sanitizeSearchQuery(searchTerm);
+      const { data, error } = await withRetry(async () =>
+        await getRateLimiter('ai_tools').execute(async () =>
+          await supabase
+            .from(TABLES.ai_tools)
+            .select('*')
+            .or(`name.ilike.%${term}%,description.ilike.%${term}%`)
+            .eq('is_active', true)
+            .order(SORTING.toolsByName.column, { ascending: SORTING.toolsByName.ascending })
+        )
+      );
       
       return { data, error };
     } catch (err) {
@@ -201,6 +253,11 @@ export const toolsService = {
         } as any
       };
     }
+  },
+
+  /** Return only active/enabled tools */
+  async getActiveTools(): Promise<SupabaseArrayResponse<AITool>> {
+    return this.getAllTools();
   },
 
   /**
@@ -223,13 +280,26 @@ export const toolsService = {
         };
       }
 
-      const { data, error } = await supabaseAdmin
-        .from('ai_tools')
-        .insert(tool)
-        .select()
-        .single();
+      if (isOffline()) {
+        queueWrite('createTool', async () => {
+          await supabaseAdmin.from('ai_tools').insert(tool);
+          invalidateCache('tools:');
+        });
+        return { data: null, error: offlineQueuedError('Change queued while offline') as any };
+      }
+
+      const { data, error } = await withRetry(async () =>
+        await getRateLimiter('ai_tools_admin').execute(async () =>
+          await supabaseAdmin
+            .from('ai_tools')
+            .insert(tool)
+            .select()
+            .single()
+        )
+      );
       
-      return { data, error };
+      if (!error) invalidateCache('tools:');
+      return { data, error: normalizeSupabaseError(error) as any };
     } catch (err) {
       return { 
         data: null, 
@@ -249,17 +319,33 @@ export const toolsService = {
    */
   async updateTool(id: string, updates: AIToolUpdate): Promise<SupabaseResponse<AITool>> {
     try {
-      const { data, error } = await supabaseAdmin
-        .from('ai_tools')
-        .update({
-          ...updates,
-          updated_at: new Date().toISOString()
-        })
-        .eq('id', id)
-        .select()
-        .single();
+      if (isOffline()) {
+        queueWrite('updateTool', async () => {
+          await supabaseAdmin
+            .from('ai_tools')
+            .update({ ...updates, updated_at: new Date().toISOString() })
+            .eq('id', id);
+          invalidateCache('tools:');
+        });
+        return { data: null, error: offlineQueuedError('Change queued while offline') as any };
+      }
+
+      const { data, error } = await withRetry(async () =>
+        await getRateLimiter('ai_tools_admin').execute(async () =>
+          await supabaseAdmin
+            .from('ai_tools')
+            .update({
+              ...updates,
+              updated_at: new Date().toISOString()
+            })
+            .eq('id', id)
+            .select()
+            .single()
+        )
+      );
       
-      return { data, error };
+      if (!error) invalidateCache('tools:');
+      return { data, error: normalizeSupabaseError(error) as any };
     } catch (err) {
       return { 
         data: null, 
@@ -279,17 +365,33 @@ export const toolsService = {
    */
   async deactivateTool(id: string): Promise<SupabaseResponse<AITool>> {
     try {
-      const { data, error } = await supabaseAdmin
-        .from('ai_tools')
-        .update({ 
-          is_active: false,
-          updated_at: new Date().toISOString()
-        })
-        .eq('id', id)
-        .select()
-        .single();
+      if (isOffline()) {
+        queueWrite('deactivateTool', async () => {
+          await supabaseAdmin
+            .from('ai_tools')
+            .update({ is_active: false, updated_at: new Date().toISOString() })
+            .eq('id', id);
+          invalidateCache('tools:');
+        });
+        return { data: null, error: offlineQueuedError('Change queued while offline') as any };
+      }
+
+      const { data, error } = await withRetry(async () =>
+        await getRateLimiter('ai_tools_admin').execute(async () =>
+          await supabaseAdmin
+            .from('ai_tools')
+            .update({ 
+              is_active: false,
+              updated_at: new Date().toISOString()
+            })
+            .eq('id', id)
+            .select()
+            .single()
+        )
+      );
       
-      return { data, error };
+      if (!error) invalidateCache('tools:');
+      return { data, error: normalizeSupabaseError(error) as any };
     } catch (err) {
       return { 
         data: null, 
@@ -310,12 +412,17 @@ export const toolsService = {
    */
   async deleteTool(id: string): Promise<SupabaseResponse<void>> {
     try {
-      const { error } = await supabaseAdmin
-        .from('ai_tools')
-        .delete()
-        .eq('id', id);
+      const { error } = await withRetry(async () =>
+        await getRateLimiter('ai_tools_admin').execute(async () =>
+          await supabaseAdmin
+            .from('ai_tools')
+            .delete()
+            .eq('id', id)
+        )
+      );
       
-      return { data: null, error };
+      if (!error) invalidateCache('tools:');
+      return { data: null, error: normalizeSupabaseError(error) as any };
     } catch (err) {
       return { 
         data: null, 

@@ -2,11 +2,16 @@
 // This script systematically verifies every item in the completion checklist
 
 const { Client } = require('pg');
+try {
+    const dotenv = require('dotenv');
+    dotenv.config();
+    dotenv.config({ path: '.env.local', override: true });
+} catch {}
 
 class ChecklistVerifier {
     constructor() {
         this.client = new Client({
-            connectionString: 'postgresql://postgres:postgres@127.0.0.1:54322/postgres'
+            connectionString: process.env.DEV_DATABASE_URL
         });
         this.results = {};
     }
